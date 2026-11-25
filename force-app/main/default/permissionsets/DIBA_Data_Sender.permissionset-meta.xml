@@ -4,7 +4,7 @@
         <apexClass>DibaImport</apexClass>
         <enabled>true</enabled>
     </classAccesses>
-    <description>The user under whom E+H's action delivers plant data to mzw.DibaImport.</description>
+    <description>The user under whom E+H's action delivers account data to mzw.DibaImport.</description>
     <fieldPermissions>
         <editable>true</editable>
         <field>DIBA_Account__c.Account__c</field>

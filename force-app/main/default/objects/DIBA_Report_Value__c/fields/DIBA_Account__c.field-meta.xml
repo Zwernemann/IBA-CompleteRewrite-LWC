@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>DIBA_Account__c</fullName>
-    <description>The plant the value belongs to.</description>
-    <label>Plant</label>
+    <description>The account the value belongs to.</description>
+    <label>Account</label>
     <referenceTo>DIBA_Account__c</referenceTo>
     <relationshipLabel>Report Values</relationshipLabel>
     <relationshipName>Report_Values</relationshipName>

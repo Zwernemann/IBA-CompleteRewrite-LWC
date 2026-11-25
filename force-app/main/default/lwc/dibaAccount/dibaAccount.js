@@ -1,4 +1,5 @@
 import { LightningElement, api } from "lwc";
+import { NavigationMixin } from "lightning/navigation";
 import loadValues from "@salesforce/apex/DibaReportValuesController.load";
 import saveValues from "@salesforce/apex/DibaReportValuesController.save";
 import getIntervals from "@salesforce/apex/DibaIntervalController.getIntervals";
@@ -62,12 +63,12 @@ const SLIDERS = [
 ];
 
 /**
- * One plant with the tabs of the former working page (ibaJob.xhtml): indicators, report
+ * One account with the tabs of the former working page (ibaJob.xhtml): indicators, report
  * texts per chapter, report settings. Everything is saved while the consultant works;
  * a field someone else saved in the meantime is not overwritten and is named.
  */
-export default class DibaPlant extends LightningElement {
-    @api plant;
+export default class DibaAccount extends NavigationMixin(LightningElement) {
+    @api account;
 
     loading = true;
     error;
@@ -95,11 +96,11 @@ export default class DibaPlant extends LightningElement {
         try {
             const [translations, stored, rows, attachments] = await Promise.all([
                 loadTranslations(),
-                loadValues({ plantId: this.plant.recordId }),
-                loadRows(this.plant.recordId, (count) => {
+                loadValues({ accountDataId: this.account.recordId }),
+                loadRows(this.account.recordId, (count) => {
                     this.loadedRows = count;
                 }),
-                listAttachments({ plantId: this.plant.recordId })
+                listAttachments({ accountDataId: this.account.recordId })
             ]);
             this.translations = translations;
             this.attachmentMap = attachments || {};
@@ -141,11 +142,11 @@ export default class DibaPlant extends LightningElement {
     }
 
     get title() {
-        return this.plant ? this.plant.name : "";
+        return this.account ? this.account.name : "";
     }
 
     get rowCount() {
-        return `${this.rows.length || (this.plant && this.plant.rowCount) || 0} rows`;
+        return `${this.rows.length || (this.account && this.account.rowCount) || 0} rows`;
     }
 
     get progress() {
@@ -343,7 +344,7 @@ export default class DibaPlant extends LightningElement {
                 // Settings before texts, as IBA-Salesforce saves them.
                 // eslint-disable-next-line no-await-in-loop
                 const result = await saveValues({
-                    plantId: this.plant.recordId,
+                    accountDataId: this.account.recordId,
                     section: save.section,
                     valuesJson: JSON.stringify(save.values),
                     versionsJson: JSON.stringify(save.versions)
@@ -379,9 +380,9 @@ export default class DibaPlant extends LightningElement {
         const view = (event && event.currentTarget && event.currentTarget.dataset.view) || "maintenance";
         await DibaMaintenanceModal.open({
             size: "full",
-            description: "Asset table of the plant",
-            plantId: this.plant.recordId,
-            plantName: this.plant.name,
+            description: "Asset table of the account",
+            accountDataId: this.account.recordId,
+            accountName: this.account.name,
             view,
             title: this.t(VIEWS[view])
         });
@@ -394,9 +395,9 @@ export default class DibaPlant extends LightningElement {
     async handleOpenIntervals() {
         await DibaIntervalModal.open({
             size: "full",
-            description: "Interval table of the plant",
-            plantId: this.plant.recordId,
-            plantName: this.plant.name
+            description: "Interval table of the account",
+            accountDataId: this.account.recordId,
+            accountName: this.account.name
         });
         // The report takes the table anew.
         this.intervals = null;
@@ -425,15 +426,15 @@ export default class DibaPlant extends LightningElement {
     @api
     async buildReportXml() {
         if (!this.intervals) {
-            const table = await getIntervals({ plantId: this.plant.recordId });
+            const table = await getIntervals({ accountDataId: this.account.recordId });
             this.intervals = table.rows;
         }
         this.calculateSliders();
         const texts = this.session.texts;
-        const name = this.plant.name;
+        const name = this.account.name;
         return reportXml({
             devices: devicesOf(this.rows, {
-                accountId: this.plant.accountKey,
+                accountId: this.account.accountKey,
                 siteName: texts.siteName,
                 intervals: this.intervals
             }),
@@ -445,7 +446,7 @@ export default class DibaPlant extends LightningElement {
                 u_reportaddress: "",
                 isAdmin: false,
                 u_frontend_language: userLanguage(),
-                u_loginname: this.plant.accountKey,
+                u_loginname: this.account.accountKey,
                 hub_email: "",
                 hub_first_name: "",
                 hub_last_name: name
@@ -458,7 +459,7 @@ export default class DibaPlant extends LightningElement {
     async handleDownloadXml() {
         try {
             const xml = await this.buildReportXml();
-            // Large plants give more than 100 MB; a data URL would not hold that.
+            // Large accounts give more than 100 MB; a data URL would not hold that.
             const url = URL.createObjectURL(new Blob([xml], { type: "application/octet-stream" }));
             const link = document.createElement("a");
             link.href = url;
@@ -471,9 +472,13 @@ export default class DibaPlant extends LightningElement {
         }
     }
 
-    handleBack() {
-        this.flush();
-        this.dispatchEvent(new CustomEvent("back"));
+    /** Back to the account the button was pressed on. */
+    async handleBack() {
+        await this.flush();
+        this[NavigationMixin.Navigate]({
+            type: "standard__recordPage",
+            attributes: { recordId: this.account.accountId, objectApiName: "Account", actionName: "view" }
+        });
     }
 }
 

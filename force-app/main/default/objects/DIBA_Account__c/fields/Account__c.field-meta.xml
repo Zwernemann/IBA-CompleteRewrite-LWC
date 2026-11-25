@@ -5,8 +5,8 @@
     <description>The account, where the id of the delivery exists in this org.</description>
     <label>Account</label>
     <referenceTo>Account</referenceTo>
-    <relationshipLabel>DIBA Plants</relationshipLabel>
-    <relationshipName>DIBA_Plants</relationshipName>
+    <relationshipLabel>DIBA Account Data</relationshipLabel>
+    <relationshipName>DIBA_Account_Data</relationshipName>
     <required>false</required>
     <type>Lookup</type>
 </CustomField>

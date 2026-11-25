@@ -12,7 +12,7 @@
  *   FineTuneWriter                        <br /> and list bullets for Crystal
  *
  * Plain arrays and strings only: typed arrays are many times slower inside Lightning Web
- * Security, and a plant can have 50,000 rows.
+ * Security, and an account can have 50,000 rows.
  */
 
 // --- Element order of the JAXB classes ---------------------------------------------------
@@ -173,7 +173,7 @@ const trimmed = (value) => text(value).trim();
  * The devices of the report from the rows of the table (prepared by c/dibaRowLogic, so
  * with the master data edits applied and risk and obsolescence calculated).
  *
- * @param rows       rows as DibaPlantController.getRows delivers them
+ * @param rows       rows as DibaAccountController.getRows delivers them
  * @param options    { accountId, siteName, intervals }; intervals as in the XML (spk,
  *                   assettype, the 18 columns, id)
  */

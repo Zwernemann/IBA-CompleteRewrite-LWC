@@ -1,7 +1,7 @@
 import { LightningElement, api } from "lwc";
-import saveRows from "@salesforce/apex/DibaPlantController.saveRows";
+import saveRows from "@salesforce/apex/DibaAccountController.saveRows";
 import getIntervals from "@salesforce/apex/DibaIntervalController.getIntervals";
-import lookupOrderCode from "@salesforce/apex/DibaPlantController.lookupOrderCode";
+import lookupOrderCode from "@salesforce/apex/DibaAccountController.lookupOrderCode";
 import { loadRows } from "c/dibaRowStore";
 import { columnsFor } from "c/dibaColumns";
 import { intervalValues } from "c/dibaReportXml";
@@ -20,14 +20,14 @@ const SAVE_DELAY = 800;
 const SAVE_BATCH = 500;
 
 /**
- * The table dialogs of a plant (ibaMaintDialog, ibaBreakdownDialog, ibaMigrationDialog,
+ * The table dialogs of an account (ibaMaintDialog, ibaBreakdownDialog, ibaMigrationDialog,
  * ibaPreventativeDialog of IBA-Salesforce): all rows, with the columns of the dialog
  * (c/dibaColumns). Master data is editable beside the Salesforce values, consultant input
  * directly; saved as the consultant types. Rows someone else saved in the meantime are not
  * overwritten: they are reloaded and named.
  */
 export default class DibaMaintenance extends LightningElement {
-    @api plantId;
+    @api accountDataId;
     @api height = 560;
     /** maintenance, breakdown, migration or preventative */
     @api view = "maintenance";
@@ -79,13 +79,13 @@ export default class DibaMaintenance extends LightningElement {
         try {
             const [translations, rows] = await Promise.all([
                 loadTranslations(),
-                loadRows(this.plantId, (count) => {
+                loadRows(this.accountDataId, (count) => {
                     this.loaded = count;
                 })
             ]);
             this.columns = columnsFor(this.view, translator(translations, userLanguage()));
             if (this.view === "preventative") {
-                const table = await getIntervals({ plantId: this.plantId });
+                const table = await getIntervals({ accountDataId: this.accountDataId });
                 this.applyIntervals(rows, table.rows);
             }
             this.rows = rows.slice();
@@ -98,7 +98,7 @@ export default class DibaMaintenance extends LightningElement {
         }
     }
 
-    /** The calculated intervals from the interval table of the plant (not stored). */
+    /** The calculated intervals from the interval table of the account (not stored). */
     applyIntervals(rows, intervals) {
         this.intervalsBySpk = new Map(intervals.filter((i) => i.spk).map((i) => [i.spk, i]));
         for (const row of rows) {
@@ -117,7 +117,7 @@ export default class DibaMaintenance extends LightningElement {
     /**
      * Applies the edits and calculates risk and obsolescence. The calculation is shown and
      * goes into the report; it is stored only with the next change of the row, so that
-     * opening a large plant does not write all its rows.
+     * opening a large account does not write all its rows.
      */
     prepare(row) {
         prepareRow(row);
@@ -240,7 +240,7 @@ export default class DibaMaintenance extends LightningElement {
             }
         }
         for (const current of result.conflicts || []) {
-            // The shared row object takes the stored state, so the plant view sees it too.
+            // The shared row object takes the stored state, so the account view sees it too.
             const row = this.byId.get(current.id);
             if (!row) continue;
             for (const key of Object.keys(row)) delete row[key];

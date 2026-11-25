@@ -1,11 +1,11 @@
 @IsTest
 private class DibaIntervalControllerTest {
     @TestSetup
-    static void plant() {
+    static void accountData() {
         insert new DIBA_Account__c(Name = 'Nord', Account_Key__c = '0017Q00000TsTdAQAV');
     }
 
-    private static Id plantId() {
+    private static Id accountDataId() {
         return [SELECT Id FROM DIBA_Account__c].Id;
     }
 
@@ -20,7 +20,7 @@ private class DibaIntervalControllerTest {
 
     @IsTest
     static void deliversTheDefaultsInTheirOrder() {
-        DibaIntervalController.Table table = DibaIntervalController.getIntervals(plantId());
+        DibaIntervalController.Table table = DibaIntervalController.getIntervals(accountDataId());
         Assert.areEqual(90, table.rows.size());
         Assert.areEqual(1, table.rows[0].get('id'));
         Assert.areEqual('CA', table.rows[0].get('spk'));
@@ -33,19 +33,19 @@ private class DibaIntervalControllerTest {
     @IsTest
     static void changesACellAndTakesItBack() {
         DibaIntervalController.SaveResult saved = DibaIntervalController.saveCells(
-            plantId(),
+            accountDataId(),
             'TA',
             '{"low_normal_insp": "60"}',
             '{}'
         );
         Assert.areEqual(0, saved.versions.get('low_normal_insp'));
-        DibaIntervalController.Table table = DibaIntervalController.getIntervals(plantId());
+        DibaIntervalController.Table table = DibaIntervalController.getIntervals(accountDataId());
         Assert.areEqual('60', rowOf(table, 'TA').get('low_normal_insp'));
         Assert.areEqual('48', table.defaults.get('TA').get('low_normal_insp'));
         Assert.areEqual(0, table.versions.get('TA').get('low_normal_insp'));
 
         DibaIntervalController.SaveResult back = DibaIntervalController.saveCells(
-            plantId(),
+            accountDataId(),
             'TA',
             '{"low_normal_insp": null}',
             '{"low_normal_insp": 0}'
@@ -56,9 +56,9 @@ private class DibaIntervalControllerTest {
 
     @IsTest
     static void staleVersionIsAConflict() {
-        DibaIntervalController.saveCells(plantId(), 'TA', '{"low_normal_insp": "60"}', '{}');
+        DibaIntervalController.saveCells(accountDataId(), 'TA', '{"low_normal_insp": "60"}', '{}');
         DibaIntervalController.SaveResult stale = DibaIntervalController.saveCells(
-            plantId(),
+            accountDataId(),
             'TA',
             '{"low_normal_insp": "70"}',
             '{}'
@@ -73,7 +73,7 @@ private class DibaIntervalControllerTest {
     static void rejectsTooLongValuesAndUnknownColumns() {
         try {
             DibaIntervalController.saveCells(
-                plantId(),
+                accountDataId(),
                 'TA',
                 '{"low_normal_insp": "' + 'x'.repeat(33) + '"}',
                 '{}'
@@ -83,7 +83,7 @@ private class DibaIntervalControllerTest {
             Assert.isNotNull(e);
         }
         try {
-            DibaIntervalController.saveCells(plantId(), 'TA', '{"other": "1"}', '{}');
+            DibaIntervalController.saveCells(accountDataId(), 'TA', '{"other": "1"}', '{}');
             Assert.fail('rejected expected');
         } catch (AuraHandledException e) {
             Assert.isNotNull(e);

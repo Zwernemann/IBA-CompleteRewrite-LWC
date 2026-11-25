@@ -1,12 +1,12 @@
 import { createElement } from "lwc";
 import { readFileSync } from "fs";
 import { join } from "path";
-import DibaPlant from "c/dibaPlant";
+import DibaAccount from "c/dibaAccount";
 import DibaMaintenanceModal from "c/dibaMaintenanceModal";
 import loadValues from "@salesforce/apex/DibaReportValuesController.load";
 import saveValues from "@salesforce/apex/DibaReportValuesController.save";
 import getIntervals from "@salesforce/apex/DibaIntervalController.getIntervals";
-import getRows from "@salesforce/apex/DibaPlantController.getRows";
+import getRows from "@salesforce/apex/DibaAccountController.getRows";
 import listAttachments from "@salesforce/apex/DibaAttachmentController.listAttachments";
 import { forgetRows } from "c/dibaRowStore";
 
@@ -15,13 +15,13 @@ jest.mock("c/dibaIntervalModal", () => ({ __esModule: true, default: { open: jes
 jest.mock("@salesforce/apex/DibaReportValuesController.load", () => ({ default: jest.fn() }), { virtual: true });
 jest.mock("@salesforce/apex/DibaReportValuesController.save", () => ({ default: jest.fn() }), { virtual: true });
 jest.mock("@salesforce/apex/DibaIntervalController.getIntervals", () => ({ default: jest.fn() }), { virtual: true });
-jest.mock("@salesforce/apex/DibaPlantController.getRows", () => ({ default: jest.fn() }), { virtual: true });
+jest.mock("@salesforce/apex/DibaAccountController.getRows", () => ({ default: jest.fn() }), { virtual: true });
 jest.mock("@salesforce/apex/DibaAttachmentController.listAttachments", () => ({ default: jest.fn() }), { virtual: true });
 
 const ROOT = join(__dirname, "../../../../../..");
 const TRANSLATIONS = JSON.parse(readFileSync(join(ROOT, "force-app/main/default/staticresources/dibaTranslations.json"), "utf8"));
 
-const PLANT = { recordId: "a01A", name: "Nord", accountKey: "0017Q00000TsTdAQAV", rowCount: 2 };
+const ACCOUNT = { recordId: "a01A", name: "Nord", accountKey: "0017Q00000TsTdAQAV", rowCount: 2 };
 
 async function settle() {
     for (let i = 0; i < 10; i++) {
@@ -30,12 +30,12 @@ async function settle() {
     }
 }
 
-describe("c-diba-plant", () => {
+describe("c-diba-account", () => {
     beforeEach(() => {
         jest.useFakeTimers();
         forgetRows("a01A");
         global.fetch = jest.fn(() => Promise.resolve({ ok: true, json: () => Promise.resolve(TRANSLATIONS) }));
-        loadValues.mockResolvedValue({ texts: {}, settings: {}, jobId: PLANT.accountKey, siteName: "Nord", presetLanguage: "de_DE", presetFinalReport: null });
+        loadValues.mockResolvedValue({ texts: {}, settings: {}, jobId: ACCOUNT.accountKey, siteName: "Nord", presetLanguage: "de_DE", presetFinalReport: null });
         saveValues.mockResolvedValue({ versions: {}, conflicts: {} });
         getRows.mockResolvedValue({
             rows: [
@@ -54,8 +54,8 @@ describe("c-diba-plant", () => {
     });
 
     async function open() {
-        const element = createElement("c-diba-plant", { is: DibaPlant });
-        element.plant = PLANT;
+        const element = createElement("c-diba-account", { is: DibaAccount });
+        element.account = ACCOUNT;
         document.body.appendChild(element);
         await settle();
         return element;
@@ -125,7 +125,7 @@ describe("c-diba-plant", () => {
         const element = await open();
         element.shadowRoot.querySelector('[data-id="open-assets"]').click();
         await settle();
-        expect(DibaMaintenanceModal.open).toHaveBeenCalledWith(expect.objectContaining({ plantId: "a01A", view: "maintenance" }));
+        expect(DibaMaintenanceModal.open).toHaveBeenCalledWith(expect.objectContaining({ accountDataId: "a01A", view: "maintenance" }));
     });
 
     it("opens the other dialogs in their view", async () => {

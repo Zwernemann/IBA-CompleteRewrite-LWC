@@ -1,6 +1,6 @@
 /**
- * The interval table of a plant: the defaults of E+H (custom metadata DIBA_Interval__mdt)
- * with the cells changed for the plant on top (DIBA_Interval_Value__c), as
+ * The interval table of an account: the defaults of E+H (custom metadata DIBA_Interval__mdt)
+ * with the cells changed for the account on top (DIBA_Interval_Value__c), as
  * IntervalTableSession of IBA-Salesforce. A cell set back to its default is removed.
  */
 public with sharing class DibaIntervalController {
@@ -66,7 +66,7 @@ public with sharing class DibaIntervalController {
     }
 
     @AuraEnabled
-    public static Table getIntervals(Id plantId) {
+    public static Table getIntervals(Id accountDataId) {
         List<DIBA_Interval__mdt> defaults = DIBA_Interval__mdt.getAll().values();
         Map<String, DIBA_Interval__mdt> bySort = new Map<String, DIBA_Interval__mdt>();
         for (DIBA_Interval__mdt record : defaults) {
@@ -76,11 +76,11 @@ public with sharing class DibaIntervalController {
         order.sort();
 
         Map<String, Map<String, DIBA_Interval_Value__c>> changes = new Map<String, Map<String, DIBA_Interval_Value__c>>();
-        if (plantId != null) {
+        if (accountDataId != null) {
             for (DIBA_Interval_Value__c value : [
                 SELECT Spk__c, Field__c, Value__c, Version__c
                 FROM DIBA_Interval_Value__c
-                WHERE DIBA_Account__c = :plantId
+                WHERE DIBA_Account__c = :accountDataId
             ]) {
                 if (!changes.containsKey(value.Spk__c)) {
                     changes.put(value.Spk__c, new Map<String, DIBA_Interval_Value__c>());
@@ -131,7 +131,7 @@ public with sharing class DibaIntervalController {
      */
     @AuraEnabled
     public static SaveResult saveCells(
-        Id plantId,
+        Id accountDataId,
         String spk,
         String valuesJson,
         String versionsJson
@@ -141,7 +141,11 @@ public with sharing class DibaIntervalController {
             ? new Map<String, Object>()
             : (Map<String, Object>) JSON.deserializeUntyped(versionsJson);
         Set<String> columns = new Set<String>(COLUMNS);
-        DIBA_Account__c plant = [SELECT Account_Key__c FROM DIBA_Account__c WHERE Id = :plantId];
+        DIBA_Account__c accountData = [
+            SELECT Account_Key__c
+            FROM DIBA_Account__c
+            WHERE Id = :accountDataId
+        ];
         Map<String, String> keys = new Map<String, String>();
         for (String column : values.keySet()) {
             if (!columns.contains(column)) {
@@ -155,7 +159,7 @@ public with sharing class DibaIntervalController {
                         ' characters; the value was not saved.'
                 );
             }
-            keys.put(column, plant.Account_Key__c + '/' + spk + '/' + column);
+            keys.put(column, accountData.Account_Key__c + '/' + spk + '/' + column);
         }
         Map<String, DIBA_Interval_Value__c> current = new Map<String, DIBA_Interval_Value__c>();
         for (DIBA_Interval_Value__c value : [
@@ -201,7 +205,7 @@ public with sharing class DibaIntervalController {
             } else {
                 writes.add(
                     new DIBA_Interval_Value__c(
-                        DIBA_Account__c = plantId,
+                        DIBA_Account__c = accountDataId,
                         Value_Key__c = keys.get(column),
                         Spk__c = spk,
                         Field__c = column,

@@ -1,9 +1,9 @@
 @IsTest
-private class DibaLargePlantTest {
+private class DibaLargeAccountTest {
     @IsTest
     static void deliversTheFirstPart() {
         Test.startTest();
-        String transmissionId = DibaLargePlant.start(null, 1500);
+        String transmissionId = DibaLargeAccount.start(null, 1500);
         Test.stopTest();
 
         DIBA_Transmission__c part = [
@@ -13,7 +13,7 @@ private class DibaLargePlantTest {
         ];
         Assert.areEqual(1, part.Part__c);
         Assert.areEqual(2, part.Part_Count__c);
-        Assert.areEqual(DibaLargePlant.PART_SIZE, [SELECT COUNT() FROM DIBA_Row__c]);
+        Assert.areEqual(DibaLargeAccount.PART_SIZE, [SELECT COUNT() FROM DIBA_Row__c]);
         Assert.areEqual(
             10,
             [SELECT COUNT() FROM DIBA_Row__c WHERE Tag_Id__c = NULL],
@@ -23,15 +23,15 @@ private class DibaLargePlantTest {
 
     @IsTest
     static void valuesFollowFromTheRowNumber() {
-        String first = DibaLargePlant.build(
-            DibaLargePlant.ACCOUNT_ID,
+        String first = DibaLargeAccount.build(
+            DibaLargeAccount.ACCOUNT_ID,
             'DIBA Lasttest',
             2000,
             2,
             'X'
         );
-        String second = DibaLargePlant.build(
-            DibaLargePlant.ACCOUNT_ID,
+        String second = DibaLargeAccount.build(
+            DibaLargeAccount.ACCOUNT_ID,
             'DIBA Lasttest',
             2000,
             2,
@@ -39,14 +39,14 @@ private class DibaLargePlantTest {
         );
         Assert.areEqual(first, second);
         for (Integer row = 0; row < 500; row++) {
-            Integer value = DibaLargePlant.pick(row, 3, 120);
+            Integer value = DibaLargeAccount.pick(row, 3, 120);
             Assert.isTrue(value >= 0 && value < 120);
         }
     }
 
     @IsTest
     static void partsCoverAllRows() {
-        Assert.areEqual(50, DibaLargePlant.partCount(50000));
-        Assert.areEqual(2, DibaLargePlant.partCount(1001));
+        Assert.areEqual(50, DibaLargeAccount.partCount(50000));
+        Assert.areEqual(2, DibaLargeAccount.partCount(1001));
     }
 }

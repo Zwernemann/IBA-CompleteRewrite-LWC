@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Runs the end to end tests (e2e/) against an org where both packages are installed and
-# the test plant was delivered (scripts/org-install-test.sh does both).
+# the test account was delivered (scripts/org-install-test.sh does both).
 #
 #   scripts/e2e.sh <org alias>
 source "$(dirname "$0")/lib/common.sh"

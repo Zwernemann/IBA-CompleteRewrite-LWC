@@ -1,12 +1,12 @@
-// The work of a consultant on the test plant, as in the e2e suite of IBA-Salesforce:
+// The work of a consultant on the test account, as in the e2e suite of IBA-Salesforce:
 // tabs, asset table, consultant input, report texts, report XML.
 const { test, expect } = require("@playwright/test");
-const { openTestPlant, eventually, TEST_ACCOUNT } = require("./helpers");
+const { openTestAccount, eventually, testAccountId } = require("./helpers");
 
 const stamp = `e2e ${Date.now()}`;
 
-test("the plant shows its seven tabs and 20 rows", async ({ page }) => {
-    await openTestPlant(page);
+test("the account shows its seven tabs and 20 rows", async ({ page }) => {
+    await openTestAccount(page);
     for (const tab of ["Indicators", "Overview", "Standardisation", "Breakdown", "Migration", "Preventative", "Implementation"]) {
         await expect(page.getByRole("tab", { name: tab })).toBeVisible();
     }
@@ -14,7 +14,7 @@ test("the plant shows its seven tabs and 20 rows", async ({ page }) => {
 });
 
 test("the asset table shows all rows and filters them", async ({ page }) => {
-    await openTestPlant(page);
+    await openTestAccount(page);
     await page.getByRole("button", { name: "Edit asset table" }).click();
     await expect(page.getByText("20 rows").last()).toBeVisible();
     await page.locator('input.diba-filter[data-field="device_tag"]').fill("TI-");
@@ -23,7 +23,7 @@ test("the asset table shows all rows and filters them", async ({ page }) => {
 });
 
 test("a remark in the breakdown table is stored", async ({ page }) => {
-    await openTestPlant(page);
+    await openTestAccount(page);
     await page.getByRole("tab", { name: "Breakdown" }).click();
     await page.getByRole("button", { name: "Edit extended spare instruments table" }).click();
     const cell = page.locator('.diba-cell[data-field="add_remark1"]').first();
@@ -33,13 +33,13 @@ test("a remark in the breakdown table is stored", async ({ page }) => {
     await editor.press("Enter");
     await expect(page.getByText("All changes saved")).toBeVisible();
     await eventually(
-        `SELECT Id FROM mzw__DIBA_Row__c WHERE mzw__Add_Remark1__c = '${stamp}' AND mzw__DIBA_Account__r.mzw__Account_Key__c = '${TEST_ACCOUNT}'`
+        `SELECT Id FROM mzw__DIBA_Row__c WHERE mzw__Add_Remark1__c = '${stamp}' AND mzw__DIBA_Account__r.mzw__Account__c = '${testAccountId()}'`
     );
     await page.getByRole("button", { name: "Close" }).click();
 });
 
 test("a report text is stored with its version", async ({ page }) => {
-    await openTestPlant(page);
+    await openTestAccount(page);
     await page.getByRole("tab", { name: "Overview" }).click();
     const editor = page.locator(".diba-rich-editor").nth(1);
     await editor.click();
@@ -52,7 +52,7 @@ test("a report text is stored with its version", async ({ page }) => {
 });
 
 test("the report XML has the 20 devices", async ({ page }) => {
-    await openTestPlant(page);
+    await openTestAccount(page);
     const download = page.waitForEvent("download");
     await page.getByRole("button", { name: "Report XML" }).click();
     const file = await download;

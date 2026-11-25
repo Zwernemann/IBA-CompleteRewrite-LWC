@@ -1,14 +1,14 @@
 /**
- * An invented plant of any size for load tests, delivered through mzw.DibaImport in parts
+ * An invented account of any size for load tests, delivered through mzw.DibaImport in parts
  * of PART_SIZE rows, one Queueable per part. As scripts/lib/MassData.java of IBA-Salesforce:
- * five plants with six halls and four lines each, device families with the SPK codes of the
+ * five accounts with six halls and four lines each, device families with the SPK codes of the
  * interval table, Endress+Hauser for about half of the devices, twenty invented
  * manufacturers. Every value follows from the row number, so a second run replaces the
  * rows instead of doubling them. Only for test orgs.
  *
- *   mzw.DibaLargePlant.start(null, 50000);   anonymous Apex; the fixed load test account
+ *   mzw.DibaLargeAccount.start(null, 50000);   anonymous Apex; the fixed load test account
  */
-global with sharing class DibaLargePlant implements Queueable {
+global with sharing class DibaLargeAccount implements Queueable {
     public static final Integer PART_SIZE = 1000;
     public static final String ACCOUNT_ID = '001LT0000000001AAA';
 
@@ -90,7 +90,7 @@ global with sharing class DibaLargePlant implements Queueable {
     private final Integer part;
     private final String transmissionId;
 
-    private DibaLargePlant(
+    private DibaLargeAccount(
         String accountId,
         String accountName,
         Integer rows,
@@ -120,7 +120,7 @@ global with sharing class DibaLargePlant implements Queueable {
             name = account.Name;
         }
         String transmissionId = 'LASTTEST-' + System.now().getTime();
-        System.enqueueJob(new DibaLargePlant(id, name, rows, 1, transmissionId));
+        System.enqueueJob(new DibaLargeAccount(id, name, rows, 1, transmissionId));
         return transmissionId;
     }
 
@@ -132,11 +132,12 @@ global with sharing class DibaLargePlant implements Queueable {
         // One job may start one other: the next part, after the last the Order Code Transformer.
         if (part < partCount(rows)) {
             System.enqueueJob(
-                new DibaLargePlant(accountId, accountName, rows, part + 1, transmissionId)
+                new DibaLargeAccount(accountId, accountName, rows, part + 1, transmissionId)
             );
         } else {
-            Id plantId = [SELECT Id FROM DIBA_Account__c WHERE Account_Key__c = :accountId].Id;
-            System.enqueueJob(new DibaOrderCodeJob(plantId));
+            Id accountDataId = [SELECT Id FROM DIBA_Account__c WHERE Account_Key__c = :accountId]
+            .Id;
+            System.enqueueJob(new DibaOrderCodeJob(accountDataId));
         }
     }
 

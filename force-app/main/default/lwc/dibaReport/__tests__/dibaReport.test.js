@@ -1,14 +1,11 @@
 import { createElement } from "lwc";
 import DibaReport from "c/dibaReport";
 import { CurrentPageReference } from "lightning/navigation";
-import listPlants from "@salesforce/apex/DibaPlantController.listPlants";
+import getAccountData from "@salesforce/apex/DibaAccountController.getAccountData";
 
-jest.mock("@salesforce/apex/DibaPlantController.listPlants", () => ({ default: jest.fn() }), { virtual: true });
+jest.mock("@salesforce/apex/DibaAccountController.getAccountData", () => ({ default: jest.fn() }), { virtual: true });
 
-const PLANTS = [
-    { recordId: "a01A", name: "Nord", accountKey: "0017Q00000TsTdAQAV", accountId: null, rowCount: 20 },
-    { recordId: "a01B", name: "Sued", accountKey: "001000000000002AAA", accountId: "001000000000002AAA", rowCount: 5 }
-];
+const ACCOUNT = { recordId: "a01A", name: "DIBA Testanlage Nord", accountKey: "0017Q00000TsTdAQAV", accountId: "0017Q00000TsTdAQAV", rowCount: 20 };
 
 async function settle() {
     for (let i = 0; i < 5; i++) {
@@ -19,38 +16,35 @@ async function settle() {
 
 describe("c-diba-report", () => {
     afterEach(() => {
-        while (document.body.firstChild) {
-            document.body.removeChild(document.body.firstChild);
-        }
-        listPlants.mockReset();
+        while (document.body.firstChild) document.body.removeChild(document.body.firstChild);
+        getAccountData.mockReset();
     });
 
-    it("lists the plants", async () => {
-        listPlants.mockResolvedValue(PLANTS);
+    it("opens the account the button passed", async () => {
+        getAccountData.mockResolvedValue(ACCOUNT);
         const element = createElement("c-diba-report", { is: DibaReport });
         document.body.appendChild(element);
+        CurrentPageReference.emit({ state: { mzw__account: "0017Q00000TsTdAQAV" } });
         await settle();
-        const table = element.shadowRoot.querySelector("lightning-datatable");
-        expect(table.data.length).toBe(2);
-        expect(element.shadowRoot.querySelector("c-diba-plant")).toBeNull();
+        expect(getAccountData).toHaveBeenCalledWith({ accountId: "0017Q00000TsTdAQAV" });
+        expect(element.shadowRoot.querySelector("c-diba-account").account.name).toBe("DIBA Testanlage Nord");
     });
 
-    it("opens the plant of the account in the address, 15 characters suffice", async () => {
-        listPlants.mockResolvedValue(PLANTS);
+    it("says where it is opened from when called without an account", async () => {
         const element = createElement("c-diba-report", { is: DibaReport });
         document.body.appendChild(element);
-        CurrentPageReference.emit({ state: { c__account: "001000000000002" } });
+        CurrentPageReference.emit({ state: {} });
         await settle();
-        const plant = element.shadowRoot.querySelector("c-diba-plant");
-        expect(plant).not.toBeNull();
-        expect(plant.plant.name).toBe("Sued");
+        expect(element.shadowRoot.querySelector('[data-id="no-account"]')).not.toBeNull();
+        expect(getAccountData).not.toHaveBeenCalled();
     });
 
-    it("says when nothing was delivered", async () => {
-        listPlants.mockResolvedValue([]);
+    it("says when nothing was delivered for the account", async () => {
+        getAccountData.mockResolvedValue(null);
         const element = createElement("c-diba-report", { is: DibaReport });
         document.body.appendChild(element);
+        CurrentPageReference.emit({ state: { c__account: "001000000000002AAA" } });
         await settle();
-        expect(element.shadowRoot.textContent).toContain("No plant has been delivered yet");
+        expect(element.shadowRoot.querySelector('[data-id="nothing-delivered"]')).not.toBeNull();
     });
 });

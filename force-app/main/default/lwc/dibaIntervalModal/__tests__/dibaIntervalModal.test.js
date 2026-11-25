@@ -30,7 +30,7 @@ describe("c-diba-interval-modal", () => {
 
     it("shows SPK, asset type and the 18 columns", async () => {
         const element = createElement("c-diba-interval-modal", { is: DibaIntervalModal });
-        element.plantId = "a01A";
+        element.accountDataId = "a01A";
         document.body.appendChild(element);
         await settle();
         const grid = element.shadowRoot.querySelector("c-diba-grid");
@@ -40,7 +40,7 @@ describe("c-diba-interval-modal", () => {
 
     it("removes the change when a cell is set back to its default", async () => {
         const element = createElement("c-diba-interval-modal", { is: DibaIntervalModal });
-        element.plantId = "a01A";
+        element.accountDataId = "a01A";
         document.body.appendChild(element);
         await settle();
         element.shadowRoot
@@ -48,7 +48,7 @@ describe("c-diba-interval-modal", () => {
             .dispatchEvent(new CustomEvent("cellchange", { detail: { key: "86", field: "low_normal_insp", value: " 48 " } }));
         await settle();
         expect(saveCells).toHaveBeenCalledWith({
-            plantId: "a01A",
+            accountDataId: "a01A",
             spk: "TA",
             valuesJson: JSON.stringify({ low_normal_insp: null }),
             versionsJson: JSON.stringify({ low_normal_insp: 2 })

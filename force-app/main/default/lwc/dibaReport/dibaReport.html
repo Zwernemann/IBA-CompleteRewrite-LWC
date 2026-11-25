@@ -1,32 +1,32 @@
 <template>
-    <template lwc:if={showList}>
+    <template lwc:if={loading}>
         <lightning-card title="DIBA Report" icon-name="custom:custom53">
-            <div class="slds-p-horizontal_medium">
-                <template lwc:if={loading}>
-                    <lightning-spinner alternative-text="Loading" size="small"></lightning-spinner>
-                </template>
-                <template lwc:elseif={error}>
-                    <div class="slds-notify slds-notify_alert slds-alert_error" role="alert">{error}</div>
-                </template>
-                <template lwc:elseif={hasPlants}>
-                    <lightning-datatable
-                        key-field="recordId"
-                        data={plants}
-                        columns={columns}
-                        hide-checkbox-column
-                        onrowaction={handleRowAction}
-                    ></lightning-datatable>
-                </template>
-                <template lwc:else>
-                    <p class="slds-p-vertical_medium">
-                        No plant has been delivered yet. Plants arrive through the action "DIBA Report" on the
-                        account.
-                    </p>
-                </template>
+            <div class="slds-is-relative slds-p-around_large">
+                <lightning-spinner alternative-text="Loading" size="small"></lightning-spinner>
             </div>
         </lightning-card>
     </template>
+    <template lwc:elseif={error}>
+        <lightning-card title="DIBA Report" icon-name="custom:custom53">
+            <div class="slds-notify slds-notify_alert slds-alert_error slds-m-horizontal_medium" role="alert">{error}</div>
+        </lightning-card>
+    </template>
+    <template lwc:elseif={noAccount}>
+        <lightning-card title="DIBA Report" icon-name="custom:custom53">
+            <p class="slds-p-horizontal_medium" data-id="no-account">
+                Open the DIBA Report from an account, with the button "DIBA Report" on the account page.
+            </p>
+        </lightning-card>
+    </template>
+    <template lwc:elseif={nothingDelivered}>
+        <lightning-card title="DIBA Report" icon-name="custom:custom53">
+            <p class="slds-p-horizontal_medium" data-id="nothing-delivered">
+                Salesforce has not yet delivered the data of this account. Start the delivery with the action
+                "DIBA Report" of E+H on the account, then open this page again.
+            </p>
+        </lightning-card>
+    </template>
     <template lwc:else>
-        <c-diba-plant plant={selected} onback={handleBack} onchanged={handleChanged}></c-diba-plant>
+        <c-diba-account account={account} onchanged={handleChanged}></c-diba-account>
     </template>
 </template>

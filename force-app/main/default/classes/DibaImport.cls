@@ -1,7 +1,7 @@
 /**
  * Data intake of the DIBA Report Generator.
  *
- * E+H's action "DIBA Report" builds the plant data of an account as JSON in schema v3
+ * E+H's action "DIBA Report" builds the account data of an account as JSON in schema v3
  * (docs/schema/iba-import.schema.json) and used to send it to the Tomcat server. Inside
  * Salesforce it calls this class instead, with the same JSON and in the same parts, and
  * gets the same answer:
@@ -45,7 +45,7 @@ global with sharing class DibaImport {
         public Map<String, Set<String>> unknownValues = new Map<String, Set<String>>();
         public Boolean alreadySeen = false;
         public Boolean complete = false;
-        /** Always null inside Salesforce: the consultant opens the plant from the account. */
+        /** Always null inside Salesforce: the consultant opens the account from the account. */
         public String openUrl;
 
         /** The answer in the order of the former endpoint, values of unknownValues sorted. */
@@ -93,9 +93,9 @@ global with sharing class DibaImport {
 
         Savepoint savepoint = Database.setSavepoint();
         try {
-            DIBA_Account__c plant = payload.plant();
-            linkAccount(plant, payload.accountId);
-            upsert plant DIBA_Account__c.Fields.Account_Key__c;
+            DIBA_Account__c accountData = payload.accountData();
+            linkAccount(accountData, payload.accountId);
+            upsert accountData DIBA_Account__c.Fields.Account_Key__c;
 
             String key = transmissionKey(payload.transmissionId, payload.part);
             List<DIBA_Transmission__c> seen = [
@@ -135,7 +135,7 @@ global with sharing class DibaImport {
             }
             result.complete = isComplete(payload.transmissionId);
             if (result.rowsAccepted > 0) {
-                DibaOrderCodeJob.startFor(plant.Id);
+                DibaOrderCodeJob.startFor(accountData.Id);
             }
         } catch (Exception e) {
             Database.rollback(savepoint);
@@ -165,7 +165,7 @@ global with sharing class DibaImport {
      * Sets the lookup to the account when the id of the delivery names an account of this
      * org. A delivery for an account that does not exist here is still stored, as before.
      */
-    private static void linkAccount(DIBA_Account__c plant, String accountId) {
+    private static void linkAccount(DIBA_Account__c accountData, String accountId) {
         Id recordId;
         try {
             recordId = Id.valueOf(accountId);
@@ -177,7 +177,7 @@ global with sharing class DibaImport {
         }
         List<Account> accounts = [SELECT Id FROM Account WHERE Id = :recordId LIMIT 1];
         if (!accounts.isEmpty()) {
-            plant.Account__c = accounts[0].Id;
+            accountData.Account__c = accounts[0].Id;
         }
     }
 }

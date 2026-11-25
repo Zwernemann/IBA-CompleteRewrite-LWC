@@ -5,7 +5,7 @@ const ROW_HEIGHT = 32;
 const DEFAULT_HEIGHT = 560;
 
 /**
- * A table for large plants: only the rows in view are rendered, so 50,000 rows scroll like
+ * A table for large accounts: only the rows in view are rendered, so 50,000 rows scroll like
  * fifty. Filter and sort per column, edit a cell by clicking it.
  *
  * Properties:

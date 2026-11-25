@@ -1,6 +1,6 @@
 /**
  * The report XML against references written by the Java code of IBA-Salesforce
- * (test/reportxml/README.md): the 20-row test plant and the Pfizer plant with 2,358 rows.
+ * (test/reportxml/README.md): the 20-row test account and the Pfizer account with 2,358 rows.
  * Equal character for character, or the contract with the Crystal templates is broken.
  */
 import { readFileSync } from "fs";
@@ -51,7 +51,7 @@ function firstDifference(actual, expected) {
 }
 
 describe("c-diba-report-xml", () => {
-    it("writes the XML of the test plant as JAXB does", () => {
+    it("writes the XML of the test account as JAXB does", () => {
         const input = JSON.parse(read("testanlage.input.json"));
         const raw = writeXml(layoutOf(input));
         expect(firstDifference(raw, read("testanlage.raw.xml"))).toBeNull();
@@ -63,7 +63,7 @@ describe("c-diba-report-xml", () => {
         expect(firstDifference(xml, read("testanlage.xml"))).toBeNull();
     });
 
-    it("writes the XML of the Pfizer plant, 2,358 rows", () => {
+    it("writes the XML of the Pfizer account, 2,358 rows", () => {
         const input = JSON.parse(read("pfizer.input.json.gz"));
         const started = Date.now();
         const xml = reportXml(layoutOf(input));
@@ -79,7 +79,7 @@ describe("c-diba-report-xml", () => {
     });
 
     it("numbers texts as ReportXmlFields.surrogate", () => {
-        // Values from the Java reference of the test plant.
+        // Values from the Java reference of the test account.
         expect(surrogate("account:0017Q00000TsTdAQAV")).toBe(3757808308967);
         expect(surrogate("supplier:")).toBe(243481871792349);
     });

@@ -1,9 +1,9 @@
 @IsTest
-private class DibaPlantControllerTest {
+private class DibaAccountControllerTest {
     private static final String ACCOUNT_ID = '0017Q00000TsTdAQAV';
 
     @TestSetup
-    static void deliverPlant() {
+    static void deliverAccount() {
         List<Object> rows = new List<Object>();
         for (Integer i = 1; i <= 3; i++) {
             rows.add(
@@ -49,32 +49,49 @@ private class DibaPlantControllerTest {
         );
     }
 
-    private static Id plantId() {
+    private static Id accountDataId() {
         return [SELECT Id FROM DIBA_Account__c].Id;
     }
 
     private static Map<String, Object> firstRow() {
-        return DibaPlantController.getRows(plantId(), null, null).rows[0];
+        return DibaAccountController.getRows(accountDataId(), null, null).rows[0];
     }
 
     @IsTest
-    static void listsPlantsWithRowCount() {
-        List<DibaPlantController.Plant> plants = DibaPlantController.listPlants();
-        Assert.areEqual(1, plants.size());
-        Assert.areEqual('DIBA Testanlage Nord', plants[0].name);
-        Assert.areEqual(3, plants[0].rowCount);
-        Assert.areEqual(ACCOUNT_ID, plants[0].accountKey);
-        Assert.isNotNull(plants[0].lastDelivery);
+    static void findsTheDataOfTheAccountByItsKey() {
+        // The delivery used a 18-character id; the account id of the button is the same.
+        DibaAccountController.AccountData data = DibaAccountController.getAccountData(ACCOUNT_ID);
+        Assert.areEqual('DIBA Testanlage Nord', data.name);
+        Assert.areEqual(3, data.rowCount);
+        Assert.areEqual(ACCOUNT_ID, data.accountKey);
+        Assert.isNotNull(data.lastDelivery);
+    }
+
+    @IsTest
+    static void findsTheDataOfARealAccountThroughItsLookup() {
+        Account account = new Account(Name = 'Chemiewerk Sued GmbH');
+        insert account;
+        DIBA_Account__c record = [SELECT Id FROM DIBA_Account__c];
+        record.Account__c = account.Id;
+        update record;
+        Assert.areEqual(record.Id, DibaAccountController.getAccountData(account.Id).recordId);
+    }
+
+    @IsTest
+    static void answersNullForAnAccountWithoutDelivery() {
+        Account account = new Account(Name = 'Ohne Lieferung');
+        insert account;
+        Assert.isNull(DibaAccountController.getAccountData(account.Id));
     }
 
     @IsTest
     static void pagesThroughRowsByKey() {
-        DibaPlantController.Page first = DibaPlantController.getRows(plantId(), null, 2);
+        DibaAccountController.Page first = DibaAccountController.getRows(accountDataId(), null, 2);
         Assert.areEqual(2, first.rows.size());
         Assert.isNotNull(first.nextAfter);
 
-        DibaPlantController.Page second = DibaPlantController.getRows(
-            plantId(),
+        DibaAccountController.Page second = DibaAccountController.getRows(
+            accountDataId(),
             first.nextAfter,
             2
         );
@@ -114,7 +131,7 @@ private class DibaPlantControllerTest {
             }
         );
 
-        DibaPlantController.SaveResult result = DibaPlantController.saveRows(changes);
+        DibaAccountController.SaveResult result = DibaAccountController.saveRows(changes);
 
         Assert.areEqual(1, result.saved.get((Id) row.get('id')));
         Assert.isTrue(result.conflicts.isEmpty());
@@ -129,7 +146,7 @@ private class DibaPlantControllerTest {
         Assert.areEqual(1, after.get('version'));
 
         // Taking the edit back removes it.
-        DibaPlantController.saveRows(
+        DibaAccountController.saveRows(
             JSON.serialize(
                 new List<Object>{
                     new Map<String, Object>{
@@ -156,10 +173,10 @@ private class DibaPlantControllerTest {
             'version' => 0,
             'values' => new Map<String, Object>{ 'add_remark1' => 'first' }
         };
-        DibaPlantController.saveRows(JSON.serialize(new List<Object>{ change }));
+        DibaAccountController.saveRows(JSON.serialize(new List<Object>{ change }));
 
         change.put('values', new Map<String, Object>{ 'add_remark1' => 'second' });
-        DibaPlantController.SaveResult result = DibaPlantController.saveRows(
+        DibaAccountController.SaveResult result = DibaAccountController.saveRows(
             JSON.serialize(new List<Object>{ change })
         );
 
@@ -171,7 +188,7 @@ private class DibaPlantControllerTest {
     @IsTest
     static void masterFieldsChangeOnlyThroughEdits() {
         Map<String, Object> row = firstRow();
-        DibaPlantController.SaveResult result = DibaPlantController.saveRows(
+        DibaAccountController.SaveResult result = DibaAccountController.saveRows(
             JSON.serialize(
                 new List<Object>{
                     new Map<String, Object>{
@@ -189,7 +206,7 @@ private class DibaPlantControllerTest {
     @IsTest
     static void tooLongValueIsRejected() {
         Map<String, Object> row = firstRow();
-        DibaPlantController.SaveResult result = DibaPlantController.saveRows(
+        DibaAccountController.SaveResult result = DibaAccountController.saveRows(
             JSON.serialize(
                 new List<Object>{
                     new Map<String, Object>{

@@ -1,11 +1,11 @@
 @IsTest
 private class DibaAttachmentControllerTest {
     @TestSetup
-    static void plant() {
+    static void accountData() {
         insert new DIBA_Account__c(Name = 'Nord', Account_Key__c = '0017Q00000TsTdAQAV');
     }
 
-    private static Id plantId() {
+    private static Id accountDataId() {
         return [SELECT Id FROM DIBA_Account__c].Id;
     }
 
@@ -14,7 +14,7 @@ private class DibaAttachmentControllerTest {
             Title = name,
             PathOnClient = name,
             VersionData = content,
-            FirstPublishLocationId = plantId()
+            FirstPublishLocationId = accountDataId()
         );
         insert version;
         return [SELECT ContentDocumentId FROM ContentVersion WHERE Id = :version.Id]
@@ -25,7 +25,7 @@ private class DibaAttachmentControllerTest {
     static void assignsAPdfToItsSlotAndReplacesTheOldOne() {
         Id first = upload('first.pdf', Blob.valueOf('%PDF-1.4 a'));
         DibaAttachmentController.Attachment attached = DibaAttachmentController.assign(
-            plantId(),
+            accountDataId(),
             3,
             first
         );
@@ -33,9 +33,9 @@ private class DibaAttachmentControllerTest {
         Assert.areEqual('first.pdf', attached.fileName);
 
         Id second = upload('second.pdf', Blob.valueOf('%PDF-1.4 b'));
-        DibaAttachmentController.assign(plantId(), 3, second);
+        DibaAttachmentController.assign(accountDataId(), 3, second);
         Map<Integer, DibaAttachmentController.Attachment> all = DibaAttachmentController.listAttachments(
-            plantId()
+            accountDataId()
         );
         Assert.areEqual(1, all.size());
         Assert.areEqual('second.pdf', all.get(3).fileName);
@@ -46,7 +46,7 @@ private class DibaAttachmentControllerTest {
     static void refusesWhatIsNotAPdf() {
         Id document = upload('picture.png', Blob.valueOf('png'));
         try {
-            DibaAttachmentController.assign(plantId(), 1, document);
+            DibaAttachmentController.assign(accountDataId(), 1, document);
             Assert.fail('rejected expected');
         } catch (AuraHandledException e) {
             Assert.isNotNull(e);
@@ -57,28 +57,28 @@ private class DibaAttachmentControllerTest {
     @IsTest
     static void storesTheLogoAndRemovesIt() {
         DibaAttachmentController.Attachment logo = DibaAttachmentController.uploadLogo(
-            plantId(),
+            accountDataId(),
             'logo.jpg',
             EncodingUtil.base64Encode(Blob.valueOf('jpeg'))
         );
         Assert.areEqual(0, logo.slot);
         DibaAttachmentController.uploadLogo(
-            plantId(),
+            accountDataId(),
             'logo2.jpg',
             EncodingUtil.base64Encode(Blob.valueOf('jpeg2'))
         );
         Assert.areEqual(
             'logo2.jpg',
-            DibaAttachmentController.listAttachments(plantId()).get(0).fileName
+            DibaAttachmentController.listAttachments(accountDataId()).get(0).fileName
         );
-        DibaAttachmentController.remove(plantId(), 0);
-        Assert.isTrue(DibaAttachmentController.listAttachments(plantId()).isEmpty());
+        DibaAttachmentController.remove(accountDataId(), 0);
+        Assert.isTrue(DibaAttachmentController.listAttachments(accountDataId()).isEmpty());
     }
 
     @IsTest
     static void refusesUnknownSlots() {
         try {
-            DibaAttachmentController.remove(plantId(), 7);
+            DibaAttachmentController.remove(accountDataId(), 7);
             Assert.fail('rejected expected');
         } catch (AuraHandledException e) {
             Assert.isNotNull(e);

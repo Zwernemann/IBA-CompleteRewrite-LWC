@@ -1,5 +1,5 @@
 /**
- * The report texts and report settings of a plant as the page works on them, ported from
+ * The report texts and report settings of an account as the page works on them, ported from
  * IBA-Salesforce: ReportTemplates (templates per report language), ReportState (what
  * changed since loading, versions per field), ReportValuesSession (templates for texts
  * never stored, texts that follow a new report language) and ReportPreset.
@@ -75,7 +75,7 @@ export const SETTING_FIELDS = [
     "hideBudgetPrice"
 ];
 
-/** The texts of a plant before anything is loaded (IbaJobView.loadJobRecord). */
+/** The texts of an account before anything is loaded (IbaJobView.loadJobRecord). */
 export function defaultTexts(jobId, siteName) {
     const texts = {};
     for (const field of SITE_FIELDS) {
@@ -236,8 +236,8 @@ export function fieldsOf(section, model) {
 const withLf = (json) => (json === undefined || json === null ? null : json.split("\\r\\n").join("\\n"));
 
 /**
- * The state of one plant: the models, what was loaded or saved last, and the versions.
- * One object per opened plant.
+ * The state of one account: the models, what was loaded or saved last, and the versions.
+ * One object per opened account.
  */
 export class ReportSession {
     /**

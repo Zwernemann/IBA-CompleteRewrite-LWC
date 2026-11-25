@@ -1,15 +1,15 @@
 import { createElement } from "lwc";
 import DibaMaintenance from "c/dibaMaintenance";
-import getRows from "@salesforce/apex/DibaPlantController.getRows";
-import saveRows from "@salesforce/apex/DibaPlantController.saveRows";
+import getRows from "@salesforce/apex/DibaAccountController.getRows";
+import saveRows from "@salesforce/apex/DibaAccountController.saveRows";
 import getIntervals from "@salesforce/apex/DibaIntervalController.getIntervals";
-import lookupOrderCode from "@salesforce/apex/DibaPlantController.lookupOrderCode";
+import lookupOrderCode from "@salesforce/apex/DibaAccountController.lookupOrderCode";
 import { forgetRows } from "c/dibaRowStore";
 
-jest.mock("@salesforce/apex/DibaPlantController.getRows", () => ({ default: jest.fn() }), { virtual: true });
-jest.mock("@salesforce/apex/DibaPlantController.saveRows", () => ({ default: jest.fn() }), { virtual: true });
+jest.mock("@salesforce/apex/DibaAccountController.getRows", () => ({ default: jest.fn() }), { virtual: true });
+jest.mock("@salesforce/apex/DibaAccountController.saveRows", () => ({ default: jest.fn() }), { virtual: true });
 jest.mock("@salesforce/apex/DibaIntervalController.getIntervals", () => ({ default: jest.fn() }), { virtual: true });
-jest.mock("@salesforce/apex/DibaPlantController.lookupOrderCode", () => ({ default: jest.fn() }), { virtual: true });
+jest.mock("@salesforce/apex/DibaAccountController.lookupOrderCode", () => ({ default: jest.fn() }), { virtual: true });
 
 function row(id, extra = {}) {
     return {
@@ -53,7 +53,7 @@ describe("c-diba-maintenance", () => {
 
     async function open() {
         const element = createElement("c-diba-maintenance", { is: DibaMaintenance });
-        element.plantId = "a01000000000001AAA";
+        element.accountDataId = "a01000000000001AAA";
         document.body.appendChild(element);
         await settle();
         return element;
@@ -141,7 +141,7 @@ describe("c-diba-maintenance", () => {
         });
         getIntervals.mockResolvedValueOnce({ rows: [{ id: 86, spk: "TA", low_normal_insp: "48", low_normal_calib: "36", low_normal_valid: "NA" }] });
         const element = createElement("c-diba-maintenance", { is: DibaMaintenance });
-        element.plantId = "a01000000000001AAA";
+        element.accountDataId = "a01000000000001AAA";
         element.view = "preventative";
         document.body.appendChild(element);
         await settle();

@@ -19,7 +19,7 @@ const SETS = {
     DIBA_Report_Consultant: {
         label: "DIBA Report Consultant",
         description:
-            "Consultants who open the DIBA Report Generator on an account: read the plant data, enter their input, edit report texts and settings.",
+            "Consultants who open the DIBA Report Generator on an account: read the account data, enter their input, edit report texts and settings.",
         objects: {
             DIBA_Account__c: { read: true, edit: true },
             DIBA_Row__c: {
@@ -51,13 +51,13 @@ const SETS = {
             DIBA_Interval_Value__c: { read: true, create: true, edit: true, delete: true, editableFields: "all" },
         },
         customMetadataTypes: ["DIBA_Interval__mdt"],
-        classes: ["DibaPlantController", "DibaReportValuesController", "DibaIntervalController", "DibaAttachmentController"],
+        classes: ["DibaAccountController", "DibaReportValuesController", "DibaIntervalController", "DibaAttachmentController"],
         tabs: ["DIBA_Report"],
     },
     DIBA_Data_Sender: {
         label: "DIBA Data Sender",
         description:
-            "The user under whom E+H's action delivers plant data to mzw.DibaImport.",
+            "The user under whom E+H's action delivers account data to mzw.DibaImport.",
         objects: {
             DIBA_Account__c: { read: true, create: true, edit: true, editableFields: "all" },
             DIBA_Row__c: { read: true, create: true, edit: true, editableFields: "all" },

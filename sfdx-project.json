@@ -4,20 +4,20 @@
       "path": "force-app",
       "default": true,
       "package": "DIBA Report",
-      "versionName": "Anhaenge",
-      "versionNumber": "0.5.0.NEXT",
-      "versionDescription": "DIBA Report Generator in Salesforce: data intake, asset table and dialogs, interval table, report texts, sliders and settings, Order Code Transformer, attachments, report XML."
+      "versionName": "Account",
+      "versionNumber": "0.6.0.NEXT",
+      "versionDescription": "DIBA Report Generator in Salesforce, opened from the account: data intake, asset table and dialogs, interval table, report texts, sliders and settings, Order Code Transformer, attachments, report XML."
     },
     {
       "path": "eh-emulation",
       "package": "DIBA Test Data",
       "versionName": "Lasttest",
-      "versionNumber": "0.2.1.NEXT",
+      "versionNumber": "0.2.2.NEXT",
       "versionDescription": "Test plant for test orgs, delivered through mzw.DibaImport. Never installed at E+H.",
       "dependencies": [
         {
           "package": "DIBA Report",
-          "versionNumber": "0.5.0.LATEST"
+          "versionNumber": "0.6.0.LATEST"
         }
       ]
     }

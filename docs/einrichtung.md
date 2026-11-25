@@ -69,3 +69,22 @@ Commit. Ab dann baut jeder Push die Pakete.
 Ein Dev Hub darf nur eine begrenzte Zahl Paketversionen und Scratch Orgs am Tag anlegen
 (Zahlen nicht nachgesehen). Deshalb: Paketversionen bei jedem Push, Scratch Org nur bei
 einem Tag `v*`.
+
+## Nach der Installation in einer Org
+
+Alles andere bringt der Installer mit: Objekte, Schaltflaeche, Tab, Permission Sets,
+Remote Site und Einstellungen. Zwei Dinge haengen an der Org und ihren Benutzern; ein
+Unlocked Package kann sie nicht setzen, weil es kein Skript nach der Installation ausfuehren
+darf (das koennen nur Managed Packages):
+
+1. **Schaltflaeche am Account.** Setup, Object Manager, Account, Page Layouts, das Layout
+   der Berater, "Mobile & Lightning Actions", **DIBA Report** in den Bereich "Salesforce
+   Mobile and Lightning Experience Actions" ziehen, speichern. Arbeitet die Account-Seite mit
+   Dynamic Actions, stattdessen im Lightning App Builder die Aktion hinzufuegen.
+2. **Permission Sets.** **DIBA Report Consultant** den Beratern, **DIBA Data Sender** dem
+   Benutzer der E+H-Aktion. Gibt es bei E+H eine Permission Set Group fuer die Berater,
+   genuegt es, DIBA Report Consultant dort aufzunehmen.
+
+In der Test-Org und der Scratch Org der CI weist `scripts/org-install-test.sh` die
+Permission Sets selbst zu; die Ende-zu-Ende-Tests oeffnen die Arbeitsflaeche ueber den Tab,
+nicht ueber die Schaltflaeche.

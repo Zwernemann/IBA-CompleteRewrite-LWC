@@ -17,7 +17,7 @@
                     <lightning-input type="file" label={uploadLabel} accept={accept} onchange={handleLogo} disabled={busy} data-id="logo"></lightning-input>
                 </template>
                 <template lwc:else>
-                    <lightning-file-upload label={uploadLabel} record-id={plantId} accept={acceptList} onuploadfinished={handleUploadFinished} disabled={busy} data-id="pdf"></lightning-file-upload>
+                    <lightning-file-upload label={uploadLabel} record-id={accountDataId} accept={acceptList} onuploadfinished={handleUploadFinished} disabled={busy} data-id="pdf"></lightning-file-upload>
                 </template>
             </div>
         </div>

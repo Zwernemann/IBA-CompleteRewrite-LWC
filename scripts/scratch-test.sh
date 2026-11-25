@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # First installation in an empty org: creates a scratch org from the Dev Hub, installs the
-# given versions, delivers the test plant and deletes the org again, also on failure.
+# given versions, delivers the test account and deletes the org again, also on failure.
 #
 #   scripts/scratch-test.sh <04t of DIBA Report> <04t of DIBA Test Data>
 source "$(dirname "$0")/lib/common.sh"

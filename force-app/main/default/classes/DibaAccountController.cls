@@ -1,16 +1,16 @@
 /**
- * Server side of the user interface (tab "DIBA Report"): the plants, their rows page by
- * page, and saving what the consultant changed.
+ * Server side of the user interface (button "DIBA Report" on the account): the DIBA data
+ * of the account, its rows page by page, and saving what the consultant changed.
  *
  * Saving checks the version of every row: a row someone else saved in the meantime is not
  * overwritten, it comes back as a conflict with its current content (optimistic locking,
  * as ADR 0008 of IBA-Salesforce).
  */
-public with sharing class DibaPlantController {
+public with sharing class DibaAccountController {
     /** Rows per call at most; the client asks page after page. */
     public static final Integer MAX_PAGE = 2000;
 
-    public class Plant {
+    public class AccountData {
         @AuraEnabled
         public Id recordId;
         @AuraEnabled
@@ -45,47 +45,43 @@ public with sharing class DibaPlantController {
         public Map<Id, String> errors = new Map<Id, String>();
     }
 
-    /** All plants, newest delivery first. */
+    /**
+     * The DIBA data of one account, as the button on the account opens it: name, number of
+     * rows, last delivery. Null if nothing has been delivered for this account yet. The id
+     * of the delivery may have 15 or 18 characters, so both are compared.
+     */
     @AuraEnabled(cacheable=false)
-    public static List<Plant> listPlants() {
-        Map<Id, Datetime> lastDelivery = new Map<Id, Datetime>();
-        for (AggregateResult result : [
-            SELECT DIBA_Account__c plant, MAX(Received_At__c) received
-            FROM DIBA_Transmission__c
-            GROUP BY DIBA_Account__c
-        ]) {
-            lastDelivery.put((Id) result.get('plant'), (Datetime) result.get('received'));
-        }
-        Map<Id, Integer> rowCounts = new Map<Id, Integer>();
-        for (AggregateResult result : [
-            SELECT DIBA_Account__c plant, COUNT(Id) rows
-            FROM DIBA_Row__c
-            GROUP BY DIBA_Account__c
-        ]) {
-            rowCounts.put((Id) result.get('plant'), (Integer) result.get('rows'));
-        }
-        List<Plant> plants = new List<Plant>();
-        for (DIBA_Account__c record : [
+    public static AccountData getAccountData(Id accountId) {
+        String id18 = String.valueOf(accountId);
+        Set<String> keys = new Set<String>{ id18, id18.left(15) };
+        List<DIBA_Account__c> records = [
             SELECT Id, Name, Account_Key__c, Account__c
             FROM DIBA_Account__c
-            ORDER BY Name
-            LIMIT 2000
-        ]) {
-            Plant plant = new Plant();
-            plant.recordId = record.Id;
-            plant.name = record.Name;
-            plant.accountKey = record.Account_Key__c;
-            plant.accountId = record.Account__c;
-            plant.rowCount = rowCounts.containsKey(record.Id) ? rowCounts.get(record.Id) : 0;
-            plant.lastDelivery = lastDelivery.get(record.Id);
-            plants.add(plant);
+            WHERE Account__c = :accountId OR Account_Key__c IN :keys
+            LIMIT 1
+        ];
+        if (records.isEmpty()) {
+            return null;
         }
-        return plants;
+        DIBA_Account__c record = records[0];
+        AccountData accountData = new AccountData();
+        accountData.recordId = record.Id;
+        accountData.name = record.Name;
+        accountData.accountKey = record.Account_Key__c;
+        accountData.accountId = record.Account__c == null ? accountId : record.Account__c;
+        accountData.rowCount = [SELECT COUNT() FROM DIBA_Row__c WHERE DIBA_Account__c = :record.Id];
+        AggregateResult[] last = [
+            SELECT MAX(Received_At__c) received
+            FROM DIBA_Transmission__c
+            WHERE DIBA_Account__c = :record.Id
+        ];
+        accountData.lastDelivery = (Datetime) last[0].get('received');
+        return accountData;
     }
 
-    /** One page of rows of a plant, in the order of their key. */
+    /** One page of rows of an account, in the order of their key. */
     @AuraEnabled(cacheable=false)
-    public static Page getRows(Id plantId, String afterKey, Integer pageSize) {
+    public static Page getRows(Id accountDataId, String afterKey, Integer pageSize) {
         Integer size = pageSize == null ||
             pageSize < 1 ||
             pageSize > MAX_PAGE
@@ -95,7 +91,7 @@ public with sharing class DibaPlantController {
         List<DIBA_Row__c> records = Database.query(
             'SELECT ' +
                 DibaRowFields.selectList() +
-                ' FROM DIBA_Row__c WHERE DIBA_Account__c = :plantId AND Row_Key__c > :after' +
+                ' FROM DIBA_Row__c WHERE DIBA_Account__c = :accountDataId AND Row_Key__c > :after' +
                 ' ORDER BY Row_Key__c LIMIT :size'
         );
         Page page = new Page();

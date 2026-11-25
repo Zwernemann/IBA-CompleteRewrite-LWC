@@ -11,4 +11,4 @@ Offen:
 
 - Anbindung des CRGenerators fuer LWC: Paketabhaengigkeit, Erzeugung mit `renderPdf`,
   PDF-Anhaenge in den Report einfuegen, Report als File ablegen.
-- Uebernahme bestehender Anlagen aus IBA-Salesforce, falls E+H dort schon arbeitet.
+- Uebernahme bestehender Accounts aus IBA-Salesforce, falls E+H dort schon arbeitet.

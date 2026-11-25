@@ -1,5 +1,5 @@
 /**
- * Report texts and report settings of a plant, one DIBA_Report_Value__c per field with its
+ * Report texts and report settings of an account, one DIBA_Report_Value__c per field with its
  * value as JSON and a version (ReportValueRepository of IBA-Salesforce). A field is only
  * overwritten if it still has the version the page loaded; otherwise it is reported back
  * as a conflict with the version it now has, or -1 if it no longer exists.
@@ -38,21 +38,21 @@ public with sharing class DibaReportValuesController {
     }
 
     @AuraEnabled
-    public static Loaded load(Id plantId) {
-        DIBA_Account__c plant = [
+    public static Loaded load(Id accountDataId) {
+        DIBA_Account__c accountData = [
             SELECT Name, Account_Key__c, Preset_Language__c, Preset_Final_Report__c
             FROM DIBA_Account__c
-            WHERE Id = :plantId
+            WHERE Id = :accountDataId
         ];
         Loaded result = new Loaded();
-        result.jobId = plant.Account_Key__c;
-        result.siteName = plant.Name;
-        result.presetLanguage = plant.Preset_Language__c;
-        result.presetFinalReport = plant.Preset_Final_Report__c;
+        result.jobId = accountData.Account_Key__c;
+        result.siteName = accountData.Name;
+        result.presetLanguage = accountData.Preset_Language__c;
+        result.presetFinalReport = accountData.Preset_Final_Report__c;
         for (DIBA_Report_Value__c value : [
             SELECT Section__c, Value_Name__c, Value__c, Version__c
             FROM DIBA_Report_Value__c
-            WHERE DIBA_Account__c = :plantId
+            WHERE DIBA_Account__c = :accountDataId
         ]) {
             Stored stored = new Stored();
             stored.json = value.Value__c;
@@ -69,7 +69,7 @@ public with sharing class DibaReportValuesController {
      */
     @AuraEnabled
     public static SaveResult save(
-        Id plantId,
+        Id accountDataId,
         String section,
         String valuesJson,
         String versionsJson
@@ -81,11 +81,15 @@ public with sharing class DibaReportValuesController {
         Map<String, Object> expected = String.isBlank(versionsJson)
             ? new Map<String, Object>()
             : (Map<String, Object>) JSON.deserializeUntyped(versionsJson);
-        DIBA_Account__c plant = [SELECT Account_Key__c FROM DIBA_Account__c WHERE Id = :plantId];
+        DIBA_Account__c accountData = [
+            SELECT Account_Key__c
+            FROM DIBA_Account__c
+            WHERE Id = :accountDataId
+        ];
 
         Map<String, String> keys = new Map<String, String>();
         for (String name : values.keySet()) {
-            keys.put(name, plant.Account_Key__c + '/' + section + '/' + name);
+            keys.put(name, accountData.Account_Key__c + '/' + section + '/' + name);
         }
         Map<String, DIBA_Report_Value__c> current = new Map<String, DIBA_Report_Value__c>();
         for (DIBA_Report_Value__c value : [
@@ -124,7 +128,7 @@ public with sharing class DibaReportValuesController {
                 }
                 writes.add(
                     new DIBA_Report_Value__c(
-                        DIBA_Account__c = plantId,
+                        DIBA_Account__c = accountDataId,
                         Value_Key__c = keys.get(name),
                         Section__c = section,
                         Value_Name__c = name,

@@ -18,8 +18,8 @@ private class DibaTestDataTest {
 
         DibaTestData.send(account.Id);
 
-        DIBA_Account__c plant = [SELECT Name, Account__c FROM DIBA_Account__c];
-        Assert.areEqual('Chemiewerk Sued GmbH', plant.Name);
-        Assert.areEqual(account.Id, plant.Account__c);
+        DIBA_Account__c accountData = [SELECT Name, Account__c FROM DIBA_Account__c];
+        Assert.areEqual('Chemiewerk Sued GmbH', accountData.Name);
+        Assert.areEqual(account.Id, accountData.Account__c);
     }
 }

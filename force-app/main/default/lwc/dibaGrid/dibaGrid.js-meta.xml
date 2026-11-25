@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>66.0</apiVersion>
-    <description>Virtual table for large plants: filter, sort and edit per cell.</description>
+    <description>Virtual table for large accounts: filter, sort and edit per cell.</description>
     <isExposed>false</isExposed>
 </LightningComponentBundle>

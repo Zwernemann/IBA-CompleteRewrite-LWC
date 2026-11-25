@@ -6,5 +6,7 @@ module.exports = {
     moduleNameMapper: {
         "^lwc$": "<rootDir>/node_modules/@lwc/engine-dom/dist/index.cjs"
     },
-    modulePathIgnorePatterns: ["<rootDir>/.localdevserver"]
+    modulePathIgnorePatterns: ["<rootDir>/.localdevserver"],
+    // e2e/ holds the Playwright tests against an org, not Jest tests.
+    testPathIgnorePatterns: ["/node_modules/", "<rootDir>/e2e/"]
 };

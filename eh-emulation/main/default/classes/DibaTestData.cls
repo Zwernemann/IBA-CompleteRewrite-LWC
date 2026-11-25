@@ -1,5 +1,5 @@
 /**
- * Delivers the test plant to the package the way E+H's action does: two parts in schema v3
+ * Delivers the test account to the package the way E+H's action does: two parts in schema v3
  * through mzw.DibaImport.accept. Only for test orgs; never installed at E+H.
  *
  * Anonymous Apex in a test org (scripts/apex/send-testdata.apex):

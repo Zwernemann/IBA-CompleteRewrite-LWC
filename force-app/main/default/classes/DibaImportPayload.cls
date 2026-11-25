@@ -155,21 +155,21 @@ public with sharing class DibaImportPayload {
         return payload;
     }
 
-    /** The plant record of the account, with the presets only where the part has them. */
-    public DIBA_Account__c plant() {
-        DIBA_Account__c plant = new DIBA_Account__c(
+    /** The account record of the account, with the presets only where the part has them. */
+    public DIBA_Account__c accountData() {
+        DIBA_Account__c accountData = new DIBA_Account__c(
             Account_Key__c = accountId,
             Name = accountName.left(80),
             Account_Name__c = accountName.left(255),
             Country_Code__c = countryCode == null ? null : countryCode.left(10)
         );
         if (language != null) {
-            plant.Preset_Language__c = language;
+            accountData.Preset_Language__c = language;
         }
         if (finalReport != null) {
-            plant.Preset_Final_Report__c = String.valueOf(finalReport);
+            accountData.Preset_Final_Report__c = String.valueOf(finalReport);
         }
-        return plant;
+        return accountData;
     }
 
     /** Key of a row: account id, tag id and asset id. */

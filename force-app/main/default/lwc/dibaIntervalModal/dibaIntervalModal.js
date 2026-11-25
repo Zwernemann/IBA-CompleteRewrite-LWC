@@ -9,13 +9,13 @@ import { loadTranslations, userLanguage } from "c/dibaTexts";
 const MAX_LENGTH = 32;
 
 /**
- * The interval table of a plant (ibaIntervalDialog.xhtml of IBA-Salesforce): the defaults
- * of E+H with the cells changed for this plant. A cell set back to its default is no
- * longer a change of the plant. Saved cell by cell as the consultant types.
+ * The interval table of an account (ibaIntervalDialog.xhtml of IBA-Salesforce): the defaults
+ * of E+H with the cells changed for this account. A cell set back to its default is no
+ * longer a change of the account. Saved cell by cell as the consultant types.
  */
 export default class DibaIntervalModal extends LightningModal {
-    @api plantId;
-    @api plantName;
+    @api accountDataId;
+    @api accountName;
 
     loading = true;
     error;
@@ -32,7 +32,7 @@ export default class DibaIntervalModal extends LightningModal {
     }
 
     get heading() {
-        return `${this.t("crgen.fr.edit.interval.tab")}: ${this.plantName || ""}`;
+        return `${this.t("crgen.fr.edit.interval.tab")}: ${this.accountName || ""}`;
     }
 
     get gridHeight() {
@@ -45,7 +45,7 @@ export default class DibaIntervalModal extends LightningModal {
 
     async load() {
         try {
-            const [translations, table] = await Promise.all([loadTranslations(), getIntervals({ plantId: this.plantId })]);
+            const [translations, table] = await Promise.all([loadTranslations(), getIntervals({ accountDataId: this.accountDataId })]);
             this.t = translator(translations, userLanguage());
             this.defaults = table.defaults || {};
             this.versions = table.versions || {};
@@ -100,7 +100,7 @@ export default class DibaIntervalModal extends LightningModal {
         const versions = this.versions[spk] || (this.versions[spk] = {});
         try {
             const result = await saveCells({
-                plantId: this.plantId,
+                accountDataId: this.accountDataId,
                 spk,
                 valuesJson: JSON.stringify({ [field]: value }),
                 versionsJson: JSON.stringify(field in versions ? { [field]: versions[field] } : {})

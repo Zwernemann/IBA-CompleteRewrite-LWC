@@ -9,7 +9,7 @@
 public with sharing class DibaOrderCodes {
     /** The result for a code the service knows (error code 0) but without successor. */
     public static final String NO_SUCCESSOR = '-';
-    /** Codes per request; a plant can have thousands of different codes. */
+    /** Codes per request; an account can have thousands of different codes. */
     public static final Integer CODES_PER_CALLOUT = 500;
     public static final Integer TIMEOUT_MS = 60000;
 

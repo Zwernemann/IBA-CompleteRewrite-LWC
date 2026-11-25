@@ -13,7 +13,7 @@ const MAX_BYTES = 20971520;
  * Event: attachmentchange { slot, attachment } with null after removing.
  */
 export default class DibaAttachment extends LightningElement {
-    @api plantId;
+    @api accountDataId;
     /** 0 is the logo, 1 to 6 the PDF after a chapter. */
     @api position = 1;
     @api attachment;
@@ -74,7 +74,7 @@ export default class DibaAttachment extends LightningElement {
     async handleUploadFinished(event) {
         const file = (event.detail.files || [])[0];
         if (!file) return;
-        await this.run(() => assign({ plantId: this.plantId, slot: Number(this.position), documentId: file.documentId }));
+        await this.run(() => assign({ accountDataId: this.accountDataId, slot: Number(this.position), documentId: file.documentId }));
     }
 
     async handleLogo(event) {
@@ -87,13 +87,13 @@ export default class DibaAttachment extends LightningElement {
         await this.run(async () => {
             const jpeg = await toJpegBase64(file);
             const name = file.name.replace(/\.png$/i, ".jpg");
-            return uploadLogo({ plantId: this.plantId, fileName: name, base64Jpeg: jpeg });
+            return uploadLogo({ accountDataId: this.accountDataId, fileName: name, base64Jpeg: jpeg });
         });
     }
 
     async handleRemove() {
         await this.run(async () => {
-            await remove({ plantId: this.plantId, slot: Number(this.position) });
+            await remove({ accountDataId: this.accountDataId, slot: Number(this.position) });
             return null;
         });
     }

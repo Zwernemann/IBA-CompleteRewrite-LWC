@@ -1,9 +1,9 @@
 /**
- * Rules of a row of the plant table, ported from IBA-Salesforce:
+ * Rules of a row of the account table, ported from IBA-Salesforce:
  * MasterField (edits of master data beside the Salesforce values) and
  * IbaDeviceTools.refreshRiskOfMaintenance (risk of maintenance and obsolescence).
  *
- * Rows come from DibaPlantController.getRows with the element names of the report XML as
+ * Rows come from DibaAccountController.getRows with the element names of the report XML as
  * keys. prepareRow keeps the Salesforce values under row.sf and puts the edits that still
  * apply into the row itself, so that the table shows and the report gets the effective
  * values.

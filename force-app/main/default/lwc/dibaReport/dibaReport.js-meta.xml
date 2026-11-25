@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>66.0</apiVersion>
-    <description>Tab DIBA Report: the delivered plants and the work on one of them.</description>
+    <description>Tab DIBA Report: the delivered accounts and the work on one of them.</description>
     <isExposed>true</isExposed>
     <masterLabel>DIBA Report</masterLabel>
     <targets>

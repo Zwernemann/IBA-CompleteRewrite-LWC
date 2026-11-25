@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Installs package versions into an org, upgrading what is there, and delivers the test
-# plant through mzw.DibaImport. Checks that the delivery is complete with 20 rows.
+# account through mzw.DibaImport. Checks that the delivery is complete with 20 rows.
 #
 #   scripts/org-install-test.sh <org alias> <04t of DIBA Report> <04t of DIBA Test Data>
 source "$(dirname "$0")/lib/common.sh"

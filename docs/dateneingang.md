@@ -18,7 +18,7 @@ IBA-Salesforce, Abschnitt 1):
  "alreadySeen":false,"complete":false,"openUrl":null}
 ```
 
-`openUrl` ist immer `null`: der Berater oeffnet die Anlage am Account.
+`openUrl` ist immer `null`: der Berater oeffnet die Daten mit der Schaltflaeche "DIBA Report" am Account.
 
 ## Regeln
 

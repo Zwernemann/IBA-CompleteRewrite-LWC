@@ -153,7 +153,7 @@ private class DibaOrderCodesTest {
         deliver(new List<String>{ 'CODE-1' });
         Id rowId = [SELECT Id FROM DIBA_Row__c].Id;
         Test.startTest();
-        Map<String, Object> row = DibaPlantController.lookupOrderCode(rowId);
+        Map<String, Object> row = DibaAccountController.lookupOrderCode(rowId);
         Test.stopTest();
         Assert.areEqual('NEW-1', row.get('add_ordercode_transform'));
         Assert.areEqual(false, row.get('order_code_pending'));

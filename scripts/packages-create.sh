@@ -8,7 +8,7 @@ cd "$REPO_ROOT"
 declare -A DIRS=(["DIBA Report"]="force-app" ["DIBA Test Data"]="eh-emulation")
 declare -A DESCRIPTIONS=(
     ["DIBA Report"]="DIBA Report Generator for Endress+Hauser in Salesforce."
-    ["DIBA Test Data"]="Test plant for test orgs. Never installed at E+H."
+    ["DIBA Test Data"]="Test account for test orgs. Never installed at E+H."
 )
 
 EXISTING="$(sf package list --json)"

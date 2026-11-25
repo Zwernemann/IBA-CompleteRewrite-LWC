@@ -1,24 +1,24 @@
 /**
  * Looks up the successors of the rows a delivery has written (Order_Code_Pending__c), a
  * batch of rows per run, as long as there are any. Started by DibaImport after a part, or
- * from the plant view.
+ * from the account view.
  */
 public with sharing class DibaOrderCodeJob implements Queueable, Database.AllowsCallouts {
     public static final Integer ROWS_PER_RUN = 2000;
 
-    private final Id plantId;
+    private final Id accountDataId;
 
-    public DibaOrderCodeJob(Id plantId) {
-        this.plantId = plantId;
+    public DibaOrderCodeJob(Id accountDataId) {
+        this.accountDataId = accountDataId;
     }
 
     /**
-     * Starts the job for a plant if this transaction may start one. Inside a Queueable,
+     * Starts the job for an account if this transaction may start one. Inside a Queueable,
      * a batch or a future the job is left to the caller: the rows stay pending.
      */
-    public static Boolean startFor(Id plantId) {
+    public static Boolean startFor(Id accountDataId) {
         if (
-            plantId == null ||
+            accountDataId == null ||
             System.isQueueable() ||
             System.isBatch() ||
             System.isFuture() ||
@@ -26,19 +26,19 @@ public with sharing class DibaOrderCodeJob implements Queueable, Database.Allows
         ) {
             return false;
         }
-        System.enqueueJob(new DibaOrderCodeJob(plantId));
+        System.enqueueJob(new DibaOrderCodeJob(accountDataId));
         return true;
     }
 
     public void execute(QueueableContext context) {
-        Boolean more = run(plantId);
+        Boolean more = run(accountDataId);
         if (more && !Test.isRunningTest()) {
-            System.enqueueJob(new DibaOrderCodeJob(plantId));
+            System.enqueueJob(new DibaOrderCodeJob(accountDataId));
         }
     }
 
     /** One run; returns whether pending rows remain. */
-    public static Boolean run(Id plantId) {
+    public static Boolean run(Id accountDataId) {
         List<DIBA_Row__c> rows = [
             SELECT
                 Id,
@@ -48,7 +48,7 @@ public with sharing class DibaOrderCodeJob implements Queueable, Database.Allows
                 Version__c,
                 (SELECT Field__c, Value__c, Salesforce_Value__c FROM Master_Edits__r)
             FROM DIBA_Row__c
-            WHERE DIBA_Account__c = :plantId AND Order_Code_Pending__c = TRUE
+            WHERE DIBA_Account__c = :accountDataId AND Order_Code_Pending__c = TRUE
             ORDER BY Row_Key__c
             LIMIT :ROWS_PER_RUN
         ];
@@ -63,7 +63,7 @@ public with sharing class DibaOrderCodeJob implements Queueable, Database.Allows
         try {
             results = DibaOrderCodes.lookup(codes);
         } catch (DibaOrderCodes.TransformerException e) {
-            // The rows stay pending; the next delivery or the plant view tries again.
+            // The rows stay pending; the next delivery or the account view tries again.
             System.debug(LoggingLevel.WARN, e.getMessage());
             return false;
         }

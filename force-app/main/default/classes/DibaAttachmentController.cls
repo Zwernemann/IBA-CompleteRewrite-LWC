@@ -1,7 +1,7 @@
 /**
- * The attachments of a plant (AttachmentView of IBA-Salesforce): the logo (slot 0, JPEG)
+ * The attachments of an account (AttachmentView of IBA-Salesforce): the logo (slot 0, JPEG)
  * and one PDF after each of six chapters (slots 1 to 6), at most 20 MB each. They are
- * Salesforce Files on the plant; the slot is a field of the file version.
+ * Salesforce Files on the account; the slot is a field of the file version.
  *
  * PDFs go up with lightning-file-upload and are then assigned to their slot; the logo is
  * converted to JPEG in the browser and comes here as Base64, it is small.
@@ -25,11 +25,11 @@ public with sharing class DibaAttachmentController {
         public Datetime updated;
     }
 
-    /** The files of the plant that have a slot, by slot. */
+    /** The files of the account that have a slot, by slot. */
     @AuraEnabled
-    public static Map<Integer, Attachment> listAttachments(Id plantId) {
+    public static Map<Integer, Attachment> listAttachments(Id accountDataId) {
         Map<Integer, Attachment> result = new Map<Integer, Attachment>();
-        for (ContentVersion version : versions(plantId)) {
+        for (ContentVersion version : versions(accountDataId)) {
             Attachment attachment = new Attachment();
             attachment.slot = version.DIBA_Slot__c.intValue();
             attachment.documentId = version.ContentDocumentId;
@@ -42,12 +42,12 @@ public with sharing class DibaAttachmentController {
         return result;
     }
 
-    private static List<ContentVersion> versions(Id plantId) {
+    private static List<ContentVersion> versions(Id accountDataId) {
         Set<Id> documents = new Set<Id>();
         for (ContentDocumentLink link : [
             SELECT ContentDocumentId
             FROM ContentDocumentLink
-            WHERE LinkedEntityId = :plantId
+            WHERE LinkedEntityId = :accountDataId
         ]) {
             documents.add(link.ContentDocumentId);
         }
@@ -60,9 +60,9 @@ public with sharing class DibaAttachmentController {
     }
 
     /** Removes what is in the slot, except the given document. */
-    private static void clear(Id plantId, Integer slot, Id keep) {
+    private static void clear(Id accountDataId, Integer slot, Id keep) {
         List<ContentDocument> old = new List<ContentDocument>();
-        for (ContentVersion version : versions(plantId)) {
+        for (ContentVersion version : versions(accountDataId)) {
             if (version.DIBA_Slot__c.intValue() == slot && version.ContentDocumentId != keep) {
                 old.add(new ContentDocument(Id = version.ContentDocumentId));
             }
@@ -81,7 +81,7 @@ public with sharing class DibaAttachmentController {
      * before is removed. A file that is not a PDF or larger than 20 MB is removed again.
      */
     @AuraEnabled
-    public static Attachment assign(Id plantId, Integer slot, Id documentId) {
+    public static Attachment assign(Id accountDataId, Integer slot, Id documentId) {
         checkSlot(slot, false);
         ContentVersion version = [
             SELECT Id, ContentDocumentId, PathOnClient, ContentSize, FileExtension, CreatedDate
@@ -100,13 +100,13 @@ public with sharing class DibaAttachmentController {
         }
         version.DIBA_Slot__c = slot;
         update version;
-        clear(plantId, slot, documentId);
-        return listAttachments(plantId).get(slot);
+        clear(accountDataId, slot, documentId);
+        return listAttachments(accountDataId).get(slot);
     }
 
     /** Stores the logo, already converted to JPEG by the browser. */
     @AuraEnabled
-    public static Attachment uploadLogo(Id plantId, String fileName, String base64Jpeg) {
+    public static Attachment uploadLogo(Id accountDataId, String fileName, String base64Jpeg) {
         Blob content = EncodingUtil.base64Decode(base64Jpeg);
         if (content.size() > MAX_BYTES) {
             throw new AuraHandledException('The file has more than 20 MB.');
@@ -115,19 +115,19 @@ public with sharing class DibaAttachmentController {
             Title = fileName,
             PathOnClient = fileName,
             VersionData = content,
-            FirstPublishLocationId = plantId,
+            FirstPublishLocationId = accountDataId,
             DIBA_Slot__c = LOGO
         );
         insert version;
         Id documentId = [SELECT ContentDocumentId FROM ContentVersion WHERE Id = :version.Id]
         .ContentDocumentId;
-        clear(plantId, LOGO, documentId);
-        return listAttachments(plantId).get(LOGO);
+        clear(accountDataId, LOGO, documentId);
+        return listAttachments(accountDataId).get(LOGO);
     }
 
     @AuraEnabled
-    public static void remove(Id plantId, Integer slot) {
+    public static void remove(Id accountDataId, Integer slot) {
         checkSlot(slot, slot == LOGO);
-        clear(plantId, slot, null);
+        clear(accountDataId, slot, null);
     }
 }

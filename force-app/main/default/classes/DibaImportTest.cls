@@ -160,14 +160,14 @@ private class DibaImportTest {
         DibaImport.Result second = DibaImport.process(System.JSON.serialize(twoRows('T-1', 2, 2)));
         Assert.isTrue(second.complete, 'both parts');
 
-        DIBA_Account__c plant = [
+        DIBA_Account__c accountData = [
             SELECT Name, Country_Code__c, Preset_Language__c, Preset_Final_Report__c
             FROM DIBA_Account__c
         ];
-        Assert.areEqual('DIBA Testanlage Nord', plant.Name);
-        Assert.areEqual('DE', plant.Country_Code__c);
-        Assert.areEqual('en_US', plant.Preset_Language__c);
-        Assert.areEqual('false', plant.Preset_Final_Report__c);
+        Assert.areEqual('DIBA Testanlage Nord', accountData.Name);
+        Assert.areEqual('DE', accountData.Country_Code__c);
+        Assert.areEqual('en_US', accountData.Preset_Language__c);
+        Assert.areEqual('false', accountData.Preset_Final_Report__c);
     }
 
     @IsTest
@@ -316,7 +316,7 @@ private class DibaImportTest {
     @IsTest
     static void tagLocationWinsOverLocationName() {
         Map<String, Object> located = tag('a0X7Q00000TD01UAAV', 'TIC-1021');
-        located.put('FSLEH_Location_Name__c', 'Plant 1, Hall A, Line 2');
+        located.put('FSLEH_Location_Name__c', 'AccountData 1, Hall A, Line 2');
         DibaImport.process(
             System.JSON.serialize(
                 delivery(
@@ -328,7 +328,7 @@ private class DibaImportTest {
                 )
             )
         );
-        Assert.areEqual('Plant 1, Hall A, Line 2', storedRows()[0].Location_Name__c);
+        Assert.areEqual('AccountData 1, Hall A, Line 2', storedRows()[0].Location_Name__c);
     }
 
     @IsTest
@@ -341,12 +341,12 @@ private class DibaImportTest {
 
         DibaImport.process(System.JSON.serialize(data));
 
-        DIBA_Account__c plant = [
+        DIBA_Account__c accountData = [
             SELECT Preset_Language__c, Preset_Final_Report__c
             FROM DIBA_Account__c
         ];
-        Assert.areEqual('en_US', plant.Preset_Language__c);
-        Assert.areEqual('false', plant.Preset_Final_Report__c);
+        Assert.areEqual('en_US', accountData.Preset_Language__c);
+        Assert.areEqual('false', accountData.Preset_Final_Report__c);
     }
 
     @IsTest
