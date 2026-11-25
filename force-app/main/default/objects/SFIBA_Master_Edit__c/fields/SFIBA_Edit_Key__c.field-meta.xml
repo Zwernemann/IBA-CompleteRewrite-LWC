@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SFIBA_Edit_Key__c</fullName>
+    <caseSensitive>true</caseSensitive>
+    <description>Row key and field joined with "/". Unique per row and field.</description>
+    <externalId>true</externalId>
+    <label>Edit key</label>
+    <length>128</length>
+    <required>true</required>
+    <type>Text</type>
+    <unique>true</unique>
+</CustomField>

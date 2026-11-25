@@ -1,0 +1,170 @@
+@IsTest
+private class SfibaOrderCodesTest {
+    private class Transformer implements HttpCalloutMock {
+        public Integer calls = 0;
+        public String lastBody;
+        public Integer status = 200;
+
+        public HttpResponse respond(HttpRequest request) {
+            calls++;
+            lastBody = request.getBody();
+            HttpResponse response = new HttpResponse();
+            response.setStatusCode(status);
+            response.setBody(
+                '<multipleOrderCodeLightResponse><orderCodeResponses>' +
+                    '<orderCodeResponse><errorCode>0</errorCode><requestedOrderCode>CODE-1</requestedOrderCode>' +
+                    '<responseOrderCode>NEW-1</responseOrderCode></orderCodeResponse>' +
+                    '<orderCodeResponse><errorCode>0</errorCode><requestedOrderCode>CODE-2</requestedOrderCode></orderCodeResponse>' +
+                    '<orderCodeResponse><errorCode>10</errorCode><requestedOrderCode>CODE-3</requestedOrderCode></orderCodeResponse>' +
+                    '</orderCodeResponses></multipleOrderCodeLightResponse>'
+            );
+            return response;
+        }
+    }
+
+    private static void deliver(List<String> codes) {
+        List<Object> rows = new List<Object>();
+        for (Integer i = 0; i < codes.size(); i++) {
+            rows.add(
+                new Map<String, Object>{
+                    'tag' => new Map<String, Object>{
+                        'Id' => 'a0X7Q00000TD0' +
+                        i +
+                        'UAAV',
+                        'Name' => 'T' + i
+                    },
+                    'asset' => new Map<String, Object>{
+                        'Id' => '02i7Q00000TD0' +
+                        i +
+                        'UAAV',
+                        'Order_Code__c' => codes[i]
+                    }
+                }
+            );
+        }
+        SfibaImport.accept(
+            JSON.serialize(
+                new Map<String, Object>{
+                    'transmission' => new Map<String, Object>{
+                        'id' => 'T-OC',
+                        'part' => 1,
+                        'partCount' => 1
+                    },
+                    'account' => new Map<String, Object>{
+                        'Id' => '0017Q00000TsTdAQAV',
+                        'Name' => 'Nord'
+                    },
+                    'location' => new List<Object>{
+                        new Map<String, Object>{
+                            'Id' => '1317Q00000TA00UAAV',
+                            'Name' => 'Hall',
+                            'rows' => rows
+                        }
+                    }
+                }
+            )
+        );
+    }
+
+    @IsTest
+    static void readsTheAnswerOfTheService() {
+        Map<String, String> results = SfibaOrderCodes.parse(
+            '<r><orderCodeResponses><orderCodeResponse><errorCode>0</errorCode><requestedOrderCode> A </requestedOrderCode>' +
+            '<responseOrderCode>B</responseOrderCode></orderCodeResponse></orderCodeResponses></r>'
+        );
+        Assert.areEqual('B', results.get('A'));
+        Assert.isTrue(
+            SfibaOrderCodes.requestXml(new List<String>{ 'A&B' })
+                .contains('<orderCode>A&amp;B</orderCode>')
+        );
+    }
+
+    @IsTest
+    static void aDeliveryLooksUpTheSuccessors() {
+        SfibaOrderCodeJob.startInTests = true;
+        Transformer transformer = new Transformer();
+        Test.setMock(HttpCalloutMock.class, transformer);
+        Test.startTest();
+        deliver(new List<String>{ 'CODE-1', 'CODE-2', 'CODE-3' });
+        Assert.areEqual(
+            3,
+            [SELECT COUNT() FROM SFIBA_Row__c WHERE SFIBA_Order_Code_Pending__c = TRUE]
+        );
+        Test.stopTest();
+
+        Assert.areEqual(1, transformer.calls);
+        Map<String, SFIBA_Row__c> byCode = new Map<String, SFIBA_Row__c>();
+        for (SFIBA_Row__c row : [
+            SELECT
+                SFIBA_Device_Ordercode__c,
+                SFIBA_Add_Ordercode_Transform__c,
+                SFIBA_Add_Recomend_Ordercode__c,
+                SFIBA_Order_Code_Pending__c,
+                SFIBA_Version__c
+            FROM SFIBA_Row__c
+        ]) {
+            byCode.put(row.SFIBA_Device_Ordercode__c, row);
+            Assert.isFalse(row.SFIBA_Order_Code_Pending__c);
+        }
+        Assert.areEqual('NEW-1', byCode.get('CODE-1').SFIBA_Add_Ordercode_Transform__c);
+        Assert.areEqual('NEW-1', byCode.get('CODE-1').SFIBA_Add_Recomend_Ordercode__c);
+        Assert.areEqual(1, byCode.get('CODE-1').SFIBA_Version__c);
+        Assert.areEqual(
+            SfibaOrderCodes.NO_SUCCESSOR,
+            byCode.get('CODE-2').SFIBA_Add_Ordercode_Transform__c
+        );
+        Assert.isNull(
+            byCode.get('CODE-3').SFIBA_Add_Ordercode_Transform__c,
+            'error code 10 changes nothing'
+        );
+    }
+
+    @IsTest
+    static void aFailingServiceLeavesTheRowsPending() {
+        SfibaOrderCodeJob.startInTests = true;
+        Transformer transformer = new Transformer();
+        transformer.status = 503;
+        Test.setMock(HttpCalloutMock.class, transformer);
+        Test.startTest();
+        deliver(new List<String>{ 'CODE-1' });
+        Test.stopTest();
+        Assert.areEqual(
+            1,
+            [SELECT COUNT() FROM SFIBA_Row__c WHERE SFIBA_Order_Code_Pending__c = TRUE]
+        );
+    }
+
+    @IsTest
+    static void theEditedOrderCodeCountsWhileItApplies() {
+        Test.setMock(HttpCalloutMock.class, new Transformer());
+        deliver(new List<String>{ 'OLD' });
+        SFIBA_Row__c row = [SELECT Id, SFIBA_Row_Key__c FROM SFIBA_Row__c];
+        insert new SFIBA_Master_Edit__c(
+            SFIBA_Row__c = row.Id,
+            SFIBA_Edit_Key__c = row.SFIBA_Row_Key__c + '/device_ordercode',
+            SFIBA_Field__c = 'device_ordercode',
+            SFIBA_Value__c = 'CODE-1',
+            SFIBA_Salesforce_Value__c = 'OLD'
+        );
+        Test.startTest();
+        SfibaOrderCodeJob.run([SELECT SFIBA_Account__c FROM SFIBA_Row__c].SFIBA_Account__c);
+        Test.stopTest();
+        Assert.areEqual(
+            'NEW-1',
+            [SELECT SFIBA_Add_Ordercode_Transform__c FROM SFIBA_Row__c]
+            .SFIBA_Add_Ordercode_Transform__c
+        );
+    }
+
+    @IsTest
+    static void looksUpOneRowFromTheTable() {
+        Test.setMock(HttpCalloutMock.class, new Transformer());
+        deliver(new List<String>{ 'CODE-1' });
+        Id rowId = [SELECT Id FROM SFIBA_Row__c].Id;
+        Test.startTest();
+        Map<String, Object> row = SfibaAccountController.lookupOrderCode(rowId);
+        Test.stopTest();
+        Assert.areEqual('NEW-1', row.get('add_ordercode_transform'));
+        Assert.areEqual(false, row.get('order_code_pending'));
+    }
+}

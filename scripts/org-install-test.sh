@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 # Installs package versions into an org, upgrading what is there, and delivers the test
-# account through mzw.DibaImport. Checks that the delivery is complete with 20 rows.
+# account through mzw.SfibaImport. Checks that the delivery is complete with 20 rows.
 #
-#   scripts/org-install-test.sh <org alias> <04t of DIBA Report> <04t of DIBA Test Data>
+#   scripts/org-install-test.sh <org alias> <04t of SF Frontend IBA> <04t of SF Frontend IBA Test Data>
 source "$(dirname "$0")/lib/common.sh"
 
 ORG="${1:?Org-Alias fehlt}"
-REPORT_VERSION="${2:?Version von DIBA Report fehlt}"
-TESTDATA_VERSION="${3:?Version von DIBA Test Data fehlt}"
+REPORT_VERSION="${2:?Version von SF Frontend IBA fehlt}"
+TESTDATA_VERSION="${3:?Version von SF Frontend IBA Test Data fehlt}"
 cd "$REPO_ROOT"
 
 for version in "$REPORT_VERSION" "$TESTDATA_VERSION"; do
@@ -18,7 +18,7 @@ for version in "$REPORT_VERSION" "$TESTDATA_VERSION"; do
 done
 
 note "Weise die Permission Sets zu"
-for set in DIBA_Report_Consultant DIBA_Data_Sender; do
+for set in SFIBA_Report_Consultant SFIBA_Data_Sender; do
     sf org assign permset --name "$set" --target-org "$ORG" > /dev/null 2>&1 \
         || sf org assign permset --name "mzw__$set" --target-org "$ORG" > /dev/null 2>&1 \
         || echo "   $set nicht zugewiesen (schon vorhanden?)."

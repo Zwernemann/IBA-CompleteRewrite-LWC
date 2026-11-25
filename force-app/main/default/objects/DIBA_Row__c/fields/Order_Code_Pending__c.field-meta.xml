@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Order_Code_Pending__c</fullName>
-    <defaultValue>false</defaultValue>
-    <description>Set by a delivery: the Order Code Transformer still has to look up the successor of the order code (DibaOrderCodeJob).</description>
-    <label>Order code lookup pending</label>
-    <type>Checkbox</type>
-</CustomField>

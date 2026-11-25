@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SFIBA_Section__c</fullName>
+    <description>texts or settings.</description>
+    <label>Section</label>
+    <length>16</length>
+    <required>true</required>
+    <type>Text</type>
+</CustomField>

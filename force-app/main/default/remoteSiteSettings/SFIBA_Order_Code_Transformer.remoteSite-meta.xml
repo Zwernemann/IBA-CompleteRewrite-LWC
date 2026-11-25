@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RemoteSiteSetting xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Order Code Transformer of E+H: successors of older order codes (SfibaOrderCodes).</description>
+    <disableProtocolSecurity>false</disableProtocolSecurity>
+    <isActive>true</isActive>
+    <url>https://portal.webservice1.endress.com</url>
+</RemoteSiteSetting>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SFIBA_Preset_Final_Report__c</fullName>
+    <description>true or false as suggested by the delivery, empty if none was sent. A preset only.</description>
+    <label>Preset final report</label>
+    <length>5</length>
+    <required>false</required>
+    <type>Text</type>
+</CustomField>

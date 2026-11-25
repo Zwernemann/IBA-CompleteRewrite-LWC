@@ -18,7 +18,7 @@ E+H nur, wenn auch Daten und Oberflaeche in Salesforce liegen.
 Neubau als Salesforce-Paket in einem eigenen Repository:
 
 - Daten in eigenen Objekten (`docs/datenmodell.md`).
-- Dateneingang ueber die globale Apex-Methode `mzw.DibaImport.accept` mit dem JSON nach
+- Dateneingang ueber die globale Apex-Methode `mzw.SfibaImport.accept` mit dem JSON nach
   Schema v3. Die Aktion von E+H ruft sie statt des HTTP-Aufrufs auf; das Paket braucht die
   Objekte von E+H nicht zu kennen.
 - Oberflaeche als LWC, Report-XML im Browser, Report ueber den CRGenerator.

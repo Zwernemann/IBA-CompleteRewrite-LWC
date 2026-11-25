@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SFIBA_Device_Riskofmaint__c</fullName>
+    <description>Calculated by the application, recalculated when needed (device_riskofmaint).</description>
+    <label>Risk of maintenance</label>
+    <length>32</length>
+    <required>false</required>
+    <type>Text</type>
+</CustomField>

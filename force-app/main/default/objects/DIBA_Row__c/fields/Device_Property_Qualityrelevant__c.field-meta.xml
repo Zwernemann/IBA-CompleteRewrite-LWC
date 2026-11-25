@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Device_Property_Qualityrelevant__c</fullName>
-    <defaultValue>false</defaultValue>
-    <description>Master data from Salesforce, overwritten by every delivery. FSLEH_Quality_Relevant__c (device_property_qualityrelevant).</description>
-    <label>Quality relevant</label>
-    <type>Checkbox</type>
-</CustomField>

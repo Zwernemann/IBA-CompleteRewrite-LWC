@@ -11,12 +11,12 @@ einen weiteren starten.
 
 ## Entscheidung
 
-- Eine Lieferung markiert ihre Zeilen (`Order_Code_Pending__c`) und startet
-  `DibaOrderCodeJob`, ausser sie laeuft selbst schon asynchron; dann bleibt das dem
+- Eine Lieferung markiert ihre Zeilen (`SFIBA_Order_Code_Pending__c`) und startet
+  `SfibaOrderCodeJob`, ausser sie laeuft selbst schon asynchron; dann bleibt das dem
   Aufrufer (die Lasttestanlage startet den Job nach ihrem letzten Teil).
 - Der Job arbeitet in Laeufen zu 2.000 Zeilen, bis zu 500 Codes je Callout. Ist der Dienst
   nicht erreichbar, bleiben die Zeilen markiert.
-- Adresse als Custom Metadata `DIBA_Setting`, Remote Site im Paket; keine Named
+- Adresse als Custom Metadata `SFIBA_Setting`, Remote Site im Paket; keine Named
   Credential, der Dienst braucht keine Anmeldung.
 
 ## Folgen

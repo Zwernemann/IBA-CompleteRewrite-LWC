@@ -13,10 +13,10 @@ sein eigenes Format um.
 
 ## Entscheidung
 
-- `c/dibaGrid`: eigene Tabelle, die nur die sichtbaren Zeilen zeichnet. Filtern, Sortieren
-  und das Fenster stecken in `c/dibaGridModel` und sind ohne Oberflaeche getestet, auch mit
+- `c/sfibaGrid`: eigene Tabelle, die nur die sichtbaren Zeilen zeichnet. Filtern, Sortieren
+  und das Fenster stecken in `c/sfibaGridModel` und sind ohne Oberflaeche getestet, auch mit
   50.000 Zeilen.
-- `c/dibaRichText`: ein `contenteditable`-Bereich mit Fett, Kursiv, Unterstrichen wie
+- `c/sfibaRichText`: ein `contenteditable`-Bereich mit Fett, Kursiv, Unterstrichen wie
   bisher. Das HTML bleibt, wie es ist; nur die Attribute `lwc-*`, die das synthetische
   Shadow DOM einfuegt, werden beim Lesen entfernt.
 - Keine Bibliotheken von Dritten: unter Lightning Web Security waere ihr Verhalten erst zu

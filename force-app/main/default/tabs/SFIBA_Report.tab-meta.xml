@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomTab xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>SF Frontend IBA: delivered accounts, asset table, report.</description>
+    <label>SF IBA Report</label>
+    <lwcComponent>sfibaReport</lwcComponent>
+    <motif>Custom53: Bell</motif>
+</CustomTab>

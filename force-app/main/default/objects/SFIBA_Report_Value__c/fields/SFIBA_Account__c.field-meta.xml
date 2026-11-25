@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SFIBA_Account__c</fullName>
+    <description>The account the value belongs to.</description>
+    <label>Account</label>
+    <referenceTo>SFIBA_Account__c</referenceTo>
+    <relationshipLabel>Report Values</relationshipLabel>
+    <relationshipName>SFIBA_Report_Values</relationshipName>
+    <relationshipOrder>0</relationshipOrder>
+    <reparentableMasterDetail>true</reparentableMasterDetail>
+    <type>MasterDetail</type>
+    <writeRequiresMasterRead>false</writeRequiresMasterRead>
+</CustomField>

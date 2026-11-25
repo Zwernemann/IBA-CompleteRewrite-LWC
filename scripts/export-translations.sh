@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Writes the texts of the E+H translation library anew (static resource dibaTranslations)
+# Writes the texts of the E+H translation library anew (static resource sfibaTranslations)
 # and the report templates the tests compare against (test/reporttexts/templates.json),
 # with the code and library of IBA-Salesforce. Needed when the library changes.
 #
@@ -18,7 +18,7 @@ JAR="$(ls "$SOURCE"/iba-core/target/iba-core-*.jar | head -1)"
 
 note "Texte und Vorlagen"
 java -Dfile.encoding=UTF-8 -cp "$JAR:$(cat "$WORK/cp.txt")" "$REPO_ROOT/tools/translations/ExportTranslations.java" \
-    "$REPO_ROOT/force-app/main/default/staticresources/dibaTranslations.json" \
+    "$REPO_ROOT/force-app/main/default/staticresources/sfibaTranslations.json" \
     "$REPO_ROOT/test/reporttexts/templates.json" 2> /dev/null \
     || fail "Export gescheitert."
 note "Geschrieben; pruefen mit: npm test"

@@ -6,11 +6,11 @@ Account account = accounts.isEmpty() ? new Account(Name = 'DIBA Testanlage Nord'
 if (account.Id == null) {
     insert account;
 }
-String answers = mzw.DibaTestData.send(account.Id);
+String answers = mzw.SfibaTestData.send(account.Id);
 System.debug(answers);
 List<String> lines = answers.split('\n');
 Map<String, Object> last = (Map<String, Object>) JSON.deserializeUntyped(lines[lines.size() - 1]);
-Integer rows = [SELECT COUNT() FROM mzw__DIBA_Row__c WHERE mzw__DIBA_Account__r.mzw__Account__c = :account.Id];
+Integer rows = [SELECT COUNT() FROM mzw__SFIBA_Row__c WHERE mzw__SFIBA_Account__r.mzw__SFIBA_Account__c = :account.Id];
 if (last.get('complete') == true && rows == 20) {
     System.debug('DIBA-TEST-OK');
 } else {

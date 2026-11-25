@@ -72,20 +72,20 @@ Kontingent des Dev Hub geschont.
 
 ## 5. In die Ziel-Org installieren
 
-1. In der Ziel-Org angemeldet den Link fuer **DIBA Report** oeffnen, "Install for Admins
+1. In der Ziel-Org angemeldet den Link fuer **SF Frontend IBA** oeffnen, "Install for Admins
    Only", installieren.
-2. Fuer eine Test-Org zusaetzlich **DIBA Test Data** auf dieselbe Weise.
+2. Fuer eine Test-Org zusaetzlich **SF Frontend IBA Test Data** auf dieselbe Weise.
 
 ## 6. Nach der Installation
 
 Zwei Dinge, die ein Unlocked Package nicht selbst setzen kann:
 
 1. **Schaltflaeche am Account.** Setup, Object Manager, Account, Page Layouts, das Layout
-   der Berater, "Mobile & Lightning Actions", **DIBA Report** in den Bereich "Salesforce
+   der Berater, "Mobile & Lightning Actions", **SF IBA Report** in den Bereich "Salesforce
    Mobile and Lightning Experience Actions" ziehen, speichern. Arbeitet die Account-Seite mit
    Dynamic Actions, stattdessen im Lightning App Builder die Aktion hinzufuegen.
 2. **Permission Sets.** Setup, Users, Benutzer oeffnen, Permission Set Assignments, Edit
-   Assignments: **DIBA Report Consultant** fuer Berater, **DIBA Data Sender** fuer den
+   Assignments: **SF IBA Report Consultant** fuer Berater, **SF IBA Data Sender** fuer den
    Benutzer der E+H-Aktion.
 
 ## 7. Testdaten (nur Test-Org)
@@ -93,7 +93,7 @@ Zwei Dinge, die ein Unlocked Package nicht selbst setzen kann:
 Developer Console (Zahnrad oben rechts), **Debug**, **Open Execute Anonymous Window**, den
 Inhalt von `scripts/apex/send-testdata.apex` einfuegen, **Execute**. Erwartet: im Log
 `DIBA-TEST-OK`; der Account "DIBA Testanlage Nord" hat dann 20 Zeilen. Am Account die
-Schaltflaeche **DIBA Report** druecken.
+Schaltflaeche **SF IBA Report** druecken.
 
 ## Spaeter: feste Test-Org fuer die CI
 

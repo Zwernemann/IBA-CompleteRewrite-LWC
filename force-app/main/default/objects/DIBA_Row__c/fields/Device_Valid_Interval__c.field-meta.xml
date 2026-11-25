@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Device_Valid_Interval__c</fullName>
-    <description>Calculated by the application, recalculated when needed (device_valid_interval).</description>
-    <label>Validation interval</label>
-    <length>32</length>
-    <required>false</required>
-    <type>Text</type>
-</CustomField>

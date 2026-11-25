@@ -10,7 +10,7 @@ Anlage ergibt ueber 100 MB, der Heap hat 6 bzw. 12 MB.
 
 ## Entscheidung
 
-`c/dibaReportXml` baut das XML im Browser aus den Zeilen, Texten, Einstellungen und der
+`c/sfibaReportXml` baut das XML im Browser aus den Zeilen, Texten, Einstellungen und der
 Intervalltabelle: Felder wie `DeviceDataMapper` und `ReportXmlFields`, Ausgabe wie JAXB,
 Zeitleiste wie Jsoup, danach der `FineTuneWriter`. Die Referenzen fuer die Tests schreibt
 der Java-Code von IBA-Salesforce selbst (`scripts/reference-xml.sh`): die Testanlage und die

@@ -34,7 +34,7 @@ greater() { # a > b, both major.minor.patch
 FAILED=0
 for commit in $(git rev-list --reverse "$BASE..HEAD"); do
     parent="$commit^"
-    for pair in "DIBA Report:force-app" "DIBA Test Data:eh-emulation"; do
+    for pair in "SF Frontend IBA:force-app" "SF Frontend IBA Test Data:eh-emulation"; do
         name="${pair%%:*}"
         dir="${pair#*:}"
         git diff --quiet "$parent" "$commit" -- "$dir" && continue

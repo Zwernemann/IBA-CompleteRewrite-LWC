@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SFIBA_Location_Name__c</fullName>
+    <description>Master data from Salesforce, overwritten by every delivery. FSLEH_Location_Name__c of the tag, else the name of the location (location_name).</description>
+    <label>Location</label>
+    <length>255</length>
+    <required>false</required>
+    <type>Text</type>
+</CustomField>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SFIBA_Reco_Insp_Interval__c</fullName>
+    <description>Consultant input, never touched by a delivery. reco_insp_interval.</description>
+    <label>Recommended inspection interval</label>
+    <length>32</length>
+    <required>false</required>
+    <type>Text</type>
+</CustomField>

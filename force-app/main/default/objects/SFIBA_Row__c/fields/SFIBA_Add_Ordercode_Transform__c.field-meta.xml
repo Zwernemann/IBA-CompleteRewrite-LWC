@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SFIBA_Add_Ordercode_Transform__c</fullName>
+    <description>Consultant input, never touched by a delivery. Preset by the Order Code Transformer (add_ordercode_transform).</description>
+    <label>Successor order code</label>
+    <length>255</length>
+    <required>false</required>
+    <type>Text</type>
+</CustomField>

@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Device_Criticality__c</fullName>
-    <description>Master data from Salesforce, overwritten by every delivery. low, medium, high or notset; empty if not set (device_criticality).</description>
-    <label>Criticality</label>
-    <length>32</length>
-    <required>false</required>
-    <type>Text</type>
-</CustomField>

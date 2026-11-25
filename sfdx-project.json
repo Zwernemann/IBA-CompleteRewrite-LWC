@@ -3,26 +3,26 @@
     {
       "path": "force-app",
       "default": true,
-      "package": "DIBA Report",
-      "versionName": "Account",
-      "versionNumber": "0.6.3.NEXT",
-      "versionDescription": "DIBA Report Generator in Salesforce, opened from the account: data intake, asset table and dialogs, interval table, report texts, sliders and settings, Order Code Transformer, attachments, report XML."
+      "package": "SF Frontend IBA",
+      "versionName": "SF IBA",
+      "versionNumber": "0.7.0.NEXT",
+      "versionDescription": "SF Frontend IBA in Salesforce, opened from the account: data intake, asset table and dialogs, interval table, report texts, sliders and settings, Order Code Transformer, attachments, report XML."
     },
     {
       "path": "eh-emulation",
-      "package": "DIBA Test Data",
+      "package": "SF Frontend IBA Test Data",
       "versionName": "Lasttest",
-      "versionNumber": "0.2.4.NEXT",
-      "versionDescription": "Test plant for test orgs, delivered through mzw.DibaImport. Never installed at E+H.",
+      "versionNumber": "0.3.0.NEXT",
+      "versionDescription": "Test plant for test orgs, delivered through mzw.SfibaImport. Never installed at E+H.",
       "dependencies": [
         {
-          "package": "DIBA Report",
-          "versionNumber": "0.6.3.LATEST"
+          "package": "SF Frontend IBA",
+          "versionNumber": "0.7.0.LATEST"
         }
       ]
     }
   ],
-  "name": "diba-salesforce",
+  "name": "sfiba-salesforce",
   "namespace": "mzw",
   "sfdcLoginUrl": "https://login.salesforce.com",
   "sourceApiVersion": "66.0",

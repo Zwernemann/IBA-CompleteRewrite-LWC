@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Default intervals of E+H per device type (SPK), by process criticality and operating conditions. Months unless the text says otherwise. Taken unchanged from the table of the inherited version (90 rows).</description>
+    <label>SF IBA Interval</label>
+    <pluralLabel>SF IBA Intervals</pluralLabel>
+    <visibility>Public</visibility>
+</CustomObject>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SFIBA_Preset_Language__c</fullName>
+    <description>Report language suggested by the delivery, such as en_US. A preset only: report settings the consultant saved take precedence.</description>
+    <label>Preset report language</label>
+    <length>8</length>
+    <required>false</required>
+    <type>Text</type>
+</CustomField>

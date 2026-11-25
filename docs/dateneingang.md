@@ -6,7 +6,7 @@ schickte sie das JSON per HTTP an den Tomcat. Mit dem Paket ruft sie stattdessen
 mit demselben JSON, in denselben Teilen:
 
 ```apex
-String answer = mzw.DibaImport.accept(json);
+String answer = mzw.SfibaImport.accept(json);
 ```
 
 Die Antwort ist das JSON der bisherigen Antwort (`salesforce/INTERFACE.md` in
@@ -18,7 +18,7 @@ IBA-Salesforce, Abschnitt 1):
  "alreadySeen":false,"complete":false,"openUrl":null}
 ```
 
-`openUrl` ist immer `null`: der Berater oeffnet die Daten mit der Schaltflaeche "DIBA Report" am Account.
+`openUrl` ist immer `null`: der Berater oeffnet die Daten mit der Schaltflaeche "SF IBA Report" am Account.
 
 ## Regeln
 
@@ -35,7 +35,7 @@ Unveraendert gegenueber der Tomcat-Fassung:
 
 ## Fehler
 
-Daten, die nicht zum Schema passen, loesen `mzw.DibaImport.ImportException` aus. Die
+Daten, die nicht zum Schema passen, loesen `mzw.SfibaImport.ImportException` aus. Die
 Meldung nennt alle Fundstellen auf einmal, im Wortlaut der bisherigen Antwort 400, etwa:
 
 ```
@@ -67,10 +67,10 @@ Die Grenze wird mit der grossen Testanlage in Schritt 2 gemessen und hier nachge
 
 ## Schnittstelle zu E+H
 
-`mzw.DibaImport` ist `global` und damit Teil des Vertrags. Methode, Antwort und Ausnahme
+`mzw.SfibaImport` ist `global` und damit Teil des Vertrags. Methode, Antwort und Ausnahme
 bleiben, solange es keinen abgestimmten Grund gibt, sie zu aendern.
 
 Was E+H an ihrer Aktion aendert: statt des Callouts an die Named Credential
-`DIBA_Report_Server` den Aufruf oben; der Benutzer, unter dem die Aktion laeuft, bekommt
-das Permission Set **DIBA Data Sender**. Die Named Credential und das Anmeldeverfahren
+`SFIBA_Report_Server` den Aufruf oben; der Benutzer, unter dem die Aktion laeuft, bekommt
+das Permission Set **SF IBA Data Sender**. Die Named Credential und das Anmeldeverfahren
 des Servers entfallen.

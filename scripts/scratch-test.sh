@@ -2,11 +2,11 @@
 # First installation in an empty org: creates a scratch org from the Dev Hub, installs the
 # given versions, delivers the test account and deletes the org again, also on failure.
 #
-#   scripts/scratch-test.sh <04t of DIBA Report> <04t of DIBA Test Data>
+#   scripts/scratch-test.sh <04t of SF Frontend IBA> <04t of SF Frontend IBA Test Data>
 source "$(dirname "$0")/lib/common.sh"
 
-REPORT_VERSION="${1:?Version von DIBA Report fehlt}"
-TESTDATA_VERSION="${2:?Version von DIBA Test Data fehlt}"
+REPORT_VERSION="${1:?Version von SF Frontend IBA fehlt}"
+TESTDATA_VERSION="${2:?Version von SF Frontend IBA Test Data fehlt}"
 cd "$REPO_ROOT"
 
 note "Lege eine Scratch Org an (ohne Namespace, damit das Paket mzw sich installieren laesst)"

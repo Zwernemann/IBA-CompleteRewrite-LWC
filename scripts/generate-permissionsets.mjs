@@ -16,13 +16,13 @@ const targetDir = join(root, "force-app/main/default/permissionsets");
 // Per permission set: object rights, and which fields of an object may be edited.
 // "all" means every field the platform lets a permission set grant.
 const SETS = {
-    DIBA_Report_Consultant: {
-        label: "DIBA Report Consultant",
+    SFIBA_Report_Consultant: {
+        label: "SF IBA Report Consultant",
         description:
-            "Consultants who open the DIBA Report Generator on an account: read the account data, enter their input, edit report texts and settings.",
+            "Consultants who open SF Frontend IBA on an account: read the account data, enter their input, edit report texts and settings.",
         objects: {
-            DIBA_Account__c: { read: true, edit: true },
-            DIBA_Row__c: {
+            SFIBA_Account__c: { read: true, edit: true },
+            SFIBA_Row__c: {
                 read: true,
                 edit: true,
                 editableFields: [
@@ -45,26 +45,26 @@ const SETS = {
                     "Consultant_Updated_At__c",
                 ],
             },
-            DIBA_Transmission__c: { read: true },
-            DIBA_Report_Value__c: { read: true, create: true, edit: true, delete: true, editableFields: "all" },
-            DIBA_Master_Edit__c: { read: true, create: true, edit: true, delete: true, editableFields: "all" },
-            DIBA_Interval_Value__c: { read: true, create: true, edit: true, delete: true, editableFields: "all" },
+            SFIBA_Transmission__c: { read: true },
+            SFIBA_Report_Value__c: { read: true, create: true, edit: true, delete: true, editableFields: "all" },
+            SFIBA_Master_Edit__c: { read: true, create: true, edit: true, delete: true, editableFields: "all" },
+            SFIBA_Interval_Value__c: { read: true, create: true, edit: true, delete: true, editableFields: "all" },
         },
-        customMetadataTypes: ["DIBA_Interval__mdt"],
-        classes: ["DibaAccountController", "DibaReportValuesController", "DibaIntervalController", "DibaAttachmentController"],
-        tabs: ["DIBA_Report"],
+        customMetadataTypes: ["SFIBA_Interval__mdt"],
+        classes: ["SfibaAccountController", "SfibaReportValuesController", "SfibaIntervalController", "SfibaAttachmentController"],
+        tabs: ["SFIBA_Report"],
     },
-    DIBA_Data_Sender: {
-        label: "DIBA Data Sender",
+    SFIBA_Data_Sender: {
+        label: "SF IBA Data Sender",
         description:
-            "The user under whom E+H's action delivers account data to mzw.DibaImport.",
+            "The user under whom E+H's action delivers account data to mzw.SfibaImport.",
         objects: {
-            DIBA_Account__c: { read: true, create: true, edit: true, editableFields: "all" },
-            DIBA_Row__c: { read: true, create: true, edit: true, editableFields: "all" },
-            DIBA_Transmission__c: { read: true, create: true, edit: true, editableFields: "all" },
+            SFIBA_Account__c: { read: true, create: true, edit: true, editableFields: "all" },
+            SFIBA_Row__c: { read: true, create: true, edit: true, editableFields: "all" },
+            SFIBA_Transmission__c: { read: true, create: true, edit: true, editableFields: "all" },
         },
         customMetadataTypes: [],
-        classes: ["DibaImport"],
+        classes: ["SfibaImport"],
         tabs: [],
     },
 };

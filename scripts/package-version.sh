@@ -2,13 +2,13 @@
 # Builds a new version of a package in the Dev Hub and prints its installation links.
 # The Apex tests run in the build; without 75 % coverage a version cannot be promoted.
 #
-#   scripts/package-version.sh "DIBA Report" [--promote]
+#   scripts/package-version.sh "SF Frontend IBA" [--promote]
 #
 # Needs a Dev Hub signed in as default (scripts/ci-login.sh devhub).
 # Writes the version id (04t...) to stdout's last line and to $VERSION_FILE if set.
 source "$(dirname "$0")/lib/common.sh"
 
-PACKAGE="${1:?Paketname fehlt, etwa \"DIBA Report\"}"
+PACKAGE="${1:?Paketname fehlt, etwa \"SF Frontend IBA\"}"
 PROMOTE="${2:-}"
 cd "$REPO_ROOT"
 

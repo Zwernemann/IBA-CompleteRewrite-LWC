@@ -22,14 +22,14 @@ function testAccountId() {
 
 /**
  * Signs in through the frontdoor address and opens the work surface of the test account,
- * as the button "DIBA Report" on the account does.
+ * as the button "SF IBA Report" on the account does.
  */
 async function openTestAccount(page) {
     if (!FRONTDOOR) throw new Error("E2E_FRONTDOOR is not set; run the tests with scripts/e2e.sh");
     await page.goto(FRONTDOOR);
     await page.waitForURL(/lightning/, { timeout: 120000 });
     const base = new URL(page.url()).origin;
-    await page.goto(`${base}/lightning/n/mzw__DIBA_Report?mzw__account=${testAccountId()}`);
+    await page.goto(`${base}/lightning/n/mzw__SFIBA_Report?mzw__account=${testAccountId()}`);
     await page.getByText(TEST_ACCOUNT_NAME).first().waitFor();
 }
 
