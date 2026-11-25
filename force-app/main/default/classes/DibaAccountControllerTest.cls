@@ -86,11 +86,15 @@ private class DibaAccountControllerTest {
 
     @IsTest
     static void pagesThroughRowsByKey() {
-        DibaAccountController.Page first = DibaAccountController.getRows(accountDataId(), null, 2);
+        DibaAccountController.RowPage first = DibaAccountController.getRows(
+            accountDataId(),
+            null,
+            2
+        );
         Assert.areEqual(2, first.rows.size());
         Assert.isNotNull(first.nextAfter);
 
-        DibaAccountController.Page second = DibaAccountController.getRows(
+        DibaAccountController.RowPage second = DibaAccountController.getRows(
             accountDataId(),
             first.nextAfter,
             2

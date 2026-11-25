@@ -8,7 +8,7 @@
     <enableReports>true</enableReports>
     <enableSearch>false</enableSearch>
     <enableSharing>true</enableSharing>
-    <enableStreamingApi>false</enableStreamingApi>
+    <enableStreamingApi>true</enableStreamingApi>
     <label>DIBA Account Data</label>
     <nameField>
         <label>Account name</label>

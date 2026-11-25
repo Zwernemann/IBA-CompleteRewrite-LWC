@@ -574,21 +574,21 @@ public with sharing class DibaImportPayload {
                 problem(at, 'must be an integer');
                 return null;
             }
-            Long number;
+            Long whole;
             if (value instanceof Integer) {
-                number = (Integer) value;
+                whole = (Integer) value;
             } else {
-                number = (Long) value;
+                whole = (Long) value;
             }
-            if (number < 1) {
+            if (whole < 1) {
                 problem(at, 'must have a minimum value of 1');
                 return null;
             }
-            if (number > 2147483647L) {
+            if (whole > 2147483647L) {
                 problem(at, 'is too large');
                 return null;
             }
-            return number.intValue();
+            return whole.intValue();
         }
 
         void required(String at, Map<String, Object> value, List<String> keys) {

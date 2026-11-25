@@ -25,7 +25,7 @@ public with sharing class DibaAccountController {
         public Datetime lastDelivery;
     }
 
-    public class Page {
+    public class RowPage {
         @AuraEnabled
         public List<Map<String, Object>> rows = new List<Map<String, Object>>();
         /** Row key of the last row, to ask for the next page; null after the last page. */
@@ -81,7 +81,7 @@ public with sharing class DibaAccountController {
 
     /** One page of rows of an account, in the order of their key. */
     @AuraEnabled(cacheable=false)
-    public static Page getRows(Id accountDataId, String afterKey, Integer pageSize) {
+    public static RowPage getRows(Id accountDataId, String afterKey, Integer pageSize) {
         Integer size = pageSize == null ||
             pageSize < 1 ||
             pageSize > MAX_PAGE
@@ -94,14 +94,14 @@ public with sharing class DibaAccountController {
                 ' FROM DIBA_Row__c WHERE DIBA_Account__c = :accountDataId AND Row_Key__c > :after' +
                 ' ORDER BY Row_Key__c LIMIT :size'
         );
-        Page page = new Page();
+        RowPage result = new RowPage();
         for (DIBA_Row__c record : records) {
-            page.rows.add(DibaRowFields.toMap(record));
+            result.rows.add(DibaRowFields.toMap(record));
         }
         if (records.size() == size) {
-            page.nextAfter = records[records.size() - 1].Row_Key__c;
+            result.nextAfter = records[records.size() - 1].Row_Key__c;
         }
-        return page;
+        return result;
     }
 
     /**

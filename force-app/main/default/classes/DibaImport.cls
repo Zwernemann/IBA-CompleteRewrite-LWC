@@ -91,7 +91,7 @@ global with sharing class DibaImport {
         result.tagsWithoutAsset = payload.tagsWithoutAsset;
         result.unknownValues = payload.unknownValues;
 
-        Savepoint savepoint = Database.setSavepoint();
+        Savepoint rollbackPoint = Database.setSavepoint();
         try {
             DIBA_Account__c accountData = payload.accountData();
             linkAccount(accountData, payload.accountId);
@@ -138,7 +138,7 @@ global with sharing class DibaImport {
                 DibaOrderCodeJob.startFor(accountData.Id);
             }
         } catch (Exception e) {
-            Database.rollback(savepoint);
+            Database.rollback(rollbackPoint);
             throw e;
         }
         return result;

@@ -176,17 +176,17 @@ public with sharing class DibaRowFields {
     /** Converts a value of the user interface for the field; throws on a bad value. */
     public static Object fromClient(Field field, Object value) {
         if (value == null || (value instanceof String && String.isBlank((String) value))) {
-            Schema.DisplayType type = field.token.getDescribe().getType();
-            return type == Schema.DisplayType.BOOLEAN ? (Object) false : null;
+            Schema.DisplayType kind = field.token.getDescribe().getType();
+            return kind == Schema.DisplayType.BOOLEAN ? (Object) false : null;
         }
-        Schema.DisplayType type = field.token.getDescribe().getType();
-        if (type == Schema.DisplayType.DATE) {
+        Schema.DisplayType kind = field.token.getDescribe().getType();
+        if (kind == Schema.DisplayType.DATE) {
             return Date.valueOf(String.valueOf(value));
         }
-        if (type == Schema.DisplayType.BOOLEAN) {
+        if (kind == Schema.DisplayType.BOOLEAN) {
             return value instanceof Boolean ? value : Boolean.valueOf(String.valueOf(value));
         }
-        if (type == Schema.DisplayType.DOUBLE || type == Schema.DisplayType.CURRENCY) {
+        if (kind == Schema.DisplayType.DOUBLE || kind == Schema.DisplayType.CURRENCY) {
             return Decimal.valueOf(String.valueOf(value));
         }
         String text = String.valueOf(value);

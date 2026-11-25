@@ -265,7 +265,7 @@ global with sharing class DibaLargeAccount implements Queueable {
 
     /** An id of 18 characters from a prefix and the row number. */
     private static String id(String prefix, Integer row) {
-        String number = String.valueOf(row);
-        return prefix + '0'.repeat(13 - number.length()) + number;
+        String digits = String.valueOf(row);
+        return prefix + '0'.repeat(13 - digits.length()) + digits;
     }
 }

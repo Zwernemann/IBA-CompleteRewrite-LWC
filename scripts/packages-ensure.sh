@@ -14,6 +14,7 @@ declare -A DESCRIPTIONS=(
     ["DIBA Test Data"]="Test data for test orgs. Never installed at E+H."
 )
 
+RUNNER_TEMP_DIR="$(mktemp -d)"
 EXISTING="$(sf package list --json)"
 for name in "DIBA Report" "DIBA Test Data"; do
     ID="$(node -e '
@@ -23,10 +24,13 @@ for name in "DIBA Report" "DIBA Test Data"; do
     ' "$name" <<< "$EXISTING")"
     if [ -z "$ID" ]; then
         note "Lege das Paket \"$name\" im Dev Hub an"
+        # sf package create rewrites sfdx-project.json (and resets versionNumber); keep ours.
+        cp sfdx-project.json "$RUNNER_TEMP_DIR/sfdx-project.json"
         ID="$(sf package create --name "$name" --package-type Unlocked --path "${DIRS[$name]}" \
             --description "${DESCRIPTIONS[$name]}" --json \
             | node -e 'const r = JSON.parse(require("fs").readFileSync(0, "utf8")); if (!r.result) { console.error(r.message); process.exit(1); } console.log(r.result.Id);')" \
             || fail "Paket \"$name\" nicht angelegt. Ist der Namespace mzw mit diesem Dev Hub verknuepft?"
+        cp "$RUNNER_TEMP_DIR/sfdx-project.json" sfdx-project.json
         summary "Paket \"$name\" im Dev Hub angelegt: \`$ID\`."
     fi
     node -e '
