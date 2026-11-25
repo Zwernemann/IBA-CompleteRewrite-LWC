@@ -32,9 +32,13 @@ Syntaxfehler; uebersetzt und getestet wird Apex erst beim Paketbau in der CI.
 
 | Ereignis | Pruefungen | Paketversionen | Org-Test |
 |---|---|---|---|
-| Push auf einen Branch | ja | Beta, Links in der Zusammenfassung | nein |
-| Push auf `main` | ja | freigegeben | Upgrade in der Test-Org, Testanlage liefern, 20 Zeilen pruefen, Ende-zu-Ende-Tests |
+| Push | ja | keine | nein |
+| Run workflow, "Installer bauen (Beta)" | ja | Beta, Links in der Zusammenfassung | auf `main`: Upgrade in der Test-Org |
+| Run workflow, "Installer bauen und freigeben" | ja | freigegeben | auf `main`: Upgrade in der Test-Org, Testanlage liefern, 20 Zeilen pruefen, Ende-zu-Ende-Tests |
 | Tag `v*` | ja | freigegeben | Erstinstallation in einer neuen Scratch Org mit denselben Tests |
+
+Paketversionen zaehlen gegen das Tageskontingent des Dev Hub und kosten Minuten in Actions.
+Deshalb baut ein Push keine; ein neuer Push bricht die Pruefungen eines aelteren ab.
 
 Beim Bau einer Paketversion laufen alle Apex-Tests des Pakets. Ohne 75 % Abdeckung laesst
 sich die Version nicht freigeben.

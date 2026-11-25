@@ -9,7 +9,7 @@ Beteiligt sind:
 |---|---|
 | **Dev Hub** | die Org, mit der der Namespace `mzw` verknuepft ist (dieselbe wie fuer den CRGenerator); baut die Paketversionen |
 | **Ziel-Org** | wo installiert wird: eine Sandbox, eine Developer Edition oder spaeter E+H |
-| **GitHub** | haelt den Schluessel als Secret und baut bei jedem Push oder auf Knopfdruck |
+| **GitHub** | haelt den Schluessel als Secret, prueft jeden Push und baut Installer auf Knopfdruck |
 
 ## 1. Schluessel erzeugen (einmalig)
 
@@ -67,7 +67,8 @@ Der Lauf dauert einige Minuten. Beim ersten Mal legt er die beiden Pakete im Dev
 Danach stehen in der Zusammenfassung des Laufs (Lauf oeffnen, ganz oben "Summary") je Paket
 zwei Links: einer fuer Produktion und Developer Edition, einer fuer Sandboxes.
 
-Ab dann baut auch jeder Push einen Beta-Installer; ein Push auf `main` gibt frei.
+Ein Push baut keinen Installer, nur der Knopf (oder ein Tag `v*`). So bleibt das
+Kontingent des Dev Hub geschont.
 
 ## 5. In die Ziel-Org installieren
 
@@ -96,7 +97,7 @@ Schaltflaeche **DIBA Report** druecken.
 
 ## Spaeter: feste Test-Org fuer die CI
 
-Fuer Upgrade- und Ende-zu-Ende-Tests bei jedem Push auf `main` dieselben Schritte 1 bis 3
+Fuer Upgrade- und Ende-zu-Ende-Tests bei jedem Bau auf `main` dieselben Schritte 1 bis 3
 mit dem Workflow **Schluessel erzeugen** fuer **testorg** in der Test-Org und den Secrets `SF_TESTORG_USERNAME`,
 `SF_TESTORG_CLIENT_ID`, `SF_TESTORG_JWT_KEY` (bei einer Sandbox zusaetzlich
 `SF_TESTORG_LOGIN_URL` = `https://test.salesforce.com`). Ohne diese Secrets entfallen die

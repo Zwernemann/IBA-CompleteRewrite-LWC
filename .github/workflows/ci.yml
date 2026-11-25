@@ -13,7 +13,9 @@ on:
 
 concurrency:
   group: ci-${{ github.ref }}
-  cancel-in-progress: false
+  # A newer push makes the checks of an older one pointless; a package build is never
+  # cut off, it may already have used a version from the daily quota of the Dev Hub.
+  cancel-in-progress: ${{ github.event_name == 'push' && github.ref_type != 'tag' }}
 
 env:
   SF_CLI_VERSION: "2.159.5"
@@ -48,9 +50,12 @@ jobs:
         if: github.event_name == 'push'
         run: scripts/check-version.sh "${{ github.event.before }}"
 
+  # Package versions count against the daily quota of the Dev Hub and take minutes; they
+  # are built only on request (Run workflow) or for a tag, never for a plain push.
   package:
     name: Paket bauen
     needs: checks
+    if: github.event_name == 'workflow_dispatch' || github.ref_type == 'tag'
     runs-on: ubuntu-latest
     env:
       SF_DEVHUB_USERNAME: ${{ secrets.SF_DEVHUB_USERNAME }}
@@ -81,8 +86,7 @@ jobs:
         if: steps.devhub.outputs.ready == 'true'
         run: |
           promote=""
-          if [ "${GITHUB_REF}" = "refs/heads/main" ] || [ "${GITHUB_REF_TYPE}" = "tag" ] \
-            || [ "${{ inputs.task }}" = "Installer bauen und freigeben" ]; then promote="--promote"; fi
+          if [ "${GITHUB_REF_TYPE}" = "tag" ] || [ "${{ inputs.task }}" = "Installer bauen und freigeben" ]; then promote="--promote"; fi
           VERSION_FILE=report.id scripts/package-version.sh "DIBA Report" $promote
           VERSION_FILE=testdata.id scripts/package-version.sh "DIBA Test Data" $promote
           echo "report=$(cat report.id)" >> "$GITHUB_OUTPUT"
