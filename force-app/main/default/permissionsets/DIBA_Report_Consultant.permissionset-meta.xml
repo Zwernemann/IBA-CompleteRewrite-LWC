@@ -4,6 +4,14 @@
         <apexClass>DibaPlantController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
+    <classAccesses>
+        <apexClass>DibaReportValuesController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>DibaIntervalController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
     <customMetadataTypeAccesses>
         <enabled>true</enabled>
         <name>DIBA_Interval__mdt</name>

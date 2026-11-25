@@ -2,6 +2,7 @@ import { createElement } from "lwc";
 import DibaMaintenance from "c/dibaMaintenance";
 import getRows from "@salesforce/apex/DibaPlantController.getRows";
 import saveRows from "@salesforce/apex/DibaPlantController.saveRows";
+import { forgetRows } from "c/dibaRowStore";
 
 jest.mock("@salesforce/apex/DibaPlantController.getRows", () => ({ default: jest.fn() }), { virtual: true });
 jest.mock("@salesforce/apex/DibaPlantController.saveRows", () => ({ default: jest.fn() }), { virtual: true });
@@ -33,6 +34,7 @@ describe("c-diba-maintenance", () => {
         jest.useFakeTimers();
         getRows.mockReset();
         saveRows.mockReset();
+        forgetRows("a01000000000001AAA");
     });
 
     afterEach(() => {

@@ -1,6 +1,6 @@
 import { LightningElement, api } from "lwc";
-import getRows from "@salesforce/apex/DibaPlantController.getRows";
 import saveRows from "@salesforce/apex/DibaPlantController.saveRows";
+import { loadRows } from "c/dibaRowStore";
 import {
     CONSULTANT_FIELDS,
     MASTER_FIELDS,
@@ -11,7 +11,6 @@ import {
     refreshCalculated
 } from "c/dibaRowLogic";
 
-const PAGE_SIZE = 2000;
 const SAVE_DELAY = 800;
 const SAVE_BATCH = 500;
 
@@ -131,20 +130,11 @@ export default class DibaMaintenance extends LightningElement {
 
     async load() {
         this.loading = true;
-        const rows = [];
-        let after = null;
         try {
-            do {
-                // Sequential on purpose: each page starts after the last key of the one before.
-                // eslint-disable-next-line no-await-in-loop
-                const page = await getRows({ plantId: this.plantId, afterKey: after, pageSize: PAGE_SIZE });
-                for (const raw of page.rows) {
-                    rows.push(this.prepare({ ...raw }));
-                }
-                this.loaded = rows.length;
-                after = page.nextAfter;
-            } while (after);
-            this.rows = rows;
+            const rows = await loadRows(this.plantId, (count) => {
+                this.loaded = count;
+            });
+            this.rows = rows.slice();
             this.byId = new Map(rows.map((row) => [row.id, row]));
             this.shown = rows.length;
         } catch (e) {
@@ -276,10 +266,13 @@ export default class DibaMaintenance extends LightningElement {
             }
         }
         for (const current of result.conflicts || []) {
-            const row = this.prepare({ ...current });
+            // The shared row object takes the stored state, so the plant view sees it too.
+            const row = this.byId.get(current.id);
+            if (!row) continue;
+            for (const key of Object.keys(row)) delete row[key];
+            Object.assign(row, this.prepare({ ...current }));
             this.pending.delete(row.id);
-            this.byId.set(row.id, row);
-            this.rows = this.rows.map((r) => (r.id === row.id ? row : r));
+            this.rows = [...this.rows];
             this.addMessage(
                 `${row.device_tag || row.device_oid}: changed by someone else in the meantime. ` +
                     "Their version is shown; your change was not saved."

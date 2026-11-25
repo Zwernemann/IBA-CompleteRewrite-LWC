@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StaticResource xmlns="http://soap.sforce.com/2006/04/metadata">
+    <cacheControl>Public</cacheControl>
+    <contentType>application/json</contentType>
+    <description>Texts of the E+H translation library (CR_ApplicationResources) per language, exported by tools/translations.</description>
+</StaticResource>

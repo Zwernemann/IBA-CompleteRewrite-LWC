@@ -1,0 +1,40 @@
+<template>
+    <div class="diba-rich" style={frameStyle}>
+        <div class="slds-grid slds-grid_vertical-align-center diba-rich-toolbar">
+            <div class="slds-button-group" role="group">
+                <button class="slds-button slds-button_icon slds-button_icon-border-filled" data-command="bold" title="Bold" onmousedown={handleFormat}>
+                    <lightning-icon icon-name="utility:bold" size="xx-small" alternative-text="Bold"></lightning-icon>
+                </button>
+                <button class="slds-button slds-button_icon slds-button_icon-border-filled" data-command="italic" title="Italic" onmousedown={handleFormat}>
+                    <lightning-icon icon-name="utility:italic" size="xx-small" alternative-text="Italic"></lightning-icon>
+                </button>
+                <button class="slds-button slds-button_icon slds-button_icon-border-filled" data-command="underline" title="Underline" onmousedown={handleFormat}>
+                    <lightning-icon icon-name="utility:underline" size="xx-small" alternative-text="Underline"></lightning-icon>
+                </button>
+            </div>
+            <div class="slds-col_bump-left slds-grid slds-grid_vertical-align-center">
+                <template lwc:if={showPagebreak}>
+                    <label class="slds-checkbox_standalone slds-m-right_small">
+                        <input type="checkbox" checked={pagebreak} onchange={handlePagebreak} data-id="pagebreak" />
+                        <span class="slds-p-left_xx-small">{pagebreakLabel}</span>
+                    </label>
+                </template>
+                <lightning-button-icon icon-name="utility:undo" alternative-text={resetLabel} title={resetLabel} onclick={handleReset} data-id="reset"></lightning-button-icon>
+            </div>
+        </div>
+        <div
+            class="diba-rich-editor slds-rich-text-area__content slds-text-longform"
+            style={editorStyle}
+            contenteditable="true"
+            role="textbox"
+            aria-multiline="true"
+            aria-label={label}
+            lwc:dom="manual"
+            oninput={handleInput}
+            onblur={handleBlur}
+        ></div>
+        <template lwc:if={tooLong}>
+            <p class="slds-text-color_error slds-p-top_xx-small">{tooLongMessage}</p>
+        </template>
+    </div>
+</template>

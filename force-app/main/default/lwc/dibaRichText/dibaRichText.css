@@ -1,0 +1,17 @@
+.diba-rich {
+    border: 1px solid var(--slds-g-color-border-base-1, #c9c9c9);
+    border-radius: 0.25rem;
+    margin-bottom: 1rem;
+}
+
+.diba-rich-toolbar {
+    padding: 0.25rem;
+    border-bottom: 1px solid var(--slds-g-color-border-base-2, #e5e5e5);
+    background: var(--slds-g-color-neutral-base-95, #f3f3f3);
+}
+
+.diba-rich-editor {
+    padding: 0.5rem;
+    overflow: auto;
+    background: var(--slds-g-color-neutral-base-100, #fff);
+}

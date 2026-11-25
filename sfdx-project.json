@@ -4,9 +4,9 @@
       "path": "force-app",
       "default": true,
       "package": "DIBA Report",
-      "versionName": "Anlagentabelle",
-      "versionNumber": "0.2.1.NEXT",
-      "versionDescription": "DIBA Report Generator in Salesforce: data intake, tab DIBA Report with the asset table of a plant."
+      "versionName": "Reporttexte",
+      "versionNumber": "0.3.0.NEXT",
+      "versionDescription": "DIBA Report Generator in Salesforce: data intake, asset table, report texts, sliders and settings, report XML."
     },
     {
       "path": "eh-emulation",

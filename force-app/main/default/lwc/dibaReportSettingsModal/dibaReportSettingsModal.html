@@ -1,0 +1,16 @@
+<template>
+    <lightning-modal-header label={text.heading}></lightning-modal-header>
+    <lightning-modal-body>
+        <lightning-input label={text.userName} value={values.userName} data-field="userName" onchange={handleChange}></lightning-input>
+        <lightning-textarea label={text.contact} value={values.contactDetails} data-field="contactDetails" onchange={handleChange}></lightning-textarea>
+        <lightning-combobox label={text.type} value={values.finalVersion} options={typeOptions} data-field="finalVersion" onchange={handleChange}></lightning-combobox>
+        <lightning-combobox label={text.language} value={values.reportLanguage} options={languageOptions} data-field="reportLanguage" onchange={handleChange}></lightning-combobox>
+        <lightning-textarea label={text.spks} value={spks} onchange={handleSpks} data-field="maintenance_spks"></lightning-textarea>
+        <lightning-input type="checkbox" label={text.hidePrice} checked={values.hideBudgetPrice} data-field="hideBudgetPrice" onchange={handleChange}></lightning-input>
+        <lightning-button class="slds-m-top_medium" label={text.resetAll} variant="destructive-text" onclick={handleResetAll} data-id="reset-all"></lightning-button>
+    </lightning-modal-body>
+    <lightning-modal-footer>
+        <lightning-button label={text.cancel} onclick={handleCancel} class="slds-m-right_x-small"></lightning-button>
+        <lightning-button variant="brand" label={text.save} onclick={handleSave} data-id="save"></lightning-button>
+    </lightning-modal-footer>
+</template>

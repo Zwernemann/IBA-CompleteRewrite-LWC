@@ -11,23 +11,132 @@
             <span class="slds-text-heading_medium">{title}</span>
             <span class="slds-text-color_weak slds-p-left_small">{rowCount}</span>
         </div>
+        <div slot="actions">
+            <template lwc:if={ready}>
+                <span class="slds-text-color_weak slds-m-right_small">{saveState}</span>
+                <lightning-button label={labels.settings} icon-name="utility:settings" onclick={handleOpenSettings} data-id="settings" class="slds-m-right_x-small"></lightning-button>
+                <lightning-button label={labels.xml} icon-name="utility:download" onclick={handleDownloadXml} data-id="xml"></lightning-button>
+            </template>
+        </div>
         <div class="slds-p-horizontal_medium">
-            <lightning-tabset>
-                <template for:each={tabs} for:item="tab">
-                    <lightning-tab key={tab.value} label={tab.label} value={tab.value}></lightning-tab>
+            <template lwc:if={loading}>
+                <div class="slds-is-relative slds-p-around_large">
+                    <lightning-spinner alternative-text="Loading" size="small"></lightning-spinner>
+                    <p class="slds-text-align_center slds-p-top_xx-large">{progress}</p>
+                </div>
+            </template>
+            <template lwc:elseif={error}>
+                <div class="slds-notify slds-notify_alert slds-alert_error" role="alert">{error}</div>
+            </template>
+            <template lwc:else>
+                <template lwc:if={hasMessages}>
+                    <div class="slds-notify slds-notify_alert slds-alert_warning slds-m-bottom_small" role="alert">
+                        <ul class="slds-text-align_left">
+                            <template for:each={messages} for:item="message">
+                                <li key={message.id}>{message.text}</li>
+                            </template>
+                        </ul>
+                        <lightning-button-icon icon-name="utility:close" variant="bare-inverse" alternative-text="Close" class="slds-m-left_small" onclick={handleDismiss}></lightning-button-icon>
+                    </div>
                 </template>
-            </lightning-tabset>
-            <lightning-button
-                variant="brand"
-                label="Edit assets"
-                data-id="open-assets"
-                icon-name="utility:table"
-                class="slds-m-vertical_small"
-                onclick={handleOpenAssets}
-            ></lightning-button>
-            <p class="slds-text-color_weak slds-m-bottom_medium">
-                The contents of the tabs follow with the report texts.
-            </p>
+                <lightning-tabset>
+                    <lightning-tab label={labels.indicators} value="indicators">
+                        <lightning-button
+                            variant="brand"
+                            label={labels.editAssets}
+                            icon-name="utility:table"
+                            class="slds-m-bottom_medium"
+                            data-id="open-assets"
+                            onclick={handleOpenAssets}
+                        ></lightning-button>
+                        <div class="diba-sliders">
+                            <template for:each={sliders} for:item="slider">
+                                <div key={slider.name} class="slds-grid slds-grid_vertical-align-center slds-m-bottom_small">
+                                    <div class="slds-col slds-size_1-of-3">{slider.label}</div>
+                                    <div class="slds-col slds-size_1-of-3">
+                                        <lightning-slider
+                                            value={slider.value}
+                                            min="0"
+                                            max="100"
+                                            disabled={slider.disabled}
+                                            data-name={slider.name}
+                                            variant="label-hidden"
+                                            label={slider.label}
+                                            onchange={handleSlider}
+                                        ></lightning-slider>
+                                    </div>
+                                    <div class="slds-col slds-p-left_small">
+                                        {slider.value} %
+                                        <template lwc:if={slider.hint}>
+                                            <span class="slds-text-color_weak slds-p-left_x-small">{slider.hint}</span>
+                                        </template>
+                                    </div>
+                                </div>
+                            </template>
+                        </div>
+                    </lightning-tab>
+                    <lightning-tab label={labels.overview} value="overview">
+                        <template for:each={overviewTexts} for:item="text">
+                            <div key={text.name}>
+                                <h3 class="slds-text-heading_small slds-m-bottom_x-small">{text.label}</h3>
+                                <c-diba-rich-text name={text.name} label={text.label} value={text.value} pagebreak={text.pagebreak} show-pagebreak reset-label={text.resetLabel} pagebreak-label={text.pagebreakLabel} too-long-message={text.tooLongMessage} onchange={handleTextChange} onreset={handleTextReset} onpagebreak={handlePagebreak}></c-diba-rich-text>
+                            </div>
+                        </template>
+                    </lightning-tab>
+                    <lightning-tab label={labels.standardisation} value="standardisation">
+                        <template for:each={standardisationTexts} for:item="text">
+                            <div key={text.name}>
+                                <h3 class="slds-text-heading_small slds-m-bottom_x-small">{text.label}</h3>
+                                <c-diba-rich-text name={text.name} label={text.label} value={text.value} pagebreak={text.pagebreak} show-pagebreak reset-label={text.resetLabel} pagebreak-label={text.pagebreakLabel} too-long-message={text.tooLongMessage} onchange={handleTextChange} onreset={handleTextReset} onpagebreak={handlePagebreak}></c-diba-rich-text>
+                            </div>
+                        </template>
+                    </lightning-tab>
+                    <lightning-tab label={labels.breakdown} value="breakdown">
+                        <template for:each={criticalityTexts} for:item="text">
+                            <lightning-textarea key={text.name} label={text.label} value={text.value} max-length="50" data-name={text.name} onchange={handlePlainText} class="slds-m-bottom_small"></lightning-textarea>
+                        </template>
+                        <template for:each={breakdownTexts} for:item="text">
+                            <div key={text.name}>
+                                <h3 class="slds-text-heading_small slds-m-bottom_x-small">{text.label}</h3>
+                                <c-diba-rich-text name={text.name} label={text.label} value={text.value} pagebreak={text.pagebreak} show-pagebreak reset-label={text.resetLabel} pagebreak-label={text.pagebreakLabel} too-long-message={text.tooLongMessage} onchange={handleTextChange} onreset={handleTextReset} onpagebreak={handlePagebreak}></c-diba-rich-text>
+                            </div>
+                        </template>
+                    </lightning-tab>
+                    <lightning-tab label={labels.migration} value="migration">
+                        <template for:each={migrationTexts} for:item="text">
+                            <div key={text.name}>
+                                <h3 class="slds-text-heading_small slds-m-bottom_x-small">{text.label}</h3>
+                                <c-diba-rich-text name={text.name} label={text.label} value={text.value} pagebreak={text.pagebreak} show-pagebreak reset-label={text.resetLabel} pagebreak-label={text.pagebreakLabel} too-long-message={text.tooLongMessage} onchange={handleTextChange} onreset={handleTextReset} onpagebreak={handlePagebreak}></c-diba-rich-text>
+                            </div>
+                        </template>
+                    </lightning-tab>
+                    <lightning-tab label={labels.preventative} value="preventative">
+                        <template for:each={preventativeTexts} for:item="text">
+                            <div key={text.name}>
+                                <h3 class="slds-text-heading_small slds-m-bottom_x-small">{text.label}</h3>
+                                <c-diba-rich-text name={text.name} label={text.label} value={text.value} pagebreak={text.pagebreak} show-pagebreak reset-label={text.resetLabel} pagebreak-label={text.pagebreakLabel} too-long-message={text.tooLongMessage} onchange={handleTextChange} onreset={handleTextReset} onpagebreak={handlePagebreak}></c-diba-rich-text>
+                            </div>
+                        </template>
+                    </lightning-tab>
+                    <lightning-tab label={labels.implementation} value="implementation">
+                        <h3 class="slds-text-heading_small slds-m-bottom_x-small">{labels.timeline}</h3>
+                        <div class="slds-grid slds-gutters_x-small slds-m-bottom_small">
+                            <template for:each={heads} for:item="head">
+                                <div key={head.name} class="slds-col">
+                                    <lightning-input variant="label-hidden" label={head.name} value={head.value} data-name={head.name} onchange={handlePlainText}></lightning-input>
+                                </div>
+                            </template>
+                        </div>
+                        <c-diba-rich-text name={timelineText.name} label={timelineText.label} value={timelineText.value} height="400" max-width="900px" reset-label={timelineText.resetLabel} too-long-message={timelineText.tooLongMessage} onchange={handleTextChange} onreset={handleTextReset}></c-diba-rich-text>
+                        <template for:each={implementationTexts} for:item="text">
+                            <div key={text.name}>
+                                <h3 class="slds-text-heading_small slds-m-bottom_x-small">{text.label}</h3>
+                                <c-diba-rich-text name={text.name} label={text.label} value={text.value} pagebreak={text.pagebreak} show-pagebreak reset-label={text.resetLabel} pagebreak-label={text.pagebreakLabel} too-long-message={text.tooLongMessage} onchange={handleTextChange} onreset={handleTextReset} onpagebreak={handlePagebreak}></c-diba-rich-text>
+                            </div>
+                        </template>
+                    </lightning-tab>
+                </lightning-tabset>
+            </template>
         </div>
     </lightning-card>
 </template>

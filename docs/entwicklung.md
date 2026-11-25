@@ -56,7 +56,11 @@ Eine Nummer `major.minor.patch` laesst sich nur einmal freigeben.
 | Komponente | Aufgabe |
 |---|---|
 | `dibaReport` | der Tab: Liste der Anlagen, `?c__account=` oeffnet eine direkt |
-| `dibaPlant` | eine Anlage mit den sieben Reitern der bisherigen Arbeitsseite |
+| `dibaPlant` | eine Anlage mit den sieben Reitern: Schieberegler, Reporttexte je Kapitel, Reporteinstellungen, Download des Report-XML; speichert waehrend der Arbeit |
+| `dibaRichText` | Editor eines Reporttexts; laesst das HTML der Vorlagen unveraendert, Fett, Kursiv, Unterstrichen wie bisher |
+| `dibaReportSettingsModal` | die Reporteinstellungen |
+| `dibaReportState` | Vorlagen je Reportsprache, Sprachwechsel, Speichern je Feld mit Version, wie `ReportTemplates`, `ReportState` und `ReportValuesSession` |
+| `dibaRowStore`, `dibaTexts` | Zeilen einer Anlage und Uebersetzungen, je Seite einmal geladen und geteilt |
 | `dibaMaintenanceModal` | die Anlagentabelle als Dialog ueber den ganzen Bildschirm |
 | `dibaMaintenance` | laedt die Zeilen seitenweise (2.000 je Aufruf), prueft und speichert Aenderungen (500 Zeilen je Aufruf) |
 | `dibaGrid` | die Tabelle: zeichnet nur die sichtbaren Zeilen, Filter und Sortierung je Spalte, Bearbeiten per Klick |
@@ -78,6 +82,20 @@ wie Jsoup, die Ausgabe wie JAXB, danach die Anpassungen des `FineTuneWriter`. Di
 vergleichen gegen Referenzen, die der Java-Code geschrieben hat, darunter die Pfizer-Anlage
 mit 2.358 Zeilen; siehe `test/reportxml/README.md`. 50.000 Zeilen brauchen in Node rund
 3 s und ergeben gut 100 MB XML.
+
+## Uebersetzungen
+
+Oberflaeche und Vorlagen nehmen ihre Texte aus der Uebersetzungsbibliothek von E+H
+(`trans-library`, Buendel `CR_ApplicationResources`), exportiert als Static Resource
+`dibaTranslations`. Die Oberflaeche spricht die Sprache des Salesforce-Benutzers, wo die
+Bibliothek sie hat, sonst Englisch; Vorlagen und Report die Reportsprache. Neu exportieren:
+
+```bash
+scripts/export-translations.sh ../IBA-Salesforce
+```
+
+Erwartet: "Geschrieben", danach `npm test` gruen; die Tests vergleichen jede Vorlage in jeder
+Sprache mit `ReportTemplates`.
 
 ## Lasttest
 

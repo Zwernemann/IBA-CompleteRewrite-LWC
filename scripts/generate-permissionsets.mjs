@@ -51,7 +51,7 @@ const SETS = {
             DIBA_Interval_Value__c: { read: true, create: true, edit: true, delete: true, editableFields: "all" },
         },
         customMetadataTypes: ["DIBA_Interval__mdt"],
-        classes: ["DibaPlantController"],
+        classes: ["DibaPlantController", "DibaReportValuesController", "DibaIntervalController"],
         tabs: ["DIBA_Report"],
     },
     DIBA_Data_Sender: {
