@@ -97,9 +97,17 @@ jobs:
           [ $code -eq 0 ] || exit $code
           set -e
           scripts/org-install-test.sh testorg "${{ steps.build.outputs.report }}" "${{ steps.build.outputs.testdata }}"
+          scripts/e2e.sh testorg
       - name: Erstinstallation in einer Scratch Org
         if: steps.build.outcome == 'success' && github.ref_type == 'tag'
         run: scripts/scratch-test.sh "${{ steps.build.outputs.report }}" "${{ steps.build.outputs.testdata }}"
+      - name: Bericht der Ende-zu-Ende-Tests
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: e2e-report
+          path: target/e2e
+          if-no-files-found: ignore
 
   create-packages:
     name: Pakete anlegen

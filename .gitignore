@@ -7,3 +7,5 @@ node_modules/
 config/*.key
 config/*.env
 !config/*.env.example
+target/
+e2e/node_modules/

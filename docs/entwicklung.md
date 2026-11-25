@@ -33,11 +33,20 @@ Syntaxfehler; uebersetzt und getestet wird Apex erst beim Paketbau in der CI.
 | Ereignis | Pruefungen | Paketversionen | Org-Test |
 |---|---|---|---|
 | Push auf einen Branch | ja | Beta, Links in der Zusammenfassung | nein |
-| Push auf `main` | ja | freigegeben | Upgrade in der Test-Org, Testanlage liefern, 20 Zeilen pruefen |
-| Tag `v*` | ja | freigegeben | Erstinstallation in einer neuen Scratch Org |
+| Push auf `main` | ja | freigegeben | Upgrade in der Test-Org, Testanlage liefern, 20 Zeilen pruefen, Ende-zu-Ende-Tests |
+| Tag `v*` | ja | freigegeben | Erstinstallation in einer neuen Scratch Org mit denselben Tests |
 
 Beim Bau einer Paketversion laufen alle Apex-Tests des Pakets. Ohne 75 % Abdeckung laesst
 sich die Version nicht freigeben.
+
+## Ende-zu-Ende-Tests
+
+`e2e/` mit Playwright: meldet sich ueber die Frontdoor-Adresse der Org an, oeffnet den Tab
+mit der Testanlage, prueft Reiter und Tabelle, aendert eine Bemerkung und einen Reporttext
+und prueft per Abfrage, dass beides gespeichert ist, und laedt das Report-XML. Die CI ruft
+`scripts/e2e.sh` nach der Installation auf; bei einem Fehler liegt der Bericht als Artefakt
+`e2e-report` am Lauf. Bis die Test-Org eingerichtet ist, sind diese Tests noch nie gegen eine
+echte Org gelaufen; die Selektoren koennen beim ersten Lauf Nacharbeit brauchen.
 
 ## Versionen
 

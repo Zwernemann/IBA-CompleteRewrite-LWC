@@ -1,0 +1,11 @@
+{
+  "name": "diba-salesforce-e2e",
+  "private": true,
+  "description": "End to end tests of the DIBA Report package in a Salesforce org",
+  "scripts": {
+    "test": "playwright test --trace off"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.65.0"
+  }
+}
