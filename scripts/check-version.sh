@@ -14,8 +14,10 @@ if [ -z "$BASE" ] || [ "$BASE" = "0000000000000000000000000000000000000000" ] \
     exit 0
 fi
 
-version_at() { # <commit> <package>
-    git show "$1:sfdx-project.json" 2> /dev/null | node -e '
+version_at() { # <commit> <package>; empty where the commit has no sfdx-project.json
+    local project
+    project="$(git show "$1:sfdx-project.json" 2> /dev/null)" || return 0
+    printf '%s' "$project" | node -e '
         const p = JSON.parse(require("fs").readFileSync(0, "utf8"));
         const d = p.packageDirectories.find((x) => x.package === process.argv[1]);
         console.log(d ? d.versionNumber.split(".").slice(0, 3).join(".") : "");
