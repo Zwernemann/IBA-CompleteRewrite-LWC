@@ -9,7 +9,7 @@ on:
       task:
         description: "Aufgabe"
         type: choice
-        options: ["Pakete anlegen"]
+        options: ["Installer bauen (Beta)", "Installer bauen und freigeben"]
 
 concurrency:
   group: ci-${{ github.ref }}
@@ -22,7 +22,6 @@ env:
 jobs:
   checks:
     name: Pruefungen
-    if: github.event_name == 'push'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -46,12 +45,12 @@ jobs:
       - name: Permission Sets aktuell
         run: node scripts/generate-permissionsets.mjs --check
       - name: Version erhoeht
+        if: github.event_name == 'push'
         run: scripts/check-version.sh "${{ github.event.before }}"
 
   package:
     name: Paket bauen
     needs: checks
-    if: github.event_name == 'push'
     runs-on: ubuntu-latest
     env:
       SF_DEVHUB_USERNAME: ${{ secrets.SF_DEVHUB_USERNAME }}
@@ -82,7 +81,8 @@ jobs:
         if: steps.devhub.outputs.ready == 'true'
         run: |
           promote=""
-          if [ "${GITHUB_REF}" = "refs/heads/main" ] || [ "${GITHUB_REF_TYPE}" = "tag" ]; then promote="--promote"; fi
+          if [ "${GITHUB_REF}" = "refs/heads/main" ] || [ "${GITHUB_REF_TYPE}" = "tag" ] \
+            || [ "${{ inputs.task }}" = "Installer bauen und freigeben" ]; then promote="--promote"; fi
           VERSION_FILE=report.id scripts/package-version.sh "DIBA Report" $promote
           VERSION_FILE=testdata.id scripts/package-version.sh "DIBA Test Data" $promote
           echo "report=$(cat report.id)" >> "$GITHUB_OUTPUT"
@@ -108,20 +108,3 @@ jobs:
           name: e2e-report
           path: target/e2e
           if-no-files-found: ignore
-
-  create-packages:
-    name: Pakete anlegen
-    if: github.event_name == 'workflow_dispatch' && inputs.task == 'Pakete anlegen'
-    runs-on: ubuntu-latest
-    env:
-      SF_DEVHUB_USERNAME: ${{ secrets.SF_DEVHUB_USERNAME }}
-      SF_DEVHUB_CLIENT_ID: ${{ secrets.SF_DEVHUB_CLIENT_ID }}
-      SF_DEVHUB_JWT_KEY: ${{ secrets.SF_DEVHUB_JWT_KEY }}
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-      - run: npm install --global "@salesforce/cli@${SF_CLI_VERSION}"
-      - run: scripts/ci-login.sh devhub
-      - run: scripts/packages-create.sh

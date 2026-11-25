@@ -12,7 +12,8 @@ PACKAGE="${1:?Paketname fehlt, etwa \"DIBA Report\"}"
 PROMOTE="${2:-}"
 cd "$REPO_ROOT"
 
-package_known "$PACKAGE" || fail "Das Paket \"$PACKAGE\" ist noch nicht angelegt. Einmal den Workflow \"Pakete anlegen\" laufen lassen und die Ids nach sfdx-project.json uebernehmen (docs/einrichtung.md)."
+package_known "$PACKAGE" || "$REPO_ROOT/scripts/packages-ensure.sh" > /dev/null \
+    || fail "Pakete im Dev Hub nicht gefunden und nicht angelegt."
 
 note "Baue eine neue Version von \"$PACKAGE\" ($(package_version "$PACKAGE")), das dauert einige Minuten"
 RESULT="$(sf package version create --package "$PACKAGE" --installation-key-bypass \

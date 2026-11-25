@@ -1,90 +1,114 @@
-# Einrichtung der CI
+# Einrichtung und erste Installation
 
-Einmalig. Danach baut jeder Push die Pakete, ohne dass jemand `sf` aufruft.
+Alles geht im Browser. Einmalig wird ein Schluessel erzeugt (in einem GitHub Codespace),
+danach baut GitHub die Installer selbst.
 
-Beteiligt sind zwei Orgs:
+Beteiligt sind:
 
-| Org | Wozu | Art |
-|---|---|---|
-| **Dev Hub** | baut die Paketversionen, legt Scratch Orgs an | die Org, mit der der Namespace `mzw` verknuepft ist (dieselbe wie fuer den CRGenerator) |
-| **Test-Org** | jede freigegebene Version wird dort als Upgrade installiert und mit der Testanlage geprueft | eine Developer Edition; eine Sandbox ginge auch |
-
-Die CI meldet sich an beiden ueber den JWT-Bearer-Flow an: ein Schluessel, dessen
-Zertifikat in einer External Client App der Org liegt.
-
-## 1. Schluessel erzeugen
-
-```bash
-scripts/jwt-setup.sh devhub
-```
-
-```bash
-scripts/jwt-setup.sh testorg
-```
-
-Erwartet: je eine `.key`- und `.crt`-Datei unter `config/`, nicht im Repository.
-
-## 2. External Client App in jeder der beiden Orgs
-
-Einmal in der Oberflaeche der Org (Setup, External Client App Manager, New):
-
-- Name: `DIBA CI`, Kontakt-E-Mail beliebig.
-- OAuth aktivieren, Callback-URL `http://localhost:1717/OauthRedirect`.
-- Scopes: "Manage user data via APIs (api)", "Perform requests at any time
-  (refresh_token, offline_access)", "Manage user data via Web browsers (web)".
-- "Enable JWT Bearer Flow" an, das Zertifikat aus Schritt 1 hochladen
-  (`config/devhub.crt` bzw. `config/testorg.crt`).
-- Policies: "Admin approved users are pre-authorized", dann unter "Select Profiles" das
-  Profil des CI-Benutzers (System Administrator) eintragen.
-- Den Consumer Key notieren.
-
-## 3. Secrets in GitHub
-
-Repository, Settings, Secrets and variables, Actions, New repository secret:
-
-| Secret | Wert |
+| Was | Wozu |
 |---|---|
-| `SF_DEVHUB_USERNAME` | Benutzername im Dev Hub |
-| `SF_DEVHUB_CLIENT_ID` | Consumer Key der App im Dev Hub |
-| `SF_DEVHUB_JWT_KEY` | Inhalt von `config/devhub.key` |
-| `SF_TESTORG_USERNAME` | Benutzername in der Test-Org |
-| `SF_TESTORG_CLIENT_ID` | Consumer Key der App in der Test-Org |
-| `SF_TESTORG_JWT_KEY` | Inhalt von `config/testorg.key` |
-| `SF_TESTORG_LOGIN_URL` | nur bei einer Sandbox: `https://test.salesforce.com` |
+| **Dev Hub** | die Org, mit der der Namespace `mzw` verknuepft ist (dieselbe wie fuer den CRGenerator); baut die Paketversionen |
+| **Ziel-Org** | wo installiert wird: eine Sandbox, eine Developer Edition oder spaeter E+H |
+| **GitHub** | haelt den Schluessel als Secret und baut bei jedem Push oder auf Knopfdruck |
 
-Danach die `.key`-Dateien loeschen oder sicher ablegen.
+## 1. Schluessel erzeugen (Codespace, einmalig)
 
-Ohne die Secrets laufen die Pruefungen trotzdem; Paketbau und Org-Tests werden mit einem
-Hinweis uebersprungen.
+1. Im Repository auf GitHub: **Code**, Reiter **Codespaces**, **Create codespace on
+   claude/gifted-johnson-2lve4o** (oder auf dem Branch, auf dem gearbeitet wird).
+2. Im Terminal unten:
 
-## 4. Pakete anlegen
+   ```bash
+   scripts/jwt-setup.sh devhub
+   ```
 
-Actions, Workflow "CI", "Run workflow", Aufgabe "Pakete anlegen". Der Lauf legt "DIBA
-Report" und "DIBA Test Data" im Dev Hub an und schreibt ihre Ids (`0Ho...`) in die
-Zusammenfassung. Diese Ids kommen in `sfdx-project.json` unter `packageAliases`, als
-Commit. Ab dann baut jeder Push die Pakete.
+   Erwartet: zwei Dateien `config/devhub.crt` und `config/devhub.key`.
+3. Links im Explorer `config/devhub.crt` rechts anklicken, **Download**. Diese Datei kommt
+   in Schritt 2 nach Salesforce.
+4. Den privaten Schluessel anzeigen und ganz kopieren (von `-----BEGIN` bis `-----END
+   PRIVATE KEY-----` einschliesslich):
 
-## Kontingente
+   ```bash
+   cat config/devhub.key
+   ```
 
-Ein Dev Hub darf nur eine begrenzte Zahl Paketversionen und Scratch Orgs am Tag anlegen
-(Zahlen nicht nachgesehen). Deshalb: Paketversionen bei jedem Push, Scratch Org nur bei
-einem Tag `v*`.
+   Er kommt in Schritt 3 nach GitHub. Danach den Codespace loeschen (GitHub, Codespaces,
+   "..." am Codespace, Delete); der Schluessel verschwindet mit ihm.
 
-## Nach der Installation in einer Org
+## 2. External Client App im Dev Hub (einmalig)
 
-Alles andere bringt der Installer mit: Objekte, Schaltflaeche, Tab, Permission Sets,
-Remote Site und Einstellungen. Zwei Dinge haengen an der Org und ihren Benutzern; ein
-Unlocked Package kann sie nicht setzen, weil es kein Skript nach der Installation ausfuehren
-darf (das koennen nur Managed Packages):
+Im Dev Hub: **Setup**, Suche "External Client App Manager", **New External Client App**.
+
+- Name `DIBA CI`, API-Name `DIBA_CI`, Kontakt-E-Mail beliebig, Distribution State **Local**.
+- **Enable OAuth**: Callback URL `http://localhost:1717/OauthRedirect`.
+- OAuth Scopes: "Manage user data via APIs (api)", "Perform requests at any time
+  (refresh_token, offline_access)", "Manage user data via Web browsers (web)".
+- **Enable JWT Bearer Flow**, das Zertifikat `devhub.crt` aus Schritt 1 hochladen.
+- Speichern.
+- Reiter **Policies**, **Edit**: Permitted Users **Admin approved users are
+  pre-authorized**; darunter das Profil **System Administrator** auswaehlen. Speichern.
+- Reiter **Settings**, **Consumer Key and Secret**: den **Consumer Key** kopieren.
+
+Die Bezeichnungen im Setup aendern sich gelegentlich; gemeint ist jeweils dasselbe.
+
+## 3. Secrets in GitHub (einmalig)
+
+Repository, **Settings**, **Secrets and variables**, **Actions**, **New repository secret**,
+dreimal:
+
+| Name | Wert |
+|---|---|
+| `SF_DEVHUB_USERNAME` | dein Benutzername im Dev Hub |
+| `SF_DEVHUB_CLIENT_ID` | der Consumer Key aus Schritt 2 |
+| `SF_DEVHUB_JWT_KEY` | der private Schluessel aus Schritt 1 |
+
+## 4. Installer bauen
+
+Repository, **Actions**, Workflow **CI**, **Run workflow**, Branch waehlen, Aufgabe:
+
+- **Installer bauen (Beta)**: laesst sich nur in Sandboxes und Scratch Orgs installieren.
+- **Installer bauen und freigeben**: laesst sich ueberall installieren, auch in einer
+  Developer Edition oder Produktion. Jede Versionsnummer laesst sich nur einmal freigeben.
+
+Der Lauf dauert einige Minuten. Beim ersten Mal legt er die beiden Pakete im Dev Hub an.
+Danach stehen in der Zusammenfassung des Laufs (Lauf oeffnen, ganz oben "Summary") je Paket
+zwei Links: einer fuer Produktion und Developer Edition, einer fuer Sandboxes.
+
+Ab dann baut auch jeder Push einen Beta-Installer; ein Push auf `main` gibt frei.
+
+## 5. In die Ziel-Org installieren
+
+1. In der Ziel-Org angemeldet den Link fuer **DIBA Report** oeffnen, "Install for Admins
+   Only", installieren.
+2. Fuer eine Test-Org zusaetzlich **DIBA Test Data** auf dieselbe Weise.
+
+## 6. Nach der Installation
+
+Zwei Dinge, die ein Unlocked Package nicht selbst setzen kann:
 
 1. **Schaltflaeche am Account.** Setup, Object Manager, Account, Page Layouts, das Layout
    der Berater, "Mobile & Lightning Actions", **DIBA Report** in den Bereich "Salesforce
    Mobile and Lightning Experience Actions" ziehen, speichern. Arbeitet die Account-Seite mit
    Dynamic Actions, stattdessen im Lightning App Builder die Aktion hinzufuegen.
-2. **Permission Sets.** **DIBA Report Consultant** den Beratern, **DIBA Data Sender** dem
-   Benutzer der E+H-Aktion. Gibt es bei E+H eine Permission Set Group fuer die Berater,
-   genuegt es, DIBA Report Consultant dort aufzunehmen.
+2. **Permission Sets.** Setup, Users, Benutzer oeffnen, Permission Set Assignments, Edit
+   Assignments: **DIBA Report Consultant** fuer Berater, **DIBA Data Sender** fuer den
+   Benutzer der E+H-Aktion.
 
-In der Test-Org und der Scratch Org der CI weist `scripts/org-install-test.sh` die
-Permission Sets selbst zu; die Ende-zu-Ende-Tests oeffnen die Arbeitsflaeche ueber den Tab,
-nicht ueber die Schaltflaeche.
+## 7. Testdaten (nur Test-Org)
+
+Developer Console (Zahnrad oben rechts), **Debug**, **Open Execute Anonymous Window**, den
+Inhalt von `scripts/apex/send-testdata.apex` einfuegen, **Execute**. Erwartet: im Log
+`DIBA-TEST-OK`; der Account "DIBA Testanlage Nord" hat dann 20 Zeilen. Am Account die
+Schaltflaeche **DIBA Report** druecken.
+
+## Spaeter: feste Test-Org fuer die CI
+
+Fuer Upgrade- und Ende-zu-Ende-Tests bei jedem Push auf `main` dieselben Schritte 1 bis 3
+mit `scripts/jwt-setup.sh testorg` in der Test-Org und den Secrets `SF_TESTORG_USERNAME`,
+`SF_TESTORG_CLIENT_ID`, `SF_TESTORG_JWT_KEY` (bei einer Sandbox zusaetzlich
+`SF_TESTORG_LOGIN_URL` = `https://test.salesforce.com`). Ohne diese Secrets entfallen die
+Org-Tests mit einem Hinweis.
+
+## Kontingente
+
+Ein Dev Hub darf nur eine begrenzte Zahl Paketversionen und Scratch Orgs am Tag anlegen
+(Zahlen nicht nachgesehen). Deshalb Scratch Orgs nur bei einem Tag `v*`.
