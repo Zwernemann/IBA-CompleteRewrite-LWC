@@ -13,12 +13,20 @@ public with sharing class DibaOrderCodeJob implements Queueable, Database.Allows
     }
 
     /**
+     * Tests that deliver data do not start the job: its callout would fail without a mock.
+     * The tests of the job itself switch it on.
+     */
+    @TestVisible
+    private static Boolean startInTests = false;
+
+    /**
      * Starts the job for an account if this transaction may start one. Inside a Queueable,
      * a batch or a future the job is left to the caller: the rows stay pending.
      */
     public static Boolean startFor(Id accountDataId) {
         if (
             accountDataId == null ||
+            (Test.isRunningTest() && !startInTests) ||
             System.isQueueable() ||
             System.isBatch() ||
             System.isFuture() ||

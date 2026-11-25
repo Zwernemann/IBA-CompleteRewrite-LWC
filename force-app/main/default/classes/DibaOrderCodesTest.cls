@@ -81,6 +81,7 @@ private class DibaOrderCodesTest {
 
     @IsTest
     static void aDeliveryLooksUpTheSuccessors() {
+        DibaOrderCodeJob.startInTests = true;
         Transformer transformer = new Transformer();
         Test.setMock(HttpCalloutMock.class, transformer);
         Test.startTest();
@@ -117,6 +118,7 @@ private class DibaOrderCodesTest {
 
     @IsTest
     static void aFailingServiceLeavesTheRowsPending() {
+        DibaOrderCodeJob.startInTests = true;
         Transformer transformer = new Transformer();
         transformer.status = 503;
         Test.setMock(HttpCalloutMock.class, transformer);
