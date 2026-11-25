@@ -32,6 +32,8 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
       - run: npm ci
+      - name: LWC-Tests
+        run: npm test
       - name: Apex-Syntax und Format
         run: npm run -s check:apex
       - name: Metadaten

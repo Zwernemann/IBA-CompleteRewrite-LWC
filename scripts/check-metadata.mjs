@@ -51,6 +51,14 @@ for (const file of files.filter((f) => f.endsWith(".md-meta.xml"))) {
     if (label.length > 40) findings.push(`${relative(root, file)}: Label laenger als 40 Zeichen`);
 }
 
+// Every Apex class and every component needs its meta file, or it is not deployed.
+for (const file of files.filter((f) => f.endsWith(".cls"))) {
+    if (!files.includes(file + "-meta.xml")) findings.push(`${relative(root, file)}: .cls-meta.xml fehlt`);
+}
+for (const file of files.filter((f) => /\/lwc\/([^/]+)\/\1\.js$/.test(f))) {
+    if (!files.includes(file + "-meta.xml")) findings.push(`${relative(root, file)}: .js-meta.xml fehlt`);
+}
+
 if (findings.length) {
     for (const finding of findings) console.error(finding);
     process.exit(1);

@@ -8,8 +8,9 @@ Nachfolger der Tomcat-Fassung `Zwernemann/IBA-Salesforce`.
 
 | Schritt | Inhalt | Stand |
 |---|---|---|
-| 1 | Datenmodell, Dateneingang `mzw.DibaImport`, Intervalltabelle, Permission Sets, CI mit Installer | dieser Stand |
-| 2 | Wartungsdialog als Tabelle in LWC, Report-XML, Report ueber den CRGenerator, Ablage als File | offen |
+| 1 | Datenmodell, Dateneingang `mzw.DibaImport`, Intervalltabelle, Permission Sets, CI mit Installer | fertig |
+| 2a | Tab "DIBA Report", Anlagentabelle (Wartungsdialog) als virtuelle Tabelle mit Filtern, Sortierung, Zellbearbeitung, Sperren bei gleichzeitiger Bearbeitung; Lasttestanlage | dieser Stand |
+| 2b | Report-XML, Report ueber den CRGenerator, Ablage als File | offen, braucht die Versions-Id des CRGenerator-Pakets |
 | 3 | uebrige Dialoge, Reporttexte, Order Code Transformer, Anhaenge | offen |
 
 ## Installieren
@@ -28,6 +29,13 @@ leeren Scratch Org.
 
 Nach der Installation: Permission Set **DIBA Report Consultant** den Beratern zuweisen,
 **DIBA Data Sender** dem Benutzer, unter dem die Aktion von E+H liefert.
+
+## Bedienen
+
+Der Berater oeffnet im App Launcher den Tab **DIBA Report**, waehlt eine Anlage und
+oeffnet mit **Edit assets** die Anlagentabelle. Direkt zu einer Anlage fuehrt
+`/lightning/n/mzw__DIBA_Report?c__account=<Account-Id>`, etwa aus einer Schaltflaeche am
+Account. Aenderungen werden beim Tippen gespeichert.
 
 ## Dokumentation
 

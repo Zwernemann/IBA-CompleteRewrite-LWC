@@ -1,0 +1,45 @@
+<template>
+    <template lwc:if={loading}>
+        <div class="slds-is-relative slds-p-around_large">
+            <lightning-spinner alternative-text="Loading" size="small"></lightning-spinner>
+            <p class="slds-text-align_center slds-p-top_xx-large">{progress}</p>
+        </div>
+    </template>
+    <template lwc:elseif={error}>
+        <div class="slds-notify slds-notify_alert slds-alert_error" role="alert">{error}</div>
+    </template>
+    <template lwc:else>
+        <div class="slds-grid slds-grid_vertical-align-center slds-p-bottom_x-small">
+            <div class="slds-col">
+                <span class="slds-text-title">{summary}</span>
+                <span class="slds-text-color_weak slds-p-left_small">{saveState}</span>
+            </div>
+            <div class="slds-col slds-grow-none">
+                <lightning-button label="Clear filters" onclick={handleClearFilters}></lightning-button>
+            </div>
+        </div>
+        <template lwc:if={hasMessages}>
+            <div class="slds-notify slds-notify_alert slds-alert_warning slds-m-bottom_x-small" role="alert">
+                <ul class="slds-text-align_left">
+                    <template for:each={messages} for:item="message">
+                        <li key={message.id}>{message.text}</li>
+                    </template>
+                </ul>
+                <lightning-button-icon
+                    icon-name="utility:close"
+                    variant="bare-inverse"
+                    alternative-text="Close"
+                    class="slds-m-left_small"
+                    onclick={handleDismiss}
+                ></lightning-button-icon>
+            </div>
+        </template>
+        <c-diba-grid
+            columns={columns}
+            rows={rows}
+            height={height}
+            oncellchange={handleCellChange}
+            onviewchange={handleViewChange}
+        ></c-diba-grid>
+    </template>
+</template>

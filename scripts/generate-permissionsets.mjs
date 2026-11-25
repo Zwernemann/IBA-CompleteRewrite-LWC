@@ -51,7 +51,8 @@ const SETS = {
             DIBA_Interval_Value__c: { read: true, create: true, edit: true, delete: true, editableFields: "all" },
         },
         customMetadataTypes: ["DIBA_Interval__mdt"],
-        classes: [],
+        classes: ["DibaPlantController"],
+        tabs: ["DIBA_Report"],
     },
     DIBA_Data_Sender: {
         label: "DIBA Data Sender",
@@ -64,6 +65,7 @@ const SETS = {
         },
         customMetadataTypes: [],
         classes: ["DibaImport"],
+        tabs: [],
     },
 };
 
@@ -118,6 +120,9 @@ function render(name, set) {
             "        <viewAllRecords>false</viewAllRecords>",
             "    </objectPermissions>",
         );
+    }
+    for (const tab of set.tabs) {
+        lines.push("    <tabSettings>", `        <tab>${tab}</tab>`, "        <visibility>Visible</visibility>", "    </tabSettings>");
     }
     lines.push("</PermissionSet>", "");
     return lines.join("\n");

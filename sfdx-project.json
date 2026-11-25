@@ -4,20 +4,20 @@
       "path": "force-app",
       "default": true,
       "package": "DIBA Report",
-      "versionName": "Dateneingang",
-      "versionNumber": "0.1.0.NEXT",
-      "versionDescription": "DIBA Report Generator in Salesforce: data model and data intake (mzw.DibaImport)."
+      "versionName": "Anlagentabelle",
+      "versionNumber": "0.2.0.NEXT",
+      "versionDescription": "DIBA Report Generator in Salesforce: data intake, tab DIBA Report with the asset table of a plant."
     },
     {
       "path": "eh-emulation",
       "package": "DIBA Test Data",
-      "versionName": "Testanlage",
-      "versionNumber": "0.1.0.NEXT",
+      "versionName": "Lasttest",
+      "versionNumber": "0.2.0.NEXT",
       "versionDescription": "Test plant for test orgs, delivered through mzw.DibaImport. Never installed at E+H.",
       "dependencies": [
         {
           "package": "DIBA Report",
-          "versionNumber": "0.1.0.LATEST"
+          "versionNumber": "0.2.0.LATEST"
         }
       ]
     }

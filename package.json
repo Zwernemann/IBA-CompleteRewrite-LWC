@@ -5,9 +5,11 @@
   "scripts": {
     "check:apex": "prettier --plugin=prettier-plugin-apex --check \"force-app/**/*.cls\" \"eh-emulation/**/*.cls\"",
     "format:apex": "prettier --plugin=prettier-plugin-apex --write \"force-app/**/*.cls\" \"eh-emulation/**/*.cls\"",
-    "check:metadata": "node scripts/check-metadata.mjs"
+    "check:metadata": "node scripts/check-metadata.mjs",
+    "test": "sfdx-lwc-jest"
   },
   "devDependencies": {
+    "@salesforce/sfdx-lwc-jest": "8.0.0",
     "prettier": "3.3.3",
     "prettier-plugin-apex": "2.1.5"
   }

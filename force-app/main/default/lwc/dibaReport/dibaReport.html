@@ -1,0 +1,32 @@
+<template>
+    <template lwc:if={showList}>
+        <lightning-card title="DIBA Report" icon-name="custom:custom53">
+            <div class="slds-p-horizontal_medium">
+                <template lwc:if={loading}>
+                    <lightning-spinner alternative-text="Loading" size="small"></lightning-spinner>
+                </template>
+                <template lwc:elseif={error}>
+                    <div class="slds-notify slds-notify_alert slds-alert_error" role="alert">{error}</div>
+                </template>
+                <template lwc:elseif={hasPlants}>
+                    <lightning-datatable
+                        key-field="recordId"
+                        data={plants}
+                        columns={columns}
+                        hide-checkbox-column
+                        onrowaction={handleRowAction}
+                    ></lightning-datatable>
+                </template>
+                <template lwc:else>
+                    <p class="slds-p-vertical_medium">
+                        No plant has been delivered yet. Plants arrive through the action "DIBA Report" on the
+                        account.
+                    </p>
+                </template>
+            </div>
+        </lightning-card>
+    </template>
+    <template lwc:else>
+        <c-diba-plant plant={selected} onback={handleBack} onchanged={handleChanged}></c-diba-plant>
+    </template>
+</template>
