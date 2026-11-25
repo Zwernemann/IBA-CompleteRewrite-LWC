@@ -1,0 +1,14 @@
+{
+  "name": "diba-salesforce",
+  "private": true,
+  "description": "DIBA Report Generator as a Salesforce package (Apex, LWC)",
+  "scripts": {
+    "check:apex": "prettier --plugin=prettier-plugin-apex --check \"force-app/**/*.cls\" \"eh-emulation/**/*.cls\"",
+    "format:apex": "prettier --plugin=prettier-plugin-apex --write \"force-app/**/*.cls\" \"eh-emulation/**/*.cls\"",
+    "check:metadata": "node scripts/check-metadata.mjs"
+  },
+  "devDependencies": {
+    "prettier": "3.3.3",
+    "prettier-plugin-apex": "2.1.5"
+  }
+}

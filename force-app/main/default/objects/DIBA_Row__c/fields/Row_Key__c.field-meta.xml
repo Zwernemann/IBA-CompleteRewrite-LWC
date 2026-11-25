@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Row_Key__c</fullName>
+    <caseSensitive>true</caseSensitive>
+    <description>Account id, tag id and asset id joined with "/". Upsert key of the delivery.</description>
+    <externalId>true</externalId>
+    <label>Row key</label>
+    <length>60</length>
+    <required>true</required>
+    <type>Text</type>
+    <unique>true</unique>
+</CustomField>

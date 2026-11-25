@@ -1,0 +1,327 @@
+{
+  "transmission": {
+    "id": "TESTDATEN-V1-2026-10-21",
+    "part": 2,
+    "partCount": 2,
+    "sentAt": "2026-10-21T11:07:00Z"
+  },
+  "account": {
+    "Id": "0017Q00000TsTdAQAV",
+    "Name": "DIBA Testanlage Nord",
+    "BillingCountryCode": "DE"
+  },
+  "location": [
+    {
+      "Id": "1317Q00000TB00UAAV",
+      "Name": "DIBA Testanlage Nord",
+      "ParentLocationId": null,
+      "LocationLevel": 1,
+      "rows": []
+    },
+    {
+      "Id": "1317Q00000TB01UAAV",
+      "Name": "Werk Nord, Halle D",
+      "ParentLocationId": "1317Q00000TB00UAAV",
+      "LocationLevel": 2,
+      "rows": [
+        {
+          "tag": {
+            "Id": "a0X7Q00000TD13UAAV",
+            "Name": "TI-1013",
+            "FSLEH_ParameterType__c": "Temperature",
+            "FSLEH_Location_Name__c": "Werk Nord, Halle D",
+            "FSLEH_Criticality__c": "medium",
+            "FSLEH_Accessibility__c": "moderate",
+            "FSLEH_Maintenance_effectiveness__c": "medium",
+            "FSLEH_Environmental_Conditions__c": "normal",
+            "FSLEH_Special_Demands__c": false,
+            "FSLEH_Environmental_Relevant__c": false,
+            "FSLEH_Safety_Relevant__c": false,
+            "FSLEH_Quality_Relevant__c": false
+          },
+          "asset": {
+            "Id": "02i7Q00000TD13UAAV",
+            "Name": "iTEMP TMT182",
+            "Manufacturer_List__c": "Endress+Hauser",
+            "Order_Code__c": "TMT182-BB2CDE",
+            "Order_Code_Extended__c": null,
+            "SerialNumber": "M511E1177DD",
+            "Device_Type2__c": "TM",
+            "deviceTypeValue": "Temperature transmitter",
+            "Manufacturing_Date__c": "2020-09-08",
+            "FSLEH_Product_Status_Formula__c": "Available"
+          }
+        },
+        {
+          "tag": {
+            "Id": "a0X7Q00000TD14UAAV",
+            "Name": "FI-1014",
+            "FSLEH_ParameterType__c": "Flow",
+            "FSLEH_Location_Name__c": "Werk Nord, Halle D",
+            "FSLEH_Criticality__c": "high",
+            "FSLEH_Accessibility__c": "difficult",
+            "FSLEH_Maintenance_effectiveness__c": "low",
+            "FSLEH_Environmental_Conditions__c": "heavy",
+            "FSLEH_Special_Demands__c": true,
+            "FSLEH_Environmental_Relevant__c": false,
+            "FSLEH_Safety_Relevant__c": true,
+            "FSLEH_Quality_Relevant__c": false
+          },
+          "asset": {
+            "Id": "02i7Q00000TD14UAAV",
+            "Name": "Prowirl F 200",
+            "Manufacturer_List__c": "Endress+Hauser",
+            "Order_Code__c": "7F2C08-CCDDEE",
+            "Order_Code_Extended__c": null,
+            "SerialNumber": "P913F2288EE",
+            "Device_Type2__c": "DB",
+            "deviceTypeValue": "Vortex flowmeter",
+            "Manufacturing_Date__c": "2013-03-25",
+            "FSLEH_Product_Status_Formula__c": "discontinued"
+          }
+        }
+      ]
+    },
+    {
+      "Id": "1317Q00000TB02UAAV",
+      "Name": "Werk Nord, Halle A, Reaktor R-101",
+      "ParentLocationId": "1317Q00000TB00UAAV",
+      "LocationLevel": 2,
+      "rows": [
+        {
+          "tag": {
+            "Id": "a0X7Q00000TD01UAAV",
+            "Name": "TI-1001",
+            "FSLEH_ParameterType__c": "Temperature",
+            "FSLEH_Location_Name__c": "Werk Nord, Halle A, Reaktor R-101",
+            "FSLEH_Criticality__c": "high",
+            "FSLEH_Accessibility__c": "difficult",
+            "FSLEH_Maintenance_effectiveness__c": "low",
+            "FSLEH_Environmental_Conditions__c": "heavy",
+            "FSLEH_Special_Demands__c": true,
+            "FSLEH_Environmental_Relevant__c": true,
+            "FSLEH_Safety_Relevant__c": true,
+            "FSLEH_Quality_Relevant__c": true
+          },
+          "asset": {
+            "Id": "02i7Q00000TD15UAAV",
+            "Name": "Cerabar PMP51",
+            "Manufacturer_List__c": "Endress+Hauser",
+            "Order_Code__c": "PMP51-XY1ZAB2CD",
+            "Order_Code_Extended__c": null,
+            "SerialNumber": "K880G3311FF",
+            "Device_Type2__c": "PA",
+            "deviceTypeValue": "Pressure transmitter",
+            "Manufacturing_Date__c": "2024-01-15",
+            "FSLEH_Product_Status_Formula__c": "available"
+          }
+        }
+      ]
+    },
+    {
+      "Id": "1317Q00000TB03UAAV",
+      "Name": "Werk Sued, Halle B, Ruecklauf",
+      "ParentLocationId": "1317Q00000TB00UAAV",
+      "LocationLevel": 2,
+      "rows": [
+        {
+          "tag": {
+            "Id": "a0X7Q00000TD16UAAV",
+            "Name": "FI-1016",
+            "FSLEH_ParameterType__c": "Flow",
+            "FSLEH_Location_Name__c": "Werk Sued, Halle B, Ruecklauf",
+            "FSLEH_Criticality__c": "low",
+            "FSLEH_Accessibility__c": "easy",
+            "FSLEH_Maintenance_effectiveness__c": "high",
+            "FSLEH_Environmental_Conditions__c": "normal",
+            "FSLEH_Special_Demands__c": false,
+            "FSLEH_Environmental_Relevant__c": false,
+            "FSLEH_Safety_Relevant__c": false,
+            "FSLEH_Quality_Relevant__c": false
+          },
+          "asset": {
+            "Id": "02i7Q00000TD02UAAV",
+            "Name": "Promag W 400",
+            "Manufacturer_List__c": "Endress+Hauser",
+            "Order_Code__c": "5W4B50-AAAAAAAAAAAA",
+            "Order_Code_Extended__c": null,
+            "SerialNumber": "P802B311K2C",
+            "Device_Type2__c": "DA",
+            "deviceTypeValue": "Electromagnetic flowmeter",
+            "Manufacturing_Date__c": "2017-08-23",
+            "FSLEH_Product_Status_Formula__c": "phase out"
+          }
+        }
+      ]
+    },
+    {
+      "Id": "1317Q00000TB04UAAV",
+      "Name": "Werk Sued, Tanklager, Tank T-30",
+      "ParentLocationId": "1317Q00000TB00UAAV",
+      "LocationLevel": 2,
+      "rows": [
+        {
+          "tag": {
+            "Id": "a0X7Q00000TD17UAAV",
+            "Name": "LI-1017",
+            "FSLEH_ParameterType__c": "Level",
+            "FSLEH_Location_Name__c": "Werk Sued, Tanklager, Tank T-30",
+            "FSLEH_Criticality__c": "low",
+            "FSLEH_Accessibility__c": "easy",
+            "FSLEH_Maintenance_effectiveness__c": "low",
+            "FSLEH_Environmental_Conditions__c": "normal",
+            "FSLEH_Special_Demands__c": false,
+            "FSLEH_Environmental_Relevant__c": false,
+            "FSLEH_Safety_Relevant__c": false,
+            "FSLEH_Quality_Relevant__c": false
+          },
+          "asset": {
+            "Id": "02i7Q00000TD17UAAV",
+            "Name": "Liquiphant FTL51",
+            "Manufacturer_List__c": "Endress+Hauser",
+            "Order_Code__c": "FTL51-AAB1CD",
+            "Order_Code_Extended__c": null,
+            "SerialNumber": "N622H4455GG",
+            "Device_Type2__c": "FQ",
+            "deviceTypeValue": "Vibronic point level",
+            "Manufacturing_Date__c": "2018-05-30",
+            "FSLEH_Product_Status_Formula__c": "available"
+          }
+        }
+      ]
+    },
+    {
+      "Id": "1317Q00000TB05UAAV",
+      "Name": "Werk Sued, Halle B",
+      "ParentLocationId": "1317Q00000TB00UAAV",
+      "LocationLevel": 2,
+      "rows": [
+        {
+          "tag": {
+            "Id": "a0X7Q00000TD18UAAV",
+            "Name": "PI-1018",
+            "FSLEH_ParameterType__c": "Pressure",
+            "FSLEH_Location_Name__c": "Werk Sued, Halle B",
+            "FSLEH_Criticality__c": "medium",
+            "FSLEH_Accessibility__c": "moderate",
+            "FSLEH_Maintenance_effectiveness__c": "medium",
+            "FSLEH_Environmental_Conditions__c": "normal",
+            "FSLEH_Special_Demands__c": null,
+            "FSLEH_Environmental_Relevant__c": null,
+            "FSLEH_Safety_Relevant__c": null,
+            "FSLEH_Quality_Relevant__c": null
+          },
+          "asset": {
+            "Id": "02i7Q00000TD18UAAV",
+            "Name": "Cerabar PMC71",
+            "Manufacturer_List__c": "Endress+Hauser",
+            "Order_Code__c": "PMC71-DDEEFF",
+            "Order_Code_Extended__c": null,
+            "SerialNumber": "K991J5566HH",
+            "Device_Type2__c": "PA",
+            "deviceTypeValue": "Pressure transmitter",
+            "Manufacturing_Date__c": "2015-12-01",
+            "FSLEH_Product_Status_Formula__c": "phase out"
+          }
+        }
+      ]
+    },
+    {
+      "Id": "1317Q00000TB06UAAV",
+      "Name": "Werk Sued, Halle C",
+      "ParentLocationId": "1317Q00000TB00UAAV",
+      "LocationLevel": 2,
+      "rows": [
+        {
+          "tag": {
+            "Id": "a0X7Q00000TD19UAAV",
+            "Name": "TI-1019",
+            "FSLEH_ParameterType__c": "Temperature",
+            "FSLEH_Location_Name__c": "Werk Sued, Halle C",
+            "FSLEH_Criticality__c": "high",
+            "FSLEH_Accessibility__c": "moderate",
+            "FSLEH_Maintenance_effectiveness__c": "medium",
+            "FSLEH_Environmental_Conditions__c": "heavy",
+            "FSLEH_Special_Demands__c": true,
+            "FSLEH_Environmental_Relevant__c": true,
+            "FSLEH_Safety_Relevant__c": false,
+            "FSLEH_Quality_Relevant__c": true
+          },
+          "asset": {
+            "Id": "02i7Q00000TD19UAAV",
+            "Name": "Omnigrad TR10",
+            "Manufacturer_List__c": "Endress+Hauser",
+            "Order_Code__c": "TR10-GGHHII",
+            "Order_Code_Extended__c": null,
+            "SerialNumber": "M722K6677II",
+            "Device_Type2__c": "TA",
+            "deviceTypeValue": "Temperature sensor",
+            "Manufacturing_Date__c": "2011-04-14",
+            "FSLEH_Product_Status_Formula__c": null
+          }
+        },
+        {
+          "tag": {
+            "Id": "a0X7Q00000TD20UAAV",
+            "Name": "",
+            "FSLEH_ParameterType__c": "Pressure",
+            "FSLEH_Location_Name__c": "Werk Sued, Halle C",
+            "FSLEH_Criticality__c": "notset",
+            "FSLEH_Accessibility__c": "notset",
+            "FSLEH_Maintenance_effectiveness__c": "low",
+            "FSLEH_Environmental_Conditions__c": "notset",
+            "FSLEH_Special_Demands__c": false,
+            "FSLEH_Environmental_Relevant__c": false,
+            "FSLEH_Safety_Relevant__c": false,
+            "FSLEH_Quality_Relevant__c": false
+          },
+          "asset": {
+            "Id": "02i7Q00000TD20UAAV",
+            "Name": "Cerabar PMP23",
+            "Manufacturer_List__c": "Endress+Hauser",
+            "Order_Code__c": "PMP23-JJKKLL",
+            "Order_Code_Extended__c": null,
+            "SerialNumber": "K102L7788JJ",
+            "Device_Type2__c": "PA",
+            "deviceTypeValue": "Pressure transmitter",
+            "Manufacturing_Date__c": "2023-11-22",
+            "FSLEH_Product_Status_Formula__c": "available"
+          }
+        },
+        {
+          "tag": {
+            "Id": "a0X7Q00000TD21UAAV",
+            "Name": "TI-1021",
+            "FSLEH_ParameterType__c": "Temperature",
+            "FSLEH_Location_Name__c": "Werk Sued, Halle C",
+            "FSLEH_Criticality__c": "medium",
+            "FSLEH_Accessibility__c": null,
+            "FSLEH_Maintenance_effectiveness__c": "low",
+            "FSLEH_Environmental_Conditions__c": "normal",
+            "FSLEH_Special_Demands__c": false,
+            "FSLEH_Environmental_Relevant__c": false,
+            "FSLEH_Safety_Relevant__c": false,
+            "FSLEH_Quality_Relevant__c": false,
+            "FSLEH_IsChildTAG__c": false,
+            "FSLEH_ParentTAG__c": null
+          },
+          "asset": null
+        }
+      ]
+    }
+  ],
+  "unassignedAssets": [
+    {
+      "Id": "02i7Q00000TD22UAAV",
+      "Name": "Promag H 100",
+      "Manufacturer_List__c": "Endress+Hauser",
+      "Order_Code__c": "5H1B15-AACBAAADAA",
+      "Order_Code_Extended__c": null,
+      "SerialNumber": "R522B21H2B",
+      "Device_Type2__c": "DA",
+      "deviceTypeValue": "Flow, Electro-Magnetic",
+      "Manufacturing_Date__c": "2020-05-04",
+      "FSLEH_Product_Status_Formula__c": "Available"
+    }
+  ]
+}

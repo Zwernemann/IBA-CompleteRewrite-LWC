@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Add_Recomend_Ordercode__c</fullName>
+    <description>Consultant input, never touched by a delivery. add_recomend_ordercode.</description>
+    <label>Recommended order code</label>
+    <length>255</length>
+    <required>false</required>
+    <type>Text</type>
+</CustomField>

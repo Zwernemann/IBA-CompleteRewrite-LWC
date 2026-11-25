@@ -1,0 +1,9 @@
+node_modules/
+.sf/
+.sfdx/
+.localdevserver/
+*.log
+# Keys and settings of the Dev Hub and test org stay outside the repository.
+config/*.key
+config/*.env
+!config/*.env.example

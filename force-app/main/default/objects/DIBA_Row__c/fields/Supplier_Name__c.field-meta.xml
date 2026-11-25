@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Supplier_Name__c</fullName>
+    <description>Master data from Salesforce, overwritten by every delivery. Manufacturer_List__c (supplier_name).</description>
+    <label>Manufacturer</label>
+    <length>255</length>
+    <required>false</required>
+    <type>Text</type>
+</CustomField>

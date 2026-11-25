@@ -1,0 +1,30 @@
+{
+  "packageDirectories": [
+    {
+      "path": "force-app",
+      "default": true,
+      "package": "DIBA Report",
+      "versionName": "Dateneingang",
+      "versionNumber": "0.1.0.NEXT",
+      "versionDescription": "DIBA Report Generator in Salesforce: data model and data intake (mzw.DibaImport)."
+    },
+    {
+      "path": "eh-emulation",
+      "package": "DIBA Test Data",
+      "versionName": "Testanlage",
+      "versionNumber": "0.1.0.NEXT",
+      "versionDescription": "Test plant for test orgs, delivered through mzw.DibaImport. Never installed at E+H.",
+      "dependencies": [
+        {
+          "package": "DIBA Report",
+          "versionNumber": "0.1.0.LATEST"
+        }
+      ]
+    }
+  ],
+  "name": "diba-salesforce",
+  "namespace": "mzw",
+  "sfdcLoginUrl": "https://login.salesforce.com",
+  "sourceApiVersion": "66.0",
+  "packageAliases": {}
+}

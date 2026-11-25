@@ -1,0 +1,377 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://zwernemann.de/iba/schema/iba-import-v3.json",
+  "title": "DIBA Report Generator, Dateneingang von Salesforce",
+  "description": "Version 3: die Zeilen kommen nach Orten gegliedert, Geraete ohne Messstelle getrennt. Die Schluessel sind die Salesforce-Feld-API-Namen. Eine Lieferung ergaenzt oder ersetzt Zeilen, sie entfernt nie welche. Beschreibung der Schnittstelle: salesforce/INTERFACE.md.",
+  "type": "object",
+  "required": [
+    "transmission",
+    "account",
+    "location"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "transmission": {
+      "type": "object",
+      "description": "Umschlag einer Lieferung. Grosse Anlagen duerfen in Teilen gesendet werden.",
+      "required": [
+        "id",
+        "part",
+        "partCount"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 64,
+          "description": "Kennung der gesamten Lieferung, in allen Teilen gleich. Dient der Wiedererkennung: wird derselbe Teil zweimal geschickt, etwa nach einem Verbindungsabbruch, wird er nur einmal verarbeitet."
+        },
+        "part": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Nummer dieses Teils, beginnend bei 1."
+        },
+        "partCount": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Gesamtzahl der Teile. Erst wenn alle Teile eingegangen sind, gilt die Lieferung als vollstaendig und die Bearbeitungs-URL wird nutzbar."
+        },
+        "sentAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Zeitpunkt des Versands auf Salesforce-Seite."
+        },
+        "language": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[a-z]{2}_[A-Z]{2}$",
+          "description": "Sprache des Reports, etwa \"en_US\". Nur eine Voreinstellung: der Berater kann sie in den Reporteinstellungen aendern, und was er dort gespeichert hat, bleibt."
+        },
+        "isFinalReport": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "description": "Voreinstellung fuer Vorschau (false) oder finalen Report (true), wie language nur eine Vorlage fuer die Reporteinstellungen."
+        }
+      }
+    },
+    "account": {
+      "type": "object",
+      "description": "Der Account, zu dem die Daten gehoeren. Er bestimmt, wo die Daten liegen und wer sie sieht: alle von Salesforce weitergeleiteten Nutzer sehen alle Daten ihres Accounts.",
+      "required": [
+        "Id",
+        "Name"
+      ],
+      "properties": {
+        "Id": {
+          "type": "string",
+          "pattern": "^[a-zA-Z0-9]{15,18}$",
+          "description": "Salesforce-Id des Accounts. Zugleich der Schluessel, unter dem die Daten in der Anwendung liegen."
+        },
+        "Name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "BillingCountryCode": {
+          "type": "string",
+          "description": "Steuert die Laenderfassung des Reports, etwa die asiatischen Vorlagen."
+        }
+      },
+      "$comment": "Offen: Welche weiteren Account-Felder in den Report gehoeren, ist noch nicht festgelegt. E+H hat am 17.08.2026 angeboten, Account-Daten mitzuliefern, der Umfang steht aus."
+    },
+    "location": {
+      "type": "array",
+      "description": "Die ausgewaehlten Orte mit ihren Zeilen. Die Orte bilden eine Hierarchie ueber ParentLocationId; Zeilen koennen auf jeder Ebene haengen.",
+      "items": {
+        "$ref": "#/$defs/location"
+      }
+    },
+    "unassignedAssets": {
+      "type": "array",
+      "description": "Geraete des Accounts ohne Messstelle. Sie erscheinen im Report ohne TAG, wie im bisherigen System.",
+      "items": {
+        "$ref": "#/$defs/asset"
+      }
+    }
+  },
+  "$defs": {
+    "row": {
+      "type": "object",
+      "required": [
+        "tag",
+        "asset"
+      ],
+      "additionalProperties": false,
+      "description": "Eine Messstelle mit dem dort verbauten Geraet. Zusammen bilden Tag-Id und Asset-Id den Schluessel der Zeile; daran haengen die Eingaben des Beraters.",
+      "properties": {
+        "tag": {
+          "$ref": "#/$defs/tag"
+        },
+        "asset": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/asset"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "null fuer eine Messstelle ohne Geraet. Solche Zeilen werden nicht uebernommen, ihre Zahl steht in der Antwort als tagsWithoutAsset."
+        }
+      }
+    },
+    "tag": {
+      "type": "object",
+      "description": "Messstelle, Salesforce-Objekt FSLEH_Tag__c.",
+      "required": [
+        "Id",
+        "Name"
+      ],
+      "properties": {
+        "Id": {
+          "type": "string",
+          "pattern": "^[a-zA-Z0-9]{15,18}$",
+          "description": "Salesforce-Id der Messstelle. Zusammen mit asset.Id der Schluessel der Zeile, siehe README."
+        },
+        "Name": {
+          "type": "string",
+          "description": "Bezeichnung der Messstelle. Intern device_tag."
+        },
+        "FSLEH_ParameterType__c": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Parametertyp. Ersetzt den frueheren TAG type, siehe G130070-258. Intern device_measuringtask. Festgelegte Werte: Analysis, Conductivity, Density, Electricity, Energy, Flow, Force, Frequency, Humidity, Length, Mass, Other, pH, Power, Pressure, Radioactivity, Speed, Temperature, Time, Torque, Turbidity, Vibration, Viscosity, Volume. Ein anderer Wert wird unveraendert gespeichert und in der Antwort unter unknownValues genannt.",
+          "examples": ["Flow", "Temperature", "pH"],
+          "$comment": "Bewusst ohne enum: die Anwendung zeigt den Wert nur und gibt ihn an den Report weiter, ein anderer Wert wird gespeichert und in unknownValues genannt. 'Level' (Fuellstand) fehlt in der Liste von E+H."
+        },
+        "FSLEH_Location_Name__c": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Standort. Mehrere Ebenen werden mit \", \" verbunden uebergeben. Intern location_name."
+        },
+        "FSLEH_Criticality__c": {
+          "$ref": "#/$defs/criticality"
+        },
+        "FSLEH_Accessibility__c": {
+          "$ref": "#/$defs/accessibility"
+        },
+        "FSLEH_Maintenance_effectiveness__c": {
+          "$ref": "#/$defs/effectiveness"
+        },
+        "FSLEH_Environmental_Conditions__c": {
+          "$ref": "#/$defs/conditions"
+        },
+        "FSLEH_Special_Demands__c": {
+          "enum": [
+            true,
+            false,
+            "Yes",
+            "No",
+            null
+          ],
+          "description": "Ja oder Nein, als true/false oder als \"Yes\"/\"No\"."
+        },
+        "FSLEH_Environmental_Relevant__c": {
+          "enum": [
+            true,
+            false,
+            "Yes",
+            "No",
+            null
+          ],
+          "description": "Ja oder Nein, als true/false oder als \"Yes\"/\"No\"."
+        },
+        "FSLEH_Safety_Relevant__c": {
+          "enum": [
+            true,
+            false,
+            "Yes",
+            "No",
+            null
+          ],
+          "description": "Ja oder Nein, als true/false oder als \"Yes\"/\"No\"."
+        },
+        "FSLEH_Quality_Relevant__c": {
+          "enum": [
+            true,
+            false,
+            "Yes",
+            "No",
+            null
+          ],
+          "description": "Ja oder Nein, als true/false oder als \"Yes\"/\"No\"."
+        },
+        "FSLEH_IsChildTAG__c": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "description": "Kennzeichen einer untergeordneten Messstelle. Wird noch nicht ausgewertet."
+        },
+        "FSLEH_ParentTAG__c": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Die uebergeordnete Messstelle zu FSLEH_IsChildTAG__c. Wird noch nicht ausgewertet."
+        }
+      }
+    },
+    "asset": {
+      "type": "object",
+      "description": "Verbautes Geraet, Salesforce-Objekt Asset.",
+      "required": [
+        "Id"
+      ],
+      "properties": {
+        "Id": {
+          "type": "string",
+          "pattern": "^[a-zA-Z0-9]{15,18}$",
+          "description": "Salesforce-Id des Geraets. Zusammen mit tag.Id der Schluessel der Zeile."
+        },
+        "Name": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Produktname. Intern device_shortname."
+        },
+        "Manufacturer_List__c": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Hersteller. Der Wert \"Endress+Hauser\" steuert die Auswertung des Produktstatus. Intern supplier_name."
+        },
+        "Order_Code__c": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Bestellcode. Intern device_ordercode."
+        },
+        "Order_Code_Extended__c": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Erweiterter Bestellcode.",
+          "$comment": "Offen: In der Felduebersicht ohne Gegenstueck auf unserer Seite, dort mit \"open\" markiert. Wofuer wird das Feld gebraucht?"
+        },
+        "SerialNumber": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Seriennummer. Intern device_serialnumber."
+        },
+        "Device_Type2__c": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Messprinzip-Kuerzel (SPK). Kommt kuenftig aus den Asset-Daten und wird nicht mehr aus dem Produkt abgeleitet, siehe G130070-258. Dient zugleich als Schluessel fuer die Intervalltabelle. Intern devicetype_spk."
+        },
+        "deviceTypeValue": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Klartext zu Device_Type2__c, die Bezeichnung des Auswahlwerts (etwa \"Flow, Coriolis\" zu DD). Ersetzt seit 20.11.2026 DeviceTypeText__c, ein Formelfeld, das auf Salesforce-Seite nicht gepflegt war (G130070-256). Intern devicetype_label_description."
+        },
+        "Manufacturing_Date__c": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date",
+          "description": "Herstelldatum im Format JJJJ-MM-TT. Bestimmt bei Fremdgeraeten die Obsoleszenz. Intern device_manufacturingdate."
+        },
+        "FSLEH_Product_Status_Formula__c": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Produktstatus. Wird kuenftig von Salesforce geliefert und nicht mehr berechnet, siehe G130070-258. Intern out_device_productstatus.",
+          "$comment": "Offen: Liefert ein Formelfeld immer einen Wert? Die Auswertung im Bestand prueft nicht auf null. Erwartete Werte sind \"available\", \"phase out\" und \"order stop\"; weitere waeren zu nennen."
+        }
+      }
+    },
+    "criticality": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Kritikalitaet. \"undefined\" wird im Bestand auf \"notset\" abgebildet. Bekannte Werte, gross oder klein: low, medium, high, notset. Ein anderer Wert weist die Lieferung nicht ab; er wird als nicht gesetzt gespeichert und in der Antwort unter unknownValues genannt."
+    },
+    "accessibility": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Zugaenglichkeit. Geht zusammen mit der Wartungswirksamkeit in die Instandhaltbarkeit ein. Bekannte Werte, gross oder klein: easy, moderate, difficult, notset. Ein anderer Wert weist die Lieferung nicht ab; er wird als nicht gesetzt gespeichert und in der Antwort unter unknownValues genannt."
+    },
+    "effectiveness": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Wartungswirksamkeit. Fehlt der Wert, gilt im Bestand \"low\". Bekannte Werte, gross oder klein: low, medium, high. Ein anderer Wert weist die Lieferung nicht ab; er wird als nicht gesetzt gespeichert und in der Antwort unter unknownValues genannt."
+    },
+    "conditions": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Umgebungsbedingungen. Gehen in die Intervallberechnung ein. Bekannte Werte, gross oder klein: normal, heavy, notset. Ein anderer Wert weist die Lieferung nicht ab; er wird als nicht gesetzt gespeichert und in der Antwort unter unknownValues genannt."
+    },
+    "location": {
+      "type": "object",
+      "description": "Ein Ort, Salesforce-Objekt Location.",
+      "required": [
+        "Id",
+        "Name",
+        "rows"
+      ],
+      "properties": {
+        "Id": {
+          "type": "string",
+          "pattern": "^[a-zA-Z0-9]{15,18}$"
+        },
+        "Name": {
+          "type": "string",
+          "description": "Name des Orts. Ersatz fuer FSLEH_Location_Name__c, wenn die Messstelle keinen liefert."
+        },
+        "ParentLocationId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Der uebergeordnete Ort, null auf der obersten Ebene."
+        },
+        "LocationLevel": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 1,
+          "description": "Ebene in der Hierarchie, 1 ist die oberste."
+        },
+        "rows": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/row"
+          }
+        }
+      }
+    }
+  }
+}

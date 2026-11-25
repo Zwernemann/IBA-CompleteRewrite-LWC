@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Device_Manufacturingdate__c</fullName>
+    <description>Master data from Salesforce, overwritten by every delivery. Manufacturing_Date__c (device_manufacturingdate).</description>
+    <label>Manufacturing date</label>
+    <required>false</required>
+    <type>Date</type>
+</CustomField>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Value_Key__c</fullName>
+    <caseSensitive>true</caseSensitive>
+    <description>Account id, SPK and field joined with "/". Unique per plant.</description>
+    <externalId>true</externalId>
+    <label>Value key</label>
+    <length>90</length>
+    <required>true</required>
+    <type>Text</type>
+    <unique>true</unique>
+</CustomField>

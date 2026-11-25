@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Reco_Valid_Interval__c</fullName>
+    <description>Consultant input, never touched by a delivery. reco_valid_interval.</description>
+    <label>Recommended validation interval</label>
+    <length>32</length>
+    <required>false</required>
+    <type>Text</type>
+</CustomField>
