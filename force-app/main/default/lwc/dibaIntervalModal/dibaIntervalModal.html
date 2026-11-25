@@ -1,0 +1,29 @@
+<template>
+    <lightning-modal-header label={heading}></lightning-modal-header>
+    <lightning-modal-body>
+        <template lwc:if={loading}>
+            <div class="slds-is-relative slds-p-around_large">
+                <lightning-spinner alternative-text="Loading" size="small"></lightning-spinner>
+            </div>
+        </template>
+        <template lwc:elseif={error}>
+            <div class="slds-notify slds-notify_alert slds-alert_error" role="alert">{error}</div>
+        </template>
+        <template lwc:else>
+            <template lwc:if={hasMessages}>
+                <div class="slds-notify slds-notify_alert slds-alert_warning slds-m-bottom_x-small" role="alert">
+                    <ul class="slds-text-align_left">
+                        <template for:each={messages} for:item="message">
+                            <li key={message.id}>{message.text}</li>
+                        </template>
+                    </ul>
+                    <lightning-button-icon icon-name="utility:close" variant="bare-inverse" alternative-text="Close" class="slds-m-left_small" onclick={handleDismiss}></lightning-button-icon>
+                </div>
+            </template>
+            <c-diba-grid columns={columns} rows={rows} height={gridHeight} oncellchange={handleCellChange}></c-diba-grid>
+        </template>
+    </lightning-modal-body>
+    <lightning-modal-footer>
+        <lightning-button variant="brand" label="Close" onclick={handleClose}></lightning-button>
+    </lightning-modal-footer>
+</template>

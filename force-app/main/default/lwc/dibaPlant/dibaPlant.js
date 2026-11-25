@@ -4,6 +4,8 @@ import saveValues from "@salesforce/apex/DibaReportValuesController.save";
 import getIntervals from "@salesforce/apex/DibaIntervalController.getIntervals";
 import DibaMaintenanceModal from "c/dibaMaintenanceModal";
 import DibaReportSettingsModal from "c/dibaReportSettingsModal";
+import DibaIntervalModal from "c/dibaIntervalModal";
+import { VIEWS } from "c/dibaColumns";
 import { ReportSession, translator } from "c/dibaReportState";
 import { devicesOf, reportXml, sliderPercentages } from "c/dibaReportXml";
 import { loadRows } from "c/dibaRowStore";
@@ -156,7 +158,11 @@ export default class DibaPlant extends LightningElement {
             migration: t("crgen.fr.migration"),
             preventative: t("crgen.fr.preventative"),
             implementation: t("crgen.fr.implementation"),
-            editAssets: t("crgen.fr.edit.asset.tab"),
+            editAssets: t(VIEWS.maintenance),
+            editBreakdown: t(VIEWS.breakdown),
+            editMigration: t(VIEWS.migration),
+            editPreventative: t(VIEWS.preventative),
+            editIntervals: t("crgen.fr.edit.interval.tab"),
             settings: t("crgen.fr.rep.settings"),
             timeline: t("crgen.fr.timeline"),
             highCriticality: t("crgen.fr.crit.high.text"),
@@ -343,17 +349,31 @@ export default class DibaPlant extends LightningElement {
 
     // --- dialogs and actions ----------------------------------------------------------------
 
-    async handleOpenAssets() {
+    async handleOpenAssets(event) {
+        const view = (event && event.currentTarget && event.currentTarget.dataset.view) || "maintenance";
         await DibaMaintenanceModal.open({
             size: "full",
             description: "Asset table of the plant",
             plantId: this.plant.recordId,
-            plantName: this.plant.name
+            plantName: this.plant.name,
+            view,
+            title: this.t(VIEWS[view])
         });
         // The table works on the same rows; the sliders follow its changes.
         this.calculateSliders();
         this.revision++;
         this.dispatchEvent(new CustomEvent("changed"));
+    }
+
+    async handleOpenIntervals() {
+        await DibaIntervalModal.open({
+            size: "full",
+            description: "Interval table of the plant",
+            plantId: this.plant.recordId,
+            plantName: this.plant.name
+        });
+        // The report takes the table anew.
+        this.intervals = null;
     }
 
     async handleOpenSettings() {

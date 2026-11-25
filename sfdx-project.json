@@ -4,9 +4,9 @@
       "path": "force-app",
       "default": true,
       "package": "DIBA Report",
-      "versionName": "Reporttexte",
-      "versionNumber": "0.3.0.NEXT",
-      "versionDescription": "DIBA Report Generator in Salesforce: data intake, asset table, report texts, sliders and settings, report XML."
+      "versionName": "Dialoge",
+      "versionNumber": "0.4.0.NEXT",
+      "versionDescription": "DIBA Report Generator in Salesforce: data intake, asset table and dialogs, interval table, report texts, sliders and settings, report XML."
     },
     {
       "path": "eh-emulation",

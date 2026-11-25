@@ -62,7 +62,8 @@ Eine Nummer `major.minor.patch` laesst sich nur einmal freigeben.
 | `dibaReportState` | Vorlagen je Reportsprache, Sprachwechsel, Speichern je Feld mit Version, wie `ReportTemplates`, `ReportState` und `ReportValuesSession` |
 | `dibaRowStore`, `dibaTexts` | Zeilen einer Anlage und Uebersetzungen, je Seite einmal geladen und geteilt |
 | `dibaMaintenanceModal` | die Anlagentabelle als Dialog ueber den ganzen Bildschirm |
-| `dibaMaintenance` | laedt die Zeilen seitenweise (2.000 je Aufruf), prueft und speichert Aenderungen (500 Zeilen je Aufruf) |
+| `dibaMaintenance` | die vier Tabellendialoge (Anlage, Breakdown, Migration, Vorbeugung) mit den Spalten aus `dibaColumns`; prueft und speichert Aenderungen (500 Zeilen je Aufruf) |
+| `dibaIntervalModal` | die Intervalltabelle der Anlage: Vorgaben von E+H mit den Aenderungen der Anlage, Zelle fuer Zelle gespeichert |
 | `dibaGrid` | die Tabelle: zeichnet nur die sichtbaren Zeilen, Filter und Sortierung je Spalte, Bearbeiten per Klick |
 | `dibaGridModel`, `dibaRowLogic` | Logik ohne Oberflaeche: Filtern, Sortieren, Fenster; Stammdatenaenderungen, Wartungsrisiko, Obsoleszenz wie in IBA-Salesforce |
 | `dibaReportXml` | das Report-XML fuer den CRGenerator, Zeichen fuer Zeichen wie IBA-Salesforce es schreibt |

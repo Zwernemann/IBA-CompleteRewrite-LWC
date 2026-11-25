@@ -2,10 +2,12 @@ import { createElement } from "lwc";
 import DibaMaintenance from "c/dibaMaintenance";
 import getRows from "@salesforce/apex/DibaPlantController.getRows";
 import saveRows from "@salesforce/apex/DibaPlantController.saveRows";
+import getIntervals from "@salesforce/apex/DibaIntervalController.getIntervals";
 import { forgetRows } from "c/dibaRowStore";
 
 jest.mock("@salesforce/apex/DibaPlantController.getRows", () => ({ default: jest.fn() }), { virtual: true });
 jest.mock("@salesforce/apex/DibaPlantController.saveRows", () => ({ default: jest.fn() }), { virtual: true });
+jest.mock("@salesforce/apex/DibaIntervalController.getIntervals", () => ({ default: jest.fn() }), { virtual: true });
 
 function row(id, extra = {}) {
     return {
@@ -35,6 +37,7 @@ describe("c-diba-maintenance", () => {
         getRows.mockReset();
         saveRows.mockReset();
         forgetRows("a01000000000001AAA");
+        global.fetch = jest.fn(() => Promise.resolve({ ok: true, json: () => Promise.resolve({ en: {} }) }));
     });
 
     afterEach(() => {
@@ -123,5 +126,22 @@ describe("c-diba-maintenance", () => {
 
         expect(saveRows).not.toHaveBeenCalled();
         expect(element.shadowRoot.querySelector(".slds-alert_warning").textContent).toContain("is not a date");
+    });
+
+    it("shows the intervals of the interval table in the preventative view", async () => {
+        getRows.mockResolvedValueOnce({
+            rows: [row("1", { devicetype_spk: "TA", device_criticality: "low", device_conditions: "normal" })],
+            nextAfter: null
+        });
+        getIntervals.mockResolvedValueOnce({ rows: [{ id: 86, spk: "TA", low_normal_insp: "48", low_normal_calib: "36", low_normal_valid: "NA" }] });
+        const element = createElement("c-diba-maintenance", { is: DibaMaintenance });
+        element.plantId = "a01000000000001AAA";
+        element.view = "preventative";
+        document.body.appendChild(element);
+        await settle();
+        const grid = element.shadowRoot.querySelector("c-diba-grid");
+        expect(grid.columns).toHaveLength(20);
+        expect(grid.rows[0].device_insp_interval).toBe("48");
+        expect(grid.rows[0].device_calib_interval).toBe("36");
     });
 });

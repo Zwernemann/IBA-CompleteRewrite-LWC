@@ -47,6 +47,7 @@
                             icon-name="utility:table"
                             class="slds-m-bottom_medium"
                             data-id="open-assets"
+                            data-view="maintenance"
                             onclick={handleOpenAssets}
                         ></lightning-button>
                         <div class="diba-sliders">
@@ -92,6 +93,7 @@
                         </template>
                     </lightning-tab>
                     <lightning-tab label={labels.breakdown} value="breakdown">
+                        <lightning-button label={labels.editBreakdown} icon-name="utility:table" class="slds-m-bottom_medium" data-view="breakdown" data-id="open-breakdown" onclick={handleOpenAssets}></lightning-button>
                         <template for:each={criticalityTexts} for:item="text">
                             <lightning-textarea key={text.name} label={text.label} value={text.value} max-length="50" data-name={text.name} onchange={handlePlainText} class="slds-m-bottom_small"></lightning-textarea>
                         </template>
@@ -103,6 +105,7 @@
                         </template>
                     </lightning-tab>
                     <lightning-tab label={labels.migration} value="migration">
+                        <lightning-button label={labels.editMigration} icon-name="utility:table" class="slds-m-bottom_medium" data-view="migration" data-id="open-migration" onclick={handleOpenAssets}></lightning-button>
                         <template for:each={migrationTexts} for:item="text">
                             <div key={text.name}>
                                 <h3 class="slds-text-heading_small slds-m-bottom_x-small">{text.label}</h3>
@@ -111,6 +114,10 @@
                         </template>
                     </lightning-tab>
                     <lightning-tab label={labels.preventative} value="preventative">
+                        <div class="slds-m-bottom_medium">
+                            <lightning-button label={labels.editPreventative} icon-name="utility:table" class="slds-m-right_x-small" data-view="preventative" data-id="open-preventative" onclick={handleOpenAssets}></lightning-button>
+                            <lightning-button label={labels.editIntervals} icon-name="utility:table" data-id="open-intervals" onclick={handleOpenIntervals}></lightning-button>
+                        </div>
                         <template for:each={preventativeTexts} for:item="text">
                             <div key={text.name}>
                                 <h3 class="slds-text-heading_small slds-m-bottom_x-small">{text.label}</h3>

@@ -10,6 +10,7 @@ import getRows from "@salesforce/apex/DibaPlantController.getRows";
 import { forgetRows } from "c/dibaRowStore";
 
 jest.mock("c/dibaMaintenanceModal", () => ({ __esModule: true, default: { open: jest.fn() } }));
+jest.mock("c/dibaIntervalModal", () => ({ __esModule: true, default: { open: jest.fn() } }));
 jest.mock("@salesforce/apex/DibaReportValuesController.load", () => ({ default: jest.fn() }), { virtual: true });
 jest.mock("@salesforce/apex/DibaReportValuesController.save", () => ({ default: jest.fn() }), { virtual: true });
 jest.mock("@salesforce/apex/DibaIntervalController.getIntervals", () => ({ default: jest.fn() }), { virtual: true });
@@ -113,6 +114,16 @@ describe("c-diba-plant", () => {
         const element = await open();
         element.shadowRoot.querySelector('[data-id="open-assets"]').click();
         await settle();
-        expect(DibaMaintenanceModal.open).toHaveBeenCalledWith(expect.objectContaining({ plantId: "a01A" }));
+        expect(DibaMaintenanceModal.open).toHaveBeenCalledWith(expect.objectContaining({ plantId: "a01A", view: "maintenance" }));
+    });
+
+    it("opens the other dialogs in their view", async () => {
+        DibaMaintenanceModal.open.mockResolvedValue("closed");
+        const element = await open();
+        element.shadowRoot.querySelector('[data-id="open-migration"]').click();
+        await settle();
+        expect(DibaMaintenanceModal.open).toHaveBeenLastCalledWith(
+            expect.objectContaining({ view: "migration", title: "Edit extended migration table" })
+        );
     });
 });

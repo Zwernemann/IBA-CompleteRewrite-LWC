@@ -5,9 +5,13 @@ import LightningModal from "lightning/modal";
 export default class DibaMaintenanceModal extends LightningModal {
     @api plantId;
     @api plantName;
+    /** maintenance, breakdown, migration or preventative, see c/dibaColumns */
+    @api view = "maintenance";
+    /** The title of the dialog, in the language of the user interface. */
+    @api title;
 
     get heading() {
-        return `Assets: ${this.plantName || ""}`;
+        return `${this.title || "Assets"}: ${this.plantName || ""}`;
     }
 
     get gridHeight() {

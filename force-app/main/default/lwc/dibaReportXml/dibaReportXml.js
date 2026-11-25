@@ -278,22 +278,32 @@ function productStatusDates(d) {
 
 const unset = (value) => value === undefined || value === null || value === "" || value === "-";
 
+/**
+ * The intervals of a row from its row of the interval table, in the column of its
+ * criticality and conditions; "-" without such a column (IbaDeviceTools.refreshInterval).
+ * Null without a row of the table.
+ */
+export function intervalValues(row, interval) {
+    if (!interval) return null;
+    const criticality = text(row.device_criticality).toLowerCase();
+    const conditions = text(row.device_conditions).toLowerCase();
+    const column = (kind) => {
+        const name = `${criticality}_${conditions}_${kind}`;
+        return INTERVAL_COLUMNS.includes(name) ? text(interval[name]) : "-";
+    };
+    return { insp: column("insp"), calib: column("calib"), valid: column("valid") };
+}
+
 /** IbaDeviceTools.refreshCalibrationSingleInterval, then the "-" of recommendedIntervals. */
 function intervalsOf(d, type) {
-    if (d.devicetype_spk !== "" && type) {
-        const column = (kind) => {
-            const name = `${d.device_criticality.toLowerCase()}_${d.device_conditions.toLowerCase()}_${kind}`;
-            return INTERVAL_COLUMNS.includes(name) ? text(type[name]) : "-";
-        };
-        const insp = column("insp");
-        const calib = column("calib");
-        const valid = column("valid");
-        if (unset(d.reco_calib_interval)) d.reco_calib_interval = calib;
-        if (unset(d.reco_insp_interval)) d.reco_insp_interval = insp;
-        if (unset(d.reco_valid_interval)) d.reco_valid_interval = valid;
-        d.device_calib_interval = calib;
-        d.device_insp_interval = insp;
-        d.device_valid_interval = valid;
+    const values = d.devicetype_spk !== "" ? intervalValues(d, type) : null;
+    if (values) {
+        if (unset(d.reco_calib_interval)) d.reco_calib_interval = values.calib;
+        if (unset(d.reco_insp_interval)) d.reco_insp_interval = values.insp;
+        if (unset(d.reco_valid_interval)) d.reco_valid_interval = values.valid;
+        d.device_calib_interval = values.calib;
+        d.device_insp_interval = values.insp;
+        d.device_valid_interval = values.valid;
     }
     for (const name of [
         "reco_insp_interval",

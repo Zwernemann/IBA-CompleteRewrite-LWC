@@ -12,8 +12,9 @@ Nachfolger der Tomcat-Fassung `Zwernemann/IBA-Salesforce`.
 | 2a | Tab "DIBA Report", Anlagentabelle (Wartungsdialog) als virtuelle Tabelle mit Filtern, Sortierung, Zellbearbeitung, Sperren bei gleichzeitiger Bearbeitung; Lasttestanlage | dieser Stand |
 | 2b | Report-XML im Browser, zeichengleich mit IBA-Salesforce | fertig |
 | 2c | Report ueber den CRGenerator, Ablage als File | offen, braucht die Versions-Id des CRGenerator-Pakets |
-| 3a | Reiter mit Reporttexten (Vorlagen je Sprache, Seitenumbruch, Zuruecksetzen), Schieberegler, Reporteinstellungen, Speichern je Feld mit Version; Download des Report-XML | dieser Stand |
-| 3b | Dialoge Breakdown, Migration, Vorbeugung, Intervalltabelle; Order Code Transformer; Anhaenge | offen |
+| 3a | Reiter mit Reporttexten (Vorlagen je Sprache, Seitenumbruch, Zuruecksetzen), Schieberegler, Reporteinstellungen, Speichern je Feld mit Version; Download des Report-XML | fertig |
+| 3b | Dialoge Breakdown, Migration, Vorbeugung (mit berechneten Intervallen), Intervalltabelle der Anlage | dieser Stand |
+| 3c | Order Code Transformer, Anhaenge (Logo, PDFs) | offen |
 
 ## Installieren
 

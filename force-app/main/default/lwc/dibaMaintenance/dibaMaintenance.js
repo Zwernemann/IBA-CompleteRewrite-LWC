@@ -1,12 +1,16 @@
 import { LightningElement, api } from "lwc";
 import saveRows from "@salesforce/apex/DibaPlantController.saveRows";
+import getIntervals from "@salesforce/apex/DibaIntervalController.getIntervals";
 import { loadRows } from "c/dibaRowStore";
+import { columnsFor } from "c/dibaColumns";
+import { intervalValues } from "c/dibaReportXml";
+import { translator } from "c/dibaReportState";
+import { loadTranslations, userLanguage } from "c/dibaTexts";
 import {
     CONSULTANT_FIELDS,
     MASTER_FIELDS,
     checkValue,
     editFor,
-    isEndressHauser,
     prepareRow,
     refreshCalculated
 } from "c/dibaRowLogic";
@@ -14,29 +18,18 @@ import {
 const SAVE_DELAY = 800;
 const SAVE_BATCH = 500;
 
-const option = (value, label) => ({ value, label: label || value });
-
-const CRITICALITY = [option("low"), option("medium"), option("high"), option("notset")];
-const CONDITIONS = [option("normal"), option("heavy"), option("notset")];
-const ACCESSIBILITY = [option("easy"), option("moderate"), option("difficult"), option("", "notset")];
-const EFFECTIVENESS = [option("low"), option("medium"), option("high")];
-const ACTIVITIES = [option("yes"), option("no"), option("", "notset")];
-const SPECIAL_DEMANDS = [option("true", "Yes"), option("false", "No")];
-const RISK = [option("low"), option("normal"), option("high"), option("notset")];
-const OBSOLESCENCE = [option("low"), option("medium"), option("high"), option("notset")];
-
-const always = () => true;
-const notEndressHauser = (row) => !isEndressHauser(row);
-
 /**
- * The plant table of the maintenance dialog (ibaMaintDialog.xhtml of IBA-Salesforce): all
- * rows of a plant, master data editable beside the Salesforce values, saved as the
- * consultant types. Rows someone else saved in the meantime are not overwritten: they are
- * reloaded and named.
+ * The table dialogs of a plant (ibaMaintDialog, ibaBreakdownDialog, ibaMigrationDialog,
+ * ibaPreventativeDialog of IBA-Salesforce): all rows, with the columns of the dialog
+ * (c/dibaColumns). Master data is editable beside the Salesforce values, consultant input
+ * directly; saved as the consultant types. Rows someone else saved in the meantime are not
+ * overwritten: they are reloaded and named.
  */
 export default class DibaMaintenance extends LightningElement {
     @api plantId;
     @api height = 560;
+    /** maintenance, breakdown, migration or preventative */
+    @api view = "maintenance";
 
     rows = [];
     byId = new Map();
@@ -50,55 +43,7 @@ export default class DibaMaintenance extends LightningElement {
     saving = false;
     saveTimer;
 
-    columns = [
-        { field: "device_tag", label: "Tag", width: 140, editable: always },
-        { field: "supplier_name", label: "Manufacturer", width: 130 },
-        { field: "device_ordercode", label: "Order code", width: 170, editable: notEndressHauser },
-        { field: "device_serialnumber", label: "Serial number", width: 130, editable: notEndressHauser },
-        { field: "device_shortname", label: "Product name", width: 150, editable: notEndressHauser },
-        { field: "devicetype_spk", label: "SPK", width: 60, editable: notEndressHauser },
-        { field: "device_measuringtask", label: "Parameter type", width: 120 },
-        {
-            field: "device_manufacturingdate",
-            label: "Manufacturing date",
-            width: 140,
-            type: "date",
-            editable: notEndressHauser
-        },
-        { field: "device_criticality", label: "Criticality", width: 110, type: "select", options: CRITICALITY, editable: always },
-        { field: "location_name", label: "Location", width: 180 },
-        { field: "device_riskofmaint", label: "Risk of maintainability", width: 130, type: "select", options: RISK },
-        { field: "device_conditions", label: "Conditions", width: 110, type: "select", options: CONDITIONS, editable: always },
-        {
-            field: "device_specialdemands",
-            label: "Special demands",
-            width: 110,
-            type: "select",
-            options: SPECIAL_DEMANDS,
-            editable: always
-        },
-        { field: "device_property_envrelevant", label: "Environment related", width: 110, type: "checkbox", editable: always },
-        { field: "device_property_safetyrelevant", label: "Safety related", width: 110, type: "checkbox", editable: always },
-        { field: "device_property_qualityrelevant", label: "Quality related", width: 110, type: "checkbox", editable: always },
-        { field: "device_obsolence", label: "Product status", width: 110, type: "select", options: OBSOLESCENCE },
-        {
-            field: "device_accessibility",
-            label: "Accessibility",
-            width: 120,
-            type: "select",
-            options: ACCESSIBILITY,
-            editable: always
-        },
-        {
-            field: "device_maint_effectivness",
-            label: "Maintenance effectiveness",
-            width: 130,
-            type: "select",
-            options: EFFECTIVENESS,
-            editable: always
-        },
-        { field: "device_activities", label: "Activities", width: 100, type: "select", options: ACTIVITIES, editable: always }
-    ];
+    columns = [];
 
     connectedCallback() {
         this.load();
@@ -131,9 +76,17 @@ export default class DibaMaintenance extends LightningElement {
     async load() {
         this.loading = true;
         try {
-            const rows = await loadRows(this.plantId, (count) => {
-                this.loaded = count;
-            });
+            const [translations, rows] = await Promise.all([
+                loadTranslations(),
+                loadRows(this.plantId, (count) => {
+                    this.loaded = count;
+                })
+            ]);
+            this.columns = columnsFor(this.view, translator(translations, userLanguage()));
+            if (this.view === "preventative") {
+                const table = await getIntervals({ plantId: this.plantId });
+                this.applyIntervals(rows, table.rows);
+            }
             this.rows = rows.slice();
             this.byId = new Map(rows.map((row) => [row.id, row]));
             this.shown = rows.length;
@@ -142,6 +95,22 @@ export default class DibaMaintenance extends LightningElement {
         } finally {
             this.loading = false;
         }
+    }
+
+    /** The calculated intervals from the interval table of the plant (not stored). */
+    applyIntervals(rows, intervals) {
+        this.intervalsBySpk = new Map(intervals.filter((i) => i.spk).map((i) => [i.spk, i]));
+        for (const row of rows) {
+            this.refreshIntervals(row);
+        }
+    }
+
+    refreshIntervals(row) {
+        if (!this.intervalsBySpk) return;
+        const values = row.devicetype_spk ? intervalValues(row, this.intervalsBySpk.get(row.devicetype_spk)) : null;
+        row.device_insp_interval = values ? values.insp : "-";
+        row.device_calib_interval = values ? values.calib : "-";
+        row.device_valid_interval = values ? values.valid : "-";
     }
 
     /**
@@ -189,6 +158,7 @@ export default class DibaMaintenance extends LightningElement {
             change.values.device_riskofmaint = row.device_riskofmaint;
             change.values.device_obsolence = row.device_obsolence;
         }
+        this.refreshIntervals(row);
         this.queue(row, change);
         this.rows = [...this.rows];
     }
