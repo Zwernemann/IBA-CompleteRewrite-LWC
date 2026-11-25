@@ -129,15 +129,12 @@ global with sharing class DibaLargeAccount implements Queueable {
         if (Test.isRunningTest()) {
             return;
         }
-        // One job may start one other: the next part, after the last the Order Code Transformer.
+        // One job may start one other: the next part. The successors of the order codes are
+        // not looked up for the load test; the rows stay pending until their next delivery.
         if (part < partCount(rows)) {
             System.enqueueJob(
                 new DibaLargeAccount(accountId, accountName, rows, part + 1, transmissionId)
             );
-        } else {
-            Id accountDataId = [SELECT Id FROM DIBA_Account__c WHERE Account_Key__c = :accountId]
-            .Id;
-            System.enqueueJob(new DibaOrderCodeJob(accountDataId));
         }
     }
 

@@ -15,6 +15,22 @@ cd "$REPO_ROOT"
 package_known "$PACKAGE" || "$REPO_ROOT/scripts/packages-ensure.sh" > /dev/null \
     || fail "Pakete im Dev Hub nicht gefunden und nicht angelegt."
 
+# A version number can be released only once. If it is, that version is used and nothing is
+# built: a build costs minutes and counts against the daily quota of the Dev Hub.
+RELEASED_ID="$(sf package version list --packages "$PACKAGE" --released --json 2> /dev/null | node -e '
+    const r = JSON.parse(require("fs").readFileSync(0, "utf8"));
+    const want = process.argv[1] + ".";
+    const v = ((r && r.result) || []).find((x) => String(x.Version).startsWith(want));
+    console.log(v ? v.SubscriberPackageVersionId : "");
+' "$(package_version "$PACKAGE")" || true)"
+
+if [ -n "$RELEASED_ID" ]; then
+    VERSION_ID="$RELEASED_ID"
+    PROMOTE=""
+    STATE="freigegeben, schon vorher gebaut"
+    note "\"$PACKAGE\" $(package_version "$PACKAGE") ist schon freigegeben, baue nicht neu"
+else
+
 note "Baue eine neue Version von \"$PACKAGE\" ($(package_version "$PACKAGE")), das dauert einige Minuten"
 RESULT="$(sf package version create --package "$PACKAGE" --installation-key-bypass \
     --code-coverage --wait 60 --json || true)"
@@ -33,6 +49,7 @@ if [ "$PROMOTE" = "--promote" ]; then
     sf package version promote --package "$VERSION_ID" --no-prompt > /dev/null \
         || fail "Freigabe von $VERSION_ID gescheitert (Testabdeckung unter 75 % oder Versionsnummer schon freigegeben?)."
     STATE="freigegeben"
+fi
 fi
 
 note "\"$PACKAGE\" $VERSION_ID ($STATE)"

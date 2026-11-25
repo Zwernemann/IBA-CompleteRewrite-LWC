@@ -12,7 +12,7 @@
       "path": "eh-emulation",
       "package": "DIBA Test Data",
       "versionName": "Lasttest",
-      "versionNumber": "0.2.3.NEXT",
+      "versionNumber": "0.2.4.NEXT",
       "versionDescription": "Test plant for test orgs, delivered through mzw.DibaImport. Never installed at E+H.",
       "dependencies": [
         {
