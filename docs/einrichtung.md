@@ -1,7 +1,7 @@
 # Einrichtung und erste Installation
 
-Alles geht im Browser. Einmalig wird ein Schluessel erzeugt (in einem GitHub Codespace),
-danach baut GitHub die Installer selbst.
+Alles geht im Browser. Einmalig erzeugt GitHub einen Schluessel, danach baut GitHub die
+Installer selbst.
 
 Beteiligt sind:
 
@@ -11,28 +11,22 @@ Beteiligt sind:
 | **Ziel-Org** | wo installiert wird: eine Sandbox, eine Developer Edition oder spaeter E+H |
 | **GitHub** | haelt den Schluessel als Secret und baut bei jedem Push oder auf Knopfdruck |
 
-## 1. Schluessel erzeugen (Codespace, einmalig)
+## 1. Schluessel erzeugen (einmalig)
 
-1. Im Repository auf GitHub: **Code**, Reiter **Codespaces**, **Create codespace on
-   claude/gifted-johnson-2lve4o** (oder auf dem Branch, auf dem gearbeitet wird).
-2. Im Terminal unten:
+1. Im Repository auf GitHub: **Actions**, links den Workflow **Schluessel erzeugen**,
+   rechts **Run workflow**, Branch `claude/gifted-johnson-2lve4o` (oder der Branch, auf dem
+   gearbeitet wird), Org **devhub**, gruener Knopf **Run workflow**.
+2. Nach etwa einer halben Minute den Lauf oeffnen. Unten unter **Artifacts** liegt
+   `schluessel-devhub`; anklicken, es kommt eine ZIP-Datei mit `devhub.crt` und
+   `devhub.key`.
+3. ZIP entpacken. `devhub.crt` kommt in Schritt 2 nach Salesforce. `devhub.key` mit einem
+   Texteditor oeffnen (Editor unter Windows); der ganze Inhalt kommt in Schritt 3 nach
+   GitHub.
+4. Danach im Lauf das Artefakt mit dem Papierkorb loeschen und die Dateien auf dem Rechner
+   loeschen. Der private Schluessel gehoert nur in das GitHub Secret.
 
-   ```bash
-   scripts/jwt-setup.sh devhub
-   ```
-
-   Erwartet: zwei Dateien `config/devhub.crt` und `config/devhub.key`.
-3. Links im Explorer `config/devhub.crt` rechts anklicken, **Download**. Diese Datei kommt
-   in Schritt 2 nach Salesforce.
-4. Den privaten Schluessel anzeigen und ganz kopieren (von `-----BEGIN` bis `-----END
-   PRIVATE KEY-----` einschliesslich):
-
-   ```bash
-   cat config/devhub.key
-   ```
-
-   Er kommt in Schritt 3 nach GitHub. Danach den Codespace loeschen (GitHub, Codespaces,
-   "..." am Codespace, Delete); der Schluessel verschwindet mit ihm.
+Wer eine Shell hat (Codespace, Linux, Git Bash): `scripts/jwt-setup.sh devhub` erzeugt
+dieselben Dateien unter `config/`.
 
 ## 2. External Client App im Dev Hub (einmalig)
 
@@ -103,7 +97,7 @@ Schaltflaeche **DIBA Report** druecken.
 ## Spaeter: feste Test-Org fuer die CI
 
 Fuer Upgrade- und Ende-zu-Ende-Tests bei jedem Push auf `main` dieselben Schritte 1 bis 3
-mit `scripts/jwt-setup.sh testorg` in der Test-Org und den Secrets `SF_TESTORG_USERNAME`,
+mit dem Workflow **Schluessel erzeugen** fuer **testorg** in der Test-Org und den Secrets `SF_TESTORG_USERNAME`,
 `SF_TESTORG_CLIENT_ID`, `SF_TESTORG_JWT_KEY` (bei einer Sandbox zusaetzlich
 `SF_TESTORG_LOGIN_URL` = `https://test.salesforce.com`). Ohne diese Secrets entfallen die
 Org-Tests mit einem Hinweis.

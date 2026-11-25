@@ -1,0 +1,30 @@
+name: Schluessel erzeugen
+
+# Creates the key pair with which the CI signs in to an org (JWT bearer flow), for whoever
+# has no shell at hand: the files come as an artifact of the run, kept for one day.
+# The certificate goes into the External Client App of the org, the private key into a
+# GitHub secret (docs/einrichtung.md). Delete the artifact afterwards.
+
+on:
+  workflow_dispatch:
+    inputs:
+      org:
+        description: "Fuer welche Org"
+        type: choice
+        options: ["devhub", "testorg"]
+
+jobs:
+  keys:
+    name: Schluessel erzeugen
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Schluesselpaar
+        run: scripts/jwt-setup.sh "${{ inputs.org }}"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: schluessel-${{ inputs.org }}
+          path: |
+            config/${{ inputs.org }}.crt
+            config/${{ inputs.org }}.key
+          retention-days: 1
