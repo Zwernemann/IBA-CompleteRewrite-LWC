@@ -57,7 +57,7 @@ package_version() {
     ' "$REPO_ROOT" "$1"
 }
 
-# Whether sfdx-project.json knows the package id (created once with packages-create.sh).
+# Whether sfdx-project.json knows the package id (written by packages-ensure.sh).
 package_known() {
     node -e '
         const p = require(process.argv[1] + "/sfdx-project.json");
