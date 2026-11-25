@@ -10,7 +10,8 @@ Nachfolger der Tomcat-Fassung `Zwernemann/IBA-Salesforce`.
 |---|---|---|
 | 1 | Datenmodell, Dateneingang `mzw.DibaImport`, Intervalltabelle, Permission Sets, CI mit Installer | fertig |
 | 2a | Tab "DIBA Report", Anlagentabelle (Wartungsdialog) als virtuelle Tabelle mit Filtern, Sortierung, Zellbearbeitung, Sperren bei gleichzeitiger Bearbeitung; Lasttestanlage | dieser Stand |
-| 2b | Report-XML, Report ueber den CRGenerator, Ablage als File | offen, braucht die Versions-Id des CRGenerator-Pakets |
+| 2b | Report-XML im Browser, zeichengleich mit IBA-Salesforce | fertig |
+| 2c | Report ueber den CRGenerator, Ablage als File | offen, braucht die Versions-Id des CRGenerator-Pakets |
 | 3 | uebrige Dialoge, Reporttexte, Order Code Transformer, Anhaenge | offen |
 
 ## Installieren

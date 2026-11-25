@@ -61,12 +61,23 @@ Eine Nummer `major.minor.patch` laesst sich nur einmal freigeben.
 | `dibaMaintenance` | laedt die Zeilen seitenweise (2.000 je Aufruf), prueft und speichert Aenderungen (500 Zeilen je Aufruf) |
 | `dibaGrid` | die Tabelle: zeichnet nur die sichtbaren Zeilen, Filter und Sortierung je Spalte, Bearbeiten per Klick |
 | `dibaGridModel`, `dibaRowLogic` | Logik ohne Oberflaeche: Filtern, Sortieren, Fenster; Stammdatenaenderungen, Wartungsrisiko, Obsoleszenz wie in IBA-Salesforce |
+| `dibaReportXml` | das Report-XML fuer den CRGenerator, Zeichen fuer Zeichen wie IBA-Salesforce es schreibt |
 
 Die Zeilen kommen von `DibaPlantController` mit den Elementnamen des Report-XML als
 Schluessel (`DibaRowFields`), damit die Komponenten keine Feldnamen mit Namespace sehen.
 Stammdaten aendert der Berater nie direkt, sondern als `DIBA_Master_Edit__c` neben dem
 Salesforce-Wert, wie bisher. Wartungsrisiko und Obsoleszenz rechnet der Browser beim
 Laden; gespeichert werden sie mit der naechsten Aenderung der Zeile.
+
+## Report-XML
+
+`c/dibaReportXml` baut das XML aus den Zeilen der Tabelle, den Reporttexten, den
+Einstellungen und der Intervalltabelle: Geraetefelder wie `DeviceDataMapper` und
+`ReportXmlFields` (Ersatznummern aus SHA-256, Intervalle, Produktstatusdaten), die Zeitleiste
+wie Jsoup, die Ausgabe wie JAXB, danach die Anpassungen des `FineTuneWriter`. Die Tests
+vergleichen gegen Referenzen, die der Java-Code geschrieben hat, darunter die Pfizer-Anlage
+mit 2.358 Zeilen; siehe `test/reportxml/README.md`. 50.000 Zeilen brauchen in Node rund
+3 s und ergeben gut 100 MB XML.
 
 ## Lasttest
 

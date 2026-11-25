@@ -1,0 +1,3330 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ibadata>
+    <devices>
+        <device>
+            <site_oid>3757808308967</site_oid>
+            <device_oid>1001</device_oid>
+            <supplier_oid>243481871792349</supplier_oid>
+            <location_oid>39907478667991</location_oid>
+            <devicetype_oid>0</devicetype_oid>
+            <api_instrumentation_id>101265366245750</api_instrumentation_id>
+            <api_asset_id>46879698587157</api_asset_id>
+            <site_name>DIBA Testanlage Nord</site_name>
+            <supplier_name></supplier_name>
+            <location_name>DIBA Testanlage Nord</location_name>
+            <device_shortname></device_shortname>
+            <device_criticality></device_criticality>
+            <device_accessibility></device_accessibility>
+            <device_ordercode></device_ordercode>
+            <device_riskofmaint>normal</device_riskofmaint>
+            <device_serialnumber></device_serialnumber>
+            <device_measuringtask></device_measuringtask>
+            <device_tag>PI-1009</device_tag>
+            <device_manufacturingdate></device_manufacturingdate>
+            <device_conditions></device_conditions>
+            <device_specialdemands>0</device_specialdemands>
+            <devicetype_spk></devicetype_spk>
+            <devicetype_label_lang></devicetype_label_lang>
+            <devicetype_label_description></devicetype_label_description>
+            <device_property_envrelevant>false</device_property_envrelevant>
+            <device_property_safetyrelevant>false</device_property_safetyrelevant>
+            <device_property_qualityrelevant>false</device_property_qualityrelevant>
+            <device_activities></device_activities>
+            <device_maint_effectivness></device_maint_effectivness>
+            <psl_status></psl_status>
+            <device_obsolence>medium</device_obsolence>
+            <device_assettype>not defined</device_assettype>
+            <add_ordercode_transform></add_ordercode_transform>
+            <add_recomend_ordercode></add_recomend_ordercode>
+            <add_amount_spare></add_amount_spare>
+            <add_remark1></add_remark1>
+            <add_remark2></add_remark2>
+            <add_remark3></add_remark3>
+            <add_nu_price>12.5</add_nu_price>
+            <reco_insp_interval>-</reco_insp_interval>
+            <reco_calib_interval>-</reco_calib_interval>
+            <reco_valid_interval>-</reco_valid_interval>
+            <device_insp_interval>-</device_insp_interval>
+            <device_calib_interval>-</device_calib_interval>
+            <device_valid_interval>-</device_valid_interval>
+            <out_device_conditions></out_device_conditions>
+            <psl_npw>9999-12-31T00:00:00Z</psl_npw>
+            <psl_pcstop>9999-12-31T00:00:00Z</psl_pcstop>
+            <psl_sparesuntil>3000-01-01T00:00:00Z</psl_sparesuntil>
+        </device>
+        <device>
+            <site_oid>3757808308967</site_oid>
+            <device_oid>1002</device_oid>
+            <supplier_oid>243481871792349</supplier_oid>
+            <location_oid>39907478667991</location_oid>
+            <devicetype_oid>0</devicetype_oid>
+            <api_instrumentation_id>168062722101509</api_instrumentation_id>
+            <api_asset_id>172907500149864</api_asset_id>
+            <site_name>DIBA Testanlage Nord</site_name>
+            <supplier_name></supplier_name>
+            <location_name>DIBA Testanlage Nord</location_name>
+            <device_shortname></device_shortname>
+            <device_criticality></device_criticality>
+            <device_accessibility></device_accessibility>
+            <device_ordercode></device_ordercode>
+            <device_riskofmaint>high</device_riskofmaint>
+            <device_serialnumber></device_serialnumber>
+            <device_measuringtask></device_measuringtask>
+            <device_tag>TI-1010</device_tag>
+            <device_manufacturingdate></device_manufacturingdate>
+            <device_conditions></device_conditions>
+            <device_specialdemands>0</device_specialdemands>
+            <devicetype_spk></devicetype_spk>
+            <devicetype_label_lang></devicetype_label_lang>
+            <devicetype_label_description></devicetype_label_description>
+            <device_property_envrelevant>false</device_property_envrelevant>
+            <device_property_safetyrelevant>false</device_property_safetyrelevant>
+            <device_property_qualityrelevant>false</device_property_qualityrelevant>
+            <device_activities>yes</device_activities>
+            <device_maint_effectivness></device_maint_effectivness>
+            <psl_status></psl_status>
+            <device_obsolence>high</device_obsolence>
+            <device_assettype>not defined</device_assettype>
+            <add_ordercode_transform></add_ordercode_transform>
+            <add_recomend_ordercode></add_recomend_ordercode>
+            <add_amount_spare></add_amount_spare>
+            <add_remark1></add_remark1>
+            <add_remark2></add_remark2>
+            <add_remark3></add_remark3>
+            <add_nu_price>1234.56</add_nu_price>
+            <reco_insp_interval>24</reco_insp_interval>
+            <reco_calib_interval>-</reco_calib_interval>
+            <reco_valid_interval>-</reco_valid_interval>
+            <device_insp_interval>-</device_insp_interval>
+            <device_calib_interval>-</device_calib_interval>
+            <device_valid_interval>-</device_valid_interval>
+            <out_device_conditions></out_device_conditions>
+            <psl_npw>9999-12-31T00:00:00Z</psl_npw>
+            <psl_pcstop>9999-12-31T00:00:00Z</psl_pcstop>
+            <psl_sparesuntil>3000-01-01T00:00:00Z</psl_sparesuntil>
+        </device>
+        <device>
+            <site_oid>3757808308967</site_oid>
+            <device_oid>1003</device_oid>
+            <supplier_oid>14368019020528</supplier_oid>
+            <location_oid>262377957769779</location_oid>
+            <devicetype_oid>88</devicetype_oid>
+            <api_instrumentation_id>141013192949150</api_instrumentation_id>
+            <api_asset_id>132383324371519</api_asset_id>
+            <api_product_id>33952283584383</api_product_id>
+            <site_name>DIBA Testanlage Nord</site_name>
+            <supplier_name>Endress+Hauser</supplier_name>
+            <location_name>Werk Nord, Halle A, Reaktor R-101</location_name>
+            <device_shortname>iTEMP TMT162</device_shortname>
+            <device_criticality>high</device_criticality>
+            <device_accessibility>difficult</device_accessibility>
+            <device_ordercode>TMT162-A1BCD2EF3GH</device_ordercode>
+            <device_riskofmaint>notset</device_riskofmaint>
+            <device_serialnumber>M409A204G7B</device_serialnumber>
+            <device_measuringtask>Temperature</device_measuringtask>
+            <device_tag>TI-1001</device_tag>
+            <device_manufacturingdate>2019-04-11</device_manufacturingdate>
+            <device_conditions>heavy</device_conditions>
+            <device_specialdemands>1</device_specialdemands>
+            <devicetype_spk>TM</devicetype_spk>
+            <devicetype_label_lang>en</devicetype_label_lang>
+            <devicetype_label_description>Temperature transmitter</devicetype_label_description>
+            <device_property_envrelevant>true</device_property_envrelevant>
+            <device_property_safetyrelevant>true</device_property_safetyrelevant>
+            <device_property_qualityrelevant>true</device_property_qualityrelevant>
+            <device_activities>no</device_activities>
+            <device_maint_effectivness>low</device_maint_effectivness>
+            <psl_status>available</psl_status>
+            <device_obsolence>notset</device_obsolence>
+            <device_assettype>Temperature, Transmitter</device_assettype>
+            <add_ordercode_transform></add_ordercode_transform>
+            <add_recomend_ordercode></add_recomend_ordercode>
+            <add_amount_spare></add_amount_spare>
+            <add_remark1></add_remark1>
+            <add_remark2></add_remark2>
+            <add_remark3></add_remark3>
+            <add_nu_price>0.1</add_nu_price>
+            <reco_insp_interval>NA</reco_insp_interval>
+            <reco_calib_interval>12</reco_calib_interval>
+            <reco_valid_interval>NA</reco_valid_interval>
+            <device_insp_interval>NA</device_insp_interval>
+            <device_calib_interval>12</device_calib_interval>
+            <device_valid_interval>NA</device_valid_interval>
+            <out_device_conditions></out_device_conditions>
+            <psl_npw>3000-01-01T00:00:00Z</psl_npw>
+            <psl_pcstop>3000-01-01T00:00:00Z</psl_pcstop>
+            <psl_sparesuntil>3000-01-01T00:00:00Z</psl_sparesuntil>
+        </device>
+        <device>
+            <site_oid>3757808308967</site_oid>
+            <device_oid>1004</device_oid>
+            <supplier_oid>14368019020528</supplier_oid>
+            <location_oid>211638873778810</location_oid>
+            <devicetype_oid>15</devicetype_oid>
+            <api_instrumentation_id>41485260547571</api_instrumentation_id>
+            <api_asset_id>279615253176546</api_asset_id>
+            <api_product_id>154326048530222</api_product_id>
+            <site_name>DIBA Testanlage Nord</site_name>
+            <supplier_name>Endress+Hauser</supplier_name>
+            <location_name>Werk Nord, Halle A, Zulauf</location_name>
+            <device_shortname>Promag W 400</device_shortname>
+            <device_criticality>medium</device_criticality>
+            <device_accessibility>moderate</device_accessibility>
+            <device_ordercode>5W4B50-AAAAAAAAAAAA</device_ordercode>
+            <device_riskofmaint>low</device_riskofmaint>
+            <device_serialnumber>P802B311K2C</device_serialnumber>
+            <device_measuringtask>Flow</device_measuringtask>
+            <device_tag>FI-1002</device_tag>
+            <device_manufacturingdate>2017-08-23</device_manufacturingdate>
+            <device_conditions>normal</device_conditions>
+            <device_specialdemands>0</device_specialdemands>
+            <devicetype_spk>DA</devicetype_spk>
+            <devicetype_label_lang>en</devicetype_label_lang>
+            <devicetype_label_description>Electromagnetic flowmeter</devicetype_label_description>
+            <device_property_envrelevant>false</device_property_envrelevant>
+            <device_property_safetyrelevant>true</device_property_safetyrelevant>
+            <device_property_qualityrelevant>true</device_property_qualityrelevant>
+            <device_activities></device_activities>
+            <device_maint_effectivness>medium</device_maint_effectivness>
+            <psl_status>phase out</psl_status>
+            <device_obsolence>low</device_obsolence>
+            <device_assettype>Flow, Electro-Magnetic</device_assettype>
+            <add_ordercode_transform></add_ordercode_transform>
+            <add_recomend_ordercode>R &amp; D &lt;neu&gt;</add_recomend_ordercode>
+            <add_amount_spare></add_amount_spare>
+            <add_remark1></add_remark1>
+            <add_remark2></add_remark2>
+            <add_remark3></add_remark3>
+            <add_nu_price>0.0</add_nu_price>
+            <reco_insp_interval>12</reco_insp_interval>
+            <reco_calib_interval>24</reco_calib_interval>
+            <reco_valid_interval>NA</reco_valid_interval>
+            <device_insp_interval>12</device_insp_interval>
+            <device_calib_interval>24</device_calib_interval>
+            <device_valid_interval>NA</device_valid_interval>
+            <out_device_conditions></out_device_conditions>
+            <psl_npw>1990-01-01T00:00:00Z</psl_npw>
+            <psl_pcstop>2100-01-01T00:00:00Z</psl_pcstop>
+            <psl_sparesuntil>3000-01-01T00:00:00Z</psl_sparesuntil>
+        </device>
+        <device>
+            <site_oid>3757808308967</site_oid>
+            <device_oid>1005</device_oid>
+            <supplier_oid>14368019020528</supplier_oid>
+            <location_oid>51958525205392</location_oid>
+            <devicetype_oid>35</devicetype_oid>
+            <api_instrumentation_id>4227471637931</api_instrumentation_id>
+            <api_asset_id>133978598284285</api_asset_id>
+            <api_product_id>226162717744449</api_product_id>
+            <site_name>DIBA Testanlage Nord</site_name>
+            <supplier_name>Endress+Hauser</supplier_name>
+            <location_name>Werk Nord, Tanklager, Tank T-12</location_name>
+            <device_shortname>Levelflex FMP51</device_shortname>
+            <device_criticality>low</device_criticality>
+            <device_accessibility>easy</device_accessibility>
+            <device_ordercode>FMP51-AABCDEFG</device_ordercode>
+            <device_riskofmaint>normal</device_riskofmaint>
+            <device_serialnumber>N511C7A1234</device_serialnumber>
+            <device_measuringtask>Level</device_measuringtask>
+            <device_tag>LI-1003</device_tag>
+            <device_manufacturingdate>2012-06-05</device_manufacturingdate>
+            <device_conditions>normal</device_conditions>
+            <device_specialdemands>0</device_specialdemands>
+            <devicetype_spk>FH</devicetype_spk>
+            <devicetype_label_lang>en</devicetype_label_lang>
+            <devicetype_label_description>Guided wave radar</devicetype_label_description>
+            <device_property_envrelevant>true</device_property_envrelevant>
+            <device_property_safetyrelevant>false</device_property_safetyrelevant>
+            <device_property_qualityrelevant>false</device_property_qualityrelevant>
+            <device_activities>yes</device_activities>
+            <device_maint_effectivness>high</device_maint_effectivness>
+            <psl_status>order stop</psl_status>
+            <device_obsolence>medium</device_obsolence>
+            <device_assettype>Level, Guided Radar</device_assettype>
+            <add_ordercode_transform></add_ordercode_transform>
+            <add_recomend_ordercode></add_recomend_ordercode>
+            <add_amount_spare></add_amount_spare>
+            <add_remark1>Zeile 1
+Zeile 2 ü</add_remark1>
+            <add_remark2></add_remark2>
+            <add_remark3></add_remark3>
+            <add_nu_price>12.5</add_nu_price>
+            <reco_insp_interval>24</reco_insp_interval>
+            <reco_calib_interval>48</reco_calib_interval>
+            <reco_valid_interval>NA</reco_valid_interval>
+            <device_insp_interval>24</device_insp_interval>
+            <device_calib_interval>48</device_calib_interval>
+            <device_valid_interval>NA</device_valid_interval>
+            <out_device_conditions></out_device_conditions>
+            <psl_npw>1990-01-01T00:00:00Z</psl_npw>
+            <psl_pcstop>1990-01-01T00:00:00Z</psl_pcstop>
+            <psl_sparesuntil>3000-01-01T00:00:00Z</psl_sparesuntil>
+        </device>
+        <device>
+            <site_oid>3757808308967</site_oid>
+            <device_oid>1006</device_oid>
+            <supplier_oid>14368019020528</supplier_oid>
+            <location_oid>225757768411755</location_oid>
+            <devicetype_oid>62</devicetype_oid>
+            <api_instrumentation_id>266394304653570</api_instrumentation_id>
+            <api_asset_id>126332967136932</api_asset_id>
+            <api_product_id>85456702934472</api_product_id>
+            <site_name>DIBA Testanlage Nord</site_name>
+            <supplier_name>Endress+Hauser</supplier_name>
+            <location_name>Werk Nord, Halle B</location_name>
+            <device_shortname>Cerabar PMP71</device_shortname>
+            <device_criticality>notset</device_criticality>
+            <device_accessibility>notset</device_accessibility>
+            <device_ordercode>PMP71-ABC1DEF2GHI</device_ordercode>
+            <device_riskofmaint>high</device_riskofmaint>
+            <device_serialnumber>K773D0099AA</device_serialnumber>
+            <device_measuringtask>Pressure</device_measuringtask>
+            <device_tag>PI-1004</device_tag>
+            <device_manufacturingdate>2021-02-17</device_manufacturingdate>
+            <device_conditions>notset</device_conditions>
+            <device_specialdemands>0</device_specialdemands>
+            <devicetype_spk>PA</devicetype_spk>
+            <devicetype_label_lang>en</devicetype_label_lang>
+            <devicetype_label_description>Pressure transmitter</devicetype_label_description>
+            <device_property_envrelevant>false</device_property_envrelevant>
+            <device_property_safetyrelevant>false</device_property_safetyrelevant>
+            <device_property_qualityrelevant>false</device_property_qualityrelevant>
+            <device_activities>no</device_activities>
+            <device_maint_effectivness></device_maint_effectivness>
+            <psl_status>available</psl_status>
+            <device_obsolence>high</device_obsolence>
+            <device_assettype>Pressure, Process</device_assettype>
+            <add_ordercode_transform></add_ordercode_transform>
+            <add_recomend_ordercode></add_recomend_ordercode>
+            <add_amount_spare></add_amount_spare>
+            <add_remark1></add_remark1>
+            <add_remark2></add_remark2>
+            <add_remark3></add_remark3>
+            <add_nu_price>1234.56</add_nu_price>
+            <reco_insp_interval>-</reco_insp_interval>
+            <reco_calib_interval>-</reco_calib_interval>
+            <reco_valid_interval>-</reco_valid_interval>
+            <device_insp_interval>-</device_insp_interval>
+            <device_calib_interval>-</device_calib_interval>
+            <device_valid_interval>-</device_valid_interval>
+            <out_device_conditions></out_device_conditions>
+            <psl_npw>3000-01-01T00:00:00Z</psl_npw>
+            <psl_pcstop>3000-01-01T00:00:00Z</psl_pcstop>
+            <psl_sparesuntil>3000-01-01T00:00:00Z</psl_sparesuntil>
+        </device>
+        <device>
+            <site_oid>3757808308967</site_oid>
+            <device_oid>1007</device_oid>
+            <supplier_oid>235919103005163</supplier_oid>
+            <location_oid>176233697486349</location_oid>
+            <devicetype_oid>4</devicetype_oid>
+            <api_instrumentation_id>277116303446493</api_instrumentation_id>
+            <api_asset_id>107704265367902</api_asset_id>
+            <api_product_id>123063691219172</api_product_id>
+            <site_name>DIBA Testanlage Nord</site_name>
+            <supplier_name>Fremdhersteller Mess AG</supplier_name>
+            <location_name>Werk Nord, Labor</location_name>
+            <device_shortname>Condumax CLS21D</device_shortname>
+            <device_criticality>medium</device_criticality>
+            <device_accessibility>easy</device_accessibility>
+            <device_ordercode>CLS21D-AA1</device_ordercode>
+            <device_riskofmaint>notset</device_riskofmaint>
+            <device_serialnumber>FM-2023-0455</device_serialnumber>
+            <device_measuringtask>Conductivity</device_measuringtask>
+            <device_tag>QI-1005</device_tag>
+            <device_manufacturingdate>2023-05-12</device_manufacturingdate>
+            <device_conditions>normal</device_conditions>
+            <device_specialdemands>0</device_specialdemands>
+            <devicetype_spk>CF</devicetype_spk>
+            <devicetype_label_lang>en</devicetype_label_lang>
+            <devicetype_label_description>Conductivity sensor</devicetype_label_description>
+            <device_property_envrelevant>false</device_property_envrelevant>
+            <device_property_safetyrelevant>false</device_property_safetyrelevant>
+            <device_property_qualityrelevant>true</device_property_qualityrelevant>
+            <device_activities></device_activities>
+            <device_maint_effectivness>low</device_maint_effectivness>
+            <psl_status></psl_status>
+            <device_obsolence>notset</device_obsolence>
+            <device_assettype>Analysis, Conductivity</device_assettype>
+            <add_ordercode_transform></add_ordercode_transform>
+            <add_recomend_ordercode></add_recomend_ordercode>
+            <add_amount_spare></add_amount_spare>
+            <add_remark1></add_remark1>
+            <add_remark2></add_remark2>
+            <add_remark3></add_remark3>
+            <add_nu_price>0.1</add_nu_price>
+            <reco_insp_interval>24</reco_insp_interval>
+            <reco_calib_interval>12</reco_calib_interval>
+            <reco_valid_interval>NA</reco_valid_interval>
+            <device_insp_interval>24</device_insp_interval>
+            <device_calib_interval>12</device_calib_interval>
+            <device_valid_interval>NA</device_valid_interval>
+            <out_device_conditions></out_device_conditions>
+            <psl_npw>9999-12-31T00:00:00Z</psl_npw>
+            <psl_pcstop>9999-12-31T00:00:00Z</psl_pcstop>
+            <psl_sparesuntil>3000-01-01T00:00:00Z</psl_sparesuntil>
+        </device>
+        <device>
+            <site_oid>3757808308967</site_oid>
+            <device_oid>1008</device_oid>
+            <supplier_oid>128368670330405</supplier_oid>
+            <location_oid>215513866701516</location_oid>
+            <devicetype_oid>86</devicetype_oid>
+            <api_instrumentation_id>149549583134237</api_instrumentation_id>
+            <api_asset_id>198121709327807</api_asset_id>
+            <api_product_id>131575658022393</api_product_id>
+            <site_name>DIBA Testanlage Nord</site_name>
+            <supplier_name>Thermo Technik GmbH</supplier_name>
+            <location_name>Werk Nord, Halle C, Ofen O-3</location_name>
+            <device_shortname>Widerstandsthermometer Typ A</device_shortname>
+            <device_criticality>high</device_criticality>
+            <device_accessibility>difficult</device_accessibility>
+            <device_ordercode>TT-RTD-100</device_ordercode>
+            <device_riskofmaint>low</device_riskofmaint>
+            <device_serialnumber>TT-160229-7</device_serialnumber>
+            <device_measuringtask>Temperature</device_measuringtask>
+            <device_tag>TI-1006</device_tag>
+            <device_manufacturingdate>2016-02-29</device_manufacturingdate>
+            <device_conditions>heavy</device_conditions>
+            <device_specialdemands>1</device_specialdemands>
+            <devicetype_spk>TA</devicetype_spk>
+            <devicetype_label_lang>en</devicetype_label_lang>
+            <devicetype_label_description>Temperature sensor</devicetype_label_description>
+            <device_property_envrelevant>false</device_property_envrelevant>
+            <device_property_safetyrelevant>true</device_property_safetyrelevant>
+            <device_property_qualityrelevant>false</device_property_qualityrelevant>
+            <device_activities>yes</device_activities>
+            <device_maint_effectivness>medium</device_maint_effectivness>
+            <psl_status></psl_status>
+            <device_obsolence>low</device_obsolence>
+            <device_assettype>Temperature, Resistor RTD</device_assettype>
+            <add_ordercode_transform></add_ordercode_transform>
+            <add_recomend_ordercode>R &amp; D &lt;neu&gt;</add_recomend_ordercode>
+            <add_amount_spare></add_amount_spare>
+            <add_remark1></add_remark1>
+            <add_remark2></add_remark2>
+            <add_remark3></add_remark3>
+            <add_nu_price>0.0</add_nu_price>
+            <reco_insp_interval>24</reco_insp_interval>
+            <reco_calib_interval>6</reco_calib_interval>
+            <reco_valid_interval>NA</reco_valid_interval>
+            <device_insp_interval>12</device_insp_interval>
+            <device_calib_interval>6</device_calib_interval>
+            <device_valid_interval>NA</device_valid_interval>
+            <out_device_conditions></out_device_conditions>
+            <psl_npw>9999-12-31T00:00:00Z</psl_npw>
+            <psl_pcstop>9999-12-31T00:00:00Z</psl_pcstop>
+            <psl_sparesuntil>3000-01-01T00:00:00Z</psl_sparesuntil>
+        </device>
+        <device>
+            <site_oid>3757808308967</site_oid>
+            <device_oid>1009</device_oid>
+            <supplier_oid>196721380744665</supplier_oid>
+            <location_oid>72932733402831</location_oid>
+            <devicetype_oid>64</devicetype_oid>
+            <api_instrumentation_id>254193409798364</api_instrumentation_id>
+            <api_asset_id>58747240030153</api_asset_id>
+            <api_product_id>28706260922634</api_product_id>
+            <site_name>DIBA Testanlage Nord</site_name>
+            <supplier_name>Alt Instrument AG</supplier_name>
+            <location_name>Werk Sued, Halle A, Kuehlkreis</location_name>
+            <device_shortname>Durchflussmesser DN50</device_shortname>
+            <device_criticality>low</device_criticality>
+            <device_accessibility>moderate</device_accessibility>
+            <device_ordercode>AI-DF-50</device_ordercode>
+            <device_riskofmaint>normal</device_riskofmaint>
+            <device_serialnumber>AI-0511-8831</device_serialnumber>
+            <device_measuringtask>Flow</device_measuringtask>
+            <device_tag>FI-1007</device_tag>
+            <device_manufacturingdate>2005-11-08</device_manufacturingdate>
+            <device_conditions>normal</device_conditions>
+            <device_specialdemands>0</device_specialdemands>
+            <devicetype_spk>PD</devicetype_spk>
+            <devicetype_label_lang>en</devicetype_label_lang>
+            <devicetype_label_description>Orifice flow meter</devicetype_label_description>
+            <device_property_envrelevant>false</device_property_envrelevant>
+            <device_property_safetyrelevant>false</device_property_safetyrelevant>
+            <device_property_qualityrelevant>false</device_property_qualityrelevant>
+            <device_activities>no</device_activities>
+            <device_maint_effectivness>high</device_maint_effectivness>
+            <psl_status></psl_status>
+            <device_obsolence>medium</device_obsolence>
+            <device_assettype>Pressure, Differential</device_assettype>
+            <add_ordercode_transform></add_ordercode_transform>
+            <add_recomend_ordercode></add_recomend_ordercode>
+            <add_amount_spare></add_amount_spare>
+            <add_remark1></add_remark1>
+            <add_remark2></add_remark2>
+            <add_remark3></add_remark3>
+            <add_nu_price>12.5</add_nu_price>
+            <reco_insp_interval>36</reco_insp_interval>
+            <reco_calib_interval>24</reco_calib_interval>
+            <reco_valid_interval>NA</reco_valid_interval>
+            <device_insp_interval>36</device_insp_interval>
+            <device_calib_interval>24</device_calib_interval>
+            <device_valid_interval>NA</device_valid_interval>
+            <out_device_conditions></out_device_conditions>
+            <psl_npw>9999-12-31T00:00:00Z</psl_npw>
+            <psl_pcstop>9999-12-31T00:00:00Z</psl_pcstop>
+            <psl_sparesuntil>3000-01-01T00:00:00Z</psl_sparesuntil>
+        </device>
+        <device>
+            <site_oid>3757808308967</site_oid>
+            <device_oid>1010</device_oid>
+            <supplier_oid>196721380744665</supplier_oid>
+            <location_oid>56919612316318</location_oid>
+            <devicetype_oid>40</devicetype_oid>
+            <api_instrumentation_id>85944204017506</api_instrumentation_id>
+            <api_asset_id>201330443153406</api_asset_id>
+            <api_product_id>67859587724547</api_product_id>
+            <site_name>DIBA Testanlage Nord</site_name>
+            <supplier_name>Alt Instrument AG</supplier_name>
+            <location_name>Werk Sued, Tanklager</location_name>
+            <device_shortname>Schwimmerschalter</device_shortname>
+            <device_criticality>medium</device_criticality>
+            <device_accessibility>moderate</device_accessibility>
+            <device_ordercode>AI-LS-11</device_ordercode>
+            <device_riskofmaint>high</device_riskofmaint>
+            <device_serialnumber></device_serialnumber>
+            <device_measuringtask>Level</device_measuringtask>
+            <device_tag>LI-1008</device_tag>
+            <device_manufacturingdate></device_manufacturingdate>
+            <device_conditions>normal</device_conditions>
+            <device_specialdemands>0</device_specialdemands>
+            <devicetype_spk>FN</devicetype_spk>
+            <devicetype_label_lang>en</devicetype_label_lang>
+            <devicetype_label_description>Float switch</devicetype_label_description>
+            <device_property_envrelevant>false</device_property_envrelevant>
+            <device_property_safetyrelevant>false</device_property_safetyrelevant>
+            <device_property_qualityrelevant>false</device_property_qualityrelevant>
+            <device_activities></device_activities>
+            <device_maint_effectivness>medium</device_maint_effectivness>
+            <psl_status></psl_status>
+            <device_obsolence>high</device_obsolence>
+            <device_assettype>Level, Electromechanical</device_assettype>
+            <add_ordercode_transform></add_ordercode_transform>
+            <add_recomend_ordercode></add_recomend_ordercode>
+            <add_amount_spare></add_amount_spare>
+            <add_remark1>Zeile 1
+Zeile 2 ü</add_remark1>
+            <add_remark2></add_remark2>
+            <add_remark3></add_remark3>
+            <add_nu_price>1234.56</add_nu_price>
+            <reco_insp_interval>24</reco_insp_interval>
+            <reco_calib_interval>NA</reco_calib_interval>
+            <reco_valid_interval>NA</reco_valid_interval>
+            <device_insp_interval>24</device_insp_interval>
+            <device_calib_interval>NA</device_calib_interval>
+            <device_valid_interval>NA</device_valid_interval>
+            <out_device_conditions></out_device_conditions>
+            <psl_npw>9999-12-31T00:00:00Z</psl_npw>
+            <psl_pcstop>9999-12-31T00:00:00Z</psl_pcstop>
+            <psl_sparesuntil>3000-01-01T00:00:00Z</psl_sparesuntil>
+        </device>
+        <device>
+            <site_oid>3757808308967</site_oid>
+            <device_oid>1011</device_oid>
+            <supplier_oid>79096376406858</supplier_oid>
+            <location_oid>274219434415140</location_oid>
+            <devicetype_oid>4</devicetype_oid>
+            <api_instrumentation_id>11264596596251</api_instrumentation_id>
+            <api_asset_id>230172497131393</api_asset_id>
+            <api_product_id>273844254455385</api_product_id>
+            <site_name>DIBA Testanlage Nord</site_name>
+            <supplier_name>Müller &amp; Söhne Meßtechnik GmbH</supplier_name>
+            <location_name>Werk Süd, Halle Ä, Behälter B-7 (&gt;80 °C)</location_name>
+            <device_shortname>Meßumformer Größe 2</device_shortname>
+            <device_criticality>high</device_criticality>
+            <device_accessibility>difficult</device_accessibility>
+            <device_ordercode>MS-Ü-200/A</device_ordercode>
+            <device_riskofmaint>notset</device_riskofmaint>
+            <device_serialnumber>MS-2019-Ö-44</device_serialnumber>
+            <device_measuringtask>Leitfaehigkeit</device_measuringtask>
+            <device_tag>QI-1011</device_tag>
+            <device_manufacturingdate>2019-10-01</device_manufacturingdate>
+            <device_conditions>heavy</device_conditions>
+            <device_specialdemands>1</device_specialdemands>
+            <devicetype_spk>CF</devicetype_spk>
+            <devicetype_label_lang>en</devicetype_label_lang>
+            <devicetype_label_description>Leitfähigkeitsmessung</devicetype_label_description>
+            <device_property_envrelevant>true</device_property_envrelevant>
+            <device_property_safetyrelevant>true</device_property_safetyrelevant>
+            <device_property_qualityrelevant>true</device_property_qualityrelevant>
+            <device_activities>yes</device_activities>
+            <device_maint_effectivness>low</device_maint_effectivness>
+            <psl_status></psl_status>
+            <device_obsolence>notset</device_obsolence>
+            <device_assettype>Analysis, Conductivity</device_assettype>
+            <add_ordercode_transform></add_ordercode_transform>
+            <add_recomend_ordercode></add_recomend_ordercode>
+            <add_amount_spare></add_amount_spare>
+            <add_remark1></add_remark1>
+            <add_remark2></add_remark2>
+            <add_remark3></add_remark3>
+            <add_nu_price>0.1</add_nu_price>
+            <reco_insp_interval>6</reco_insp_interval>
+            <reco_calib_interval>3</reco_calib_interval>
+            <reco_valid_interval>NA</reco_valid_interval>
+            <device_insp_interval>6</device_insp_interval>
+            <device_calib_interval>3</device_calib_interval>
+            <device_valid_interval>NA</device_valid_interval>
+            <out_device_conditions></out_device_conditions>
+            <psl_npw>9999-12-31T00:00:00Z</psl_npw>
+            <psl_pcstop>9999-12-31T00:00:00Z</psl_pcstop>
+            <psl_sparesuntil>3000-01-01T00:00:00Z</psl_sparesuntil>
+        </device>
+        <device>
+            <site_oid>3757808308967</site_oid>
+            <device_oid>1012</device_oid>
+            <supplier_oid>14368019020528</supplier_oid>
+            <location_oid>153214909881222</location_oid>
+            <devicetype_oid>14</devicetype_oid>
+            <api_instrumentation_id>211636213507052</api_instrumentation_id>
+            <api_asset_id>60219926296774</api_asset_id>
+            <api_product_id>279568526237465</api_product_id>
+            <site_name>DIBA Testanlage Nord</site_name>
+            <supplier_name>Endress+Hauser</supplier_name>
+            <location_name>Standort Nord, Werk 2, Betrieb 21, Anlage 21-300, Halle C, Messplatz 7</location_name>
+            <device_shortname>Liquiline System CA80TP</device_shortname>
+            <device_criticality>medium</device_criticality>
+            <device_accessibility>easy</device_accessibility>
+            <device_ordercode>CA80TP-AA1B2C3D4E5F6G7H8J9K0LMN</device_ordercode>
+            <device_riskofmaint>low</device_riskofmaint>
+            <device_serialnumber>R904F1122BC</device_serialnumber>
+            <device_measuringtask>Analysis</device_measuringtask>
+            <device_tag>AI-1012</device_tag>
+            <device_manufacturingdate>2022-07-19</device_manufacturingdate>
+            <device_conditions>normal</device_conditions>
+            <device_specialdemands>0</device_specialdemands>
+            <devicetype_spk>CZ</devicetype_spk>
+            <devicetype_label_lang>en</devicetype_label_lang>
+            <devicetype_label_description>Analysis transmitter</devicetype_label_description>
+            <device_property_envrelevant>false</device_property_envrelevant>
+            <device_property_safetyrelevant>false</device_property_safetyrelevant>
+            <device_property_qualityrelevant>true</device_property_qualityrelevant>
+            <device_activities>no</device_activities>
+            <device_maint_effectivness>medium</device_maint_effectivness>
+            <psl_status>available</psl_status>
+            <device_obsolence>low</device_obsolence>
+            <device_assettype>Analysis, General</device_assettype>
+            <add_ordercode_transform></add_ordercode_transform>
+            <add_recomend_ordercode>R &amp; D &lt;neu&gt;</add_recomend_ordercode>
+            <add_amount_spare></add_amount_spare>
+            <add_remark1></add_remark1>
+            <add_remark2></add_remark2>
+            <add_remark3></add_remark3>
+            <add_nu_price>0.0</add_nu_price>
+            <reco_insp_interval>12</reco_insp_interval>
+            <reco_calib_interval>NA</reco_calib_interval>
+            <reco_valid_interval>NA</reco_valid_interval>
+            <device_insp_interval>12</device_insp_interval>
+            <device_calib_interval>NA</device_calib_interval>
+            <device_valid_interval>NA</device_valid_interval>
+            <out_device_conditions></out_device_conditions>
+            <psl_npw>3000-01-01T00:00:00Z</psl_npw>
+            <psl_pcstop>3000-01-01T00:00:00Z</psl_pcstop>
+            <psl_sparesuntil>3000-01-01T00:00:00Z</psl_sparesuntil>
+        </device>
+        <device>
+            <site_oid>3757808308967</site_oid>
+            <device_oid>1013</device_oid>
+            <supplier_oid>14368019020528</supplier_oid>
+            <location_oid>26865682698539</location_oid>
+            <devicetype_oid>88</devicetype_oid>
+            <api_instrumentation_id>252995441889513</api_instrumentation_id>
+            <api_asset_id>250890680283368</api_asset_id>
+            <api_product_id>270317654693424</api_product_id>
+            <site_name>DIBA Testanlage Nord</site_name>
+            <supplier_name>Endress+Hauser</supplier_name>
+            <location_name>Werk Nord, Halle D</location_name>
+            <device_shortname>iTEMP TMT182</device_shortname>
+            <device_criticality>medium</device_criticality>
+            <device_accessibility>moderate</device_accessibility>
+            <device_ordercode>TMT182-BB2CDE</device_ordercode>
+            <device_riskofmaint>normal</device_riskofmaint>
+            <device_serialnumber>M511E1177DD</device_serialnumber>
+            <device_measuringtask>Temperature</device_measuringtask>
+            <device_tag>TI-1013</device_tag>
+            <device_manufacturingdate>2020-09-08</device_manufacturingdate>
+            <device_conditions>normal</device_conditions>
+            <device_specialdemands>0</device_specialdemands>
+            <devicetype_spk>TM</devicetype_spk>
+            <devicetype_label_lang>en</devicetype_label_lang>
+            <devicetype_label_description>Temperature transmitter</devicetype_label_description>
+            <device_property_envrelevant>false</device_property_envrelevant>
+            <device_property_safetyrelevant>false</device_property_safetyrelevant>
+            <device_property_qualityrelevant>false</device_property_qualityrelevant>
+            <device_activities></device_activities>
+            <device_maint_effectivness>medium</device_maint_effectivness>
+            <psl_status>Available</psl_status>
+            <device_obsolence>medium</device_obsolence>
+            <device_assettype>Temperature, Transmitter</device_assettype>
+            <add_ordercode_transform></add_ordercode_transform>
+            <add_recomend_ordercode></add_recomend_ordercode>
+            <add_amount_spare></add_amount_spare>
+            <add_remark1></add_remark1>
+            <add_remark2></add_remark2>
+            <add_remark3></add_remark3>
+            <add_nu_price>12.5</add_nu_price>
+            <reco_insp_interval>NA</reco_insp_interval>
+            <reco_calib_interval>24</reco_calib_interval>
+            <reco_valid_interval>NA</reco_valid_interval>
+            <device_insp_interval>NA</device_insp_interval>
+            <device_calib_interval>24</device_calib_interval>
+            <device_valid_interval>NA</device_valid_interval>
+            <out_device_conditions></out_device_conditions>
+            <psl_npw>3000-01-01T00:00:00Z</psl_npw>
+            <psl_pcstop>3000-01-01T00:00:00Z</psl_pcstop>
+            <psl_sparesuntil>3000-01-01T00:00:00Z</psl_sparesuntil>
+        </device>
+        <device>
+            <site_oid>3757808308967</site_oid>
+            <device_oid>1014</device_oid>
+            <supplier_oid>14368019020528</supplier_oid>
+            <location_oid>26865682698539</location_oid>
+            <devicetype_oid>16</devicetype_oid>
+            <api_instrumentation_id>149414625576727</api_instrumentation_id>
+            <api_asset_id>37272464008108</api_asset_id>
+            <api_product_id>204169423280200</api_product_id>
+            <site_name>DIBA Testanlage Nord</site_name>
+            <supplier_name>Endress+Hauser</supplier_name>
+            <location_name>Werk Nord, Halle D</location_name>
+            <device_shortname>Prowirl F 200</device_shortname>
+            <device_criticality>high</device_criticality>
+            <device_accessibility>difficult</device_accessibility>
+            <device_ordercode>7F2C08-CCDDEE</device_ordercode>
+            <device_riskofmaint>high</device_riskofmaint>
+            <device_serialnumber>P913F2288EE</device_serialnumber>
+            <device_measuringtask>Flow</device_measuringtask>
+            <device_tag>FI-1014</device_tag>
+            <device_manufacturingdate>2013-03-25</device_manufacturingdate>
+            <device_conditions>heavy</device_conditions>
+            <device_specialdemands>1</device_specialdemands>
+            <devicetype_spk>DB</devicetype_spk>
+            <devicetype_label_lang>en</devicetype_label_lang>
+            <devicetype_label_description>Vortex flowmeter</devicetype_label_description>
+            <device_property_envrelevant>false</device_property_envrelevant>
+            <device_property_safetyrelevant>true</device_property_safetyrelevant>
+            <device_property_qualityrelevant>false</device_property_qualityrelevant>
+            <device_activities>yes</device_activities>
+            <device_maint_effectivness>low</device_maint_effectivness>
+            <psl_status>discontinued</psl_status>
+            <device_obsolence>high</device_obsolence>
+            <device_assettype>Flow, Vortex</device_assettype>
+            <add_ordercode_transform></add_ordercode_transform>
+            <add_recomend_ordercode></add_recomend_ordercode>
+            <add_amount_spare></add_amount_spare>
+            <add_remark1></add_remark1>
+            <add_remark2></add_remark2>
+            <add_remark3></add_remark3>
+            <add_nu_price>1234.56</add_nu_price>
+            <reco_insp_interval>24</reco_insp_interval>
+            <reco_calib_interval>6</reco_calib_interval>
+            <reco_valid_interval>NA</reco_valid_interval>
+            <device_insp_interval>12</device_insp_interval>
+            <device_calib_interval>6</device_calib_interval>
+            <device_valid_interval>NA</device_valid_interval>
+            <out_device_conditions></out_device_conditions>
+            <psl_npw>9999-12-31T00:00:00Z</psl_npw>
+            <psl_pcstop>9999-12-31T00:00:00Z</psl_pcstop>
+            <psl_sparesuntil>3000-01-01T00:00:00Z</psl_sparesuntil>
+        </device>
+        <device>
+            <site_oid>3757808308967</site_oid>
+            <device_oid>1015</device_oid>
+            <supplier_oid>14368019020528</supplier_oid>
+            <location_oid>262377957769779</location_oid>
+            <devicetype_oid>62</devicetype_oid>
+            <api_instrumentation_id>141013192949150</api_instrumentation_id>
+            <api_asset_id>255946779430758</api_asset_id>
+            <api_product_id>216173793248528</api_product_id>
+            <site_name>DIBA Testanlage Nord</site_name>
+            <supplier_name>Endress+Hauser</supplier_name>
+            <location_name>Werk Nord, Halle A, Reaktor R-101</location_name>
+            <device_shortname>Cerabar PMP51</device_shortname>
+            <device_criticality>high</device_criticality>
+            <device_accessibility>difficult</device_accessibility>
+            <device_ordercode>PMP51-XY1ZAB2CD</device_ordercode>
+            <device_riskofmaint>notset</device_riskofmaint>
+            <device_serialnumber>K880G3311FF</device_serialnumber>
+            <device_measuringtask>Temperature</device_measuringtask>
+            <device_tag>TI-1001</device_tag>
+            <device_manufacturingdate>2024-01-15</device_manufacturingdate>
+            <device_conditions>heavy</device_conditions>
+            <device_specialdemands>1</device_specialdemands>
+            <devicetype_spk>PA</devicetype_spk>
+            <devicetype_label_lang>en</devicetype_label_lang>
+            <devicetype_label_description>Pressure transmitter</devicetype_label_description>
+            <device_property_envrelevant>true</device_property_envrelevant>
+            <device_property_safetyrelevant>true</device_property_safetyrelevant>
+            <device_property_qualityrelevant>true</device_property_qualityrelevant>
+            <device_activities>no</device_activities>
+            <device_maint_effectivness>low</device_maint_effectivness>
+            <psl_status>available</psl_status>
+            <device_obsolence>notset</device_obsolence>
+            <device_assettype>Pressure, Process</device_assettype>
+            <add_ordercode_transform></add_ordercode_transform>
+            <add_recomend_ordercode></add_recomend_ordercode>
+            <add_amount_spare></add_amount_spare>
+            <add_remark1>Zeile 1
+Zeile 2 ü</add_remark1>
+            <add_remark2></add_remark2>
+            <add_remark3></add_remark3>
+            <add_nu_price>0.1</add_nu_price>
+            <reco_insp_interval>6</reco_insp_interval>
+            <reco_calib_interval>3</reco_calib_interval>
+            <reco_valid_interval>NA</reco_valid_interval>
+            <device_insp_interval>6</device_insp_interval>
+            <device_calib_interval>3</device_calib_interval>
+            <device_valid_interval>NA</device_valid_interval>
+            <out_device_conditions></out_device_conditions>
+            <psl_npw>3000-01-01T00:00:00Z</psl_npw>
+            <psl_pcstop>3000-01-01T00:00:00Z</psl_pcstop>
+            <psl_sparesuntil>3000-01-01T00:00:00Z</psl_sparesuntil>
+        </device>
+        <device>
+            <site_oid>3757808308967</site_oid>
+            <device_oid>1016</device_oid>
+            <supplier_oid>14368019020528</supplier_oid>
+            <location_oid>241564543893501</location_oid>
+            <devicetype_oid>15</devicetype_oid>
+            <api_instrumentation_id>26633312957265</api_instrumentation_id>
+            <api_asset_id>279615253176546</api_asset_id>
+            <api_product_id>154326048530222</api_product_id>
+            <site_name>DIBA Testanlage Nord</site_name>
+            <supplier_name>Endress+Hauser</supplier_name>
+            <location_name>Werk Sued, Halle B, Ruecklauf</location_name>
+            <device_shortname>Promag W 400</device_shortname>
+            <device_criticality>low</device_criticality>
+            <device_accessibility>easy</device_accessibility>
+            <device_ordercode>5W4B50-AAAAAAAAAAAA</device_ordercode>
+            <device_riskofmaint>low</device_riskofmaint>
+            <device_serialnumber>P802B311K2C</device_serialnumber>
+            <device_measuringtask>Flow</device_measuringtask>
+            <device_tag>FI-1016</device_tag>
+            <device_manufacturingdate>2017-08-23</device_manufacturingdate>
+            <device_conditions>normal</device_conditions>
+            <device_specialdemands>0</device_specialdemands>
+            <devicetype_spk>DA</devicetype_spk>
+            <devicetype_label_lang>en</devicetype_label_lang>
+            <devicetype_label_description>Electromagnetic flowmeter</devicetype_label_description>
+            <device_property_envrelevant>false</device_property_envrelevant>
+            <device_property_safetyrelevant>false</device_property_safetyrelevant>
+            <device_property_qualityrelevant>false</device_property_qualityrelevant>
+            <device_activities></device_activities>
+            <device_maint_effectivness>high</device_maint_effectivness>
+            <psl_status>phase out</psl_status>
+            <device_obsolence>low</device_obsolence>
+            <device_assettype>Flow, Electro-Magnetic</device_assettype>
+            <add_ordercode_transform></add_ordercode_transform>
+            <add_recomend_ordercode>R &amp; D &lt;neu&gt;</add_recomend_ordercode>
+            <add_amount_spare></add_amount_spare>
+            <add_remark1></add_remark1>
+            <add_remark2></add_remark2>
+            <add_remark3></add_remark3>
+            <add_nu_price>0.0</add_nu_price>
+            <reco_insp_interval>24</reco_insp_interval>
+            <reco_calib_interval>36</reco_calib_interval>
+            <reco_valid_interval>NA</reco_valid_interval>
+            <device_insp_interval>24</device_insp_interval>
+            <device_calib_interval>36</device_calib_interval>
+            <device_valid_interval>NA</device_valid_interval>
+            <out_device_conditions></out_device_conditions>
+            <psl_npw>1990-01-01T00:00:00Z</psl_npw>
+            <psl_pcstop>2100-01-01T00:00:00Z</psl_pcstop>
+            <psl_sparesuntil>3000-01-01T00:00:00Z</psl_sparesuntil>
+        </device>
+        <device>
+            <site_oid>3757808308967</site_oid>
+            <device_oid>1017</device_oid>
+            <supplier_oid>14368019020528</supplier_oid>
+            <location_oid>103475607369252</location_oid>
+            <devicetype_oid>42</devicetype_oid>
+            <api_instrumentation_id>42806497369851</api_instrumentation_id>
+            <api_asset_id>181688572758926</api_asset_id>
+            <api_product_id>256754916389915</api_product_id>
+            <site_name>DIBA Testanlage Nord</site_name>
+            <supplier_name>Endress+Hauser</supplier_name>
+            <location_name>Werk Sued, Tanklager, Tank T-30</location_name>
+            <device_shortname>Liquiphant FTL51</device_shortname>
+            <device_criticality>low</device_criticality>
+            <device_accessibility>easy</device_accessibility>
+            <device_ordercode>FTL51-AAB1CD</device_ordercode>
+            <device_riskofmaint>normal</device_riskofmaint>
+            <device_serialnumber>N622H4455GG</device_serialnumber>
+            <device_measuringtask>Level</device_measuringtask>
+            <device_tag>LI-1017</device_tag>
+            <device_manufacturingdate>2018-05-30</device_manufacturingdate>
+            <device_conditions>normal</device_conditions>
+            <device_specialdemands>0</device_specialdemands>
+            <devicetype_spk>FQ</devicetype_spk>
+            <devicetype_label_lang>en</devicetype_label_lang>
+            <devicetype_label_description>Vibronic point level</devicetype_label_description>
+            <device_property_envrelevant>false</device_property_envrelevant>
+            <device_property_safetyrelevant>false</device_property_safetyrelevant>
+            <device_property_qualityrelevant>false</device_property_qualityrelevant>
+            <device_activities>yes</device_activities>
+            <device_maint_effectivness>low</device_maint_effectivness>
+            <psl_status>available</psl_status>
+            <device_obsolence>medium</device_obsolence>
+            <device_assettype>Level, Vibronic Liquid</device_assettype>
+            <add_ordercode_transform></add_ordercode_transform>
+            <add_recomend_ordercode></add_recomend_ordercode>
+            <add_amount_spare></add_amount_spare>
+            <add_remark1></add_remark1>
+            <add_remark2></add_remark2>
+            <add_remark3></add_remark3>
+            <add_nu_price>12.5</add_nu_price>
+            <reco_insp_interval>36</reco_insp_interval>
+            <reco_calib_interval>NA</reco_calib_interval>
+            <reco_valid_interval>NA</reco_valid_interval>
+            <device_insp_interval>36</device_insp_interval>
+            <device_calib_interval>NA</device_calib_interval>
+            <device_valid_interval>NA</device_valid_interval>
+            <out_device_conditions></out_device_conditions>
+            <psl_npw>3000-01-01T00:00:00Z</psl_npw>
+            <psl_pcstop>3000-01-01T00:00:00Z</psl_pcstop>
+            <psl_sparesuntil>3000-01-01T00:00:00Z</psl_sparesuntil>
+        </device>
+        <device>
+            <site_oid>3757808308967</site_oid>
+            <device_oid>1018</device_oid>
+            <supplier_oid>14368019020528</supplier_oid>
+            <location_oid>88797248178993</location_oid>
+            <devicetype_oid>62</devicetype_oid>
+            <api_instrumentation_id>115500881751964</api_instrumentation_id>
+            <api_asset_id>110619678933524</api_asset_id>
+            <api_product_id>246839788209465</api_product_id>
+            <site_name>DIBA Testanlage Nord</site_name>
+            <supplier_name>Endress+Hauser</supplier_name>
+            <location_name>Werk Sued, Halle B</location_name>
+            <device_shortname>Cerabar PMC71</device_shortname>
+            <device_criticality>medium</device_criticality>
+            <device_accessibility>moderate</device_accessibility>
+            <device_ordercode>PMC71-DDEEFF</device_ordercode>
+            <device_riskofmaint>high</device_riskofmaint>
+            <device_serialnumber>K991J5566HH</device_serialnumber>
+            <device_measuringtask>Pressure</device_measuringtask>
+            <device_tag>PI-1018</device_tag>
+            <device_manufacturingdate>2015-12-01</device_manufacturingdate>
+            <device_conditions>normal</device_conditions>
+            <device_specialdemands>0</device_specialdemands>
+            <devicetype_spk>PA</devicetype_spk>
+            <devicetype_label_lang>en</devicetype_label_lang>
+            <devicetype_label_description>Pressure transmitter</devicetype_label_description>
+            <device_property_envrelevant>false</device_property_envrelevant>
+            <device_property_safetyrelevant>false</device_property_safetyrelevant>
+            <device_property_qualityrelevant>false</device_property_qualityrelevant>
+            <device_activities>no</device_activities>
+            <device_maint_effectivness>medium</device_maint_effectivness>
+            <psl_status>phase out</psl_status>
+            <device_obsolence>high</device_obsolence>
+            <device_assettype>Pressure, Process</device_assettype>
+            <add_ordercode_transform></add_ordercode_transform>
+            <add_recomend_ordercode></add_recomend_ordercode>
+            <add_amount_spare></add_amount_spare>
+            <add_remark1></add_remark1>
+            <add_remark2></add_remark2>
+            <add_remark3></add_remark3>
+            <add_nu_price>1234.56</add_nu_price>
+            <reco_insp_interval>24</reco_insp_interval>
+            <reco_calib_interval>12</reco_calib_interval>
+            <reco_valid_interval>NA</reco_valid_interval>
+            <device_insp_interval>24</device_insp_interval>
+            <device_calib_interval>12</device_calib_interval>
+            <device_valid_interval>NA</device_valid_interval>
+            <out_device_conditions></out_device_conditions>
+            <psl_npw>1990-01-01T00:00:00Z</psl_npw>
+            <psl_pcstop>2100-01-01T00:00:00Z</psl_pcstop>
+            <psl_sparesuntil>3000-01-01T00:00:00Z</psl_sparesuntil>
+        </device>
+        <device>
+            <site_oid>3757808308967</site_oid>
+            <device_oid>1019</device_oid>
+            <supplier_oid>14368019020528</supplier_oid>
+            <location_oid>198192853807553</location_oid>
+            <devicetype_oid>86</devicetype_oid>
+            <api_instrumentation_id>262897073419533</api_instrumentation_id>
+            <api_asset_id>95568163826591</api_asset_id>
+            <api_product_id>179977016924613</api_product_id>
+            <site_name>DIBA Testanlage Nord</site_name>
+            <supplier_name>Endress+Hauser</supplier_name>
+            <location_name>Werk Sued, Halle C</location_name>
+            <device_shortname>Omnigrad TR10</device_shortname>
+            <device_criticality>high</device_criticality>
+            <device_accessibility>moderate</device_accessibility>
+            <device_ordercode>TR10-GGHHII</device_ordercode>
+            <device_riskofmaint>notset</device_riskofmaint>
+            <device_serialnumber>M722K6677II</device_serialnumber>
+            <device_measuringtask>Temperature</device_measuringtask>
+            <device_tag>TI-1019</device_tag>
+            <device_manufacturingdate>2011-04-14</device_manufacturingdate>
+            <device_conditions>heavy</device_conditions>
+            <device_specialdemands>1</device_specialdemands>
+            <devicetype_spk>TA</devicetype_spk>
+            <devicetype_label_lang>en</devicetype_label_lang>
+            <devicetype_label_description>Temperature sensor</devicetype_label_description>
+            <device_property_envrelevant>true</device_property_envrelevant>
+            <device_property_safetyrelevant>false</device_property_safetyrelevant>
+            <device_property_qualityrelevant>true</device_property_qualityrelevant>
+            <device_activities></device_activities>
+            <device_maint_effectivness>medium</device_maint_effectivness>
+            <psl_status></psl_status>
+            <device_obsolence>notset</device_obsolence>
+            <device_assettype>Temperature, Resistor RTD</device_assettype>
+            <add_ordercode_transform></add_ordercode_transform>
+            <add_recomend_ordercode></add_recomend_ordercode>
+            <add_amount_spare></add_amount_spare>
+            <add_remark1></add_remark1>
+            <add_remark2></add_remark2>
+            <add_remark3></add_remark3>
+            <add_nu_price>0.1</add_nu_price>
+            <reco_insp_interval>12</reco_insp_interval>
+            <reco_calib_interval>6</reco_calib_interval>
+            <reco_valid_interval>NA</reco_valid_interval>
+            <device_insp_interval>12</device_insp_interval>
+            <device_calib_interval>6</device_calib_interval>
+            <device_valid_interval>NA</device_valid_interval>
+            <out_device_conditions></out_device_conditions>
+            <psl_npw>9999-12-31T00:00:00Z</psl_npw>
+            <psl_pcstop>9999-12-31T00:00:00Z</psl_pcstop>
+            <psl_sparesuntil>3000-01-01T00:00:00Z</psl_sparesuntil>
+        </device>
+        <device>
+            <site_oid>3757808308967</site_oid>
+            <device_oid>1020</device_oid>
+            <supplier_oid>14368019020528</supplier_oid>
+            <location_oid>198192853807553</location_oid>
+            <devicetype_oid>62</devicetype_oid>
+            <api_instrumentation_id>34797461037926</api_instrumentation_id>
+            <api_asset_id>205282638035784</api_asset_id>
+            <api_product_id>142253737397101</api_product_id>
+            <site_name>DIBA Testanlage Nord</site_name>
+            <supplier_name>Endress+Hauser</supplier_name>
+            <location_name>Werk Sued, Halle C</location_name>
+            <device_shortname>Cerabar PMP23</device_shortname>
+            <device_criticality>notset</device_criticality>
+            <device_accessibility>notset</device_accessibility>
+            <device_ordercode>PMP23-JJKKLL</device_ordercode>
+            <device_riskofmaint>low</device_riskofmaint>
+            <device_serialnumber>K102L7788JJ</device_serialnumber>
+            <device_measuringtask>Pressure</device_measuringtask>
+            <device_tag></device_tag>
+            <device_manufacturingdate>2023-11-22</device_manufacturingdate>
+            <device_conditions>notset</device_conditions>
+            <device_specialdemands>0</device_specialdemands>
+            <devicetype_spk>PA</devicetype_spk>
+            <devicetype_label_lang>en</devicetype_label_lang>
+            <devicetype_label_description>Pressure transmitter</devicetype_label_description>
+            <device_property_envrelevant>false</device_property_envrelevant>
+            <device_property_safetyrelevant>false</device_property_safetyrelevant>
+            <device_property_qualityrelevant>false</device_property_qualityrelevant>
+            <device_activities>yes</device_activities>
+            <device_maint_effectivness>low</device_maint_effectivness>
+            <psl_status>available</psl_status>
+            <device_obsolence>low</device_obsolence>
+            <device_assettype>Pressure, Process</device_assettype>
+            <add_ordercode_transform></add_ordercode_transform>
+            <add_recomend_ordercode>R &amp; D &lt;neu&gt;</add_recomend_ordercode>
+            <add_amount_spare></add_amount_spare>
+            <add_remark1>Zeile 1
+Zeile 2 ü</add_remark1>
+            <add_remark2></add_remark2>
+            <add_remark3></add_remark3>
+            <add_nu_price>0.0</add_nu_price>
+            <reco_insp_interval>24</reco_insp_interval>
+            <reco_calib_interval>-</reco_calib_interval>
+            <reco_valid_interval>-</reco_valid_interval>
+            <device_insp_interval>-</device_insp_interval>
+            <device_calib_interval>-</device_calib_interval>
+            <device_valid_interval>-</device_valid_interval>
+            <out_device_conditions></out_device_conditions>
+            <psl_npw>3000-01-01T00:00:00Z</psl_npw>
+            <psl_pcstop>3000-01-01T00:00:00Z</psl_pcstop>
+            <psl_sparesuntil>3000-01-01T00:00:00Z</psl_sparesuntil>
+        </device>
+    </devices>
+    <sitevalue>
+        <jobId>0017Q00000TsTdAQAV</jobId>
+        <siteName>DIBA Testanlage Nord</siteName>
+        <lastAssetCount>20</lastAssetCount>
+        <sliderManufacturers>100</sliderManufacturers>
+        <sliderStandardisation>100</sliderStandardisation>
+        <sliderMaintainability>20</sliderMaintainability>
+        <sliderMaintainabilityCalculated>14</sliderMaintainabilityCalculated>
+        <sliderMaintenance>80</sliderMaintenance>
+        <sliderProcessCriticality>70</sliderProcessCriticality>
+        <overview_situation_pagebreak>false</overview_situation_pagebreak>
+        <overview_reason_pagebreak>false</overview_reason_pagebreak>
+        <overview_milestones_pagebreak>false</overview_milestones_pagebreak>
+        <overview_impression_pagebreak>false</overview_impression_pagebreak>
+        <overview_matrix_pagebreak>false</overview_matrix_pagebreak>
+        <overview_standardisation_pagebreak>false</overview_standardisation_pagebreak>
+        <overview_maintenance_pagebreak>false</overview_maintenance_pagebreak>
+        <overview_migration_pagebreak>false</overview_migration_pagebreak>
+        <overview_preventative_pagebreak>false</overview_preventative_pagebreak>
+        <overview_action_pagebreak>false</overview_action_pagebreak>
+        <overview_attachment_pagebreak>false</overview_attachment_pagebreak>
+        <standardisation_situation_pagebreak>false</standardisation_situation_pagebreak>
+        <standardisation_attachment_pagebreak>false</standardisation_attachment_pagebreak>
+        <breakdown_high_criticality_pagebreak>false</breakdown_high_criticality_pagebreak>
+        <breakdown_medium_criticality_pagebreak>false</breakdown_medium_criticality_pagebreak>
+        <breakdown_situation_pagebreak>false</breakdown_situation_pagebreak>
+        <breakdown_attachment_pagebreak>false</breakdown_attachment_pagebreak>
+        <migration_situation_all_pagebreak>false</migration_situation_all_pagebreak>
+        <migration_situation_eh_pagebreak>false</migration_situation_eh_pagebreak>
+        <migration_situation_others_pagebreak>false</migration_situation_others_pagebreak>
+        <migration_recommendations_pagebreak>false</migration_recommendations_pagebreak>
+        <preventative_situation_pagebreak>false</preventative_situation_pagebreak>
+        <preventative_recommendations_pagebreak>false</preventative_recommendations_pagebreak>
+        <implementation_comment_pagebreak>false</implementation_comment_pagebreak>
+        <overview_situation>&lt;div style="font-size:11pt"&gt;&lt;font color="#007ca9"&gt;Current situation&lt;/font&gt;&lt;/div&gt;
+
+&lt;div style="font-size:9.5pt"&gt;Pfizer Health AB&amp;acute;s tillverkningsanl&amp;auml;ggning i Str&amp;auml;ngn&amp;auml;s &amp;auml;r en av Sveriges st&amp;ouml;rsta kommersiella bioteknologiska&lt;br&gt;
+tillverkningsenheter av farmaceutisk aktiv substans.&lt;br&gt;
+Produktionsanl&amp;auml;ggningen Bio7, togs i drift 2008 och de andra produktionsavsnitten har varit i drift &amp;ouml;ver 15 &amp;aring;r.&lt;/div&gt;
+
+&lt;div style="font-size:9.5pt"&gt;I processen sitter ett stort antal processinstrument som styr och &amp;ouml;vervakar processen f&amp;ouml;r produktionen av de olika substanserna.&lt;/div&gt;
+&lt;ul&gt;&lt;li&gt;&lt;span style="font-family: Symbol;"&gt;·&lt;/span&gt;&#xA0;&#xA0;eins&lt;/li&gt;&lt;li&gt;&lt;span style="font-family: Symbol;"&gt;·&lt;/span&gt;&#xA0;&#xA0;zwei&lt;/li&gt;&lt;/ul&gt;Zeile&lt;br&gt;neu &amp;amp; Grüße</overview_situation>
+        <overview_reason>&lt;div style="font-size:11pt"&gt;&lt;font color="#007ca9"&gt;Reason for the analysis&lt;/font&gt;&lt;/div&gt;
+
+&lt;div style="font-size:9.5pt"&gt;Avsikten med kartl&amp;auml;ggningen och rapporten &amp;auml;r att tillsammans med Pfizer Health AB, uppr&amp;auml;tta en relevant och&lt;br&gt;
+verklighetsanpassad &amp;ouml;verblick av instrumenteringen p&amp;aring; produktionsavdelningen Bio7 samt ytterligare ett produktionsavsnitt och media ( renvatten, tryckluft, HVAC, kyl/v&amp;auml;rmedistribution ) p&amp;aring; anl&amp;auml;ggningen i Str&amp;auml;ngn&amp;auml;s.&lt;br&gt;
+Utfallet fr&amp;aring;n analysen ger m&amp;ouml;jlighet att ta fram en plan f&amp;ouml;r migrering av &amp;auml;ldre instrument, samt beakta de&lt;br&gt;
+faktiska underh&amp;aring;llskraven och underl&amp;auml;ttar utformningen av en plan f&amp;ouml;r underh&amp;aring;ll och standardisering. Allt detta&lt;br&gt;
+f&amp;ouml;r att forts&amp;auml;ttningsvis s&amp;auml;kerst&amp;auml;lla drift, h&amp;ouml;g tillg&amp;auml;nglighet och skapa underlag och sp&amp;aring;rbarhet f&amp;ouml;r att bem&amp;ouml;ta b&amp;aring;de&lt;br&gt;
+interna och externa krav.&lt;/div&gt;
+
+&lt;div style="font-size:9.5pt"&gt;&amp;nbsp;&lt;/div&gt;
+
+&lt;div style="font-size:9.5pt"&gt;Dessutom kan man med f&amp;ouml;rdel budgetera investeringar s&amp;aring;som l&amp;ouml;pande underh&amp;aring;llskostnader, samt&lt;br&gt;
+reservdelsh&amp;aring;llning med st&amp;ouml;rre s&amp;auml;kerhet.&lt;/div&gt;
+</overview_reason>
+        <overview_milestones>&lt;div style="font-size:11pt"&gt;&lt;font color="#007ca9"&gt;Project milestones&lt;/font&gt;&lt;/div&gt;
+
+&lt;div style="font-size:9.5pt"&gt;Under h&amp;ouml;sten 2022 utf&amp;ouml;rdes en kartl&amp;auml;ggning av samtliga instrument p&amp;aring; produktionsavdelningen Bio7.&lt;/div&gt;
+
+&lt;div style="font-size:9.5pt"&gt;2023/2024 Utf&amp;ouml;rdes n&amp;auml;sta steg i kartl&amp;auml;ggningen, d&amp;aring; ytterligare instrument inventerades p&amp;aring; ett processavsnitt Fragmin samt media ( renvatten, tryckluft, HVAC, kyl/v&amp;auml;rmedistribution ).&lt;br&gt;
+Totalt inventerades ca 2358&amp;nbsp;st processinstrument d&amp;auml;r &amp;auml;ven bilder togs ute i processen. Efter kart&amp;auml;ggningen&lt;br&gt;
+definierades processkritikaliteten p&amp;aring; samtliga instrument utifr&amp;aring;n en lista tillhandah&amp;aring;llen av Pfizer Health AB.&lt;br&gt;
+N&amp;auml;sta steg &amp;auml;r att &amp;ouml;verl&amp;auml;mna en databas med alla kartlagda/analyserade instrument samt denna rapport.&lt;/div&gt;
+
+&lt;div style="font-size:9.5pt"&gt;&amp;nbsp;&lt;/div&gt;
+</overview_milestones>
+        <overview_impression>&lt;div style="font-size:11pt"&gt;&lt;font color="#007ca9"&gt;Total impression&lt;/font&gt;&lt;/div&gt;
+
+&lt;div style="font-size:9.5pt"&gt;Produktionsanl&amp;auml;ggningen har varit i drift mer &amp;auml;n 15 &amp;aring;r. De kartlagda processinstrumenten &amp;auml;r fr&amp;aring;n ett stort&lt;br&gt;
+antal olika tillverkare. Instrumenten &amp;auml;r integrerade till ett DCS system via digital kommunikation &amp;quot;Foundation&lt;br&gt;
+Fieldbus&amp;quot;. Ett stort antal instrument &amp;auml;r relevanta f&amp;ouml;r migrering.&lt;br&gt;
+Speciell uppm&amp;auml;rksamhet beh&amp;ouml;vs p&amp;aring; de instrument som har en h&amp;ouml;g processkritikalitet samt &amp;auml;ven en h&amp;ouml;g&lt;br&gt;
+underh&amp;aring;llsm&amp;auml;ssig risk.&lt;/div&gt;
+
+&lt;div style="font-size:9.5pt"&gt;&amp;nbsp;&lt;/div&gt;
+
+&lt;div style="font-size:9.5pt"&gt;Generella Anm&amp;auml;rkningar:&lt;br&gt;
+- Oklart om applikationer &amp;auml;r ATEX klassade eller ej (Instrument klassade).&lt;br&gt;
+- Foundation Fieldbus fasas troligen ut f&amp;ouml;r andra alternativ - Ethernet APL.&lt;br&gt;
+- Vakter p&amp;aring; HCL troligen fel material och l&amp;auml;ngd f&amp;ouml;r tillf&amp;ouml;rlitlig funktion. (Bio 7)&lt;/div&gt;
+
+&lt;div style="font-size:9.5pt"&gt;- P&amp;aring; ett stort antal instrument gick det ej att utl&amp;auml;sa modellbeteckning samt &amp;ouml;vrig info.&lt;/div&gt;
+</overview_impression>
+        <overview_matrix>&lt;div style="font-size:11pt"&gt;&lt;font color="#007ca9"&gt;Priority matrix&lt;/font&gt;&lt;/div&gt;
+
+&lt;div style="font-size:9.5pt"&gt;Som beskrivs ovan visar prioritetsmatrisen klassificeringen av alla kartlagda instrument. Denna klassifisering &amp;auml;r&lt;br&gt;
+relaterad till hur kritiska de olika instrumenten &amp;auml;r f&amp;ouml;r processen och f&amp;ouml;r att best&amp;auml;mma riskerna f&amp;ouml;r oplanerade&lt;br&gt;
+driftstop. I den detaljerade rapporten kommer vi g&amp;aring; djupare in i varje omr&amp;aring;de.&lt;/div&gt;
+</overview_matrix>
+        <overview_standardisation>&lt;div style="font-size:11pt"&gt;&lt;font color="#007ca9"&gt;Standardisation&lt;/font&gt;&lt;/div&gt;
+
+&lt;div style="font-size:9.5pt"&gt;I och med att anl&amp;auml;ggningen &amp;auml;r 15 &amp;aring;r gammal och samtliga kartlagda instrument &amp;auml;r fr&amp;aring;n olika tillverkare, finns det&lt;br&gt;
+m&amp;ouml;jlighet att optimera standardiseringsniv&amp;aring;n.&lt;/div&gt;
+</overview_standardisation>
+        <overview_maintenance>&lt;div style="font-size:11pt"&gt;&lt;font color="#007ca9"&gt;Breakdown maintenance&lt;/font&gt;&lt;/div&gt;
+
+&lt;div style="font-size:9.5pt"&gt;Kartl&amp;auml;ggningen och analysen visar att 1237&amp;nbsp;instrument ( ca 52%) av den installerade basen har h&amp;ouml;g&lt;br&gt;
+processkritikalitet.&lt;br&gt;
+Utifr&amp;aring;n detta kan r&amp;auml;tt &amp;aring;tg&amp;auml;rder vidtas.&lt;br&gt;
+Dessa &amp;aring;tg&amp;aring;rder inkluderar: R&amp;auml;tt reservdelar, dokumentation, verktyg samt utbildning mm.&lt;/div&gt;
+</overview_maintenance>
+        <overview_migration>&lt;div style="font-size:11pt"&gt;&lt;font color="#007ca9"&gt;Migration&lt;/font&gt;&lt;/div&gt;
+
+&lt;div style="font-size:9.5pt"&gt;I kartl&amp;auml;ggningen och analysen framg&amp;aring;r det att 1880&amp;nbsp;instrument &amp;auml;r relevanta f&amp;ouml;r migrering. F&amp;ouml;r detaljer se kapitel&lt;br&gt;
+IV.&lt;/div&gt;
+</overview_migration>
+        <overview_preventative>&lt;div style="font-size:11pt"&gt;&lt;font color="#007ca9"&gt;Preventative maintenance&lt;/font&gt;&lt;/div&gt;
+
+&lt;div style="font-size:9.5pt"&gt;Analysens direkta resultat &amp;auml;r att 1908&amp;nbsp;av 2358&amp;nbsp;enheter rekomenderas n&amp;aring;gon form av underh&amp;aring;ll (f&amp;ouml;rebyggande)&lt;br&gt;
+p&amp;aring; grund av sin processkritikalitet, enhetstyp eller andra villkor.&lt;/div&gt;
+</overview_preventative>
+        <overview_action>&lt;div style="font-size:11pt"&gt;&lt;font color="#007ca9"&gt;Action list&lt;/font&gt;&lt;/div&gt;
+
+&lt;div style="font-size:9.5pt"&gt;Detail text ...&lt;/div&gt;
+</overview_action>
+        <overview_attachment>&lt;div style="font-size:11pt;"&gt;&lt;font color="#007ca9"&gt;&lt;/font&gt;&lt;/div&gt;&lt;div style="font-size:9.5pt;"&gt;Detail text ...&lt;/div&gt;</overview_attachment>
+        <standardisation_situation>&lt;div style="font-size:11pt"&gt;&lt;font color="#007ca9"&gt;Current situation&lt;/font&gt;&lt;/div&gt;
+
+&lt;div style="font-size:9.5pt"&gt;Diagrammet ovan visar att 2341&amp;nbsp;instrument &amp;auml;r uppdelade p&amp;aring; 45&amp;nbsp;enhetstyper.&lt;br&gt;
+Det i kombination med att anl&amp;auml;ggningen har varit i drift sedan 2008 och att instrumenten &amp;auml;r fr&amp;aring;n olika&lt;br&gt;
+tillverkare, finns det m&amp;ouml;jlighet att optimera standardiseringsniv&amp;aring;n.&lt;/div&gt;
+</standardisation_situation>
+        <standardisation_attachment>&lt;div style="font-size:11pt"&gt;&lt;font color="#007ca9"&gt;Improvement recommendations&lt;/font&gt;&lt;/div&gt;
+
+&lt;div style="font-size:9.5pt"&gt;V&amp;aring;r rekomendation &amp;auml;r att se &amp;ouml;ver vart man kan&amp;nbsp;f&amp;ouml;rb&amp;auml;ttra standardiseringsniv&amp;aring;n&amp;nbsp;(processanslutningar, transmittrrar, kommunikation mm), utifr&amp;aring;n den data som finns i rapporten. Detta arbete b&amp;ouml;r tas i beaktande vid migrering.&lt;/div&gt;
+</standardisation_attachment>
+        <breakdown_high_criticality>Direkt åtgärd krävs.</breakdown_high_criticality>
+        <breakdown_medium_criticality>Repareras eller byts ut inom 48
+tim.</breakdown_medium_criticality>
+        <breakdown_situation>Kein HTML, nur Text mit &gt; und &lt; und "Anführung"</breakdown_situation>
+        <breakdown_attachment>&lt;div style="font-size:11pt"&gt;&lt;font color="#007ca9"&gt;Improvement recommendations&lt;/font&gt;&lt;/div&gt;
+
+&lt;div style="font-size:9.5pt"&gt;Detail text ...&lt;/div&gt;
+</breakdown_attachment>
+        <migration_situation_all>&lt;div style="font-size:11pt"&gt;&lt;font color="#007ca9"&gt;Current situation&lt;/font&gt;&lt;/div&gt;
+
+&lt;div style="font-size:9.5pt"&gt;I rapporten och analysen framg&amp;aring;r det att 1880&amp;nbsp;instrument (81%) &amp;auml;r relevanta f&amp;ouml;r migrering, varav 1387&amp;nbsp;st&lt;br&gt;
+rekomenderas en direkt &amp;aring;tg&amp;auml;rd. Detta beroende p&amp;aring; den h&amp;ouml;ga processkritikaliteten tillsammans med&lt;br&gt;
+instrumentens produkt status.&lt;/div&gt;
+</migration_situation_all>
+        <migration_situation_eh>&lt;div style="font-size:11pt"&gt;&lt;font color="#007ca9"&gt;Current situation&lt;/font&gt;&lt;/div&gt;
+
+&lt;div style="font-size:9.5pt"&gt;I rapporten och analysen framg&amp;aring;r det att 318&amp;nbsp;instrument (71%) av totalt 485&amp;nbsp;Endress+Hauser instrument &amp;auml;r&lt;br&gt;
+relevanta f&amp;ouml;r migrering, varav 286&amp;nbsp;st rekomenderas en direkt &amp;aring;tg&amp;auml;rd. Detta beroende p&amp;aring; den h&amp;ouml;ga&lt;br&gt;
+processkritikaliteten tillsammans med instrumentens produkt status. Samtliga av de migreringsrelevanta&lt;br&gt;
+instrumenten &amp;auml;r utbytbara 1:1.&lt;/div&gt;
+</migration_situation_eh>
+        <migration_situation_others>&lt;div style="font-size:11pt"&gt;&lt;font color="#007ca9"&gt;Current situation&lt;/font&gt;&lt;/div&gt;
+
+&lt;div style="font-size:9.5pt"&gt;I rapporten och analysen framg&amp;aring;r det att 1562&amp;nbsp;instrument (83%) av totalt 1858&amp;nbsp;av andra tillverkare &amp;auml;r relevanta&lt;br&gt;
+f&amp;ouml;r migrering, varav 1101&amp;nbsp;st rekomenderas en direkt &amp;aring;tg&amp;auml;rd. Detta beroende p&amp;aring; den h&amp;ouml;ga processkritikaliteten&lt;br&gt;
+tillsammans med instrumentens produkt status.&lt;br&gt;
+OBS! Produktstatusen f&amp;ouml;r dessa instrument har definierats utifr&amp;aring;n tillverkningsdatum och &amp;auml;r en uppskattning&lt;br&gt;
+utifr&amp;aring;n tillg&amp;auml;nglig data. Byggl&amp;auml;ngder kan skilja vid ers&amp;auml;ttning av fl&amp;ouml;desm&amp;auml;tare till annat fabrikat.&lt;/div&gt;
+</migration_situation_others>
+        <migration_recommendations>&lt;div style="font-size:11pt"&gt;&lt;font color="#007ca9"&gt;Improvement recommendations&lt;/font&gt;&lt;/div&gt;
+
+&lt;div style="font-size:9.5pt"&gt;V&amp;aring;r rekomendation &amp;auml;r att fokusera p&amp;aring; att ta fram ers&amp;auml;ttningsinstrument f&amp;ouml;r de enheter som &amp;auml;r orderstoppade samt har en h&amp;ouml;g processkritikalitet. Endress+Hauser kan vara behj&amp;auml;lpliga med detta arbete.&lt;/div&gt;
+</migration_recommendations>
+        <preventative_situation>&lt;div style="font-size:11pt"&gt;&lt;font color="#007ca9"&gt;Maintenance status&lt;/font&gt;&lt;/div&gt;
+
+&lt;div style="font-size:9.5pt"&gt;Flera viktiga faktorer p&amp;aring;verkar det f&amp;ouml;rebyggande underh&amp;aring;llet.&lt;br&gt;
+Vid analysering av den installerade basen anv&amp;auml;ndes f&amp;ouml;ljande definitioner:&lt;br&gt;
+Processkritiskt relaterat fel kan leda till fara f&amp;ouml;r person eller milj&amp;ouml; och/eller p&amp;aring;verka&lt;br&gt;
+produktionsprocessen som kan leda till produktionsbortfall eller kvalitetsp&amp;aring;verkan.&lt;br&gt;
+Analysens direkta resultat &amp;auml;r att f&amp;ouml;r 1908&amp;nbsp;av 2358&amp;nbsp;enheter rekomenderas n&amp;aring;gon form av underh&amp;aring;ll p&amp;aring;&lt;br&gt;
+grund av sin processkritikalitet, enhetstyp eller andra villkor.&lt;/div&gt;
+</preventative_situation>
+        <preventative_recommendations>&lt;div style="font-size:11pt"&gt;&lt;font color="#007ca9"&gt;Improvement recommendations&lt;/font&gt;&lt;/div&gt;
+
+&lt;div style="font-size:9.5pt"&gt;Detail text ...&lt;/div&gt;
+</preventative_recommendations>
+        <implementation_comment>&lt;div style="font-size:11pt"&gt;&lt;font color="#007ca9"&gt;Comments&lt;/font&gt;&lt;/div&gt;
+
+&lt;div style="font-size:9.5pt"&gt;Detail text ...&lt;/div&gt;
+</implementation_comment>
+        <implementation_timeline>&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;font color="#007ca9"&gt;Standardisation &lt;/font&gt;&lt;/td&gt;&lt;td&gt;&amp;nbsp;&lt;/td&gt;&lt;td&gt;Grüße &amp;amp; Maß € – &lt;b&gt;fett&lt;/b&gt;&lt;/td&gt;&lt;td&gt;a&lt;br&gt;b&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;p&gt;Absatz&lt;/p&gt;&lt;p&gt;zwei&lt;/p&gt;&lt;/td&gt;&lt;td&gt;  viel   Raum 
+ neu  &lt;/td&gt;&lt;td&gt;&lt;div&gt;block &lt;i&gt;i&lt;/i&gt;&lt;/div&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;</implementation_timeline>
+        <implementation_timeline_converted>&lt;font color="#007ca9"&gt;Standardisation &lt;/font&gt;|&amp;nbsp;|Gr&amp;uuml;&amp;szlig;e &amp;amp; Ma&amp;szlig; &amp;#x20ac; &amp;#x2013; &lt;b&gt;fett&lt;/b&gt;|a
+&lt;br&gt;
+b|&lt;p&gt;Absatz&lt;/p&gt;
+&lt;p&gt;zwei&lt;/p&gt;|viel Raum neu|&lt;div&gt;
+ block &lt;i&gt;i&lt;/i&gt;
+&lt;/div&gt;|</implementation_timeline_converted>
+        <implementation_head2>Q 4 2024</implementation_head2>
+        <implementation_head3>Q 1 2025</implementation_head3>
+        <maintenance_spks>CA,CC,CF,CD,CJ,CK,CL,CM,CN,DH,DM,E?,GA,GC,FN,MA,ME,MN,MV,MZ,M?,RA</maintenance_spks>
+    </sitevalue>
+    <user>
+        <u_userid>18121</u_userid>
+        <isAdmin>false</isAdmin>
+        <u_frontend_language>en_US</u_frontend_language>
+        <u_loginname>Mathias Pontell Concierge</u_loginname>
+        <hub_email>Concierge-mpontell@endress.com</hub_email>
+        <hub_first_name>Mathias</hub_first_name>
+        <hub_last_name>DIBA Testanlage Nord</hub_last_name>
+    </user>
+    <intervals>
+        <asset>
+            <spk>CA</spk>
+            <assettype>Analysis, pH/ORPnt</assettype>
+            <high_normal_insp>acc. Sensor and App</high_normal_insp>
+            <high_heavy_insp>acc. Sensor and App</high_heavy_insp>
+            <medium_normal_insp>acc. Sensor and App</medium_normal_insp>
+            <medium_heavy_insp>acc. Sensor and App</medium_heavy_insp>
+            <low_normal_insp>acc. Sensor and App</low_normal_insp>
+            <low_heavy_insp>acc. Sensor and App</low_heavy_insp>
+            <high_normal_calib>acc.Sensor and App</high_normal_calib>
+            <high_heavy_calib>acc. Sensor and App</high_heavy_calib>
+            <medium_normal_calib>acc. Sensor and App</medium_normal_calib>
+            <medium_heavy_calib>acc. Sensor and App</medium_heavy_calib>
+            <low_normal_calib>acc. Sensor and App</low_normal_calib>
+            <low_heavy_calib>acc. Sensor and App</low_heavy_calib>
+            <high_normal_valid>NA</high_normal_valid>
+            <high_heavy_valid>NA</high_heavy_valid>
+            <medium_normal_valid>NA</medium_normal_valid>
+            <medium_heavy_valid>NA</medium_heavy_valid>
+            <low_normal_valid>NA</low_normal_valid>
+            <low_heavy_valid>NA</low_heavy_valid>
+            <id>1</id>
+        </asset>
+        <asset>
+            <spk>CC</spk>
+            <assettype>Analysis, Oxygen</assettype>
+            <high_normal_insp>3</high_normal_insp>
+            <high_heavy_insp>1</high_heavy_insp>
+            <medium_normal_insp>6</medium_normal_insp>
+            <medium_heavy_insp>2</medium_heavy_insp>
+            <low_normal_insp>12</low_normal_insp>
+            <low_heavy_insp>3</low_heavy_insp>
+            <high_normal_calib>every 2 weeks</high_normal_calib>
+            <high_heavy_calib>every week</high_heavy_calib>
+            <medium_normal_calib>1</medium_normal_calib>
+            <medium_heavy_calib>every 2 weeks</medium_heavy_calib>
+            <low_normal_calib>1</low_normal_calib>
+            <low_heavy_calib>every 2 weeks</low_heavy_calib>
+            <high_normal_valid>NA</high_normal_valid>
+            <high_heavy_valid>NA</high_heavy_valid>
+            <medium_normal_valid>NA</medium_normal_valid>
+            <medium_heavy_valid>NA</medium_heavy_valid>
+            <low_normal_valid>NA</low_normal_valid>
+            <low_heavy_valid>NA</low_heavy_valid>
+            <id>2</id>
+        </asset>
+        <asset>
+            <spk>CD</spk>
+            <assettype>Analysis, Turbidity</assettype>
+            <high_normal_insp>3</high_normal_insp>
+            <high_heavy_insp>1</high_heavy_insp>
+            <medium_normal_insp>6</medium_normal_insp>
+            <medium_heavy_insp>3</medium_heavy_insp>
+            <low_normal_insp>12</low_normal_insp>
+            <low_heavy_insp>6</low_heavy_insp>
+            <high_normal_calib>6</high_normal_calib>
+            <high_heavy_calib>3</high_heavy_calib>
+            <medium_normal_calib>12</medium_normal_calib>
+            <medium_heavy_calib>6</medium_heavy_calib>
+            <low_normal_calib>24</low_normal_calib>
+            <low_heavy_calib>12</low_heavy_calib>
+            <high_normal_valid>NA</high_normal_valid>
+            <high_heavy_valid>NA</high_heavy_valid>
+            <medium_normal_valid>NA</medium_normal_valid>
+            <medium_heavy_valid>NA</medium_heavy_valid>
+            <low_normal_valid>NA</low_normal_valid>
+            <low_heavy_valid>NA</low_heavy_valid>
+            <id>3</id>
+        </asset>
+        <asset>
+            <spk>CF</spk>
+            <assettype>Analysis, Conductivity</assettype>
+            <high_normal_insp>12</high_normal_insp>
+            <high_heavy_insp>6</high_heavy_insp>
+            <medium_normal_insp>24</medium_normal_insp>
+            <medium_heavy_insp>24</medium_heavy_insp>
+            <low_normal_insp>36</low_normal_insp>
+            <low_heavy_insp>18</low_heavy_insp>
+            <high_normal_calib>6</high_normal_calib>
+            <high_heavy_calib>3</high_heavy_calib>
+            <medium_normal_calib>12</medium_normal_calib>
+            <medium_heavy_calib>6</medium_heavy_calib>
+            <low_normal_calib>24</low_normal_calib>
+            <low_heavy_calib>12</low_heavy_calib>
+            <high_normal_valid>NA</high_normal_valid>
+            <high_heavy_valid>NA</high_heavy_valid>
+            <medium_normal_valid>NA</medium_normal_valid>
+            <medium_heavy_valid>NA</medium_heavy_valid>
+            <low_normal_valid>NA</low_normal_valid>
+            <low_heavy_valid>NA</low_heavy_valid>
+            <id>4</id>
+        </asset>
+        <asset>
+            <spk>CH</spk>
+            <assettype>Analysis, Chlorine</assettype>
+            <high_normal_insp>6</high_normal_insp>
+            <high_heavy_insp>3</high_heavy_insp>
+            <medium_normal_insp>6</medium_normal_insp>
+            <medium_heavy_insp>3</medium_heavy_insp>
+            <low_normal_insp>12</low_normal_insp>
+            <low_heavy_insp>3</low_heavy_insp>
+            <high_normal_calib>every 2 weeks</high_normal_calib>
+            <high_heavy_calib>every week</high_heavy_calib>
+            <medium_normal_calib>1</medium_normal_calib>
+            <medium_heavy_calib>every week</medium_heavy_calib>
+            <low_normal_calib>1</low_normal_calib>
+            <low_heavy_calib>every 2 weeks</low_heavy_calib>
+            <high_normal_valid>NA</high_normal_valid>
+            <high_heavy_valid>NA</high_heavy_valid>
+            <medium_normal_valid>NA</medium_normal_valid>
+            <medium_heavy_valid>NA</medium_heavy_valid>
+            <low_normal_valid>NA</low_normal_valid>
+            <low_heavy_valid>NA</low_heavy_valid>
+            <id>5</id>
+        </asset>
+        <asset>
+            <spk>CI</spk>
+            <assettype>Analysis, Multiparameter</assettype>
+            <high_normal_insp>acc. Sensor and App</high_normal_insp>
+            <high_heavy_insp>acc. Sensor and App</high_heavy_insp>
+            <medium_normal_insp>acc. Sensor and App</medium_normal_insp>
+            <medium_heavy_insp>acc. Sensor and App</medium_heavy_insp>
+            <low_normal_insp>acc. Sensor and App</low_normal_insp>
+            <low_heavy_insp>acc. Sensor and App</low_heavy_insp>
+            <high_normal_calib>acc. Sensor and App</high_normal_calib>
+            <high_heavy_calib>acc. Sensor and App</high_heavy_calib>
+            <medium_normal_calib>acc. Sensor and App</medium_normal_calib>
+            <medium_heavy_calib>acc. Sensor and App</medium_heavy_calib>
+            <low_normal_calib>acc. Sensor and App</low_normal_calib>
+            <low_heavy_calib>acc. Sensor and App</low_heavy_calib>
+            <high_normal_valid>NA</high_normal_valid>
+            <high_heavy_valid>NA</high_heavy_valid>
+            <medium_normal_valid>NA</medium_normal_valid>
+            <medium_heavy_valid>NA</medium_heavy_valid>
+            <low_normal_valid>NA</low_normal_valid>
+            <low_heavy_valid>NA</low_heavy_valid>
+            <id>6</id>
+        </asset>
+        <asset>
+            <spk>CJ</spk>
+            <assettype>Analysis, UV-Photometry</assettype>
+            <high_normal_insp>1</high_normal_insp>
+            <high_heavy_insp>1</high_heavy_insp>
+            <medium_normal_insp>1</medium_normal_insp>
+            <medium_heavy_insp>1</medium_heavy_insp>
+            <low_normal_insp>1</low_normal_insp>
+            <low_heavy_insp>1</low_heavy_insp>
+            <high_normal_calib>1</high_normal_calib>
+            <high_heavy_calib>1</high_heavy_calib>
+            <medium_normal_calib>1</medium_normal_calib>
+            <medium_heavy_calib>1</medium_heavy_calib>
+            <low_normal_calib>1</low_normal_calib>
+            <low_heavy_calib>1</low_heavy_calib>
+            <high_normal_valid>NA</high_normal_valid>
+            <high_heavy_valid>NA</high_heavy_valid>
+            <medium_normal_valid>NA</medium_normal_valid>
+            <medium_heavy_valid>NA</medium_heavy_valid>
+            <low_normal_valid>NA</low_normal_valid>
+            <low_heavy_valid>NA</low_heavy_valid>
+            <id>7</id>
+        </asset>
+        <asset>
+            <spk>CK</spk>
+            <assettype>Analysis, Station</assettype>
+            <high_normal_insp>acc. Sensor and App</high_normal_insp>
+            <high_heavy_insp>acc. Sensor and App</high_heavy_insp>
+            <medium_normal_insp>acc. Sensor and App</medium_normal_insp>
+            <medium_heavy_insp>acc. Sensor and App</medium_heavy_insp>
+            <low_normal_insp>acc. Sensor and App</low_normal_insp>
+            <low_heavy_insp>acc. Sensor and App</low_heavy_insp>
+            <high_normal_calib>acc. Sensor and App</high_normal_calib>
+            <high_heavy_calib>acc. Sensor and App</high_heavy_calib>
+            <medium_normal_calib>acc. Sensor and App</medium_normal_calib>
+            <medium_heavy_calib>acc. Sensor and App</medium_heavy_calib>
+            <low_normal_calib>acc. Sensor and App</low_normal_calib>
+            <low_heavy_calib>acc. Sensor and App</low_heavy_calib>
+            <high_normal_valid>NA</high_normal_valid>
+            <high_heavy_valid>NA</high_heavy_valid>
+            <medium_normal_valid>NA</medium_normal_valid>
+            <medium_heavy_valid>NA</medium_heavy_valid>
+            <low_normal_valid>NA</low_normal_valid>
+            <low_heavy_valid>NA</low_heavy_valid>
+            <id>8</id>
+        </asset>
+        <asset>
+            <spk>CL</spk>
+            <assettype>Analysis, Colorimetric</assettype>
+            <high_normal_insp>3</high_normal_insp>
+            <high_heavy_insp>3</high_heavy_insp>
+            <medium_normal_insp>3</medium_normal_insp>
+            <medium_heavy_insp>3</medium_heavy_insp>
+            <low_normal_insp>3</low_normal_insp>
+            <low_heavy_insp>3</low_heavy_insp>
+            <high_normal_calib>48 h</high_normal_calib>
+            <high_heavy_calib>48 h</high_heavy_calib>
+            <medium_normal_calib>48 h</medium_normal_calib>
+            <medium_heavy_calib>48 h</medium_heavy_calib>
+            <low_normal_calib>48 h</low_normal_calib>
+            <low_heavy_calib>48 h</low_heavy_calib>
+            <high_normal_valid>NA</high_normal_valid>
+            <high_heavy_valid>NA</high_heavy_valid>
+            <medium_normal_valid>NA</medium_normal_valid>
+            <medium_heavy_valid>NA</medium_heavy_valid>
+            <low_normal_valid>NA</low_normal_valid>
+            <low_heavy_valid>NA</low_heavy_valid>
+            <id>9</id>
+        </asset>
+        <asset>
+            <spk>CM</spk>
+            <assettype>Analysis, Water Sampler</assettype>
+            <high_normal_insp>12</high_normal_insp>
+            <high_heavy_insp>6</high_heavy_insp>
+            <medium_normal_insp>12</medium_normal_insp>
+            <medium_heavy_insp>18</medium_heavy_insp>
+            <low_normal_insp>24</low_normal_insp>
+            <low_heavy_insp>18</low_heavy_insp>
+            <high_normal_calib>12</high_normal_calib>
+            <high_heavy_calib>6</high_heavy_calib>
+            <medium_normal_calib>18</medium_normal_calib>
+            <medium_heavy_calib>12</medium_heavy_calib>
+            <low_normal_calib>24</low_normal_calib>
+            <low_heavy_calib>18</low_heavy_calib>
+            <high_normal_valid>NA</high_normal_valid>
+            <high_heavy_valid>NA</high_heavy_valid>
+            <medium_normal_valid>NA</medium_normal_valid>
+            <medium_heavy_valid>NA</medium_heavy_valid>
+            <low_normal_valid>NA</low_normal_valid>
+            <low_heavy_valid>NA</low_heavy_valid>
+            <id>10</id>
+        </asset>
+        <asset>
+            <spk>CN</spk>
+            <assettype>Analysis, Ion-Sensitive</assettype>
+            <high_normal_insp>6</high_normal_insp>
+            <high_heavy_insp>3</high_heavy_insp>
+            <medium_normal_insp>6</medium_normal_insp>
+            <medium_heavy_insp>3</medium_heavy_insp>
+            <low_normal_insp>6</low_normal_insp>
+            <low_heavy_insp>3</low_heavy_insp>
+            <high_normal_calib>1</high_normal_calib>
+            <high_heavy_calib>1</high_heavy_calib>
+            <medium_normal_calib>1</medium_normal_calib>
+            <medium_heavy_calib>1</medium_heavy_calib>
+            <low_normal_calib>1</low_normal_calib>
+            <low_heavy_calib>1</low_heavy_calib>
+            <high_normal_valid>NA</high_normal_valid>
+            <high_heavy_valid>NA</high_heavy_valid>
+            <medium_normal_valid>NA</medium_normal_valid>
+            <medium_heavy_valid>NA</medium_heavy_valid>
+            <low_normal_valid>NA</low_normal_valid>
+            <low_heavy_valid>NA</low_heavy_valid>
+            <id>11</id>
+        </asset>
+        <asset>
+            <spk>CS</spk>
+            <assettype>Analysis, Spectrometry</assettype>
+            <high_normal_insp>?</high_normal_insp>
+            <high_heavy_insp>?</high_heavy_insp>
+            <medium_normal_insp>?</medium_normal_insp>
+            <medium_heavy_insp>?</medium_heavy_insp>
+            <low_normal_insp>?</low_normal_insp>
+            <low_heavy_insp>?</low_heavy_insp>
+            <high_normal_calib>?</high_normal_calib>
+            <high_heavy_calib>?</high_heavy_calib>
+            <medium_normal_calib>?</medium_normal_calib>
+            <medium_heavy_calib>?</medium_heavy_calib>
+            <low_normal_calib>?</low_normal_calib>
+            <low_heavy_calib>?</low_heavy_calib>
+            <high_normal_valid>NA</high_normal_valid>
+            <high_heavy_valid>NA</high_heavy_valid>
+            <medium_normal_valid>NA</medium_normal_valid>
+            <medium_heavy_valid>NA</medium_heavy_valid>
+            <low_normal_valid>NA</low_normal_valid>
+            <low_heavy_valid>NA</low_heavy_valid>
+            <id>12</id>
+        </asset>
+        <asset>
+            <spk>CW</spk>
+            <assettype>Analysis, WA-Systems</assettype>
+            <high_normal_insp>1</high_normal_insp>
+            <high_heavy_insp>1</high_heavy_insp>
+            <medium_normal_insp>1</medium_normal_insp>
+            <medium_heavy_insp>1</medium_heavy_insp>
+            <low_normal_insp>1</low_normal_insp>
+            <low_heavy_insp>1</low_heavy_insp>
+            <high_normal_calib>every week</high_normal_calib>
+            <high_heavy_calib>every week</high_heavy_calib>
+            <medium_normal_calib>every week</medium_normal_calib>
+            <medium_heavy_calib>every week</medium_heavy_calib>
+            <low_normal_calib>every week</low_normal_calib>
+            <low_heavy_calib>every week</low_heavy_calib>
+            <high_normal_valid>NA</high_normal_valid>
+            <high_heavy_valid>NA</high_heavy_valid>
+            <medium_normal_valid>NA</medium_normal_valid>
+            <medium_heavy_valid>NA</medium_heavy_valid>
+            <low_normal_valid>NA</low_normal_valid>
+            <low_heavy_valid>NA</low_heavy_valid>
+            <id>13</id>
+        </asset>
+        <asset>
+            <spk>CZ</spk>
+            <assettype>Analysis, General</assettype>
+            <high_normal_insp>12</high_normal_insp>
+            <high_heavy_insp>6</high_heavy_insp>
+            <medium_normal_insp>12</medium_normal_insp>
+            <medium_heavy_insp>6</medium_heavy_insp>
+            <low_normal_insp>12</low_normal_insp>
+            <low_heavy_insp>6</low_heavy_insp>
+            <high_normal_calib>NA</high_normal_calib>
+            <high_heavy_calib>NA</high_heavy_calib>
+            <medium_normal_calib>NA</medium_normal_calib>
+            <medium_heavy_calib>NA</medium_heavy_calib>
+            <low_normal_calib>NA</low_normal_calib>
+            <low_heavy_calib>NA</low_heavy_calib>
+            <high_normal_valid>NA</high_normal_valid>
+            <high_heavy_valid>NA</high_heavy_valid>
+            <medium_normal_valid>NA</medium_normal_valid>
+            <medium_heavy_valid>NA</medium_heavy_valid>
+            <low_normal_valid>NA</low_normal_valid>
+            <low_heavy_valid>NA</low_heavy_valid>
+            <id>14</id>
+        </asset>
+        <asset>
+            <spk>DA</spk>
+            <assettype>Flow, Electro-Magnetic</assettype>
+            <high_normal_insp>12</high_normal_insp>
+            <high_heavy_insp>12</high_heavy_insp>
+            <medium_normal_insp>12</medium_normal_insp>
+            <medium_heavy_insp>12</medium_heavy_insp>
+            <low_normal_insp>24</low_normal_insp>
+            <low_heavy_insp>12</low_heavy_insp>
+            <high_normal_calib>12</high_normal_calib>
+            <high_heavy_calib>6</high_heavy_calib>
+            <medium_normal_calib>24</medium_normal_calib>
+            <medium_heavy_calib>12</medium_heavy_calib>
+            <low_normal_calib>36</low_normal_calib>
+            <low_heavy_calib>24</low_heavy_calib>
+            <high_normal_valid>NA</high_normal_valid>
+            <high_heavy_valid>NA</high_heavy_valid>
+            <medium_normal_valid>NA</medium_normal_valid>
+            <medium_heavy_valid>NA</medium_heavy_valid>
+            <low_normal_valid>NA</low_normal_valid>
+            <low_heavy_valid>NA</low_heavy_valid>
+            <id>15</id>
+        </asset>
+        <asset>
+            <spk>DB</spk>
+            <assettype>Flow, Vortex</assettype>
+            <high_normal_insp>12</high_normal_insp>
+            <high_heavy_insp>12</high_heavy_insp>
+            <medium_normal_insp>12</medium_normal_insp>
+            <medium_heavy_insp>12</medium_heavy_insp>
+            <low_normal_insp>24</low_normal_insp>
+            <low_heavy_insp>12</low_heavy_insp>
+            <high_normal_calib>12</high_normal_calib>
+            <high_heavy_calib>6</high_heavy_calib>
+            <medium_normal_calib>24</medium_normal_calib>
+            <medium_heavy_calib>12</medium_heavy_calib>
+            <low_normal_calib>36</low_normal_calib>
+            <low_heavy_calib>24</low_heavy_calib>
+            <high_normal_valid>NA</high_normal_valid>
+            <high_heavy_valid>NA</high_heavy_valid>
+            <medium_normal_valid>NA</medium_normal_valid>
+            <medium_heavy_valid>NA</medium_heavy_valid>
+            <low_normal_valid>NA</low_normal_valid>
+            <low_heavy_valid>NA</low_heavy_valid>
+            <id>16</id>
+        </asset>
+        <asset>
+            <spk>DD</spk>
+            <assettype>Flow, Coriolis</assettype>
+            <high_normal_insp>12</high_normal_insp>
+            <high_heavy_insp>12</high_heavy_insp>
+            <medium_normal_insp>12</medium_normal_insp>
+            <medium_heavy_insp>12</medium_heavy_insp>
+            <low_normal_insp>24</low_normal_insp>
+            <low_heavy_insp>12</low_heavy_insp>
+            <high_normal_calib>12</high_normal_calib>
+            <high_heavy_calib>6</high_heavy_calib>
+            <medium_normal_calib>24</medium_normal_calib>
+            <medium_heavy_calib>12</medium_heavy_calib>
+            <low_normal_calib>36</low_normal_calib>
+            <low_heavy_calib>24</low_heavy_calib>
+            <high_normal_valid>NA</high_normal_valid>
+            <high_heavy_valid>NA</high_heavy_valid>
+            <medium_normal_valid>NA</medium_normal_valid>
+            <medium_heavy_valid>NA</medium_heavy_valid>
+            <low_normal_valid>NA</low_normal_valid>
+            <low_heavy_valid>NA</low_heavy_valid>
+            <id>17</id>
+        </asset>
+        <asset>
+            <spk>DE</spk>
+            <assettype>Flow, Coriolis MEMS</assettype>
+            <high_normal_insp>12</high_normal_insp>
+            <high_heavy_insp>12</high_heavy_insp>
+            <medium_normal_insp>12</medium_normal_insp>
+            <medium_heavy_insp>24</medium_heavy_insp>
+            <low_normal_insp>12</low_normal_insp>
+            <low_heavy_insp>12</low_heavy_insp>
+            <high_normal_calib>6</high_normal_calib>
+            <high_heavy_calib>24</high_heavy_calib>
+            <medium_normal_calib>12</medium_normal_calib>
+            <medium_heavy_calib>36</medium_heavy_calib>
+            <low_normal_calib>24</low_normal_calib>
+            <low_heavy_calib></low_heavy_calib>
+            <high_normal_valid>NA</high_normal_valid>
+            <high_heavy_valid>NA</high_heavy_valid>
+            <medium_normal_valid>NA</medium_normal_valid>
+            <medium_heavy_valid>NA</medium_heavy_valid>
+            <low_normal_valid>NA</low_normal_valid>
+            <low_heavy_valid>NA</low_heavy_valid>
+            <id>18</id>
+        </asset>
+        <asset>
+            <spk>DF</spk>
+            <assettype>Flow, Switch</assettype>
+            <high_normal_insp>12</high_normal_insp>
+            <high_heavy_insp>12</high_heavy_insp>
+            <medium_normal_insp>24</medium_normal_insp>
+            <medium_heavy_insp>12</medium_heavy_insp>
+            <low_normal_insp>36</low_normal_insp>
+            <low_heavy_insp>24</low_heavy_insp>
+            <high_normal_calib>NA</high_normal_calib>
+            <high_heavy_calib>NA</high_heavy_calib>
+            <medium_normal_calib>NA</medium_normal_calib>
+            <medium_heavy_calib>NA</medium_heavy_calib>
+            <low_normal_calib>NA</low_normal_calib>
+            <low_heavy_calib>NA</low_heavy_calib>
+            <high_normal_valid>NA</high_normal_valid>
+            <high_heavy_valid>NA</high_heavy_valid>
+            <medium_normal_valid>NA</medium_normal_valid>
+            <medium_heavy_valid>NA</medium_heavy_valid>
+            <low_normal_valid>NA</low_normal_valid>
+            <low_heavy_valid>NA</low_heavy_valid>
+            <id>19</id>
+        </asset>
+        <asset>
+            <spk>DH</spk>
+            <assettype>Flow, Thermal</assettype>
+            <high_normal_insp>12</high_normal_insp>
+            <high_heavy_insp>12</high_heavy_insp>
+            <medium_normal_insp>12</medium_normal_insp>
+            <medium_heavy_insp>12</medium_heavy_insp>
+            <low_normal_insp>24</low_normal_insp>
+            <low_heavy_insp>12</low_heavy_insp>
+            <high_normal_calib>12</high_normal_calib>
+            <high_heavy_calib>6</high_heavy_calib>
+            <medium_normal_calib>24</medium_normal_calib>
+            <medium_heavy_calib>12</medium_heavy_calib>
+            <low_normal_calib>36</low_normal_calib>
+            <low_heavy_calib>24</low_heavy_calib>
+            <high_normal_valid>NA</high_normal_valid>
+            <high_heavy_valid>NA</high_heavy_valid>
+            <medium_normal_valid>NA</medium_normal_valid>
+            <medium_heavy_valid>NA</medium_heavy_valid>
+            <low_normal_valid>NA</low_normal_valid>
+            <low_heavy_valid>NA</low_heavy_valid>
+            <id>20</id>
+        </asset>
+        <asset>
+            <spk>DJ</spk>
+            <assettype>Flow, Ultrasonic</assettype>
+            <high_normal_insp>12</high_normal_insp>
+            <high_heavy_insp>12</high_heavy_insp>
+            <medium_normal_insp>12</medium_normal_insp>
+            <medium_heavy_insp>12</medium_heavy_insp>
+            <low_normal_insp>24</low_normal_insp>
+            <low_heavy_insp>12</low_heavy_insp>
+            <high_normal_calib>12</high_normal_calib>
+            <high_heavy_calib>6</high_heavy_calib>
+            <medium_normal_calib>24</medium_normal_calib>
+            <medium_heavy_calib>12</medium_heavy_calib>
+            <low_normal_calib>36</low_normal_calib>
+            <low_heavy_calib>24</low_heavy_calib>
+            <high_normal_valid>NA</high_normal_valid>
+            <high_heavy_valid>NA</high_heavy_valid>
+            <medium_normal_valid>NA</medium_normal_valid>
+            <medium_heavy_valid>NA</medium_heavy_valid>
+            <low_normal_valid>NA</low_normal_valid>
+            <low_heavy_valid>NA</low_heavy_valid>
+            <id>21</id>
+        </asset>
+        <asset>
+            <spk>DK</spk>
+            <assettype>Flow, Open-Channel</assettype>
+            <high_normal_insp>6</high_normal_insp>
+            <high_heavy_insp>3</high_heavy_insp>
+            <medium_normal_insp>6</medium_normal_insp>
+            <medium_heavy_insp>3</medium_heavy_insp>
+            <low_normal_insp>6</low_normal_insp>
+            <low_heavy_insp>3</low_heavy_insp>
+            <high_normal_calib>12</high_normal_calib>
+            <high_heavy_calib>12</high_heavy_calib>
+            <medium_normal_calib>12</medium_normal_calib>
+            <medium_heavy_calib>12</medium_heavy_calib>
+            <low_normal_calib>12</low_normal_calib>
+            <low_heavy_calib>12</low_heavy_calib>
+            <high_normal_valid>NA</high_normal_valid>
+            <high_heavy_valid>NA</high_heavy_valid>
+            <medium_normal_valid>NA</medium_normal_valid>
+            <medium_heavy_valid>NA</medium_heavy_valid>
+            <low_normal_valid>NA</low_normal_valid>
+            <low_heavy_valid>NA</low_heavy_valid>
+            <id>22</id>
+        </asset>
+        <asset>
+            <spk>DM</spk>
+            <assettype>Flow, Mechanical</assettype>
+            <high_normal_insp>12</high_normal_insp>
+            <high_heavy_insp>12</high_heavy_insp>
+            <medium_normal_insp>24</medium_normal_insp>
+            <medium_heavy_insp>24</medium_heavy_insp>
+            <low_normal_insp>36</low_normal_insp>
+            <low_heavy_insp>36</low_heavy_insp>
+            <high_normal_calib>24</high_normal_calib>
+            <high_heavy_calib>24</high_heavy_calib>
+            <medium_normal_calib>36</medium_normal_calib>
+            <medium_heavy_calib>36</medium_heavy_calib>
+            <low_normal_calib>48</low_normal_calib>
+            <low_heavy_calib>48</low_heavy_calib>
+            <high_normal_valid>NA</high_normal_valid>
+            <high_heavy_valid>NA</high_heavy_valid>
+            <medium_normal_valid>NA</medium_normal_valid>
+            <medium_heavy_valid>NA</medium_heavy_valid>
+            <low_normal_valid>NA</low_normal_valid>
+            <low_heavy_valid>NA</low_heavy_valid>
+            <id>23</id>
+        </asset>
+        <asset>
+            <spk>DQ</spk>
+            <assettype>Flow, Quality Parameters</assettype>
+            <high_normal_insp>12</high_normal_insp>
+            <high_heavy_insp>12</high_heavy_insp>
+            <medium_normal_insp>12</medium_normal_insp>
+            <medium_heavy_insp>12</medium_heavy_insp>
+            <low_normal_insp>24</low_normal_insp>
+            <low_heavy_insp>12</low_heavy_insp>
+            <high_normal_calib>12</high_normal_calib>
+            <high_heavy_calib>6</high_heavy_calib>
+            <medium_normal_calib>24</medium_normal_calib>
+            <medium_heavy_calib>12</medium_heavy_calib>
+            <low_normal_calib>36</low_normal_calib>
+            <low_heavy_calib>24</low_heavy_calib>
+            <high_normal_valid>NA</high_normal_valid>
+            <high_heavy_valid>NA</high_heavy_valid>
+            <medium_normal_valid>NA</medium_normal_valid>
+            <medium_heavy_valid>NA</medium_heavy_valid>
+            <low_normal_valid>NA</low_normal_valid>
+            <low_heavy_valid>NA</low_heavy_valid>
+            <id>24</id>
+        </asset>
+        <asset>
+            <spk>DZ</spk>
+            <assettype>Flow, General</assettype>
+            <high_normal_insp>12</high_normal_insp>
+            <high_heavy_insp>6</high_heavy_insp>
+            <medium_normal_insp>24</medium_normal_insp>
+            <medium_heavy_insp>12</medium_heavy_insp>
+            <low_normal_insp>48</low_normal_insp>
+            <low_heavy_insp>24</low_heavy_insp>
+            <high_normal_calib>NA</high_normal_calib>
+            <high_heavy_calib>NA</high_heavy_calib>
+            <medium_normal_calib>NA</medium_normal_calib>
+            <medium_heavy_calib>NA</medium_heavy_calib>
+            <low_normal_calib>NA</low_normal_calib>
+            <low_heavy_calib>NA</low_heavy_calib>
+            <high_normal_valid>NA</high_normal_valid>
+            <high_heavy_valid>NA</high_heavy_valid>
+            <medium_normal_valid>NA</medium_normal_valid>
+            <medium_heavy_valid>NA</medium_heavy_valid>
+            <low_normal_valid>NA</low_normal_valid>
+            <low_heavy_valid>NA</low_heavy_valid>
+            <id>25</id>
+        </asset>
+        <asset>
+            <spk>EA</spk>
+            <assettype>Gas analysis, TDLAS</assettype>
+            <high_normal_insp>acc. Sensor and App</high_normal_insp>
+            <high_heavy_insp>acc. Sensor and App</high_heavy_insp>
+            <medium_normal_insp>acc. Sensor and App</medium_normal_insp>
+            <medium_heavy_insp>acc. Sensor and App</medium_heavy_insp>
+            <low_normal_insp>acc. Sensor and App</low_normal_insp>
+            <low_heavy_insp>acc. Sensor and App</low_heavy_insp>
+            <high_normal_calib>NA</high_normal_calib>
+            <high_heavy_calib>NA</high_heavy_calib>
+            <medium_normal_calib>NA</medium_normal_calib>
+            <medium_heavy_calib>NA</medium_heavy_calib>
+            <low_normal_calib>NA</low_normal_calib>
+            <low_heavy_calib>NA</low_heavy_calib>
+            <high_normal_valid>1</high_normal_valid>
+            <high_heavy_valid>1</high_heavy_valid>
+            <medium_normal_valid>4</medium_normal_valid>
+            <medium_heavy_valid>4</medium_heavy_valid>
+            <low_normal_valid>4</low_normal_valid>
+            <low_heavy_valid>4</low_heavy_valid>
+            <id>26</id>
+        </asset>
+        <asset>
+            <spk>EB</spk>
+            <assettype>Gas analysis, Quench Fluorescence</assettype>
+            <high_normal_insp>acc. Sensor and App</high_normal_insp>
+            <high_heavy_insp>acc. Sensor and App</high_heavy_insp>
+            <medium_normal_insp>acc. Sensor and App</medium_normal_insp>
+            <medium_heavy_insp>acc. Sensor and App</medium_heavy_insp>
+            <low_normal_insp>acc. Sensor and App</low_normal_insp>
+            <low_heavy_insp>acc. Sensor and App</low_heavy_insp>
+            <high_normal_calib>NA</high_normal_calib>
+            <high_heavy_calib>NA</high_heavy_calib>
+            <medium_normal_calib>NA</medium_normal_calib>
+            <medium_heavy_calib>NA</medium_heavy_calib>
+            <low_normal_calib>NA</low_normal_calib>
+            <low_heavy_calib>NA</low_heavy_calib>
+            <high_normal_valid>1</high_normal_valid>
+            <high_heavy_valid>1</high_heavy_valid>
+            <medium_normal_valid>4</medium_normal_valid>
+            <medium_heavy_valid>4</medium_heavy_valid>
+            <low_normal_valid>12</low_normal_valid>
+            <low_heavy_valid>12</low_heavy_valid>
+            <id>27</id>
+        </asset>
+        <asset>
+            <spk>EC</spk>
+            <assettype>Gas analysis, Raman Optograf</assettype>
+            <high_normal_insp>acc. Sensor and App</high_normal_insp>
+            <high_heavy_insp>acc. Sensor and App</high_heavy_insp>
+            <medium_normal_insp>acc. Sensor and App</medium_normal_insp>
+            <medium_heavy_insp>acc. Sensor and App</medium_heavy_insp>
+            <low_normal_insp>acc. Sensor and App</low_normal_insp>
+            <low_heavy_insp>acc. Sensor and App</low_heavy_insp>
+            <high_normal_calib>NA</high_normal_calib>
+            <high_heavy_calib>NA</high_heavy_calib>
+            <medium_normal_calib>NA</medium_normal_calib>
+            <medium_heavy_calib>NA</medium_heavy_calib>
+            <low_normal_calib>NA</low_normal_calib>
+            <low_heavy_calib>NA</low_heavy_calib>
+            <high_normal_valid>1</high_normal_valid>
+            <high_heavy_valid>1</high_heavy_valid>
+            <medium_normal_valid>4</medium_normal_valid>
+            <medium_heavy_valid>4</medium_heavy_valid>
+            <low_normal_valid>12</low_normal_valid>
+            <low_heavy_valid>12</low_heavy_valid>
+            <id>28</id>
+        </asset>
+        <asset>
+            <spk>EN</spk>
+            <assettype>Gas analysis, Hardware</assettype>
+            <high_normal_insp>NA</high_normal_insp>
+            <high_heavy_insp>NA</high_heavy_insp>
+            <medium_normal_insp>NA</medium_normal_insp>
+            <medium_heavy_insp>NA</medium_heavy_insp>
+            <low_normal_insp>NA</low_normal_insp>
+            <low_heavy_insp>NA</low_heavy_insp>
+            <high_normal_calib>NA</high_normal_calib>
+            <high_heavy_calib>NA</high_heavy_calib>
+            <medium_normal_calib>NA</medium_normal_calib>
+            <medium_heavy_calib>NA</medium_heavy_calib>
+            <low_normal_calib>NA</low_normal_calib>
+            <low_heavy_calib>NA</low_heavy_calib>
+            <high_normal_valid>NA</high_normal_valid>
+            <high_heavy_valid>NA</high_heavy_valid>
+            <medium_normal_valid>NA</medium_normal_valid>
+            <medium_heavy_valid>NA</medium_heavy_valid>
+            <low_normal_valid>NA</low_normal_valid>
+            <low_heavy_valid>NA</low_heavy_valid>
+            <id>29</id>
+        </asset>
+        <asset>
+            <spk>EZ</spk>
+            <assettype>Gas analysis, General</assettype>
+            <high_normal_insp>NA</high_normal_insp>
+            <high_heavy_insp>NA</high_heavy_insp>
+            <medium_normal_insp>NA</medium_normal_insp>
+            <medium_heavy_insp>NA</medium_heavy_insp>
+            <low_normal_insp>NA</low_normal_insp>
+            <low_heavy_insp>NA</low_heavy_insp>
+            <high_normal_calib>NA</high_normal_calib>
+            <high_heavy_calib>NA</high_heavy_calib>
+            <medium_normal_calib>NA</medium_normal_calib>
+            <medium_heavy_calib>NA</medium_heavy_calib>
+            <low_normal_calib>NA</low_normal_calib>
+            <low_heavy_calib>NA</low_heavy_calib>
+            <high_normal_valid>NA</high_normal_valid>
+            <high_heavy_valid>NA</high_heavy_valid>
+            <medium_normal_valid>NA</medium_normal_valid>
+            <medium_heavy_valid>NA</medium_heavy_valid>
+            <low_normal_valid>NA</low_normal_valid>
+            <low_heavy_valid>NA</low_heavy_valid>
+            <id>30</id>
+        </asset>
+        <asset>
+            <spk>FA</spk>
+            <assettype>Level, Capacitive</assettype>
+            <high_normal_insp>12</high_normal_insp>
+            <high_heavy_insp>12</high_heavy_insp>
+            <medium_normal_insp>12</medium_normal_insp>
+            <medium_heavy_insp>12</medium_heavy_insp>
+            <low_normal_insp>24</low_normal_insp>
+            <low_heavy_insp>12</low_heavy_insp>
+            <high_normal_calib>12</high_normal_calib>
+            <high_heavy_calib>6</high_heavy_calib>
+            <medium_normal_calib>24</medium_normal_calib>
+            <medium_heavy_calib>12</medium_heavy_calib>
+            <low_normal_calib>36</low_normal_calib>
+            <low_heavy_calib>24</low_heavy_calib>
+            <high_normal_valid>NA</high_normal_valid>
+            <high_heavy_valid>NA</high_heavy_valid>
+            <medium_normal_valid>NA</medium_normal_valid>
+            <medium_heavy_valid>NA</medium_heavy_valid>
+            <low_normal_valid>NA</low_normal_valid>
+            <low_heavy_valid>NA</low_heavy_valid>
+            <id>31</id>
+        </asset>
+        <asset>
+            <spk>FC</spk>
+            <assettype>Level, Conductive</assettype>
+            <high_normal_insp>12</high_normal_insp>
+            <high_heavy_insp>12</high_heavy_insp>
+            <medium_normal_insp>24</medium_normal_insp>
+            <medium_heavy_insp>12</medium_heavy_insp>
+            <low_normal_insp>36</low_normal_insp>
+            <low_heavy_insp>24</low_heavy_insp>
+            <high_normal_calib>NA</high_normal_calib>
+            <high_heavy_calib>NA</high_heavy_calib>
+            <medium_normal_calib>NA</medium_normal_calib>
+            <medium_heavy_calib>NA</medium_heavy_calib>
+            <low_normal_calib>NA</low_normal_calib>
+            <low_heavy_calib>NA</low_heavy_calib>
+            <high_normal_valid>NA</high_normal_valid>
+            <high_heavy_valid>NA</high_heavy_valid>
+            <medium_normal_valid>NA</medium_normal_valid>
+            <medium_heavy_valid>NA</medium_heavy_valid>
+            <low_normal_valid>NA</low_normal_valid>
+            <low_heavy_valid>NA</low_heavy_valid>
+            <id>32</id>
+        </asset>
+        <asset>
+            <spk>FE</spk>
+            <assettype>Level, Hydrostatic</assettype>
+            <high_normal_insp>12</high_normal_insp>
+            <high_heavy_insp>12</high_heavy_insp>
+            <medium_normal_insp>12</medium_normal_insp>
+            <medium_heavy_insp>12</medium_heavy_insp>
+            <low_normal_insp>24</low_normal_insp>
+            <low_heavy_insp>12</low_heavy_insp>
+            <high_normal_calib>12</high_normal_calib>
+            <high_heavy_calib>6</high_heavy_calib>
+            <medium_normal_calib>24</medium_normal_calib>
+            <medium_heavy_calib>12</medium_heavy_calib>
+            <low_normal_calib>36</low_normal_calib>
+            <low_heavy_calib>24</low_heavy_calib>
+            <high_normal_valid>NA</high_normal_valid>
+            <high_heavy_valid>NA</high_heavy_valid>
+            <medium_normal_valid>NA</medium_normal_valid>
+            <medium_heavy_valid>NA</medium_heavy_valid>
+            <low_normal_valid>NA</low_normal_valid>
+            <low_heavy_valid>NA</low_heavy_valid>
+            <id>33</id>
+        </asset>
+        <asset>
+            <spk>FG</spk>
+            <assettype>Level, Radiometric</assettype>
+            <high_normal_insp>12</high_normal_insp>
+            <high_heavy_insp>6</high_heavy_insp>
+            <medium_normal_insp>12</medium_normal_insp>
+            <medium_heavy_insp>6</medium_heavy_insp>
+            <low_normal_insp>24</low_normal_insp>
+            <low_heavy_insp>12</low_heavy_insp>
+            <high_normal_calib>NA</high_normal_calib>
+            <high_heavy_calib>NA</high_heavy_calib>
+            <medium_normal_calib>NA</medium_normal_calib>
+            <medium_heavy_calib>NA</medium_heavy_calib>
+            <low_normal_calib>NA</low_normal_calib>
+            <low_heavy_calib>NA</low_heavy_calib>
+            <high_normal_valid>NA</high_normal_valid>
+            <high_heavy_valid>NA</high_heavy_valid>
+            <medium_normal_valid>NA</medium_normal_valid>
+            <medium_heavy_valid>NA</medium_heavy_valid>
+            <low_normal_valid>NA</low_normal_valid>
+            <low_heavy_valid>NA</low_heavy_valid>
+            <id>34</id>
+        </asset>
+        <asset>
+            <spk>FH</spk>
+            <assettype>Level, Guided Radar</assettype>
+            <high_normal_insp>12</high_normal_insp>
+            <high_heavy_insp>6</high_heavy_insp>
+            <medium_normal_insp>12</medium_normal_insp>
+            <medium_heavy_insp>6</medium_heavy_insp>
+            <low_normal_insp>24</low_normal_insp>
+            <low_heavy_insp>12</low_heavy_insp>
+            <high_normal_calib>36</high_normal_calib>
+            <high_heavy_calib>24</high_heavy_calib>
+            <medium_normal_calib>36</medium_normal_calib>
+            <medium_heavy_calib>24</medium_heavy_calib>
+            <low_normal_calib>48</low_normal_calib>
+            <low_heavy_calib>36</low_heavy_calib>
+            <high_normal_valid>NA</high_normal_valid>
+            <high_heavy_valid>NA</high_heavy_valid>
+            <medium_normal_valid>NA</medium_normal_valid>
+            <medium_heavy_valid>NA</medium_heavy_valid>
+            <low_normal_valid>NA</low_normal_valid>
+            <low_heavy_valid>NA</low_heavy_valid>
+            <id>35</id>
+        </asset>
+        <asset>
+            <spk>FJ</spk>
+            <assettype>Level, Ultrasonic</assettype>
+            <high_normal_insp>12</high_normal_insp>
+            <high_heavy_insp>12</high_heavy_insp>
+            <medium_normal_insp>12</medium_normal_insp>
+            <medium_heavy_insp>12</medium_heavy_insp>
+            <low_normal_insp>24</low_normal_insp>
+            <low_heavy_insp>12</low_heavy_insp>
+            <high_normal_calib>12</high_normal_calib>
+            <high_heavy_calib>6</high_heavy_calib>
+            <medium_normal_calib>24</medium_normal_calib>
+            <medium_heavy_calib>12</medium_heavy_calib>
+            <low_normal_calib>36</low_normal_calib>
+            <low_heavy_calib>24</low_heavy_calib>
+            <high_normal_valid>NA</high_normal_valid>
+            <high_heavy_valid>NA</high_heavy_valid>
+            <medium_normal_valid>NA</medium_normal_valid>
+            <medium_heavy_valid>NA</medium_heavy_valid>
+            <low_normal_valid>NA</low_normal_valid>
+            <low_heavy_valid>NA</low_heavy_valid>
+            <id>36</id>
+        </asset>
+        <asset>
+            <spk>FK</spk>
+            <assettype>**Phase out, Ultrasonic Extern</assettype>
+            <high_normal_insp>12</high_normal_insp>
+            <high_heavy_insp>12</high_heavy_insp>
+            <medium_normal_insp>12</medium_normal_insp>
+            <medium_heavy_insp>12</medium_heavy_insp>
+            <low_normal_insp>24</low_normal_insp>
+            <low_heavy_insp>12</low_heavy_insp>
+            <high_normal_calib>12</high_normal_calib>
+            <high_heavy_calib>6</high_heavy_calib>
+            <medium_normal_calib>24</medium_normal_calib>
+            <medium_heavy_calib>12</medium_heavy_calib>
+            <low_normal_calib>36</low_normal_calib>
+            <low_heavy_calib>24</low_heavy_calib>
+            <high_normal_valid>NA</high_normal_valid>
+            <high_heavy_valid>NA</high_heavy_valid>
+            <medium_normal_valid>NA</medium_normal_valid>
+            <medium_heavy_valid>NA</medium_heavy_valid>
+            <low_normal_valid>NA</low_normal_valid>
+            <low_heavy_valid>NA</low_heavy_valid>
+            <id>37</id>
+        </asset>
+        <asset>
+            <spk>FL</spk>
+            <assettype>Level, Radar</assettype>
+            <high_normal_insp>12</high_normal_insp>
+            <high_heavy_insp>12</high_heavy_insp>
+            <medium_normal_insp>12</medium_normal_insp>
+            <medium_heavy_insp>12</medium_heavy_insp>
+            <low_normal_insp>24</low_normal_insp>
+            <low_heavy_insp>12</low_heavy_insp>
+            <high_normal_calib>12</high_normal_calib>
+            <high_heavy_calib>6</high_heavy_calib>
+            <medium_normal_calib>24</medium_normal_calib>
+            <medium_heavy_calib>12</medium_heavy_calib>
+            <low_normal_calib>36</low_normal_calib>
+            <low_heavy_calib>24</low_heavy_calib>
+            <high_normal_valid>NA</high_normal_valid>
+            <high_heavy_valid>NA</high_heavy_valid>
+            <medium_normal_valid>NA</medium_normal_valid>
+            <medium_heavy_valid>NA</medium_heavy_valid>
+            <low_normal_valid>NA</low_normal_valid>
+            <low_heavy_valid>NA</low_heavy_valid>
+            <id>38</id>
+        </asset>
+        <asset>
+            <spk>FM</spk>
+            <assettype>Level, Microwave Barrier</assettype>
+            <high_normal_insp>12</high_normal_insp>
+            <high_heavy_insp>12</high_heavy_insp>
+            <medium_normal_insp>24</medium_normal_insp>
+            <medium_heavy_insp>12</medium_heavy_insp>
+            <low_normal_insp>36</low_normal_insp>
+            <low_heavy_insp>24</low_heavy_insp>
+            <high_normal_calib>NA</high_normal_calib>
+            <high_heavy_calib>NA</high_heavy_calib>
+            <medium_normal_calib>NA</medium_normal_calib>
+            <medium_heavy_calib>NA</medium_heavy_calib>
+            <low_normal_calib>NA</low_normal_calib>
+            <low_heavy_calib>NA</low_heavy_calib>
+            <high_normal_valid>NA</high_normal_valid>
+            <high_heavy_valid>NA</high_heavy_valid>
+            <medium_normal_valid>NA</medium_normal_valid>
+            <medium_heavy_valid>NA</medium_heavy_valid>
+            <low_normal_valid>NA</low_normal_valid>
+            <low_heavy_valid>NA</low_heavy_valid>
+            <id>39</id>
+        </asset>
+        <asset>
+            <spk>FN</spk>
+            <assettype>Level, Electromechanical</assettype>
+            <high_normal_insp>12</high_normal_insp>
+            <high_heavy_insp>12</high_heavy_insp>
+            <medium_normal_insp>24</medium_normal_insp>
+            <medium_heavy_insp>12</medium_heavy_insp>
+            <low_normal_insp>36</low_normal_insp>
+            <low_heavy_insp>12</low_heavy_insp>
+            <high_normal_calib>NA</high_normal_calib>
+            <high_heavy_calib>NA</high_heavy_calib>
+            <medium_normal_calib>NA</medium_normal_calib>
+            <medium_heavy_calib>NA</medium_heavy_calib>
+            <low_normal_calib>NA</low_normal_calib>
+            <low_heavy_calib>NA</low_heavy_calib>
+            <high_normal_valid>NA</high_normal_valid>
+            <high_heavy_valid>NA</high_heavy_valid>
+            <medium_normal_valid>NA</medium_normal_valid>
+            <medium_heavy_valid>NA</medium_heavy_valid>
+            <low_normal_valid>NA</low_normal_valid>
+            <low_heavy_valid>NA</low_heavy_valid>
+            <id>40</id>
+        </asset>
+        <asset>
+            <spk>FP</spk>
+            <assettype>Level, Vibronic Solid</assettype>
+            <high_normal_insp>12</high_normal_insp>
+            <high_heavy_insp>12</high_heavy_insp>
+            <medium_normal_insp>24</medium_normal_insp>
+            <medium_heavy_insp>24</medium_heavy_insp>
+            <low_normal_insp>36</low_normal_insp>
+            <low_heavy_insp>24</low_heavy_insp>
+            <high_normal_calib>NA</high_normal_calib>
+            <high_heavy_calib>NA</high_heavy_calib>
+            <medium_normal_calib>NA</medium_normal_calib>
+            <medium_heavy_calib>NA</medium_heavy_calib>
+            <low_normal_calib>NA</low_normal_calib>
+            <low_heavy_calib>NA</low_heavy_calib>
+            <high_normal_valid>NA</high_normal_valid>
+            <high_heavy_valid>NA</high_heavy_valid>
+            <medium_normal_valid>NA</medium_normal_valid>
+            <medium_heavy_valid>NA</medium_heavy_valid>
+            <low_normal_valid>NA</low_normal_valid>
+            <low_heavy_valid>NA</low_heavy_valid>
+            <id>41</id>
+        </asset>
+        <asset>
+            <spk>FQ</spk>
+            <assettype>Level, Vibronic Liquid</assettype>
+            <high_normal_insp>12</high_normal_insp>
+            <high_heavy_insp>12</high_heavy_insp>
+            <medium_normal_insp>24</medium_normal_insp>
+            <medium_heavy_insp>12</medium_heavy_insp>
+            <low_normal_insp>36</low_normal_insp>
+            <low_heavy_insp>24</low_heavy_insp>
+            <high_normal_calib>NA</high_normal_calib>
+            <high_heavy_calib>NA</high_heavy_calib>
+            <medium_normal_calib>NA</medium_normal_calib>
+            <medium_heavy_calib>NA</medium_heavy_calib>
+            <low_normal_calib>NA</low_normal_calib>
+            <low_heavy_calib>NA</low_heavy_calib>
+            <high_normal_valid>NA</high_normal_valid>
+            <high_heavy_valid>NA</high_heavy_valid>
+            <medium_normal_valid>NA</medium_normal_valid>
+            <medium_heavy_valid>NA</medium_heavy_valid>
+            <low_normal_valid>NA</low_normal_valid>
+            <low_heavy_valid>NA</low_heavy_valid>
+            <id>42</id>
+        </asset>
+        <asset>
+            <spk>FS</spk>
+            <assettype>***servo-balanced tank gauging</assettype>
+            <high_normal_insp>12</high_normal_insp>
+            <high_heavy_insp>6</high_heavy_insp>
+            <medium_normal_insp>24</medium_normal_insp>
+            <medium_heavy_insp>6</medium_heavy_insp>
+            <low_normal_insp>48</low_normal_insp>
+            <low_heavy_insp>6</low_heavy_insp>
+            <high_normal_calib>NA</high_normal_calib>
+            <high_heavy_calib>NA</high_heavy_calib>
+            <medium_normal_calib>NA</medium_normal_calib>
+            <medium_heavy_calib>NA</medium_heavy_calib>
+            <low_normal_calib>NA</low_normal_calib>
+            <low_heavy_calib>NA</low_heavy_calib>
+            <high_normal_valid>NA</high_normal_valid>
+            <high_heavy_valid>NA</high_heavy_valid>
+            <medium_normal_valid>NA</medium_normal_valid>
+            <medium_heavy_valid>NA</medium_heavy_valid>
+            <low_normal_valid>NA</low_normal_valid>
+            <low_heavy_valid>NA</low_heavy_valid>
+            <id>43</id>
+        </asset>
+        <asset>
+            <spk>FZ</spk>
+            <assettype>Level, General</assettype>
+            <high_normal_insp>NA</high_normal_insp>
+            <high_heavy_insp>NA</high_heavy_insp>
+            <medium_normal_insp>NA</medium_normal_insp>
+            <medium_heavy_insp>NA</medium_heavy_insp>
+            <low_normal_insp>NA</low_normal_insp>
+            <low_heavy_insp>NA</low_heavy_insp>
+            <high_normal_calib>NA</high_normal_calib>
+            <high_heavy_calib>NA</high_heavy_calib>
+            <medium_normal_calib>NA</medium_normal_calib>
+            <medium_heavy_calib>NA</medium_heavy_calib>
+            <low_normal_calib>NA</low_normal_calib>
+            <low_heavy_calib>NA</low_heavy_calib>
+            <high_normal_valid>NA</high_normal_valid>
+            <high_heavy_valid>NA</high_heavy_valid>
+            <medium_normal_valid>NA</medium_normal_valid>
+            <medium_heavy_valid>NA</medium_heavy_valid>
+            <low_normal_valid>NA</low_normal_valid>
+            <low_heavy_valid>NA</low_heavy_valid>
+            <id>44</id>
+        </asset>
+        <asset>
+            <spk>GA</spk>
+            <assettype>***Granucor</assettype>
+            <high_normal_insp>NA</high_normal_insp>
+            <high_heavy_insp>NA</high_heavy_insp>
+            <medium_normal_insp>NA</medium_normal_insp>
+            <medium_heavy_insp>NA</medium_heavy_insp>
+            <low_normal_insp>NA</low_normal_insp>
+            <low_heavy_insp>NA</low_heavy_insp>
+            <high_normal_calib>NA</high_normal_calib>
+            <high_heavy_calib>NA</high_heavy_calib>
+            <medium_normal_calib>NA</medium_normal_calib>
+            <medium_heavy_calib>NA</medium_heavy_calib>
+            <low_normal_calib>NA</low_normal_calib>
+            <low_heavy_calib>NA</low_heavy_calib>
+            <high_normal_valid>NA</high_normal_valid>
+            <high_heavy_valid>NA</high_heavy_valid>
+            <medium_normal_valid>NA</medium_normal_valid>
+            <medium_heavy_valid>NA</medium_heavy_valid>
+            <low_normal_valid>NA</low_normal_valid>
+            <low_heavy_valid>NA</low_heavy_valid>
+            <id>45</id>
+        </asset>
+        <asset>
+            <spk>GC</spk>
+            <assettype>***Granumet</assettype>
+            <high_normal_insp>NA</high_normal_insp>
+            <high_heavy_insp>NA</high_heavy_insp>
+            <medium_normal_insp>NA</medium_normal_insp>
+            <medium_heavy_insp>NA</medium_heavy_insp>
+            <low_normal_insp>NA</low_normal_insp>
+            <low_heavy_insp>NA</low_heavy_insp>
+            <high_normal_calib>NA</high_normal_calib>
+            <high_heavy_calib>NA</high_heavy_calib>
+            <medium_normal_calib>NA</medium_normal_calib>
+            <medium_heavy_calib>NA</medium_heavy_calib>
+            <low_normal_calib>NA</low_normal_calib>
+            <low_heavy_calib>NA</low_heavy_calib>
+            <high_normal_valid>NA</high_normal_valid>
+            <high_heavy_valid>NA</high_heavy_valid>
+            <medium_normal_valid>NA</medium_normal_valid>
+            <medium_heavy_valid>NA</medium_heavy_valid>
+            <low_normal_valid>NA</low_normal_valid>
+            <low_heavy_valid>NA</low_heavy_valid>
+            <id>46</id>
+        </asset>
+        <asset>
+            <spk>GE</spk>
+            <assettype>***Belt weigher Granubelt</assettype>
+            <high_normal_insp>NA</high_normal_insp>
+            <high_heavy_insp>NA</high_heavy_insp>
+            <medium_normal_insp>NA</medium_normal_insp>
+            <medium_heavy_insp>NA</medium_heavy_insp>
+            <low_normal_insp>NA</low_normal_insp>
+            <low_heavy_insp>NA</low_heavy_insp>
+            <high_normal_calib>NA</high_normal_calib>
+            <high_heavy_calib>NA</high_heavy_calib>
+            <medium_normal_calib>NA</medium_normal_calib>
+            <medium_heavy_calib>NA</medium_heavy_calib>
+            <low_normal_calib>NA</low_normal_calib>
+            <low_heavy_calib>NA</low_heavy_calib>
+            <high_normal_valid>NA</high_normal_valid>
+            <high_heavy_valid>NA</high_heavy_valid>
+            <medium_normal_valid>NA</medium_normal_valid>
+            <medium_heavy_valid>NA</medium_heavy_valid>
+            <low_normal_valid>NA</low_normal_valid>
+            <low_heavy_valid>NA</low_heavy_valid>
+            <id>47</id>
+        </asset>
+        <asset>
+            <spk>GG</spk>
+            <assettype>***Granuflow flow controllers</assettype>
+            <high_normal_insp>NA</high_normal_insp>
+            <high_heavy_insp>NA</high_heavy_insp>
+            <medium_normal_insp>NA</medium_normal_insp>
+            <medium_heavy_insp>NA</medium_heavy_insp>
+            <low_normal_insp>NA</low_normal_insp>
+            <low_heavy_insp>NA</low_heavy_insp>
+            <high_normal_calib>NA</high_normal_calib>
+            <high_heavy_calib>NA</high_heavy_calib>
+            <medium_normal_calib>NA</medium_normal_calib>
+            <medium_heavy_calib>NA</medium_heavy_calib>
+            <low_normal_calib>NA</low_normal_calib>
+            <low_heavy_calib>NA</low_heavy_calib>
+            <high_normal_valid>NA</high_normal_valid>
+            <high_heavy_valid>NA</high_heavy_valid>
+            <medium_normal_valid>NA</medium_normal_valid>
+            <medium_heavy_valid>NA</medium_heavy_valid>
+            <low_normal_valid>NA</low_normal_valid>
+            <low_heavy_valid>NA</low_heavy_valid>
+            <id>48</id>
+        </asset>
+        <asset>
+            <spk>HH</spk>
+            <assettype>Moisture, Guided Radar</assettype>
+            <high_normal_insp>NA</high_normal_insp>
+            <high_heavy_insp>NA</high_heavy_insp>
+            <medium_normal_insp>NA</medium_normal_insp>
+            <medium_heavy_insp>NA</medium_heavy_insp>
+            <low_normal_insp>NA</low_normal_insp>
+            <low_heavy_insp>NA</low_heavy_insp>
+            <high_normal_calib>NA</high_normal_calib>
+            <high_heavy_calib>NA</high_heavy_calib>
+            <medium_normal_calib>NA</medium_normal_calib>
+            <medium_heavy_calib>NA</medium_heavy_calib>
+            <low_normal_calib>NA</low_normal_calib>
+            <low_heavy_calib>NA</low_heavy_calib>
+            <high_normal_valid>NA</high_normal_valid>
+            <high_heavy_valid>NA</high_heavy_valid>
+            <medium_normal_valid>NA</medium_normal_valid>
+            <medium_heavy_valid>NA</medium_heavy_valid>
+            <low_normal_valid>NA</low_normal_valid>
+            <low_heavy_valid>NA</low_heavy_valid>
+            <id>49</id>
+        </asset>
+        <asset>
+            <spk>MA</spk>
+            <assettype>***high moisture/dewpoint hygrometers</assettype>
+            <high_normal_insp>12</high_normal_insp>
+            <high_heavy_insp>6</high_heavy_insp>
+            <medium_normal_insp>24</medium_normal_insp>
+            <medium_heavy_insp>6</medium_heavy_insp>
+            <low_normal_insp>36</low_normal_insp>
+            <low_heavy_insp>6</low_heavy_insp>
+            <high_normal_calib>acc. Supplier</high_normal_calib>
+            <high_heavy_calib>acc. Supplier</high_heavy_calib>
+            <medium_normal_calib>acc. Supplier</medium_normal_calib>
+            <medium_heavy_calib>acc. Supplier</medium_heavy_calib>
+            <low_normal_calib>acc. Supplier</low_normal_calib>
+            <low_heavy_calib>acc. Supplier</low_heavy_calib>
+            <high_normal_valid>NA</high_normal_valid>
+            <high_heavy_valid>NA</high_heavy_valid>
+            <medium_normal_valid>NA</medium_normal_valid>
+            <medium_heavy_valid>NA</medium_heavy_valid>
+            <low_normal_valid>NA</low_normal_valid>
+            <low_heavy_valid>NA</low_heavy_valid>
+            <id>50</id>
+        </asset>
+        <asset>
+            <spk>MC</spk>
+            <assettype>***trace moisture(aluminium oxide sens.)</assettype>
+            <high_normal_insp>NA</high_normal_insp>
+            <high_heavy_insp>NA</high_heavy_insp>
+            <medium_normal_insp>NA</medium_normal_insp>
+            <medium_heavy_insp>NA</medium_heavy_insp>
+            <low_normal_insp>NA</low_normal_insp>
+            <low_heavy_insp>NA</low_heavy_insp>
+            <high_normal_calib>NA</high_normal_calib>
+            <high_heavy_calib>NA</high_heavy_calib>
+            <medium_normal_calib>NA</medium_normal_calib>
+            <medium_heavy_calib>NA</medium_heavy_calib>
+            <low_normal_calib>NA</low_normal_calib>
+            <low_heavy_calib>NA</low_heavy_calib>
+            <high_normal_valid>NA</high_normal_valid>
+            <high_heavy_valid>NA</high_heavy_valid>
+            <medium_normal_valid>NA</medium_normal_valid>
+            <medium_heavy_valid>NA</medium_heavy_valid>
+            <low_normal_valid>NA</low_normal_valid>
+            <low_heavy_valid>NA</low_heavy_valid>
+            <id>51</id>
+        </asset>
+        <asset>
+            <spk>ME</spk>
+            <assettype>***relative humidity</assettype>
+            <high_normal_insp>12</high_normal_insp>
+            <high_heavy_insp>6</high_heavy_insp>
+            <medium_normal_insp>12</medium_normal_insp>
+            <medium_heavy_insp>6</medium_heavy_insp>
+            <low_normal_insp>24</low_normal_insp>
+            <low_heavy_insp>12</low_heavy_insp>
+            <high_normal_calib>acc. Supplier Specs.</high_normal_calib>
+            <high_heavy_calib>acc. Supplier Specs.</high_heavy_calib>
+            <medium_normal_calib>acc. Supplier Specs.</medium_normal_calib>
+            <medium_heavy_calib>acc. Supplier Specs.</medium_heavy_calib>
+            <low_normal_calib>acc. Supplier Specs.</low_normal_calib>
+            <low_heavy_calib>acc. Supplier Specs.</low_heavy_calib>
+            <high_normal_valid>NA</high_normal_valid>
+            <high_heavy_valid>NA</high_heavy_valid>
+            <medium_normal_valid>NA</medium_normal_valid>
+            <medium_heavy_valid>NA</medium_heavy_valid>
+            <low_normal_valid>NA</low_normal_valid>
+            <low_heavy_valid>NA</low_heavy_valid>
+            <id>52</id>
+        </asset>
+        <asset>
+            <spk>MK</spk>
+            <assettype>METSO Kajani, Analyzer</assettype>
+            <high_normal_insp>acc. Supplier Specs.</high_normal_insp>
+            <high_heavy_insp>acc. Supplier Specs.</high_heavy_insp>
+            <medium_normal_insp>acc. Supplier Specs.</medium_normal_insp>
+            <medium_heavy_insp>acc. Supplier Specs.</medium_heavy_insp>
+            <low_normal_insp>acc. Supplier Specs.</low_normal_insp>
+            <low_heavy_insp>acc. Supplier Specs.</low_heavy_insp>
+            <high_normal_calib>acc. Supplier Specs.</high_normal_calib>
+            <high_heavy_calib>acc. Supplier Specs.</high_heavy_calib>
+            <medium_normal_calib>acc. Supplier Specs.</medium_normal_calib>
+            <medium_heavy_calib>acc. Supplier Specs.</medium_heavy_calib>
+            <low_normal_calib>acc. Supplier Specs.</low_normal_calib>
+            <low_heavy_calib>acc. Supplier Specs.</low_heavy_calib>
+            <high_normal_valid>NA</high_normal_valid>
+            <high_heavy_valid>NA</high_heavy_valid>
+            <medium_normal_valid>NA</medium_normal_valid>
+            <medium_heavy_valid>NA</medium_heavy_valid>
+            <low_normal_valid>NA</low_normal_valid>
+            <low_heavy_valid>NA</low_heavy_valid>
+            <id>53</id>
+        </asset>
+        <asset>
+            <spk>MN</spk>
+            <assettype>METSO Neles, Valve</assettype>
+            <high_normal_insp>acc. Supplier Specs.</high_normal_insp>
+            <high_heavy_insp>acc. Supplier Specs.</high_heavy_insp>
+            <medium_normal_insp>acc. Supplier Specs.</medium_normal_insp>
+            <medium_heavy_insp>acc. Supplier Specs.</medium_heavy_insp>
+            <low_normal_insp>acc. Supplier Specs.</low_normal_insp>
+            <low_heavy_insp>acc. Supplier Specs.</low_heavy_insp>
+            <high_normal_calib>acc. Supplier Specs.</high_normal_calib>
+            <high_heavy_calib>acc. Supplier Specs.</high_heavy_calib>
+            <medium_normal_calib>acc. Supplier Specs.</medium_normal_calib>
+            <medium_heavy_calib>acc. Supplier Specs.</medium_heavy_calib>
+            <low_normal_calib>acc. Supplier Specs.</low_normal_calib>
+            <low_heavy_calib>acc. Supplier Specs.</low_heavy_calib>
+            <high_normal_valid>NA</high_normal_valid>
+            <high_heavy_valid>NA</high_heavy_valid>
+            <medium_normal_valid>NA</medium_normal_valid>
+            <medium_heavy_valid>NA</medium_heavy_valid>
+            <low_normal_valid>NA</low_normal_valid>
+            <low_heavy_valid>NA</low_heavy_valid>
+            <id>54</id>
+        </asset>
+        <asset>
+            <spk>MS</spk>
+            <assettype>METSO Satron, Controller</assettype>
+            <high_normal_insp>NA</high_normal_insp>
+            <high_heavy_insp>NA</high_heavy_insp>
+            <medium_normal_insp>NA</medium_normal_insp>
+            <medium_heavy_insp>NA</medium_heavy_insp>
+            <low_normal_insp>NA</low_normal_insp>
+            <low_heavy_insp>NA</low_heavy_insp>
+            <high_normal_calib>NA</high_normal_calib>
+            <high_heavy_calib>NA</high_heavy_calib>
+            <medium_normal_calib>NA</medium_normal_calib>
+            <medium_heavy_calib>NA</medium_heavy_calib>
+            <low_normal_calib>NA</low_normal_calib>
+            <low_heavy_calib>NA</low_heavy_calib>
+            <high_normal_valid>NA</high_normal_valid>
+            <high_heavy_valid>NA</high_heavy_valid>
+            <medium_normal_valid>NA</medium_normal_valid>
+            <medium_heavy_valid>NA</medium_heavy_valid>
+            <low_normal_valid>NA</low_normal_valid>
+            <low_heavy_valid>NA</low_heavy_valid>
+            <id>55</id>
+        </asset>
+        <asset>
+            <spk>MV</spk>
+            <assettype>METSO Valmet, Consistency</assettype>
+            <high_normal_insp>12</high_normal_insp>
+            <high_heavy_insp>6</high_heavy_insp>
+            <medium_normal_insp>12</medium_normal_insp>
+            <medium_heavy_insp>6</medium_heavy_insp>
+            <low_normal_insp>12</low_normal_insp>
+            <low_heavy_insp>6</low_heavy_insp>
+            <high_normal_calib>NA</high_normal_calib>
+            <high_heavy_calib>NA</high_heavy_calib>
+            <medium_normal_calib>NA</medium_normal_calib>
+            <medium_heavy_calib>NA</medium_heavy_calib>
+            <low_normal_calib>NA</low_normal_calib>
+            <low_heavy_calib>NA</low_heavy_calib>
+            <high_normal_valid>NA</high_normal_valid>
+            <high_heavy_valid>NA</high_heavy_valid>
+            <medium_normal_valid>NA</medium_normal_valid>
+            <medium_heavy_valid>NA</medium_heavy_valid>
+            <low_normal_valid>NA</low_normal_valid>
+            <low_heavy_valid>NA</low_heavy_valid>
+            <id>56</id>
+        </asset>
+        <asset>
+            <spk>MZ</spk>
+            <assettype>**Phase out, moisture miscellaneous</assettype>
+            <high_normal_insp>NA</high_normal_insp>
+            <high_heavy_insp>NA</high_heavy_insp>
+            <medium_normal_insp>NA</medium_normal_insp>
+            <medium_heavy_insp>NA</medium_heavy_insp>
+            <low_normal_insp>NA</low_normal_insp>
+            <low_heavy_insp>NA</low_heavy_insp>
+            <high_normal_calib>NA</high_normal_calib>
+            <high_heavy_calib>NA</high_heavy_calib>
+            <medium_normal_calib>NA</medium_normal_calib>
+            <medium_heavy_calib>NA</medium_heavy_calib>
+            <low_normal_calib>NA</low_normal_calib>
+            <low_heavy_calib>NA</low_heavy_calib>
+            <high_normal_valid>NA</high_normal_valid>
+            <high_heavy_valid>NA</high_heavy_valid>
+            <medium_normal_valid>NA</medium_normal_valid>
+            <medium_heavy_valid>NA</medium_heavy_valid>
+            <low_normal_valid>NA</low_normal_valid>
+            <low_heavy_valid>NA</low_heavy_valid>
+            <id>57</id>
+        </asset>
+        <asset>
+            <spk>NF</spk>
+            <assettype>Tank Gauging, Component</assettype>
+            <high_normal_insp>12</high_normal_insp>
+            <high_heavy_insp>6</high_heavy_insp>
+            <medium_normal_insp>24</medium_normal_insp>
+            <medium_heavy_insp>6</medium_heavy_insp>
+            <low_normal_insp>36</low_normal_insp>
+            <low_heavy_insp>6</low_heavy_insp>
+            <high_normal_calib>acc. Sensor and App</high_normal_calib>
+            <high_heavy_calib>acc. Sensor and App</high_heavy_calib>
+            <medium_normal_calib>acc. Sensor and App</medium_normal_calib>
+            <medium_heavy_calib>acc. Sensor and App</medium_heavy_calib>
+            <low_normal_calib>acc. Sensor and App</low_normal_calib>
+            <low_heavy_calib>acc. Sensor and App</low_heavy_calib>
+            <high_normal_valid>NA</high_normal_valid>
+            <high_heavy_valid>NA</high_heavy_valid>
+            <medium_normal_valid>NA</medium_normal_valid>
+            <medium_heavy_valid>NA</medium_heavy_valid>
+            <low_normal_valid>NA</low_normal_valid>
+            <low_heavy_valid>NA</low_heavy_valid>
+            <id>58</id>
+        </asset>
+        <asset>
+            <spk>NM</spk>
+            <assettype>***Marine inventory gauging</assettype>
+            <high_normal_insp>NA</high_normal_insp>
+            <high_heavy_insp>NA</high_heavy_insp>
+            <medium_normal_insp>NA</medium_normal_insp>
+            <medium_heavy_insp>NA</medium_heavy_insp>
+            <low_normal_insp>NA</low_normal_insp>
+            <low_heavy_insp>NA</low_heavy_insp>
+            <high_normal_calib>NA</high_normal_calib>
+            <high_heavy_calib>NA</high_heavy_calib>
+            <medium_normal_calib>NA</medium_normal_calib>
+            <medium_heavy_calib>NA</medium_heavy_calib>
+            <low_normal_calib>NA</low_normal_calib>
+            <low_heavy_calib>NA</low_heavy_calib>
+            <high_normal_valid>NA</high_normal_valid>
+            <high_heavy_valid>NA</high_heavy_valid>
+            <medium_normal_valid>NA</medium_normal_valid>
+            <medium_heavy_valid>NA</medium_heavy_valid>
+            <low_normal_valid>NA</low_normal_valid>
+            <low_heavy_valid>NA</low_heavy_valid>
+            <id>59</id>
+        </asset>
+        <asset>
+            <spk>NS</spk>
+            <assettype>Tank Gauging, Gauge</assettype>
+            <high_normal_insp>12</high_normal_insp>
+            <high_heavy_insp>6</high_heavy_insp>
+            <medium_normal_insp>24</medium_normal_insp>
+            <medium_heavy_insp>6</medium_heavy_insp>
+            <low_normal_insp>36</low_normal_insp>
+            <low_heavy_insp>6</low_heavy_insp>
+            <high_normal_calib>acc. Sensor and App</high_normal_calib>
+            <high_heavy_calib>acc. Sensor and App</high_heavy_calib>
+            <medium_normal_calib>acc. Sensor and App</medium_normal_calib>
+            <medium_heavy_calib>acc. Sensor and App</medium_heavy_calib>
+            <low_normal_calib>acc. Sensor and App</low_normal_calib>
+            <low_heavy_calib>acc. Sensor and App</low_heavy_calib>
+            <high_normal_valid>NA</high_normal_valid>
+            <high_heavy_valid>NA</high_heavy_valid>
+            <medium_normal_valid>NA</medium_normal_valid>
+            <medium_heavy_valid>NA</medium_heavy_valid>
+            <low_normal_valid>NA</low_normal_valid>
+            <low_heavy_valid>NA</low_heavy_valid>
+            <id>60</id>
+        </asset>
+        <asset>
+            <spk>NZ</spk>
+            <assettype>Tank Gauging, General</assettype>
+            <high_normal_insp>NA</high_normal_insp>
+            <high_heavy_insp>NA</high_heavy_insp>
+            <medium_normal_insp>NA</medium_normal_insp>
+            <medium_heavy_insp>NA</medium_heavy_insp>
+            <low_normal_insp>NA</low_normal_insp>
+            <low_heavy_insp>NA</low_heavy_insp>
+            <high_normal_calib>NA</high_normal_calib>
+            <high_heavy_calib>NA</high_heavy_calib>
+            <medium_normal_calib>NA</medium_normal_calib>
+            <medium_heavy_calib>NA</medium_heavy_calib>
+            <low_normal_calib>NA</low_normal_calib>
+            <low_heavy_calib>NA</low_heavy_calib>
+            <high_normal_valid>NA</high_normal_valid>
+            <high_heavy_valid>NA</high_heavy_valid>
+            <medium_normal_valid>NA</medium_normal_valid>
+            <medium_heavy_valid>NA</medium_heavy_valid>
+            <low_normal_valid>NA</low_normal_valid>
+            <low_heavy_valid>NA</low_heavy_valid>
+            <id>61</id>
+        </asset>
+        <asset>
+            <spk>PA</spk>
+            <assettype>Pressure, Process</assettype>
+            <high_normal_insp>12</high_normal_insp>
+            <high_heavy_insp>6</high_heavy_insp>
+            <medium_normal_insp>24</medium_normal_insp>
+            <medium_heavy_insp>12</medium_heavy_insp>
+            <low_normal_insp>36</low_normal_insp>
+            <low_heavy_insp>18</low_heavy_insp>
+            <high_normal_calib>6</high_normal_calib>
+            <high_heavy_calib>3</high_heavy_calib>
+            <medium_normal_calib>12</medium_normal_calib>
+            <medium_heavy_calib>6</medium_heavy_calib>
+            <low_normal_calib>24</low_normal_calib>
+            <low_heavy_calib>12</low_heavy_calib>
+            <high_normal_valid>NA</high_normal_valid>
+            <high_heavy_valid>NA</high_heavy_valid>
+            <medium_normal_valid>NA</medium_normal_valid>
+            <medium_heavy_valid>NA</medium_heavy_valid>
+            <low_normal_valid>NA</low_normal_valid>
+            <low_heavy_valid>NA</low_heavy_valid>
+            <id>62</id>
+        </asset>
+        <asset>
+            <spk>PB</spk>
+            <assettype>Pressure, Switch</assettype>
+            <high_normal_insp>12</high_normal_insp>
+            <high_heavy_insp>12</high_heavy_insp>
+            <medium_normal_insp>24</medium_normal_insp>
+            <medium_heavy_insp>12</medium_heavy_insp>
+            <low_normal_insp>36</low_normal_insp>
+            <low_heavy_insp>24</low_heavy_insp>
+            <high_normal_calib>24</high_normal_calib>
+            <high_heavy_calib>12</high_heavy_calib>
+            <medium_normal_calib>36</medium_normal_calib>
+            <medium_heavy_calib>24</medium_heavy_calib>
+            <low_normal_calib>48</low_normal_calib>
+            <low_heavy_calib>36</low_heavy_calib>
+            <high_normal_valid>NA</high_normal_valid>
+            <high_heavy_valid>NA</high_heavy_valid>
+            <medium_normal_valid>NA</medium_normal_valid>
+            <medium_heavy_valid>NA</medium_heavy_valid>
+            <low_normal_valid>NA</low_normal_valid>
+            <low_heavy_valid>NA</low_heavy_valid>
+            <id>63</id>
+        </asset>
+        <asset>
+            <spk>PD</spk>
+            <assettype>Pressure, Differential</assettype>
+            <high_normal_insp>12</high_normal_insp>
+            <high_heavy_insp>6</high_heavy_insp>
+            <medium_normal_insp>24</medium_normal_insp>
+            <medium_heavy_insp>12</medium_heavy_insp>
+            <low_normal_insp>36</low_normal_insp>
+            <low_heavy_insp>18</low_heavy_insp>
+            <high_normal_calib>6</high_normal_calib>
+            <high_heavy_calib>3</high_heavy_calib>
+            <medium_normal_calib>12</medium_normal_calib>
+            <medium_heavy_calib>6</medium_heavy_calib>
+            <low_normal_calib>24</low_normal_calib>
+            <low_heavy_calib>12</low_heavy_calib>
+            <high_normal_valid>NA</high_normal_valid>
+            <high_heavy_valid>NA</high_heavy_valid>
+            <medium_normal_valid>NA</medium_normal_valid>
+            <medium_heavy_valid>NA</medium_heavy_valid>
+            <low_normal_valid>NA</low_normal_valid>
+            <low_heavy_valid>NA</low_heavy_valid>
+            <id>64</id>
+        </asset>
+        <asset>
+            <spk>PE</spk>
+            <assettype>Pressure, Hydrostatic</assettype>
+            <high_normal_insp>12</high_normal_insp>
+            <high_heavy_insp>6</high_heavy_insp>
+            <medium_normal_insp>24</medium_normal_insp>
+            <medium_heavy_insp>12</medium_heavy_insp>
+            <low_normal_insp>36</low_normal_insp>
+            <low_heavy_insp>18</low_heavy_insp>
+            <high_normal_calib>6</high_normal_calib>
+            <high_heavy_calib>3</high_heavy_calib>
+            <medium_normal_calib>12</medium_normal_calib>
+            <medium_heavy_calib>6</medium_heavy_calib>
+            <low_normal_calib>24</low_normal_calib>
+            <low_heavy_calib>12</low_heavy_calib>
+            <high_normal_valid>NA</high_normal_valid>
+            <high_heavy_valid>NA</high_heavy_valid>
+            <medium_normal_valid>NA</medium_normal_valid>
+            <medium_heavy_valid>NA</medium_heavy_valid>
+            <low_normal_valid>NA</low_normal_valid>
+            <low_heavy_valid>NA</low_heavy_valid>
+            <id>65</id>
+        </asset>
+        <asset>
+            <spk>PZ</spk>
+            <assettype>Pressure, General</assettype>
+            <high_normal_insp>12</high_normal_insp>
+            <high_heavy_insp>6</high_heavy_insp>
+            <medium_normal_insp>12</medium_normal_insp>
+            <medium_heavy_insp>6</medium_heavy_insp>
+            <low_normal_insp>24</low_normal_insp>
+            <low_heavy_insp>12</low_heavy_insp>
+            <high_normal_calib>24</high_normal_calib>
+            <high_heavy_calib>12</high_heavy_calib>
+            <medium_normal_calib>24</medium_normal_calib>
+            <medium_heavy_calib>12</medium_heavy_calib>
+            <low_normal_calib>36</low_normal_calib>
+            <low_heavy_calib>24</low_heavy_calib>
+            <high_normal_valid>NA</high_normal_valid>
+            <high_heavy_valid>NA</high_heavy_valid>
+            <medium_normal_valid>NA</medium_normal_valid>
+            <medium_heavy_valid>NA</medium_heavy_valid>
+            <low_normal_valid>NA</low_normal_valid>
+            <low_heavy_valid>NA</low_heavy_valid>
+            <id>66</id>
+        </asset>
+        <asset>
+            <spk>RA</spk>
+            <assettype>**Phase out, Printer</assettype>
+            <high_normal_insp>Every 2 weeks</high_normal_insp>
+            <high_heavy_insp>Every 2 weeks</high_heavy_insp>
+            <medium_normal_insp>Every 2 weeks</medium_normal_insp>
+            <medium_heavy_insp>Every 2 weeks</medium_heavy_insp>
+            <low_normal_insp>3</low_normal_insp>
+            <low_heavy_insp>1</low_heavy_insp>
+            <high_normal_calib>24</high_normal_calib>
+            <high_heavy_calib>12</high_heavy_calib>
+            <medium_normal_calib>24</medium_normal_calib>
+            <medium_heavy_calib>12</medium_heavy_calib>
+            <low_normal_calib>36</low_normal_calib>
+            <low_heavy_calib>24</low_heavy_calib>
+            <high_normal_valid>NA</high_normal_valid>
+            <high_heavy_valid>NA</high_heavy_valid>
+            <medium_normal_valid>NA</medium_normal_valid>
+            <medium_heavy_valid>NA</medium_heavy_valid>
+            <low_normal_valid>NA</low_normal_valid>
+            <low_heavy_valid>NA</low_heavy_valid>
+            <id>67</id>
+        </asset>
+        <asset>
+            <spk>RC</spk>
+            <assettype>Registration, Recorder</assettype>
+            <high_normal_insp>NA</high_normal_insp>
+            <high_heavy_insp>NA</high_heavy_insp>
+            <medium_normal_insp>NA</medium_normal_insp>
+            <medium_heavy_insp>NA</medium_heavy_insp>
+            <low_normal_insp>NA</low_normal_insp>
+            <low_heavy_insp>NA</low_heavy_insp>
+            <high_normal_calib>24</high_normal_calib>
+            <high_heavy_calib>12</high_heavy_calib>
+            <medium_normal_calib>24</medium_normal_calib>
+            <medium_heavy_calib>12</medium_heavy_calib>
+            <low_normal_calib>36</low_normal_calib>
+            <low_heavy_calib>24</low_heavy_calib>
+            <high_normal_valid>NA</high_normal_valid>
+            <high_heavy_valid>NA</high_heavy_valid>
+            <medium_normal_valid>NA</medium_normal_valid>
+            <medium_heavy_valid>NA</medium_heavy_valid>
+            <low_normal_valid>NA</low_normal_valid>
+            <low_heavy_valid>NA</low_heavy_valid>
+            <id>68</id>
+        </asset>
+        <asset>
+            <spk>RE</spk>
+            <assettype>**Phase out, Energy-Logger</assettype>
+            <high_normal_insp>NA</high_normal_insp>
+            <high_heavy_insp>NA</high_heavy_insp>
+            <medium_normal_insp>NA</medium_normal_insp>
+            <medium_heavy_insp>NA</medium_heavy_insp>
+            <low_normal_insp>NA</low_normal_insp>
+            <low_heavy_insp>NA</low_heavy_insp>
+            <high_normal_calib>24</high_normal_calib>
+            <high_heavy_calib>12</high_heavy_calib>
+            <medium_normal_calib>24</medium_normal_calib>
+            <medium_heavy_calib>12</medium_heavy_calib>
+            <low_normal_calib>36</low_normal_calib>
+            <low_heavy_calib>24</low_heavy_calib>
+            <high_normal_valid>NA</high_normal_valid>
+            <high_heavy_valid>NA</high_heavy_valid>
+            <medium_normal_valid>NA</medium_normal_valid>
+            <medium_heavy_valid>NA</medium_heavy_valid>
+            <low_normal_valid>NA</low_normal_valid>
+            <low_heavy_valid>NA</low_heavy_valid>
+            <id>69</id>
+        </asset>
+        <asset>
+            <spk>RF</spk>
+            <assettype>Registration, Process-Logger</assettype>
+            <high_normal_insp>NA</high_normal_insp>
+            <high_heavy_insp>NA</high_heavy_insp>
+            <medium_normal_insp>NA</medium_normal_insp>
+            <medium_heavy_insp>NA</medium_heavy_insp>
+            <low_normal_insp>NA</low_normal_insp>
+            <low_heavy_insp>NA</low_heavy_insp>
+            <high_normal_calib>24</high_normal_calib>
+            <high_heavy_calib>12</high_heavy_calib>
+            <medium_normal_calib>24</medium_normal_calib>
+            <medium_heavy_calib>12</medium_heavy_calib>
+            <low_normal_calib>36</low_normal_calib>
+            <low_heavy_calib>24</low_heavy_calib>
+            <high_normal_valid>NA</high_normal_valid>
+            <high_heavy_valid>NA</high_heavy_valid>
+            <medium_normal_valid>NA</medium_normal_valid>
+            <medium_heavy_valid>NA</medium_heavy_valid>
+            <low_normal_valid>NA</low_normal_valid>
+            <low_heavy_valid>NA</low_heavy_valid>
+            <id>70</id>
+        </asset>
+        <asset>
+            <spk>RZ</spk>
+            <assettype>Registration, General</assettype>
+            <high_normal_insp>NA</high_normal_insp>
+            <high_heavy_insp>NA</high_heavy_insp>
+            <medium_normal_insp>NA</medium_normal_insp>
+            <medium_heavy_insp>NA</medium_heavy_insp>
+            <low_normal_insp>NA</low_normal_insp>
+            <low_heavy_insp>NA</low_heavy_insp>
+            <high_normal_calib>NA</high_normal_calib>
+            <high_heavy_calib>NA</high_heavy_calib>
+            <medium_normal_calib>NA</medium_normal_calib>
+            <medium_heavy_calib>NA</medium_heavy_calib>
+            <low_normal_calib>NA</low_normal_calib>
+            <low_heavy_calib>NA</low_heavy_calib>
+            <high_normal_valid>NA</high_normal_valid>
+            <high_heavy_valid>NA</high_heavy_valid>
+            <medium_normal_valid>NA</medium_normal_valid>
+            <medium_heavy_valid>NA</medium_heavy_valid>
+            <low_normal_valid>NA</low_normal_valid>
+            <low_heavy_valid>NA</low_heavy_valid>
+            <id>71</id>
+        </asset>
+        <asset>
+            <spk>SA</spk>
+            <assettype>System Product, Housing</assettype>
+            <high_normal_insp>NA</high_normal_insp>
+            <high_heavy_insp>NA</high_heavy_insp>
+            <medium_normal_insp>NA</medium_normal_insp>
+            <medium_heavy_insp>NA</medium_heavy_insp>
+            <low_normal_insp>NA</low_normal_insp>
+            <low_heavy_insp>NA</low_heavy_insp>
+            <high_normal_calib>NA</high_normal_calib>
+            <high_heavy_calib>NA</high_heavy_calib>
+            <medium_normal_calib>NA</medium_normal_calib>
+            <medium_heavy_calib>NA</medium_heavy_calib>
+            <low_normal_calib>NA</low_normal_calib>
+            <low_heavy_calib>NA</low_heavy_calib>
+            <high_normal_valid>NA</high_normal_valid>
+            <high_heavy_valid>NA</high_heavy_valid>
+            <medium_normal_valid>NA</medium_normal_valid>
+            <medium_heavy_valid>NA</medium_heavy_valid>
+            <low_normal_valid>NA</low_normal_valid>
+            <low_heavy_valid>NA</low_heavy_valid>
+            <id>72</id>
+        </asset>
+        <asset>
+            <spk>SC</spk>
+            <assettype>System Product, Display/Counter</assettype>
+            <high_normal_insp>NA</high_normal_insp>
+            <high_heavy_insp>NA</high_heavy_insp>
+            <medium_normal_insp>NA</medium_normal_insp>
+            <medium_heavy_insp>NA</medium_heavy_insp>
+            <low_normal_insp>NA</low_normal_insp>
+            <low_heavy_insp>NA</low_heavy_insp>
+            <high_normal_calib>NA</high_normal_calib>
+            <high_heavy_calib>NA</high_heavy_calib>
+            <medium_normal_calib>NA</medium_normal_calib>
+            <medium_heavy_calib>NA</medium_heavy_calib>
+            <low_normal_calib>NA</low_normal_calib>
+            <low_heavy_calib>NA</low_heavy_calib>
+            <high_normal_valid>NA</high_normal_valid>
+            <high_heavy_valid>NA</high_heavy_valid>
+            <medium_normal_valid>NA</medium_normal_valid>
+            <medium_heavy_valid>NA</medium_heavy_valid>
+            <low_normal_valid>NA</low_normal_valid>
+            <low_heavy_valid>NA</low_heavy_valid>
+            <id>73</id>
+        </asset>
+        <asset>
+            <spk>SD</spk>
+            <assettype>System Product, Power Sup./Contacter</assettype>
+            <high_normal_insp>12</high_normal_insp>
+            <high_heavy_insp>6</high_heavy_insp>
+            <medium_normal_insp>24</medium_normal_insp>
+            <medium_heavy_insp>12</medium_heavy_insp>
+            <low_normal_insp>48</low_normal_insp>
+            <low_heavy_insp>24</low_heavy_insp>
+            <high_normal_calib>36</high_normal_calib>
+            <high_heavy_calib>24</high_heavy_calib>
+            <medium_normal_calib>48</medium_normal_calib>
+            <medium_heavy_calib>12</medium_heavy_calib>
+            <low_normal_calib>60</low_normal_calib>
+            <low_heavy_calib>36</low_heavy_calib>
+            <high_normal_valid>NA</high_normal_valid>
+            <high_heavy_valid>NA</high_heavy_valid>
+            <medium_normal_valid>NA</medium_normal_valid>
+            <medium_heavy_valid>NA</medium_heavy_valid>
+            <low_normal_valid>NA</low_normal_valid>
+            <low_heavy_valid>NA</low_heavy_valid>
+            <id>74</id>
+        </asset>
+        <asset>
+            <spk>SE</spk>
+            <assettype>System Product, Overvolt.Protection</assettype>
+            <high_normal_insp>NA</high_normal_insp>
+            <high_heavy_insp>NA</high_heavy_insp>
+            <medium_normal_insp>NA</medium_normal_insp>
+            <medium_heavy_insp>NA</medium_heavy_insp>
+            <low_normal_insp>NA</low_normal_insp>
+            <low_heavy_insp>NA</low_heavy_insp>
+            <high_normal_calib>NA</high_normal_calib>
+            <high_heavy_calib>NA</high_heavy_calib>
+            <medium_normal_calib>NA</medium_normal_calib>
+            <medium_heavy_calib>NA</medium_heavy_calib>
+            <low_normal_calib>NA</low_normal_calib>
+            <low_heavy_calib>NA</low_heavy_calib>
+            <high_normal_valid>NA</high_normal_valid>
+            <high_heavy_valid>NA</high_heavy_valid>
+            <medium_normal_valid>NA</medium_normal_valid>
+            <medium_heavy_valid>NA</medium_heavy_valid>
+            <low_normal_valid>NA</low_normal_valid>
+            <low_heavy_valid>NA</low_heavy_valid>
+            <id>75</id>
+        </asset>
+        <asset>
+            <spk>SF</spk>
+            <assettype>System Product, Energy Manager</assettype>
+            <high_normal_insp>NA</high_normal_insp>
+            <high_heavy_insp>NA</high_heavy_insp>
+            <medium_normal_insp>NA</medium_normal_insp>
+            <medium_heavy_insp>NA</medium_heavy_insp>
+            <low_normal_insp>NA</low_normal_insp>
+            <low_heavy_insp>NA</low_heavy_insp>
+            <high_normal_calib>9</high_normal_calib>
+            <high_heavy_calib>9</high_heavy_calib>
+            <medium_normal_calib>9</medium_normal_calib>
+            <medium_heavy_calib>9</medium_heavy_calib>
+            <low_normal_calib>9</low_normal_calib>
+            <low_heavy_calib>9</low_heavy_calib>
+            <high_normal_valid>NA</high_normal_valid>
+            <high_heavy_valid>NA</high_heavy_valid>
+            <medium_normal_valid>NA</medium_normal_valid>
+            <medium_heavy_valid>NA</medium_heavy_valid>
+            <low_normal_valid>NA</low_normal_valid>
+            <low_heavy_valid>NA</low_heavy_valid>
+            <id>76</id>
+        </asset>
+        <asset>
+            <spk>SG</spk>
+            <assettype>System Product, Communication</assettype>
+            <high_normal_insp>12</high_normal_insp>
+            <high_heavy_insp>12</high_heavy_insp>
+            <medium_normal_insp>12</medium_normal_insp>
+            <medium_heavy_insp>12</medium_heavy_insp>
+            <low_normal_insp>24</low_normal_insp>
+            <low_heavy_insp>24</low_heavy_insp>
+            <high_normal_calib>NA</high_normal_calib>
+            <high_heavy_calib>NA</high_heavy_calib>
+            <medium_normal_calib>NA</medium_normal_calib>
+            <medium_heavy_calib>NA</medium_heavy_calib>
+            <low_normal_calib>NA</low_normal_calib>
+            <low_heavy_calib>NA</low_heavy_calib>
+            <high_normal_valid>NA</high_normal_valid>
+            <high_heavy_valid>NA</high_heavy_valid>
+            <medium_normal_valid>NA</medium_normal_valid>
+            <medium_heavy_valid>NA</medium_heavy_valid>
+            <low_normal_valid>NA</low_normal_valid>
+            <low_heavy_valid>NA</low_heavy_valid>
+            <id>77</id>
+        </asset>
+        <asset>
+            <spk>SH</spk>
+            <assettype>System Product, Application</assettype>
+            <high_normal_insp>NA</high_normal_insp>
+            <high_heavy_insp>NA</high_heavy_insp>
+            <medium_normal_insp>NA</medium_normal_insp>
+            <medium_heavy_insp>NA</medium_heavy_insp>
+            <low_normal_insp>NA</low_normal_insp>
+            <low_heavy_insp>NA</low_heavy_insp>
+            <high_normal_calib>NA</high_normal_calib>
+            <high_heavy_calib>NA</high_heavy_calib>
+            <medium_normal_calib>NA</medium_normal_calib>
+            <medium_heavy_calib>NA</medium_heavy_calib>
+            <low_normal_calib>NA</low_normal_calib>
+            <low_heavy_calib>NA</low_heavy_calib>
+            <high_normal_valid>NA</high_normal_valid>
+            <high_heavy_valid>NA</high_heavy_valid>
+            <medium_normal_valid>NA</medium_normal_valid>
+            <medium_heavy_valid>NA</medium_heavy_valid>
+            <low_normal_valid>NA</low_normal_valid>
+            <low_heavy_valid>NA</low_heavy_valid>
+            <id>78</id>
+        </asset>
+        <asset>
+            <spk>SK</spk>
+            <assettype>System Product, Controller</assettype>
+            <high_normal_insp>NA</high_normal_insp>
+            <high_heavy_insp>NA</high_heavy_insp>
+            <medium_normal_insp>NA</medium_normal_insp>
+            <medium_heavy_insp>NA</medium_heavy_insp>
+            <low_normal_insp>NA</low_normal_insp>
+            <low_heavy_insp>NA</low_heavy_insp>
+            <high_normal_calib>NA</high_normal_calib>
+            <high_heavy_calib>NA</high_heavy_calib>
+            <medium_normal_calib>NA</medium_normal_calib>
+            <medium_heavy_calib>NA</medium_heavy_calib>
+            <low_normal_calib>NA</low_normal_calib>
+            <low_heavy_calib>NA</low_heavy_calib>
+            <high_normal_valid>NA</high_normal_valid>
+            <high_heavy_valid>NA</high_heavy_valid>
+            <medium_normal_valid>NA</medium_normal_valid>
+            <medium_heavy_valid>NA</medium_heavy_valid>
+            <low_normal_valid>NA</low_normal_valid>
+            <low_heavy_valid>NA</low_heavy_valid>
+            <id>79</id>
+        </asset>
+        <asset>
+            <spk>SM</spk>
+            <assettype>System Product, Hardware E+H</assettype>
+            <high_normal_insp>NA</high_normal_insp>
+            <high_heavy_insp>NA</high_heavy_insp>
+            <medium_normal_insp>NA</medium_normal_insp>
+            <medium_heavy_insp>NA</medium_heavy_insp>
+            <low_normal_insp>NA</low_normal_insp>
+            <low_heavy_insp>NA</low_heavy_insp>
+            <high_normal_calib>NA</high_normal_calib>
+            <high_heavy_calib>NA</high_heavy_calib>
+            <medium_normal_calib>NA</medium_normal_calib>
+            <medium_heavy_calib>NA</medium_heavy_calib>
+            <low_normal_calib>NA</low_normal_calib>
+            <low_heavy_calib>NA</low_heavy_calib>
+            <high_normal_valid>NA</high_normal_valid>
+            <high_heavy_valid>NA</high_heavy_valid>
+            <medium_normal_valid>NA</medium_normal_valid>
+            <medium_heavy_valid>NA</medium_heavy_valid>
+            <low_normal_valid>NA</low_normal_valid>
+            <low_heavy_valid>NA</low_heavy_valid>
+            <id>80</id>
+        </asset>
+        <asset>
+            <spk>SN</spk>
+            <assettype>System Product, Hardware Extern</assettype>
+            <high_normal_insp>NA</high_normal_insp>
+            <high_heavy_insp>NA</high_heavy_insp>
+            <medium_normal_insp>NA</medium_normal_insp>
+            <medium_heavy_insp>NA</medium_heavy_insp>
+            <low_normal_insp>NA</low_normal_insp>
+            <low_heavy_insp>NA</low_heavy_insp>
+            <high_normal_calib>NA</high_normal_calib>
+            <high_heavy_calib>NA</high_heavy_calib>
+            <medium_normal_calib>NA</medium_normal_calib>
+            <medium_heavy_calib>NA</medium_heavy_calib>
+            <low_normal_calib>NA</low_normal_calib>
+            <low_heavy_calib>NA</low_heavy_calib>
+            <high_normal_valid>NA</high_normal_valid>
+            <high_heavy_valid>NA</high_heavy_valid>
+            <medium_normal_valid>NA</medium_normal_valid>
+            <medium_heavy_valid>NA</medium_heavy_valid>
+            <low_normal_valid>NA</low_normal_valid>
+            <low_heavy_valid>NA</low_heavy_valid>
+            <id>81</id>
+        </asset>
+        <asset>
+            <spk>SO</spk>
+            <assettype>System Product, Software E+H</assettype>
+            <high_normal_insp>3</high_normal_insp>
+            <high_heavy_insp>NA</high_heavy_insp>
+            <medium_normal_insp>6</medium_normal_insp>
+            <medium_heavy_insp>NA</medium_heavy_insp>
+            <low_normal_insp>12</low_normal_insp>
+            <low_heavy_insp>NA</low_heavy_insp>
+            <high_normal_calib>NA</high_normal_calib>
+            <high_heavy_calib>NA</high_heavy_calib>
+            <medium_normal_calib>NA</medium_normal_calib>
+            <medium_heavy_calib>NA</medium_heavy_calib>
+            <low_normal_calib>NA</low_normal_calib>
+            <low_heavy_calib>NA</low_heavy_calib>
+            <high_normal_valid>NA</high_normal_valid>
+            <high_heavy_valid>NA</high_heavy_valid>
+            <medium_normal_valid>NA</medium_normal_valid>
+            <medium_heavy_valid>NA</medium_heavy_valid>
+            <low_normal_valid>NA</low_normal_valid>
+            <low_heavy_valid>NA</low_heavy_valid>
+            <id>82</id>
+        </asset>
+        <asset>
+            <spk>SP</spk>
+            <assettype>System Product, Software Extern</assettype>
+            <high_normal_insp>3</high_normal_insp>
+            <high_heavy_insp>NA</high_heavy_insp>
+            <medium_normal_insp>6</medium_normal_insp>
+            <medium_heavy_insp>NA</medium_heavy_insp>
+            <low_normal_insp>12</low_normal_insp>
+            <low_heavy_insp>NA</low_heavy_insp>
+            <high_normal_calib>NA</high_normal_calib>
+            <high_heavy_calib>NA</high_heavy_calib>
+            <medium_normal_calib>NA</medium_normal_calib>
+            <medium_heavy_calib>NA</medium_heavy_calib>
+            <low_normal_calib>NA</low_normal_calib>
+            <low_heavy_calib>NA</low_heavy_calib>
+            <high_normal_valid>NA</high_normal_valid>
+            <high_heavy_valid>NA</high_heavy_valid>
+            <medium_normal_valid>NA</medium_normal_valid>
+            <medium_heavy_valid>NA</medium_heavy_valid>
+            <low_normal_valid>NA</low_normal_valid>
+            <low_heavy_valid>NA</low_heavy_valid>
+            <id>83</id>
+        </asset>
+        <asset>
+            <spk>SR</spk>
+            <assettype>***RPM Controllers</assettype>
+            <high_normal_insp>NA</high_normal_insp>
+            <high_heavy_insp>NA</high_heavy_insp>
+            <medium_normal_insp>NA</medium_normal_insp>
+            <medium_heavy_insp>NA</medium_heavy_insp>
+            <low_normal_insp>NA</low_normal_insp>
+            <low_heavy_insp>NA</low_heavy_insp>
+            <high_normal_calib>NA</high_normal_calib>
+            <high_heavy_calib>NA</high_heavy_calib>
+            <medium_normal_calib>NA</medium_normal_calib>
+            <medium_heavy_calib>NA</medium_heavy_calib>
+            <low_normal_calib>NA</low_normal_calib>
+            <low_heavy_calib>NA</low_heavy_calib>
+            <high_normal_valid>NA</high_normal_valid>
+            <high_heavy_valid>NA</high_heavy_valid>
+            <medium_normal_valid>NA</medium_normal_valid>
+            <medium_heavy_valid>NA</medium_heavy_valid>
+            <low_normal_valid>NA</low_normal_valid>
+            <low_heavy_valid>NA</low_heavy_valid>
+            <id>84</id>
+        </asset>
+        <asset>
+            <spk>SZ</spk>
+            <assettype>System Product, General</assettype>
+            <high_normal_insp>NA</high_normal_insp>
+            <high_heavy_insp>NA</high_heavy_insp>
+            <medium_normal_insp>NA</medium_normal_insp>
+            <medium_heavy_insp>NA</medium_heavy_insp>
+            <low_normal_insp>NA</low_normal_insp>
+            <low_heavy_insp>NA</low_heavy_insp>
+            <high_normal_calib>NA</high_normal_calib>
+            <high_heavy_calib>NA</high_heavy_calib>
+            <medium_normal_calib>NA</medium_normal_calib>
+            <medium_heavy_calib>NA</medium_heavy_calib>
+            <low_normal_calib>NA</low_normal_calib>
+            <low_heavy_calib>NA</low_heavy_calib>
+            <high_normal_valid>NA</high_normal_valid>
+            <high_heavy_valid>NA</high_heavy_valid>
+            <medium_normal_valid>NA</medium_normal_valid>
+            <medium_heavy_valid>NA</medium_heavy_valid>
+            <low_normal_valid>NA</low_normal_valid>
+            <low_heavy_valid>NA</low_heavy_valid>
+            <id>85</id>
+        </asset>
+        <asset>
+            <spk>TA</spk>
+            <assettype>Temperature, Resistor RTD</assettype>
+            <high_normal_insp>12</high_normal_insp>
+            <high_heavy_insp>12</high_heavy_insp>
+            <medium_normal_insp>12</medium_normal_insp>
+            <medium_heavy_insp>12</medium_heavy_insp>
+            <low_normal_insp>48</low_normal_insp>
+            <low_heavy_insp>36</low_heavy_insp>
+            <high_normal_calib>12</high_normal_calib>
+            <high_heavy_calib>6</high_heavy_calib>
+            <medium_normal_calib>24</medium_normal_calib>
+            <medium_heavy_calib>12</medium_heavy_calib>
+            <low_normal_calib>36</low_normal_calib>
+            <low_heavy_calib>24</low_heavy_calib>
+            <high_normal_valid>NA</high_normal_valid>
+            <high_heavy_valid>NA</high_heavy_valid>
+            <medium_normal_valid>NA</medium_normal_valid>
+            <medium_heavy_valid>NA</medium_heavy_valid>
+            <low_normal_valid>NA</low_normal_valid>
+            <low_heavy_valid>NA</low_heavy_valid>
+            <id>86</id>
+        </asset>
+        <asset>
+            <spk>TC</spk>
+            <assettype>Temperature, Thermocouple TC</assettype>
+            <high_normal_insp>12</high_normal_insp>
+            <high_heavy_insp>12</high_heavy_insp>
+            <medium_normal_insp>12</medium_normal_insp>
+            <medium_heavy_insp>12</medium_heavy_insp>
+            <low_normal_insp>36</low_normal_insp>
+            <low_heavy_insp>18</low_heavy_insp>
+            <high_normal_calib>6</high_normal_calib>
+            <high_heavy_calib>3</high_heavy_calib>
+            <medium_normal_calib>12</medium_normal_calib>
+            <medium_heavy_calib>6</medium_heavy_calib>
+            <low_normal_calib>24</low_normal_calib>
+            <low_heavy_calib>12</low_heavy_calib>
+            <high_normal_valid>NA</high_normal_valid>
+            <high_heavy_valid>NA</high_heavy_valid>
+            <medium_normal_valid>NA</medium_normal_valid>
+            <medium_heavy_valid>NA</medium_heavy_valid>
+            <low_normal_valid>NA</low_normal_valid>
+            <low_heavy_valid>NA</low_heavy_valid>
+            <id>87</id>
+        </asset>
+        <asset>
+            <spk>TM</spk>
+            <assettype>Temperature, Transmitter</assettype>
+            <high_normal_insp>NA</high_normal_insp>
+            <high_heavy_insp>NA</high_heavy_insp>
+            <medium_normal_insp>NA</medium_normal_insp>
+            <medium_heavy_insp>NA</medium_heavy_insp>
+            <low_normal_insp>NA</low_normal_insp>
+            <low_heavy_insp>NA</low_heavy_insp>
+            <high_normal_calib>12</high_normal_calib>
+            <high_heavy_calib>12</high_heavy_calib>
+            <medium_normal_calib>24</medium_normal_calib>
+            <medium_heavy_calib>24</medium_heavy_calib>
+            <low_normal_calib>36</low_normal_calib>
+            <low_heavy_calib>36</low_heavy_calib>
+            <high_normal_valid>NA</high_normal_valid>
+            <high_heavy_valid>NA</high_heavy_valid>
+            <medium_normal_valid>NA</medium_normal_valid>
+            <medium_heavy_valid>NA</medium_heavy_valid>
+            <low_normal_valid>NA</low_normal_valid>
+            <low_heavy_valid>NA</low_heavy_valid>
+            <id>88</id>
+        </asset>
+        <asset>
+            <spk>TT</spk>
+            <assettype>Temperature, Thermometer</assettype>
+            <high_normal_insp>12</high_normal_insp>
+            <high_heavy_insp>12</high_heavy_insp>
+            <medium_normal_insp>12</medium_normal_insp>
+            <medium_heavy_insp>12</medium_heavy_insp>
+            <low_normal_insp>36</low_normal_insp>
+            <low_heavy_insp>18</low_heavy_insp>
+            <high_normal_calib>6</high_normal_calib>
+            <high_heavy_calib>3</high_heavy_calib>
+            <medium_normal_calib>12</medium_normal_calib>
+            <medium_heavy_calib>6</medium_heavy_calib>
+            <low_normal_calib>24</low_normal_calib>
+            <low_heavy_calib>12</low_heavy_calib>
+            <high_normal_valid>NA</high_normal_valid>
+            <high_heavy_valid>NA</high_heavy_valid>
+            <medium_normal_valid>NA</medium_normal_valid>
+            <medium_heavy_valid>NA</medium_heavy_valid>
+            <low_normal_valid>NA</low_normal_valid>
+            <low_heavy_valid>NA</low_heavy_valid>
+            <id>89</id>
+        </asset>
+        <asset>
+            <spk>TZ</spk>
+            <assettype>Temperature, General</assettype>
+            <high_normal_insp>12</high_normal_insp>
+            <high_heavy_insp>12</high_heavy_insp>
+            <medium_normal_insp>24</medium_normal_insp>
+            <medium_heavy_insp>12</medium_heavy_insp>
+            <low_normal_insp>36</low_normal_insp>
+            <low_heavy_insp>24</low_heavy_insp>
+            <high_normal_calib>24</high_normal_calib>
+            <high_heavy_calib>24</high_heavy_calib>
+            <medium_normal_calib>36</medium_normal_calib>
+            <medium_heavy_calib>24</medium_heavy_calib>
+            <low_normal_calib>60</low_normal_calib>
+            <low_heavy_calib>48</low_heavy_calib>
+            <high_normal_valid>NA</high_normal_valid>
+            <high_heavy_valid>NA</high_heavy_valid>
+            <medium_normal_valid>NA</medium_normal_valid>
+            <medium_heavy_valid>NA</medium_heavy_valid>
+            <low_normal_valid>NA</low_normal_valid>
+            <low_heavy_valid>NA</low_heavy_valid>
+            <id>90</id>
+        </asset>
+    </intervals>
+    <reportsettings>
+        <jobId>1</jobId>
+        <reportLanguage>se_SE</reportLanguage>
+        <asianVariant>false</asianVariant>
+        <showHeader>false</showHeader>
+        <exportFormat>pdf</exportFormat>
+        <contactDetails>Endress+Hauser AG
+Kägenstrasse 2
+4153 Reinach</contactDetails>
+        <userName>Mathias Pontell</userName>
+        <finalVersion>draft version</finalVersion>
+        <hideBudgetPrice>false</hideBudgetPrice>
+    </reportsettings>
+</ibadata>
