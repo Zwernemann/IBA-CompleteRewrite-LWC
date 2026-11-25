@@ -197,6 +197,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>DIBA_Row__c.Order_Code_Pending__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>DIBA_Row__c.Reco_Calib_Interval__c</field>
         <readable>true</readable>
     </fieldPermissions>

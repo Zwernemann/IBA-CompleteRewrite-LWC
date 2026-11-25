@@ -60,6 +60,7 @@ Eine Nummer `major.minor.patch` laesst sich nur einmal freigeben.
 | `dibaRichText` | Editor eines Reporttexts; laesst das HTML der Vorlagen unveraendert, Fett, Kursiv, Unterstrichen wie bisher |
 | `dibaReportSettingsModal` | die Reporteinstellungen |
 | `dibaReportState` | Vorlagen je Reportsprache, Sprachwechsel, Speichern je Feld mit Version, wie `ReportTemplates`, `ReportState` und `ReportValuesSession` |
+| `dibaAttachment` | ein Anhang: Logo (PNG wird im Browser zu JPEG auf weissem Grund) oder PDF nach einem Kapitel, als Salesforce File an der Anlage |
 | `dibaRowStore`, `dibaTexts` | Zeilen einer Anlage und Uebersetzungen, je Seite einmal geladen und geteilt |
 | `dibaMaintenanceModal` | die Anlagentabelle als Dialog ueber den ganzen Bildschirm |
 | `dibaMaintenance` | die vier Tabellendialoge (Anlage, Breakdown, Migration, Vorbeugung) mit den Spalten aus `dibaColumns`; prueft und speichert Aenderungen (500 Zeilen je Aufruf) |
@@ -83,6 +84,15 @@ wie Jsoup, die Ausgabe wie JAXB, danach die Anpassungen des `FineTuneWriter`. Di
 vergleichen gegen Referenzen, die der Java-Code geschrieben hat, darunter die Pfizer-Anlage
 mit 2.358 Zeilen; siehe `test/reportxml/README.md`. 50.000 Zeilen brauchen in Node rund
 3 s und ergeben gut 100 MB XML.
+
+## Order Code Transformer
+
+`DibaOrderCodes` fragt den Dienst von E+H nach den Nachfolgern alter Bestellcodes, bis zu
+500 Codes je Aufruf. Eine Lieferung markiert ihre Zeilen (`Order_Code_Pending__c`) und
+startet `DibaOrderCodeJob`, der sie in Laeufen zu 2.000 Zeilen abarbeitet; ist der Dienst
+nicht erreichbar, bleiben die Zeilen markiert. Aendert der Berater einen Bestellcode, fragt
+die Tabelle sofort nach (`DibaPlantController.lookupOrderCode`). Ein Nachfolger landet in
+`add_ordercode_transform` und `add_recomend_ordercode` und erhoeht die Version der Zeile.
 
 ## Uebersetzungen
 

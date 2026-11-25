@@ -2,6 +2,7 @@ import { LightningElement, api } from "lwc";
 import loadValues from "@salesforce/apex/DibaReportValuesController.load";
 import saveValues from "@salesforce/apex/DibaReportValuesController.save";
 import getIntervals from "@salesforce/apex/DibaIntervalController.getIntervals";
+import listAttachments from "@salesforce/apex/DibaAttachmentController.listAttachments";
 import DibaMaintenanceModal from "c/dibaMaintenanceModal";
 import DibaReportSettingsModal from "c/dibaReportSettingsModal";
 import DibaIntervalModal from "c/dibaIntervalModal";
@@ -77,6 +78,7 @@ export default class DibaPlant extends LightningElement {
     intervals;
     messages = [];
     revision = 0;
+    attachmentMap = {};
     saving = false;
     saveTimer;
 
@@ -91,14 +93,16 @@ export default class DibaPlant extends LightningElement {
     async load() {
         this.loading = true;
         try {
-            const [translations, stored, rows] = await Promise.all([
+            const [translations, stored, rows, attachments] = await Promise.all([
                 loadTranslations(),
                 loadValues({ plantId: this.plant.recordId }),
                 loadRows(this.plant.recordId, (count) => {
                     this.loadedRows = count;
-                })
+                }),
+                listAttachments({ plantId: this.plant.recordId })
             ]);
             this.translations = translations;
+            this.attachmentMap = attachments || {};
             this.rows = rows;
             const preset = {
                 language: stored.presetLanguage,
@@ -263,6 +267,28 @@ export default class DibaPlant extends LightningElement {
                     ? `(calc. ${texts.sliderMaintainabilityCalculated}%)`
                     : null
         }));
+    }
+
+    /** The attachments by slot, as s0 (logo) to s6 for the template. */
+    get attachments() {
+        const result = {};
+        for (let slot = 0; slot <= 6; slot++) {
+            result[`s${slot}`] = this.attachmentMap[slot] || this.attachmentMap[String(slot)] || null;
+        }
+        return result;
+    }
+
+    get uiLabels() {
+        return (this.translations && this.translations[userLanguage()]) || {};
+    }
+
+    handleAttachmentChange(event) {
+        const { slot, attachment } = event.detail;
+        const next = { ...this.attachmentMap };
+        delete next[String(slot)];
+        if (attachment) next[slot] = attachment;
+        else delete next[slot];
+        this.attachmentMap = next;
     }
 
     // --- changes ----------------------------------------------------------------------------

@@ -223,4 +223,36 @@ public with sharing class DibaPlantController {
         }
         return result;
     }
+
+    /**
+     * Looks up the successor of the order code of one row at once, as the table does when
+     * the order code was changed, and stores it.
+     *
+     * @return the row as it is now stored
+     */
+    @AuraEnabled
+    public static Map<String, Object> lookupOrderCode(Id rowId) {
+        DIBA_Row__c row = (DIBA_Row__c) Database.query(
+            'SELECT ' + DibaRowFields.selectList() + ' FROM DIBA_Row__c WHERE Id = :rowId'
+        )[0];
+        String code = DibaOrderCodes.effectiveCode(row);
+        Map<String, String> results;
+        try {
+            results = DibaOrderCodes.lookup(new Set<String>{ code });
+        } catch (DibaOrderCodes.TransformerException e) {
+            throw new AuraHandledException(e.getMessage());
+        }
+        DIBA_Row__c changed = new DIBA_Row__c(Id = row.Id, Order_Code_Pending__c = false);
+        if (DibaOrderCodes.apply(results.get(code), row)) {
+            changed.Add_Ordercode_Transform__c = row.Add_Ordercode_Transform__c;
+            changed.Add_Recomend_Ordercode__c = row.Add_Recomend_Ordercode__c;
+            changed.Version__c = (row.Version__c == null ? 0 : row.Version__c) + 1;
+        }
+        update changed;
+        return DibaRowFields.toMap(
+            (DIBA_Row__c) Database.query(
+                'SELECT ' + DibaRowFields.selectList() + ' FROM DIBA_Row__c WHERE Id = :rowId'
+            )[0]
+        );
+    }
 }

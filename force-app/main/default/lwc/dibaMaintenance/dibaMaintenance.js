@@ -1,6 +1,7 @@
 import { LightningElement, api } from "lwc";
 import saveRows from "@salesforce/apex/DibaPlantController.saveRows";
 import getIntervals from "@salesforce/apex/DibaIntervalController.getIntervals";
+import lookupOrderCode from "@salesforce/apex/DibaPlantController.lookupOrderCode";
 import { loadRows } from "c/dibaRowStore";
 import { columnsFor } from "c/dibaColumns";
 import { intervalValues } from "c/dibaReportXml";
@@ -233,6 +234,9 @@ export default class DibaMaintenance extends LightningElement {
                         row.edits[edit.field] = edit;
                     }
                 }
+                if (sent.edits.device_ordercode) {
+                    this.lookUpSuccessor(row);
+                }
             }
         }
         for (const current of result.conflicts || []) {
@@ -251,6 +255,28 @@ export default class DibaMaintenance extends LightningElement {
         for (const [id, message] of Object.entries(result.errors || {})) {
             const row = this.byId.get(id);
             this.addMessage(`${row ? row.device_tag || row.device_oid : id}: ${message}`);
+        }
+    }
+
+    /**
+     * A changed order code gets its successor from the Order Code Transformer at once, as
+     * before; the server stores it and the row takes what is stored.
+     */
+    async lookUpSuccessor(row) {
+        try {
+            const current = await lookupOrderCode({ rowId: row.id });
+            if (this.pending.has(row.id)) {
+                // Newer changes of the row go with the next save; only take the successor.
+                row.add_ordercode_transform = current.add_ordercode_transform;
+                row.add_recomend_ordercode = current.add_recomend_ordercode;
+                row.version = current.version;
+            } else {
+                for (const key of Object.keys(row)) delete row[key];
+                Object.assign(row, this.prepare({ ...current }));
+            }
+            this.rows = [...this.rows];
+        } catch (e) {
+            this.addMessage(`${row.device_tag || row.device_oid}: ${reduceError(e)}`);
         }
     }
 

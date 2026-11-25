@@ -126,10 +126,17 @@ global with sharing class DibaLargePlant implements Queueable {
 
     public void execute(QueueableContext context) {
         DibaImport.accept(build(accountId, accountName, rows, part, transmissionId));
-        if (part < partCount(rows) && !Test.isRunningTest()) {
+        if (Test.isRunningTest()) {
+            return;
+        }
+        // One job may start one other: the next part, after the last the Order Code Transformer.
+        if (part < partCount(rows)) {
             System.enqueueJob(
                 new DibaLargePlant(accountId, accountName, rows, part + 1, transmissionId)
             );
+        } else {
+            Id plantId = [SELECT Id FROM DIBA_Account__c WHERE Account_Key__c = :accountId].Id;
+            System.enqueueJob(new DibaOrderCodeJob(plantId));
         }
     }
 

@@ -13,8 +13,8 @@ Nachfolger der Tomcat-Fassung `Zwernemann/IBA-Salesforce`.
 | 2b | Report-XML im Browser, zeichengleich mit IBA-Salesforce | fertig |
 | 2c | Report ueber den CRGenerator, Ablage als File | offen, braucht die Versions-Id des CRGenerator-Pakets |
 | 3a | Reiter mit Reporttexten (Vorlagen je Sprache, Seitenumbruch, Zuruecksetzen), Schieberegler, Reporteinstellungen, Speichern je Feld mit Version; Download des Report-XML | fertig |
-| 3b | Dialoge Breakdown, Migration, Vorbeugung (mit berechneten Intervallen), Intervalltabelle der Anlage | dieser Stand |
-| 3c | Order Code Transformer, Anhaenge (Logo, PDFs) | offen |
+| 3b | Dialoge Breakdown, Migration, Vorbeugung (mit berechneten Intervallen), Intervalltabelle der Anlage | fertig |
+| 3c | Order Code Transformer (nach jeder Lieferung und beim Aendern des Bestellcodes), Anhaenge (Logo, sechs PDFs) | dieser Stand |
 
 ## Installieren
 
@@ -31,7 +31,10 @@ Upgrade in die Test-Org ein; ein Tag `v*` prueft zusaetzlich die Erstinstallatio
 leeren Scratch Org.
 
 Nach der Installation: Permission Set **DIBA Report Consultant** den Beratern zuweisen,
-**DIBA Data Sender** dem Benutzer, unter dem die Aktion von E+H liefert.
+**DIBA Data Sender** dem Benutzer, unter dem die Aktion von E+H liefert. Die Adresse des
+Order Code Transformers steht in der Custom Metadata **DIBA Setting**
+(`Order_Code_Transformer_URL`), die Remote Site `DIBA_Order_Code_Transformer` kommt mit
+dem Paket; beides nur aendern, wenn E+H eine andere Adresse nennt.
 
 ## Bedienen
 

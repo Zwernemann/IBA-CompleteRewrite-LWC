@@ -7,6 +7,7 @@ import loadValues from "@salesforce/apex/DibaReportValuesController.load";
 import saveValues from "@salesforce/apex/DibaReportValuesController.save";
 import getIntervals from "@salesforce/apex/DibaIntervalController.getIntervals";
 import getRows from "@salesforce/apex/DibaPlantController.getRows";
+import listAttachments from "@salesforce/apex/DibaAttachmentController.listAttachments";
 import { forgetRows } from "c/dibaRowStore";
 
 jest.mock("c/dibaMaintenanceModal", () => ({ __esModule: true, default: { open: jest.fn() } }));
@@ -15,6 +16,7 @@ jest.mock("@salesforce/apex/DibaReportValuesController.load", () => ({ default: 
 jest.mock("@salesforce/apex/DibaReportValuesController.save", () => ({ default: jest.fn() }), { virtual: true });
 jest.mock("@salesforce/apex/DibaIntervalController.getIntervals", () => ({ default: jest.fn() }), { virtual: true });
 jest.mock("@salesforce/apex/DibaPlantController.getRows", () => ({ default: jest.fn() }), { virtual: true });
+jest.mock("@salesforce/apex/DibaAttachmentController.listAttachments", () => ({ default: jest.fn() }), { virtual: true });
 
 const ROOT = join(__dirname, "../../../../../..");
 const TRANSLATIONS = JSON.parse(readFileSync(join(ROOT, "force-app/main/default/staticresources/dibaTranslations.json"), "utf8"));
@@ -43,6 +45,7 @@ describe("c-diba-plant", () => {
             nextAfter: null
         });
         getIntervals.mockResolvedValue({ rows: [{ id: 1, spk: "TA", assettype: "Temperature" }] });
+        listAttachments.mockResolvedValue({ 3: { slot: 3, documentId: "069A", fileName: "plan.pdf", size: 100 } });
     });
 
     afterEach(() => {
@@ -64,6 +67,14 @@ describe("c-diba-plant", () => {
         const editors = element.shadowRoot.querySelectorAll("c-diba-rich-text");
         expect(editors.length).toBe(22);
         expect(editors[0].value).toContain("Aktuelle Situation");
+    });
+
+    it("has an attachment slot in every tab, filled where a file is stored", async () => {
+        const element = await open();
+        const slots = element.shadowRoot.querySelectorAll("c-diba-attachment");
+        expect(slots.length).toBe(7);
+        expect(slots[3].attachment.fileName).toBe("plan.pdf");
+        expect(slots[0].attachment).toBeNull();
     });
 
     it("calculates the two sliders from the rows", async () => {

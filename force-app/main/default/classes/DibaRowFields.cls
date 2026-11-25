@@ -31,6 +31,7 @@ public with sharing class DibaRowFields {
         new Field('tag_id', DIBA_Row__c.Tag_Id__c, Kind.KEY),
         new Field('asset_id', DIBA_Row__c.Asset_Id__c, Kind.KEY),
         new Field('version', DIBA_Row__c.Version__c, Kind.KEY),
+        new Field('order_code_pending', DIBA_Row__c.Order_Code_Pending__c, Kind.KEY),
         new Field('device_tag', DIBA_Row__c.Device_Tag__c, Kind.MASTER),
         new Field('device_measuringtask', DIBA_Row__c.Device_Measuringtask__c, Kind.MASTER),
         new Field('location_name', DIBA_Row__c.Location_Name__c, Kind.MASTER),

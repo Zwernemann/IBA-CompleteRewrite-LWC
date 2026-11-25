@@ -75,6 +75,7 @@
                                 </div>
                             </template>
                         </div>
+                        <c-diba-attachment plant-id={plant.recordId} position="0" attachment={attachments.s0} labels={uiLabels} onattachmentchange={handleAttachmentChange}></c-diba-attachment>
                     </lightning-tab>
                     <lightning-tab label={labels.overview} value="overview">
                         <template for:each={overviewTexts} for:item="text">
@@ -83,6 +84,7 @@
                                 <c-diba-rich-text name={text.name} label={text.label} value={text.value} pagebreak={text.pagebreak} show-pagebreak reset-label={text.resetLabel} pagebreak-label={text.pagebreakLabel} too-long-message={text.tooLongMessage} onchange={handleTextChange} onreset={handleTextReset} onpagebreak={handlePagebreak}></c-diba-rich-text>
                             </div>
                         </template>
+                        <c-diba-attachment plant-id={plant.recordId} position="1" attachment={attachments.s1} labels={uiLabels} onattachmentchange={handleAttachmentChange}></c-diba-attachment>
                     </lightning-tab>
                     <lightning-tab label={labels.standardisation} value="standardisation">
                         <template for:each={standardisationTexts} for:item="text">
@@ -91,6 +93,7 @@
                                 <c-diba-rich-text name={text.name} label={text.label} value={text.value} pagebreak={text.pagebreak} show-pagebreak reset-label={text.resetLabel} pagebreak-label={text.pagebreakLabel} too-long-message={text.tooLongMessage} onchange={handleTextChange} onreset={handleTextReset} onpagebreak={handlePagebreak}></c-diba-rich-text>
                             </div>
                         </template>
+                        <c-diba-attachment plant-id={plant.recordId} position="2" attachment={attachments.s2} labels={uiLabels} onattachmentchange={handleAttachmentChange}></c-diba-attachment>
                     </lightning-tab>
                     <lightning-tab label={labels.breakdown} value="breakdown">
                         <lightning-button label={labels.editBreakdown} icon-name="utility:table" class="slds-m-bottom_medium" data-view="breakdown" data-id="open-breakdown" onclick={handleOpenAssets}></lightning-button>
@@ -103,6 +106,7 @@
                                 <c-diba-rich-text name={text.name} label={text.label} value={text.value} pagebreak={text.pagebreak} show-pagebreak reset-label={text.resetLabel} pagebreak-label={text.pagebreakLabel} too-long-message={text.tooLongMessage} onchange={handleTextChange} onreset={handleTextReset} onpagebreak={handlePagebreak}></c-diba-rich-text>
                             </div>
                         </template>
+                        <c-diba-attachment plant-id={plant.recordId} position="3" attachment={attachments.s3} labels={uiLabels} onattachmentchange={handleAttachmentChange}></c-diba-attachment>
                     </lightning-tab>
                     <lightning-tab label={labels.migration} value="migration">
                         <lightning-button label={labels.editMigration} icon-name="utility:table" class="slds-m-bottom_medium" data-view="migration" data-id="open-migration" onclick={handleOpenAssets}></lightning-button>
@@ -112,6 +116,7 @@
                                 <c-diba-rich-text name={text.name} label={text.label} value={text.value} pagebreak={text.pagebreak} show-pagebreak reset-label={text.resetLabel} pagebreak-label={text.pagebreakLabel} too-long-message={text.tooLongMessage} onchange={handleTextChange} onreset={handleTextReset} onpagebreak={handlePagebreak}></c-diba-rich-text>
                             </div>
                         </template>
+                        <c-diba-attachment plant-id={plant.recordId} position="4" attachment={attachments.s4} labels={uiLabels} onattachmentchange={handleAttachmentChange}></c-diba-attachment>
                     </lightning-tab>
                     <lightning-tab label={labels.preventative} value="preventative">
                         <div class="slds-m-bottom_medium">
@@ -124,6 +129,7 @@
                                 <c-diba-rich-text name={text.name} label={text.label} value={text.value} pagebreak={text.pagebreak} show-pagebreak reset-label={text.resetLabel} pagebreak-label={text.pagebreakLabel} too-long-message={text.tooLongMessage} onchange={handleTextChange} onreset={handleTextReset} onpagebreak={handlePagebreak}></c-diba-rich-text>
                             </div>
                         </template>
+                        <c-diba-attachment plant-id={plant.recordId} position="5" attachment={attachments.s5} labels={uiLabels} onattachmentchange={handleAttachmentChange}></c-diba-attachment>
                     </lightning-tab>
                     <lightning-tab label={labels.implementation} value="implementation">
                         <h3 class="slds-text-heading_small slds-m-bottom_x-small">{labels.timeline}</h3>
@@ -141,6 +147,7 @@
                                 <c-diba-rich-text name={text.name} label={text.label} value={text.value} pagebreak={text.pagebreak} show-pagebreak reset-label={text.resetLabel} pagebreak-label={text.pagebreakLabel} too-long-message={text.tooLongMessage} onchange={handleTextChange} onreset={handleTextReset} onpagebreak={handlePagebreak}></c-diba-rich-text>
                             </div>
                         </template>
+                        <c-diba-attachment plant-id={plant.recordId} position="6" attachment={attachments.s6} labels={uiLabels} onattachmentchange={handleAttachmentChange}></c-diba-attachment>
                     </lightning-tab>
                 </lightning-tabset>
             </template>

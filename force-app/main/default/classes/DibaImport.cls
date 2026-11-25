@@ -127,11 +127,16 @@ global with sharing class DibaImport {
                 Datetime now = System.now();
                 for (DIBA_Row__c row : payload.rows) {
                     row.Master_Updated_At__c = now;
+                    // The Order Code Transformer looks up the successor afterwards.
+                    row.Order_Code_Pending__c = true;
                 }
                 upsert payload.rows DIBA_Row__c.Fields.Row_Key__c;
                 result.rowsAccepted = payload.rows.size();
             }
             result.complete = isComplete(payload.transmissionId);
+            if (result.rowsAccepted > 0) {
+                DibaOrderCodeJob.startFor(plant.Id);
+            }
         } catch (Exception e) {
             Database.rollback(savepoint);
             throw e;

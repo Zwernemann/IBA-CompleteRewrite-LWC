@@ -13,6 +13,8 @@ sind in den Feldbeschreibungen genannt.
 | `DIBA_Master_Edit__c` | `iba_account.master_data_edit` | vom Berater geaendertes Stammdatenfeld einer Zeile, mit dem Salesforce-Wert beim Aendern |
 | `DIBA_Interval_Value__c` | `iba_account.interval_value` | fuer eine Anlage geaenderte Zelle der Intervalltabelle |
 | `DIBA_Interval__mdt` (Custom Metadata) | `ibacer.intervaltable` | die 90 Vorgaben von E+H je SPK, unveraendert uebernommen |
+| `DIBA_Setting__mdt` (Custom Metadata) | `IBA_ORDERCODE_TRANSFORMER_URL` u. a. | Einstellungen, die ein Admin nach der Installation aendern darf |
+| Salesforce Files mit `ContentVersion.DIBA_Slot__c` | `iba_account.attachment` | Logo (0) und PDFs nach den Kapiteln (1 bis 6) an der Anlage |
 
 Alle Objekte ausser der Anlage haengen per Master-Detail an ihr (die Bearbeitungen an der
 Zeile): wird eine Anlage geloescht, gehen ihre Daten mit. Sichtbar ist alles fuer alle mit
@@ -28,7 +30,9 @@ dem Permission Set, wie in der Tomcat-Fassung vereinbart.
   haben hoechstens 255 Zeichen, wie bisher.
 - **Der Account** wird nicht kopiert: die Anlage haelt nur Name und Laendercode aus der
   Lieferung und verweist auf den Account der Org.
-- **Anhaenge** (Logo, PDFs) werden Salesforce Files am Account, kein eigenes Objekt.
+- **Anhaenge** (Logo, PDFs) sind Salesforce Files an der Anlage, kein eigenes Objekt.
+- **`Order_Code_Pending__c`** ist neu: die Zeilen, deren Nachfolger der Order Code
+  Transformer noch nachschlagen muss.
 - **`PRODUCTSTATUS.*`** und **`ibacer.logging`** sind nicht uebernommen: das eine wird im
   Code der Tomcat-Fassung nicht gelesen, das andere kommt mit der Report-Erzeugung.
 

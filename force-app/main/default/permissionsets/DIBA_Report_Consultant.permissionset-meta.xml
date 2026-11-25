@@ -12,6 +12,10 @@
         <apexClass>DibaIntervalController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
+    <classAccesses>
+        <apexClass>DibaAttachmentController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
     <customMetadataTypeAccesses>
         <enabled>true</enabled>
         <name>DIBA_Interval__mdt</name>
@@ -230,6 +234,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>DIBA_Row__c.Master_Updated_At__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>DIBA_Row__c.Order_Code_Pending__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
