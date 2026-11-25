@@ -38,12 +38,36 @@ for (const file of files.filter((f) => f.endsWith(".field-meta.xml"))) {
     const length = Number((xml.match(/<length>(\d+)<\/length>/) || [])[1]);
     if (type === "Text" && length > 255) findings.push(`${where}: Text laenger als 255`);
     if (!/<description>/.test(xml)) findings.push(`${where}: Beschreibung fehlt`);
+    const flag = (tag) => (xml.match(new RegExp(`<${tag}>(\\w+)</${tag}>`)) || [])[1] === "true";
+    if (flag("caseSensitive") && !flag("unique")) {
+        findings.push(`${where}: caseSensitive nur zusammen mit unique`);
+    }
+    if (type === "Lookup" && !/<deleteConstraint>/.test(xml))
+        findings.push(`${where}: deleteConstraint fehlt`);
+    if (/^(LongTextArea|Html)$/.test(type) && !/<visibleLines>/.test(xml)) {
+        findings.push(`${where}: visibleLines fehlt`);
+    }
+    if (
+        /^(Number|Currency|Percent)$/.test(type) &&
+        !(/<precision>/.test(xml) && /<scale>/.test(xml))
+    ) {
+        findings.push(`${where}: precision und scale fehlen`);
+    }
 }
 
 for (const file of files.filter((f) => f.endsWith(".object-meta.xml"))) {
     const xml = readFileSync(file, "utf8");
     const label = (xml.match(/^ {4}<label>([^<]+)<\/label>/m) || [])[1] || "";
     if (label.length > 40) findings.push(`${relative(root, file)}: Label laenger als 40 Zeichen`);
+    // Salesforce wants these three set alike on a custom object.
+    const flags = ["enableSharing", "enableBulkApi", "enableStreamingApi"].map(
+        (tag) => (xml.match(new RegExp(`<${tag}>(\\w+)</${tag}>`)) || [])[1] || "fehlt",
+    );
+    if (file.includes("__c/") && new Set(flags).size !== 1) {
+        findings.push(
+            `${relative(root, file)}: enableSharing, enableBulkApi, enableStreamingApi ungleich`,
+        );
+    }
 }
 
 for (const file of files.filter((f) => f.endsWith(".md-meta.xml"))) {
@@ -53,10 +77,12 @@ for (const file of files.filter((f) => f.endsWith(".md-meta.xml"))) {
 
 // Every Apex class and every component needs its meta file, or it is not deployed.
 for (const file of files.filter((f) => f.endsWith(".cls"))) {
-    if (!files.includes(file + "-meta.xml")) findings.push(`${relative(root, file)}: .cls-meta.xml fehlt`);
+    if (!files.includes(file + "-meta.xml"))
+        findings.push(`${relative(root, file)}: .cls-meta.xml fehlt`);
 }
 for (const file of files.filter((f) => /\/lwc\/([^/]+)\/\1\.js$/.test(f))) {
-    if (!files.includes(file + "-meta.xml")) findings.push(`${relative(root, file)}: .js-meta.xml fehlt`);
+    if (!files.includes(file + "-meta.xml"))
+        findings.push(`${relative(root, file)}: .js-meta.xml fehlt`);
 }
 
 if (findings.length) {

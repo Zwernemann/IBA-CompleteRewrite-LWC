@@ -5,7 +5,7 @@
       "default": true,
       "package": "DIBA Report",
       "versionName": "Account",
-      "versionNumber": "0.6.1.NEXT",
+      "versionNumber": "0.6.2.NEXT",
       "versionDescription": "DIBA Report Generator in Salesforce, opened from the account: data intake, asset table and dialogs, interval table, report texts, sliders and settings, Order Code Transformer, attachments, report XML."
     },
     {
@@ -17,7 +17,7 @@
       "dependencies": [
         {
           "package": "DIBA Report",
-          "versionNumber": "0.6.1.LATEST"
+          "versionNumber": "0.6.2.LATEST"
         }
       ]
     }
