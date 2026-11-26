@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Installs package versions into an org, upgrading what is there, and delivers the test
-# account through mzw.SfibaImport. Checks that the delivery is complete with 20 rows.
+# account through mzw.SfibaImport. Checks that the delivery is complete with 21 rows.
 #
 #   scripts/org-install-test.sh <org alias> <04t of SF Frontend IBA> <04t of SF Frontend IBA Test Data>
 source "$(dirname "$0")/lib/common.sh"
@@ -38,5 +38,5 @@ node -e '
         process.exit(1);
     }
 ' <<< "$OUTPUT" || fail "Testanlage nicht wie erwartet geliefert."
-note "Testanlage vollstaendig geliefert, 20 Zeilen"
+note "Testanlage vollstaendig geliefert, 21 Zeilen"
 summary "Installiert und geprueft in \`$ORG\`: $REPORT_VERSION, $TESTDATA_VERSION."

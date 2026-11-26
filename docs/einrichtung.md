@@ -92,7 +92,7 @@ Zwei Dinge, die ein Unlocked Package nicht selbst setzen kann:
 
 Developer Console (Zahnrad oben rechts), **Debug**, **Open Execute Anonymous Window**, den
 Inhalt von `scripts/apex/send-testdata.apex` einfuegen, **Execute**. Erwartet: im Log
-`DIBA-TEST-OK`; der Account "DIBA Testanlage Nord" hat dann 20 Zeilen. Am Account die
+`DIBA-TEST-OK`; der Account "DIBA Testanlage Nord" hat dann 21 Zeilen (bei einem getauschten Geraet bleibt die alte Zeile stehen). Am Account die
 Schaltflaeche **SF IBA Report** druecken.
 
 ## Spaeter: feste Test-Org fuer die CI

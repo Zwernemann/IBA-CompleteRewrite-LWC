@@ -5,20 +5,20 @@ const { openTestAccount, eventually, testAccountId } = require("./helpers");
 
 const stamp = `e2e ${Date.now()}`;
 
-test("the account shows its seven tabs and 20 rows", async ({ page }) => {
+test("the account shows its seven tabs and 21 rows", async ({ page }) => {
     await openTestAccount(page);
     for (const tab of ["Indicators", "Overview", "Standardisation", "Breakdown", "Migration", "Preventative", "Implementation"]) {
         await expect(page.getByRole("tab", { name: tab })).toBeVisible();
     }
-    await expect(page.getByText("20 rows").first()).toBeVisible();
+    await expect(page.getByText("21 rows").first()).toBeVisible();
 });
 
 test("the asset table shows all rows and filters them", async ({ page }) => {
     await openTestAccount(page);
     await page.getByRole("button", { name: "Edit asset table" }).click();
-    await expect(page.getByText("20 rows").last()).toBeVisible();
+    await expect(page.getByText("21 rows").last()).toBeVisible();
     await page.locator('input.sfiba-filter[data-field="device_tag"]').fill("TI-");
-    await expect(page.getByText(/of 20 rows/)).toBeVisible();
+    await expect(page.getByText(/of 21 rows/)).toBeVisible();
     await page.getByRole("button", { name: "Close" }).click();
 });
 

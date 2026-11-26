@@ -8,7 +8,8 @@ private class SfibaTestDataTest {
         Assert.areEqual(2, lines.size());
         Map<String, Object> last = (Map<String, Object>) System.JSON.deserializeUntyped(lines[1]);
         Assert.areEqual(true, last.get('complete'));
-        Assert.areEqual(20, [SELECT COUNT() FROM SFIBA_Row__c]);
+        // 21 as in IBA-Salesforce: a swapped device leaves the old row standing.
+        Assert.areEqual(21, [SELECT COUNT() FROM SFIBA_Row__c]);
     }
 
     @IsTest
