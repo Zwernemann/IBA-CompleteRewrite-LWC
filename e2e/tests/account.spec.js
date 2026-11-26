@@ -19,7 +19,7 @@ test("the asset table shows all rows and filters them", async ({ page }) => {
     await expect(page.getByText("21 rows").last()).toBeVisible();
     await page.locator('input.sfiba-filter[data-field="device_tag"]').fill("TI-");
     await expect(page.getByText(/of 21 rows/)).toBeVisible();
-    await page.getByRole("button", { name: "Close" }).click();
+    await page.getByRole("button", { name: "Close", exact: true }).click();
 });
 
 test("a remark in the breakdown table is stored", async ({ page }) => {
@@ -32,10 +32,12 @@ test("a remark in the breakdown table is stored", async ({ page }) => {
     await editor.fill(stamp);
     await editor.press("Enter");
     await expect(page.getByText("All changes saved")).toBeVisible();
+    // Long text fields cannot be filtered in SOQL: the rows are read and compared here.
     await eventually(
-        `SELECT Id FROM mzw__SFIBA_Row__c WHERE mzw__SFIBA_Add_Remark1__c = '${stamp}' AND mzw__SFIBA_Account__r.mzw__SFIBA_Account__c = '${testAccountId()}'`
+        `SELECT mzw__SFIBA_Add_Remark1__c FROM mzw__SFIBA_Row__c WHERE mzw__SFIBA_Account__r.mzw__SFIBA_Account__c = '${testAccountId()}'`,
+        (records) => records.some((record) => record.mzw__SFIBA_Add_Remark1__c === stamp)
     );
-    await page.getByRole("button", { name: "Close" }).click();
+    await page.getByRole("button", { name: "Close", exact: true }).click();
 });
 
 test("a report text is stored with its version", async ({ page }) => {
@@ -47,7 +49,8 @@ test("a report text is stored with its version", async ({ page }) => {
     await editor.pressSequentially(` ${stamp}`);
     await page.getByRole("tab", { name: "Overview" }).click();
     await eventually(
-        `SELECT mzw__SFIBA_Version__c FROM mzw__SFIBA_Report_Value__c WHERE mzw__SFIBA_Value_Name__c = 'overview_reason' AND mzw__SFIBA_Value__c LIKE '%${stamp}%'`
+        `SELECT mzw__SFIBA_Version__c, mzw__SFIBA_Value__c FROM mzw__SFIBA_Report_Value__c WHERE mzw__SFIBA_Value_Name__c = 'overview_reason'`,
+        (records) => records.some((record) => String(record.mzw__SFIBA_Value__c || "").includes(stamp))
     );
 });
 

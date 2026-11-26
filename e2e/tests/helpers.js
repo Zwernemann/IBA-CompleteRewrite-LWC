@@ -9,10 +9,17 @@ const TEST_ACCOUNT_NAME = "DIBA Testanlage Nord";
  * about a newer version in front of it; the answer starts at the first brace.
  */
 function sf(args) {
-    const out = execFileSync("sf", [...args, "--target-org", ORG, "--json"], {
-        encoding: "utf8",
-        env: { ...process.env, SF_SKIP_NEW_VERSION_CHECK: "true", FORCE_COLOR: "0" }
-    });
+    let out;
+    try {
+        out = execFileSync("sf", [...args, "--target-org", ORG, "--json"], {
+            encoding: "utf8",
+            env: { ...process.env, SF_SKIP_NEW_VERSION_CHECK: "true", FORCE_COLOR: "0" }
+        });
+    } catch (e) {
+        // A failed command still answers in JSON on stdout; its message says why.
+        out = String(e.stdout || "");
+        if (out.indexOf("{") < 0) throw e;
+    }
     const start = out.indexOf("{");
     if (start < 0) throw new Error(`No JSON from sf ${args.join(" ")}: ${out}`);
     const answer = JSON.parse(out.slice(start));
