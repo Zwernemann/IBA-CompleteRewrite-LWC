@@ -26,23 +26,23 @@ const SETS = {
                 read: true,
                 edit: true,
                 editableFields: [
-                    "Add_Ordercode_Transform__c",
-                    "Add_Recomend_Ordercode__c",
-                    "Add_Amount_Spare__c",
-                    "Add_Remark1__c",
-                    "Add_Remark2__c",
-                    "Add_Remark3__c",
-                    "Add_Nu_Price__c",
-                    "Reco_Insp_Interval__c",
-                    "Reco_Calib_Interval__c",
-                    "Reco_Valid_Interval__c",
-                    "Device_Riskofmaint__c",
-                    "Device_Obsolence__c",
-                    "Device_Insp_Interval__c",
-                    "Device_Calib_Interval__c",
-                    "Device_Valid_Interval__c",
-                    "Version__c",
-                    "Consultant_Updated_At__c",
+                    "SFIBA_Add_Ordercode_Transform__c",
+                    "SFIBA_Add_Recomend_Ordercode__c",
+                    "SFIBA_Add_Amount_Spare__c",
+                    "SFIBA_Add_Remark1__c",
+                    "SFIBA_Add_Remark2__c",
+                    "SFIBA_Add_Remark3__c",
+                    "SFIBA_Add_Nu_Price__c",
+                    "SFIBA_Reco_Insp_Interval__c",
+                    "SFIBA_Reco_Calib_Interval__c",
+                    "SFIBA_Reco_Valid_Interval__c",
+                    "SFIBA_Device_Riskofmaint__c",
+                    "SFIBA_Device_Obsolence__c",
+                    "SFIBA_Device_Insp_Interval__c",
+                    "SFIBA_Device_Calib_Interval__c",
+                    "SFIBA_Device_Valid_Interval__c",
+                    "SFIBA_Version__c",
+                    "SFIBA_Consultant_Updated_At__c",
                 ],
             },
             SFIBA_Transmission__c: { read: true },
@@ -94,6 +94,14 @@ function render(name, set) {
     const objects = Object.keys(set.objects).sort();
     for (const object of objects) {
         const rights = set.objects[object];
+        if (Array.isArray(rights.editableFields)) {
+            const known = new Set(grantableFields(object).map((f) => f.name));
+            const unknown = rights.editableFields.filter((f) => !known.has(f));
+            if (unknown.length) {
+                console.error(`${name}: unbekannte Felder an ${object}: ${unknown.join(", ")}`);
+                process.exit(1);
+            }
+        }
         for (const field of grantableFields(object)) {
             const editable =
                 !field.formula && (rights.editableFields === "all" || (rights.editableFields ?? []).includes(field.name));

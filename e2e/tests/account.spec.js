@@ -33,7 +33,7 @@ test("a remark in the breakdown table is stored", async ({ page }) => {
     await editor.press("Enter");
     await expect(page.getByText("All changes saved")).toBeVisible();
     await eventually(
-        `SELECT Id FROM mzw__SFIBA_Row__c WHERE mzw__Add_Remark1__c = '${stamp}' AND mzw__SFIBA_Account__r.mzw__Account__c = '${testAccountId()}'`
+        `SELECT Id FROM mzw__SFIBA_Row__c WHERE mzw__SFIBA_Add_Remark1__c = '${stamp}' AND mzw__SFIBA_Account__r.mzw__SFIBA_Account__c = '${testAccountId()}'`
     );
     await page.getByRole("button", { name: "Close" }).click();
 });
@@ -47,7 +47,7 @@ test("a report text is stored with its version", async ({ page }) => {
     await editor.pressSequentially(` ${stamp}`);
     await page.getByRole("tab", { name: "Overview" }).click();
     await eventually(
-        `SELECT mzw__Version__c FROM mzw__SFIBA_Report_Value__c WHERE mzw__Value_Name__c = 'overview_reason' AND mzw__Value__c LIKE '%${stamp}%'`
+        `SELECT mzw__SFIBA_Version__c FROM mzw__SFIBA_Report_Value__c WHERE mzw__SFIBA_Value_Name__c = 'overview_reason' AND mzw__SFIBA_Value__c LIKE '%${stamp}%'`
     );
 });
 
