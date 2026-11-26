@@ -111,6 +111,14 @@ gegen die gebaut wurde, und bricht sonst mit dem Link dafuer ab.
   `SF_TESTORG_JWT_KEY` (bei einer Sandbox zusaetzlich `SF_TESTORG_LOGIN_URL` =
   `https://test.salesforce.com`).
 
+## Lastanlage (nur Test-Org)
+
+Repository, **Actions**, Workflow **Lastanlage liefern**, **Run workflow**, Zeilen (Vorgabe
+50000). Er liefert den Account "DIBA Lasttest" ueber das Testdaten-Paket in die Test-Org, wie
+die Aktion von E+H es taete, und wartet, bis alle Teile angekommen sind (etwa eine Sekunde je
+1.000 Zeilen und Teil, bis 30 Minuten). Er baut kein Paket und verbraucht kein Kontingent. Am
+Account "DIBA Lasttest" oeffnet dann **SF IBA Report** die Lastanlage.
+
 ## Kontingente
 
 Ein Dev Hub darf nur eine begrenzte Zahl Paketversionen und Scratch Orgs am Tag anlegen

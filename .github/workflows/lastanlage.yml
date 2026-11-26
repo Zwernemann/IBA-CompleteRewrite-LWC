@@ -1,0 +1,40 @@
+name: Lastanlage liefern
+
+# Delivers the load test account "DIBA Lasttest" into the test org (secrets SF_TESTORG_*,
+# docs/einrichtung.md), through the test data package as E+H's action would. Builds no
+# package version.
+on:
+  workflow_dispatch:
+    inputs:
+      rows:
+        description: "Zeilen"
+        default: "50000"
+
+env:
+  SF_CLI_VERSION: "2.159.5"
+  NODE_VERSION: "22"
+  SF_SKIP_NEW_VERSION_CHECK: "true"
+
+jobs:
+  deliver:
+    name: Lastanlage liefern
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      SF_TESTORG_USERNAME: ${{ secrets.SF_TESTORG_USERNAME }}
+      SF_TESTORG_CLIENT_ID: ${{ secrets.SF_TESTORG_CLIENT_ID || secrets.SF_DEVHUB_CLIENT_ID }}
+      SF_TESTORG_JWT_KEY: ${{ secrets.SF_TESTORG_JWT_KEY || secrets.SF_DEVHUB_JWT_KEY }}
+      SF_TESTORG_LOGIN_URL: ${{ secrets.SF_TESTORG_LOGIN_URL }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+      - name: Salesforce CLI
+        run: npm install --global "@salesforce/cli@${SF_CLI_VERSION}"
+      - name: Anmeldung Test-Org
+        run: scripts/ci-login.sh testorg
+      - name: Lastanlage liefern
+        env:
+          ROWS: ${{ inputs.rows }}
+        run: scripts/large-account.sh testorg "$ROWS"

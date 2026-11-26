@@ -14,7 +14,7 @@ import { loadRows } from "c/sfibaRowStore";
 import { loadTranslations, userLanguage } from "c/sfibaTexts";
 import { ShowToastEvent } from "lightning/platformShowToastEvent";
 import saveReportPdf from "@salesforce/apex/SfibaAttachmentController.saveReportPdf";
-import { describeReport, downloadPdf, loadEngine, pdfBlob, preload } from "c/crgenerator";
+import { canSharePdf, describeReport, downloadPdf, loadEngine, pdfBlob, preload, sharePdf } from "c/crgenerator";
 import { ReportProgress, languageOf, partsFor } from "c/sfibaReportProgress";
 
 /** The catalogue entry of the CRGenerator: the IBA reports, run one after another and joined. */
@@ -95,6 +95,8 @@ export default class SfibaAccount extends NavigationMixin(LightningElement) {
     creatingReport = false;
     /** What the panel above the tabs shows while the report is created; a plain copy. */
     reportProgress = null;
+    /** A report too large to store directly: it waits to be downloaded and uploaded. */
+    pendingReport = null;
 
     connectedCallback() {
         this.load();
@@ -507,14 +509,23 @@ export default class SfibaAccount extends NavigationMixin(LightningElement) {
         return this.runReport((request) => downloadPdf(request));
     }
 
-    /** Creates the report as PDF and stores it on the account, a new version each time. */
+    /**
+     * Creates the report as PDF and stores it on the account. Up to 2.5 MB directly, as a
+     * new version of the file "IBA Report"; a larger PDF cannot pass through Apex, so it
+     * waits in a panel to be downloaded and uploaded with the upload of Salesforce, which
+     * has no such limit (handleDownloadPending, handleUploaded).
+     */
     handleSavePdf() {
+        this.pendingReport = null;
         return this.runReport(async (request, progress) => {
             const { blob, fileName } = await pdfBlob(request);
             if (blob.size > MAX_PDF_BYTES) {
-                throw new Error(
-                    `the PDF has ${(blob.size / 1048576).toFixed(1)} MB; at most 2.5 MB can be stored on the account. Use "${this.labels.report}" to download it`
-                );
+                this.pendingReport = {
+                    blob,
+                    fileName: fileName || "IBA Report.pdf",
+                    size: `${(blob.size / 1048576).toFixed(1)} MB`
+                };
+                return;
             }
             progress.saving();
             this.showProgress(progress);
@@ -527,6 +538,47 @@ export default class SfibaAccount extends NavigationMixin(LightningElement) {
                 })
             );
         });
+    }
+
+    /** Where an uploaded report goes: the account, or the account data without one. */
+    get uploadTarget() {
+        return (this.account && (this.account.accountId || this.account.recordId)) || null;
+    }
+
+    /** The large report to the device: a download, on a phone the share sheet (a fresh tap). */
+    async handleDownloadPending() {
+        const pending = this.pendingReport;
+        if (!pending) return;
+        try {
+            if (canSharePdf()) {
+                await sharePdf(new Uint8Array(await pending.blob.arrayBuffer()), pending.fileName);
+                return;
+            }
+            const url = URL.createObjectURL(pending.blob);
+            const link = document.createElement("a");
+            link.href = url;
+            link.download = pending.fileName;
+            link.click();
+            // eslint-disable-next-line @lwc/lwc/no-async-operation
+            setTimeout(() => URL.revokeObjectURL(url), 60000);
+        } catch (e) {
+            this.addMessage(`Report not downloaded: ${reduceError(e)}`);
+        }
+    }
+
+    handleUploaded() {
+        this.pendingReport = null;
+        this.dispatchEvent(
+            new ShowToastEvent({
+                title: "Report saved",
+                message: "The account has it under Files.",
+                variant: "success"
+            })
+        );
+    }
+
+    handleDismissPending() {
+        this.pendingReport = null;
     }
 
     /**

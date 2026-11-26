@@ -10,7 +10,7 @@
 Offen:
 
 - CRGenerator fuer LWC: PDF-Anhaenge in den Report einfuegen (braucht eine Erweiterung im
-  CRGenerator), Report als File ablegen ueber 2,5 MB (heute die Grenze eines Apex-Aufrufs). Angebunden ist er: Paketabhaengigkeit auf
+  CRGenerator), Report als File: bis 2,5 MB direkt, groesser ueber Download und Hochladen durch den Berater, weil Apex groessere Dateien nicht annimmt und eine API-faehige Sitzung im Browser bei E+H nicht in Frage kommt. Angebunden ist er: Paketabhaengigkeit auf
   "CRGenerator" mit derselben Hauptversion (`scripts/dependencies-resolve.sh` nimmt beim Bau
   die neueste freigegebene), Schaltflaeche "Create report" mit `downloadPdf` und dem
   Katalogeintrag "IBA Report".

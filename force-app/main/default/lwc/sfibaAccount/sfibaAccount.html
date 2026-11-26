@@ -51,6 +51,26 @@
                         <p class="slds-text-body_small slds-text-color_weak slds-truncate slds-m-top_xx-small">{reportProgress.detail}</p>
                     </div>
                 </template>
+                <template lwc:if={pendingReport}>
+                    <div class="slds-box slds-box_x-small slds-m-bottom_small" data-id="pending-report">
+                        <p class="slds-m-bottom_x-small">
+                            The report has {pendingReport.size}, too large to store on the account from here. Download it, then upload the
+                            downloaded file to the account.
+                        </p>
+                        <div class="slds-grid slds-wrap slds-grid_vertical-align-end">
+                            <lightning-button label="1. Download PDF" icon-name="utility:download" onclick={handleDownloadPending} data-id="pending-download" class="slds-m-right_small slds-m-bottom_x-small"></lightning-button>
+                            <lightning-file-upload
+                                label="2. Upload it to the account"
+                                accept=".pdf"
+                                record-id={uploadTarget}
+                                onuploadfinished={handleUploaded}
+                                data-id="pending-upload"
+                                class="slds-m-right_small slds-m-bottom_x-small"
+                            ></lightning-file-upload>
+                            <lightning-button variant="base" label="Close" onclick={handleDismissPending} class="slds-m-bottom_x-small"></lightning-button>
+                        </div>
+                    </div>
+                </template>
                 <lightning-tabset>
                     <lightning-tab label={labels.indicators} value="indicators">
                         <lightning-button

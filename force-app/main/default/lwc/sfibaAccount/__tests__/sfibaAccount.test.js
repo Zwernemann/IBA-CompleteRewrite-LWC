@@ -176,6 +176,24 @@ describe("c-sfiba-account", () => {
         expect(downloadPdf).not.toHaveBeenCalled();
     });
 
+    it("offers download and upload for a report too large to store directly", async () => {
+        saveReportPdf.mockClear();
+        const big = { size: 3 * 1024 * 1024, arrayBuffer: () => Promise.resolve(new ArrayBuffer(4)) };
+        pdfBlob.mockResolvedValueOnce({ blob: big, fileName: "IBA Report.pdf" });
+        const element = await open();
+        element.shadowRoot.querySelector('[data-id="pdf-to-account"]').click();
+        await settle();
+        await settle();
+        const panel = element.shadowRoot.querySelector('[data-id="pending-report"]');
+        expect(panel).not.toBeNull();
+        expect(panel.textContent).toContain("3.0 MB");
+        expect(saveReportPdf).not.toHaveBeenCalled();
+        expect(element.shadowRoot.querySelector('[data-id="pending-upload"]').recordId).toBe("a01A");
+        element.shadowRoot.querySelector('[data-id="pending-upload"]').dispatchEvent(new CustomEvent("uploadfinished", { detail: { files: [] } }));
+        await settle();
+        expect(element.shadowRoot.querySelector('[data-id="pending-report"]')).toBeNull();
+    });
+
     it("names a report that failed", async () => {
         downloadPdf.mockRejectedValueOnce(new Error("Unknown report"));
         const element = await open();
