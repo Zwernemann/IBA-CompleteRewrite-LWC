@@ -5,7 +5,7 @@
       "default": true,
       "package": "SF Frontend IBA",
       "versionName": "Report",
-      "versionNumber": "0.8.0.NEXT",
+      "versionNumber": "0.9.0.NEXT",
       "versionDescription": "SF Frontend IBA in Salesforce, opened from the account: data intake, asset table and dialogs, interval table, report texts, sliders and settings, Order Code Transformer, attachments, report XML.",
       "dependencies": [
         {
@@ -18,7 +18,7 @@
       "path": "eh-emulation",
       "package": "SF Frontend IBA Test Data",
       "versionName": "Lasttest",
-      "versionNumber": "0.3.2.NEXT",
+      "versionNumber": "0.3.3.NEXT",
       "versionDescription": "Test plant for test orgs, delivered through mzw.SfibaImport. Never installed at E+H.",
       "dependencies": [
         {
@@ -27,7 +27,7 @@
         },
         {
           "package": "SF Frontend IBA",
-          "versionNumber": "0.8.0.LATEST"
+          "versionNumber": "0.9.0.LATEST"
         }
       ]
     }

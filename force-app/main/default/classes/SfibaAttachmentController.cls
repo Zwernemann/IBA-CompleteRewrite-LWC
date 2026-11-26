@@ -130,4 +130,77 @@ public with sharing class SfibaAttachmentController {
         checkSlot(slot, slot == LOGO);
         clear(accountDataId, slot, null);
     }
+
+    /**
+     * Largest report XML that is stored from the browser. The text arrives as a parameter
+     * and is copied once into the file; both count against the heap of 6 MB.
+     */
+    public static final Integer MAX_XML_BYTES = 2097152;
+    public static final String REPORT_XML_TITLE = 'IBA Report XML';
+
+    /**
+     * Stores the report XML as a Salesforce File on the account (or, without one, on the
+     * account data): a new version of the file stored before, so the account keeps one
+     * file with its history. Returns the id of the file.
+     */
+    @AuraEnabled
+    public static Id saveReportXml(Id accountDataId, String xml) {
+        if (String.isBlank(xml)) {
+            throw new AuraHandledException('The report XML is empty.');
+        }
+        Blob content = Blob.valueOf(xml);
+        xml = null;
+        if (content.size() > MAX_XML_BYTES) {
+            throw new AuraHandledException(
+                'The report XML has ' +
+                    (content.size() / 1048576) +
+                    ' MB; at most 2 MB can be stored from here. Download it instead.'
+            );
+        }
+        SFIBA_Account__c accountData = [
+            SELECT Id, SFIBA_Account__c
+            FROM SFIBA_Account__c
+            WHERE Id = :accountDataId
+        ];
+        Id target = accountData.SFIBA_Account__c != null
+            ? accountData.SFIBA_Account__c
+            : accountData.Id;
+
+        ContentVersion version = new ContentVersion(
+            Title = REPORT_XML_TITLE,
+            PathOnClient = 'ibareport.xml',
+            VersionData = content,
+            ReasonForChange = 'Report XML of ' + Datetime.now().format('yyyy-MM-dd HH:mm')
+        );
+        Id existing = reportXmlDocument(target);
+        if (existing != null) {
+            version.ContentDocumentId = existing;
+        } else {
+            version.FirstPublishLocationId = target;
+        }
+        insert version;
+        return [SELECT ContentDocumentId FROM ContentVersion WHERE Id = :version.Id]
+        .ContentDocumentId;
+    }
+
+    private static Id reportXmlDocument(Id target) {
+        Set<Id> documents = new Set<Id>();
+        for (ContentDocumentLink link : [
+            SELECT ContentDocumentId
+            FROM ContentDocumentLink
+            WHERE LinkedEntityId = :target
+        ]) {
+            documents.add(link.ContentDocumentId);
+        }
+        for (ContentDocument document : [
+            SELECT Id
+            FROM ContentDocument
+            WHERE Id IN :documents AND Title = :REPORT_XML_TITLE
+            ORDER BY CreatedDate DESC
+            LIMIT 1
+        ]) {
+            return document.Id;
+        }
+        return null;
+    }
 }

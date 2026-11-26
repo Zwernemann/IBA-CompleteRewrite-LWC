@@ -84,4 +84,65 @@ private class SfibaAttachmentControllerTest {
             Assert.isNotNull(e);
         }
     }
+
+    @IsTest
+    static void storesTheReportXmlOnTheAccountAsOneFileWithVersions() {
+        Account account = new Account(Name = 'Nord');
+        insert account;
+        SFIBA_Account__c accountData = [SELECT Id FROM SFIBA_Account__c];
+        accountData.SFIBA_Account__c = account.Id;
+        update accountData;
+
+        Id first = SfibaAttachmentController.saveReportXml(accountData.Id, '<ibadata>1</ibadata>');
+        Id second = SfibaAttachmentController.saveReportXml(accountData.Id, '<ibadata>2</ibadata>');
+
+        Assert.areEqual(first, second, 'a new version of the same file');
+        Assert.areEqual(
+            1,
+            [
+                SELECT COUNT()
+                FROM ContentDocumentLink
+                WHERE LinkedEntityId = :account.Id AND ContentDocumentId = :first
+            ]
+        );
+        ContentVersion latest = [
+            SELECT VersionData
+            FROM ContentVersion
+            WHERE ContentDocumentId = :first AND IsLatest = TRUE
+        ];
+        Assert.areEqual('<ibadata>2</ibadata>', latest.VersionData.toString());
+        Assert.areEqual(2, [SELECT COUNT() FROM ContentVersion WHERE ContentDocumentId = :first]);
+    }
+
+    @IsTest
+    static void storesTheReportXmlOnTheAccountDataWithoutAnAccount() {
+        Id documentId = SfibaAttachmentController.saveReportXml(accountDataId(), '<ibadata/>');
+        Assert.areEqual(
+            1,
+            [
+                SELECT COUNT()
+                FROM ContentDocumentLink
+                WHERE LinkedEntityId = :accountDataId() AND ContentDocumentId = :documentId
+            ]
+        );
+    }
+
+    @IsTest
+    static void refusesAnEmptyOrTooLargeReportXml() {
+        try {
+            SfibaAttachmentController.saveReportXml(accountDataId(), '');
+            Assert.fail('empty XML stored');
+        } catch (AuraHandledException e) {
+            Assert.isTrue(true);
+        }
+        try {
+            SfibaAttachmentController.saveReportXml(
+                accountDataId(),
+                'x'.repeat(SfibaAttachmentController.MAX_XML_BYTES + 1)
+            );
+            Assert.fail('too large XML stored');
+        } catch (AuraHandledException e) {
+            Assert.isTrue(true);
+        }
+    }
 }

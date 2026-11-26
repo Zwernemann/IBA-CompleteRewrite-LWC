@@ -12,7 +12,10 @@ import { ReportSession, translator } from "c/sfibaReportState";
 import { devicesOf, reportXml, sliderPercentages } from "c/sfibaReportXml";
 import { loadRows } from "c/sfibaRowStore";
 import { loadTranslations, userLanguage } from "c/sfibaTexts";
-import { downloadPdf, loadEngine, preload } from "c/crgenerator";
+import { ShowToastEvent } from "lightning/platformShowToastEvent";
+import saveReportXml from "@salesforce/apex/SfibaAttachmentController.saveReportXml";
+import { describeReport, downloadPdf, loadEngine, preload } from "c/crgenerator";
+import { ReportProgress, languageOf, partsFor } from "c/sfibaReportProgress";
 
 /** The catalogue entry of the CRGenerator: the IBA reports, run one after another and joined. */
 const REPORT = "IBA Report";
@@ -88,7 +91,9 @@ export default class SfibaAccount extends NavigationMixin(LightningElement) {
     saveTimer;
 
     creatingReport = false;
-    reportStep = "";
+    /** What the panel above the tabs shows while the report is created; a plain copy. */
+    reportProgress = null;
+    savingXml = false;
 
     connectedCallback() {
         this.load();
@@ -195,6 +200,7 @@ export default class SfibaAccount extends NavigationMixin(LightningElement) {
             highCriticality: t("crgen.fr.crit.high.text"),
             mediumCriticality: t("crgen.fr.crit.med.text"),
             xml: "Report XML",
+            xmlToAccount: "Save XML to account",
             report: "Create report"
         };
     }
@@ -497,31 +503,91 @@ export default class SfibaAccount extends NavigationMixin(LightningElement) {
 
     /**
      * Creates the report as PDF with the CRGenerator, from the same XML as the download,
-     * and hands it to the browser. Pending changes are saved first (buildReportXml).
+     * and hands it to the browser. Pending changes are saved first (buildReportXml). The
+     * panel above the tabs shows which part runs and how far; the buttons stay where they
+     * are.
      */
     async handleCreateReport() {
         if (this.creatingReport) {
             return;
         }
         this.creatingReport = true;
-        this.reportStep = "Collecting the data";
+        const progress = new ReportProgress([]);
+        this.showProgress(progress);
+        // The run holds the thread between its phases; the clock moves when it lets go.
+        // eslint-disable-next-line @lwc/lwc/no-async-operation
+        const clock = setInterval(() => {
+            progress.tick();
+            this.showProgress(progress);
+        }, 1000);
         try {
             const xml = await this.buildReportXml();
-            this.reportStep = "Creating the report";
+            progress.parts = await this.partsOfReport(xml);
+            this.showProgress(progress);
             await downloadPdf({
                 report: REPORT,
                 xml,
                 onProgress: (event) => {
-                    if (event && event.kind === "phase") {
-                        this.reportStep = `${event.phase} (${event.index}/${event.total})`;
-                    }
+                    progress.handle(event);
+                    this.showProgress(progress);
                 }
             });
+            progress.finished();
         } catch (e) {
             this.addMessage(`Report not created: ${reduceError(e)}`);
         } finally {
+            clearInterval(clock);
             this.creatingReport = false;
-            this.reportStep = "";
+            this.reportProgress = null;
+        }
+    }
+
+    /** The parts the report runs for the language of the XML; empty if not known. */
+    async partsOfReport(xml) {
+        try {
+            const described = await describeReport(REPORT);
+            return partsFor(described && described.parts, languageOf(xml));
+        } catch (e) {
+            return [];
+        }
+    }
+
+    showProgress(progress) {
+        this.reportProgress = {
+            title: progress.title,
+            detail: progress.detail,
+            facts: progress.facts,
+            percent: progress.percent === null ? 0 : progress.percent
+        };
+    }
+
+    /** Stores the report XML as a file on the account, a new version each time. */
+    async handleSaveXml() {
+        if (this.savingXml) {
+            return;
+        }
+        this.savingXml = true;
+        try {
+            const xml = await this.buildReportXml();
+            const bytes = new Blob([xml]).size;
+            if (bytes > 2 * 1024 * 1024) {
+                this.addMessage(
+                    `The report XML has ${(bytes / 1048576).toFixed(1)} MB; at most 2 MB can be stored on the account. Use "Report XML" to download it.`
+                );
+                return;
+            }
+            await saveReportXml({ accountDataId: this.account.recordId, xml });
+            this.dispatchEvent(
+                new ShowToastEvent({
+                    title: "Report XML saved",
+                    message: "The account has it under Files as \"IBA Report XML\".",
+                    variant: "success"
+                })
+            );
+        } catch (e) {
+            this.addMessage(`Report XML not saved: ${reduceError(e)}`);
+        } finally {
+            this.savingXml = false;
         }
     }
 

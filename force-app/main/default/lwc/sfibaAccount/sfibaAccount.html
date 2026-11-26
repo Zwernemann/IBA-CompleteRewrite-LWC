@@ -15,10 +15,8 @@
             <template lwc:if={ready}>
                 <span class="slds-text-color_weak slds-m-right_small">{saveState}</span>
                 <lightning-button label={labels.settings} icon-name="utility:settings" onclick={handleOpenSettings} data-id="settings" class="slds-m-right_x-small"></lightning-button>
-                <template lwc:if={creatingReport}>
-                    <span class="slds-text-color_weak slds-m-right_small" data-id="report-step">{reportStep}</span>
-                </template>
                 <lightning-button label={labels.xml} icon-name="utility:download" onclick={handleDownloadXml} data-id="xml" class="slds-m-right_x-small"></lightning-button>
+                <lightning-button label={labels.xmlToAccount} icon-name="utility:upload" onclick={handleSaveXml} disabled={savingXml} data-id="xml-to-account" class="slds-m-right_x-small"></lightning-button>
                 <lightning-button label={labels.report} icon-name="utility:file" variant="brand" onclick={handleCreateReport} disabled={creatingReport} data-id="report"></lightning-button>
             </template>
         </div>
@@ -41,6 +39,16 @@
                             </template>
                         </ul>
                         <lightning-button-icon icon-name="utility:close" variant="bare-inverse" alternative-text="Close" class="slds-m-left_small" onclick={handleDismiss}></lightning-button-icon>
+                    </div>
+                </template>
+                <template lwc:if={reportProgress}>
+                    <div class="report-progress slds-box slds-box_x-small slds-m-bottom_small" data-id="report-progress" aria-live="polite">
+                        <div class="slds-grid slds-grid_align-spread slds-m-bottom_xx-small">
+                            <span class="slds-text-title_bold slds-truncate">{reportProgress.title}</span>
+                            <span class="slds-text-color_weak slds-p-left_small">{reportProgress.facts}</span>
+                        </div>
+                        <lightning-progress-bar value={reportProgress.percent} size="small"></lightning-progress-bar>
+                        <p class="slds-text-body_small slds-text-color_weak slds-truncate slds-m-top_xx-small">{reportProgress.detail}</p>
                     </div>
                 </template>
                 <lightning-tabset>

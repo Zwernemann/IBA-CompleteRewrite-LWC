@@ -3,3 +3,4 @@
 export const downloadPdf = jest.fn(() => Promise.resolve({ fileName: "IBA Report.pdf", delivered: true, pageCount: 1 }));
 export const loadEngine = jest.fn(() => Promise.resolve("resource"));
 export const preload = jest.fn(() => Promise.resolve());
+export const describeReport = jest.fn(() => Promise.resolve({ name: "IBA Report", parts: ["IBA_00_0100_00.rpt", "IBA_01_0100_00.rpt"], virtual: true }));

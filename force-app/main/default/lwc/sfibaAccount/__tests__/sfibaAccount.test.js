@@ -10,6 +10,7 @@ import getRows from "@salesforce/apex/SfibaAccountController.getRows";
 import listAttachments from "@salesforce/apex/SfibaAttachmentController.listAttachments";
 import { forgetRows } from "c/sfibaRowStore";
 import { downloadPdf, preload } from "c/crgenerator";
+import saveReportXml from "@salesforce/apex/SfibaAttachmentController.saveReportXml";
 
 jest.mock("c/sfibaMaintenanceModal", () => ({ __esModule: true, default: { open: jest.fn() } }));
 jest.mock("c/sfibaIntervalModal", () => ({ __esModule: true, default: { open: jest.fn() } }));
@@ -18,6 +19,7 @@ jest.mock("@salesforce/apex/SfibaReportValuesController.save", () => ({ default:
 jest.mock("@salesforce/apex/SfibaIntervalController.getIntervals", () => ({ default: jest.fn() }), { virtual: true });
 jest.mock("@salesforce/apex/SfibaAccountController.getRows", () => ({ default: jest.fn() }), { virtual: true });
 jest.mock("@salesforce/apex/SfibaAttachmentController.listAttachments", () => ({ default: jest.fn() }), { virtual: true });
+jest.mock("@salesforce/apex/SfibaAttachmentController.saveReportXml", () => ({ default: jest.fn() }), { virtual: true });
 
 const ROOT = join(__dirname, "../../../../../..");
 const TRANSLATIONS = JSON.parse(readFileSync(join(ROOT, "force-app/main/default/staticresources/sfibaTranslations.json"), "utf8"));
@@ -130,6 +132,38 @@ describe("c-sfiba-account", () => {
         const request = downloadPdf.mock.calls[0][0];
         expect(request.report).toBe("IBA Report");
         expect(request.xml).toBe(await element.buildReportXml());
+    });
+
+    it("shows the progress above the tabs, not between the buttons, and removes it after", async () => {
+        let finish;
+        downloadPdf.mockImplementationOnce((request) => {
+            request.onProgress({ kind: "phase", phase: "read the data", index: 1, total: 4, ms: 1 });
+            return new Promise((resolve) => {
+                finish = resolve;
+            });
+        });
+        const element = await open();
+        element.shadowRoot.querySelector('[data-id="report"]').click();
+        await settle();
+        const panel = element.shadowRoot.querySelector('[data-id="report-progress"]');
+        expect(panel).not.toBeNull();
+        expect(panel.textContent).toContain("Part 1 of 2: IBA_00_0100_00");
+        expect(panel.textContent).toContain("read the data (1/4)");
+        expect(element.shadowRoot.querySelector('[slot="actions"]').textContent).not.toContain("read the data");
+        finish({ delivered: true });
+        await settle();
+        expect(element.shadowRoot.querySelector('[data-id="report-progress"]')).toBeNull();
+    });
+
+    it("saves the report XML on the account", async () => {
+        saveReportXml.mockResolvedValue("069A");
+        const element = await open();
+        element.shadowRoot.querySelector('[data-id="xml-to-account"]').click();
+        await settle();
+        expect(saveReportXml).toHaveBeenCalledTimes(1);
+        const call = saveReportXml.mock.calls[0][0];
+        expect(call.accountDataId).toBe("a01A");
+        expect(call.xml).toContain("<ibadata>");
     });
 
     it("names a report that failed", async () => {
