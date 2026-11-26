@@ -46,6 +46,8 @@ Warum so: `docs/adr/0001-salesforce-statt-tomcat.md`.
   Data"): mittlere Stelle fuer eine neue Funktion, die ein Nutzer bemerkt, letzte fuer alles
   andere, erste bei einem Bruch der Schnittstelle. Die CI prueft es
   (`scripts/check-version.sh`); ohne neue Nummer laesst sich eine Version nicht freigeben.
+  Ein Paket, das sich nicht aendert, behaelt seine Nummer (auch das Testdaten-Paket, wenn
+  nur SF Frontend IBA neu ist): jede Paketversion zaehlt gegen das Tageskontingent.
 - Neue Felder: Datei unter `objects/<Objekt>/fields/`, Elemente in der Reihenfolge
   `fullName`, dann alphabetisch, mit Beschreibung. Danach
   `node scripts/generate-permissionsets.mjs`.

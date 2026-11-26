@@ -38,6 +38,10 @@ Syntaxfehler; uebersetzt und getestet wird Apex erst beim Paketbau in der CI.
 | Tag `v*` | ja | freigegeben | Erstinstallation in einer neuen Scratch Org mit denselben Tests |
 
 Paketversionen zaehlen gegen das Tageskontingent des Dev Hub und kosten Minuten in Actions.
+Deshalb wird nur gebaut, was eine neue Versionsnummer hat: eine schon freigegebene Nummer
+nimmt die CI so, wie sie ist. Das Testdaten-Paket bekommt eine neue Nummer nur, wenn sich
+`eh-emulation/` aendert; es laeuft auch mit neueren Versionen von SF Frontend IBA als der,
+gegen die es gebaut wurde.
 Deshalb baut ein Push keine; ein neuer Push bricht die Pruefungen eines aelteren ab.
 
 Beim Bau einer Paketversion laufen alle Apex-Tests des Pakets. Ohne 75 % Abdeckung laesst

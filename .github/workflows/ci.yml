@@ -62,8 +62,10 @@ jobs:
       SF_DEVHUB_CLIENT_ID: ${{ secrets.SF_DEVHUB_CLIENT_ID }}
       SF_DEVHUB_JWT_KEY: ${{ secrets.SF_DEVHUB_JWT_KEY }}
       SF_TESTORG_USERNAME: ${{ secrets.SF_TESTORG_USERNAME }}
-      SF_TESTORG_CLIENT_ID: ${{ secrets.SF_TESTORG_CLIENT_ID }}
-      SF_TESTORG_JWT_KEY: ${{ secrets.SF_TESTORG_JWT_KEY }}
+      # Without an app of its own the test org is reached through the app of the Dev Hub,
+      # as when the Dev Hub is the test org: then only SF_TESTORG_USERNAME is needed.
+      SF_TESTORG_CLIENT_ID: ${{ secrets.SF_TESTORG_CLIENT_ID || secrets.SF_DEVHUB_CLIENT_ID }}
+      SF_TESTORG_JWT_KEY: ${{ secrets.SF_TESTORG_JWT_KEY || secrets.SF_DEVHUB_JWT_KEY }}
       SF_TESTORG_LOGIN_URL: ${{ secrets.SF_TESTORG_LOGIN_URL }}
     steps:
       - uses: actions/checkout@v4

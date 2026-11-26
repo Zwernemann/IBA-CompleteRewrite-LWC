@@ -97,13 +97,18 @@ Inhalt von `scripts/apex/send-testdata.apex` einfuegen, **Execute**. Erwartet: i
 `DIBA-TEST-OK`; der Account "DIBA Testanlage Nord" hat dann 21 Zeilen (bei einem getauschten Geraet bleibt die alte Zeile stehen). Am Account die
 Schaltflaeche **SF IBA Report** druecken.
 
-## Spaeter: feste Test-Org fuer die CI
+## Automatisch installieren: Test-Org fuer die CI
 
-Fuer Upgrade- und Ende-zu-Ende-Tests bei jedem Bau auf `main` dieselben Schritte 1 bis 3
-mit dem Workflow **Schluessel erzeugen** fuer **testorg** in der Test-Org und den Secrets `SF_TESTORG_USERNAME`,
-`SF_TESTORG_CLIENT_ID`, `SF_TESTORG_JWT_KEY` (bei einer Sandbox zusaetzlich
-`SF_TESTORG_LOGIN_URL` = `https://test.salesforce.com`). Ohne diese Secrets entfallen die
-Org-Tests mit einem Hinweis.
+Mit einer Test-Org installiert jeder Bau auf `main` die neuen Versionen selbst dort (vorher
+den CRGenerator), weist die Permission Sets zu, liefert die Testanlage und prueft 21 Zeilen,
+dann laufen die Ende-zu-Ende-Tests. Ohne Test-Org entfaellt das mit einem Hinweis.
+
+- **Test-Org ist der Dev Hub:** nur das Secret `SF_TESTORG_USERNAME` anlegen, mit demselben
+  Benutzernamen wie `SF_DEVHUB_USERNAME`. App und Schluessel des Dev Hub gelten dann mit.
+- **Eigene Test-Org:** Schritte 1 bis 3 mit dem Workflow **Schluessel erzeugen** fuer
+  **testorg** in der Test-Org, Secrets `SF_TESTORG_USERNAME`, `SF_TESTORG_CLIENT_ID`,
+  `SF_TESTORG_JWT_KEY` (bei einer Sandbox zusaetzlich `SF_TESTORG_LOGIN_URL` =
+  `https://test.salesforce.com`).
 
 ## Kontingente
 
