@@ -225,4 +225,14 @@ private class SfibaAccountControllerTest {
         );
         Assert.isTrue(result.errors.get((Id) row.get('id')).contains('limited to 32'));
     }
+
+    @IsTest
+    static void listsTheAccountsWithDeliveredData() {
+        List<SfibaAccountController.AccountData> accounts = SfibaAccountController.listAccounts();
+        Assert.isFalse(accounts.isEmpty());
+        for (SfibaAccountController.AccountData accountData : accounts) {
+            Assert.isNotNull(accountData.recordId);
+            Assert.isNotNull(accountData.accountKey);
+        }
+    }
 }

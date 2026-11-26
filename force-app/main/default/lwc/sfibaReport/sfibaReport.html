@@ -13,9 +13,23 @@
     </template>
     <template lwc:elseif={noAccount}>
         <lightning-card title="SF IBA Report" icon-name="custom:custom53">
-            <p class="slds-p-horizontal_medium" data-id="no-account">
-                Open SF IBA Report from an account, with the button "SF IBA Report" on the account page.
-            </p>
+            <template lwc:if={hasAccounts}>
+                <ul class="slds-has-dividers_bottom-space" data-id="accounts">
+                    <template for:each={accounts} for:item="item">
+                        <li key={item.key} class="slds-item">
+                            <button class="slds-button slds-button_reset slds-size_1-of-1 slds-text-align_left" data-target={item.target} onclick={handleOpenAccount}>
+                                <span class="slds-text-heading_small slds-text-link">{item.name}</span>
+                                <span class="slds-text-body_small slds-text-color_weak slds-p-left_small">{item.delivered}</span>
+                            </button>
+                        </li>
+                    </template>
+                </ul>
+            </template>
+            <template lwc:else>
+                <p class="slds-p-horizontal_medium" data-id="no-account">
+                    No account data has been delivered yet. Start the delivery with the action "DIBA Report" of E+H on an account.
+                </p>
+            </template>
         </lightning-card>
     </template>
     <template lwc:elseif={nothingDelivered}>

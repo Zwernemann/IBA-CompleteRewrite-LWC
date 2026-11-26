@@ -53,6 +53,7 @@ const SETS = {
         customMetadataTypes: ["SFIBA_Interval__mdt"],
         classes: ["SfibaAccountController", "SfibaReportValuesController", "SfibaIntervalController", "SfibaAttachmentController"],
         tabs: ["SFIBA_Report"],
+        apps: ["SFIBA_App"],
     },
     SFIBA_Data_Sender: {
         label: "SF IBA Data Sender",
@@ -66,6 +67,7 @@ const SETS = {
         customMetadataTypes: [],
         classes: ["SfibaImport"],
         tabs: [],
+        apps: [],
     },
 };
 
@@ -84,6 +86,9 @@ function grantableFields(object) {
 
 function render(name, set) {
     const lines = ['<?xml version="1.0" encoding="UTF-8"?>', '<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">'];
+    for (const app of set.apps ?? []) {
+        lines.push("    <applicationVisibilities>", `        <application>${app}</application>`, "        <visible>true</visible>", "    </applicationVisibilities>");
+    }
     for (const cls of set.classes) {
         lines.push("    <classAccesses>", `        <apexClass>${cls}</apexClass>`, "        <enabled>true</enabled>", "    </classAccesses>");
     }

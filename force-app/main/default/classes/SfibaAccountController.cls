@@ -50,6 +50,30 @@ public with sharing class SfibaAccountController {
      * rows, last delivery. Null if nothing has been delivered for this account yet. The id
      * of the delivery may have 15 or 18 characters, so both are compared.
      */
+    /**
+     * The accounts with delivered data, by name: for the tab opened without an account,
+     * as in the app "SF IBA" on a phone, where the button on the account may be missing.
+     */
+    @AuraEnabled(cacheable=false)
+    public static List<AccountData> listAccounts() {
+        List<AccountData> result = new List<AccountData>();
+        for (SFIBA_Account__c record : [
+            SELECT Id, Name, SFIBA_Account_Key__c, SFIBA_Account__c, LastModifiedDate
+            FROM SFIBA_Account__c
+            ORDER BY Name
+            LIMIT 500
+        ]) {
+            AccountData accountData = new AccountData();
+            accountData.recordId = record.Id;
+            accountData.name = record.Name;
+            accountData.accountKey = record.SFIBA_Account_Key__c;
+            accountData.accountId = record.SFIBA_Account__c;
+            accountData.lastDelivery = record.LastModifiedDate;
+            result.add(accountData);
+        }
+        return result;
+    }
+
     @AuraEnabled(cacheable=false)
     public static AccountData getAccountData(Id accountId) {
         String id18 = String.valueOf(accountId);
