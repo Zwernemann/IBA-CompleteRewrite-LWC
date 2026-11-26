@@ -38,10 +38,11 @@ function testAccountId() {
  * own: one serves a single sign-in only.
  */
 async function openTestAccount(page) {
-    await page.goto(sf(["org", "open", "--url-only"]).url);
-    await page.waitForURL(/lightning/, { timeout: 120000 });
-    const base = new URL(page.url()).origin;
-    await page.goto(`${base}/lightning/n/mzw__SFIBA_Report?mzw__account=${testAccountId()}`);
+    // The address leads straight to the page: signing in to the start page sends the
+    // browser on to the Setup domain, and that reload cut off the next navigation.
+    const path = `/lightning/n/mzw__SFIBA_Report?mzw__account=${testAccountId()}`;
+    await page.goto(sf(["org", "open", "--url-only", "--path", path]).url);
+    await page.waitForURL(/mzw__SFIBA_Report/, { timeout: 120000 });
     await page.getByText(TEST_ACCOUNT_NAME).first().waitFor();
 }
 
