@@ -32,7 +32,7 @@ Syntaxfehler; uebersetzt und getestet wird Apex erst beim Paketbau in der CI.
 
 | Ereignis | Pruefungen | Paketversionen | Org-Test |
 |---|---|---|---|
-| Push | ja | keine | nein |
+| Push auf `main` (andere Branches laufen nicht, damit derselbe Commit nicht doppelt geprueft wird) | ja | keine | nein |
 | Run workflow, "Installer bauen (Beta)" | ja | Beta, Links in der Zusammenfassung | auf `main`: Upgrade in der Test-Org |
 | Run workflow, "Installer bauen und freigeben" | ja | freigegeben | auf `main`: Upgrade in der Test-Org, Testanlage liefern, 20 Zeilen pruefen, Ende-zu-Ende-Tests |
 | Tag `v*` | ja | freigegeben | Erstinstallation in einer neuen Scratch Org mit denselben Tests |

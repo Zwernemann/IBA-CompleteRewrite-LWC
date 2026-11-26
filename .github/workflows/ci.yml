@@ -2,7 +2,7 @@ name: CI
 
 on:
   push:
-    branches: ["**"]
+    branches: [main]
     tags: ["v*"]
   workflow_dispatch:
     inputs:
@@ -12,7 +12,7 @@ on:
         options: ["Installer bauen (Beta)", "Installer bauen und freigeben"]
 
 concurrency:
-  group: ci-${{ github.ref }}
+  group: ci-${{ github.event_name }}-${{ github.ref }}
   # A newer push makes the checks of an older one pointless; a package build is never
   # cut off, it may already have used a version from the daily quota of the Dev Hub.
   cancel-in-progress: ${{ github.event_name == 'push' && github.ref_type != 'tag' }}
