@@ -18,13 +18,15 @@ jest.mock("lightning/navigation", () => {
 describe("c-sfiba-open-report", () => {
     it("opens the tab SF IBA Report for the account", () => {
         const element = createElement("c-sfiba-open-report", { is: SfibaOpenReport });
-        element.recordId = "0017Q00000TsTdAQAV";
+        const closed = jest.fn();
+        element.addEventListener("close", closed);
         document.body.appendChild(element);
-        element.invoke();
+        element.recordId = "0017Q00000TsTdAQAV";
         expect(mockNavigate).toHaveBeenCalledWith({
             type: "standard__navItemPage",
             attributes: { apiName: "mzw__SFIBA_Report" },
             state: { mzw__account: "0017Q00000TsTdAQAV" }
         });
+        expect(closed).toHaveBeenCalled();
     });
 });

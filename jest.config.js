@@ -6,7 +6,8 @@ module.exports = {
     moduleNameMapper: {
         "^lwc$": "<rootDir>/node_modules/@lwc/engine-dom/dist/index.cjs",
         // The CRGenerator is another package; its module is a stand-in in the tests.
-        "^c/crgenerator$": "<rootDir>/jest-mocks/crgenerator.js"
+        "^c/crgenerator$": "<rootDir>/jest-mocks/crgenerator.js",
+        "^lightning/actions$": "<rootDir>/jest-mocks/lightningActions.js"
     },
     modulePathIgnorePatterns: ["<rootDir>/.localdevserver"],
     // e2e/ holds the Playwright tests against an org, not Jest tests.

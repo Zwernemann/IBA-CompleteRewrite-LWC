@@ -9,7 +9,7 @@
     </targets>
     <targetConfigs>
         <targetConfig targets="lightning__RecordAction">
-            <actionType>Action</actionType>
+            <actionType>ScreenAction</actionType>
         </targetConfig>
     </targetConfigs>
 </LightningComponentBundle>

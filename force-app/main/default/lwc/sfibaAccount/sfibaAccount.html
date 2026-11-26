@@ -14,6 +14,16 @@
         <div slot="actions">
             <template lwc:if={ready}>
                 <span class="slds-text-color_weak slds-m-right_small">{saveState}</span>
+            </template>
+            <template lwc:if={showMenu}>
+                <lightning-button-menu alternative-text="Actions" icon-name="utility:down" menu-alignment="right" onselect={handleMenu} data-id="menu">
+                    <lightning-menu-item value="report" label={labels.report} disabled={creatingReport}></lightning-menu-item>
+                    <lightning-menu-item value="pdf" label={labels.pdfToAccount} disabled={creatingReport}></lightning-menu-item>
+                    <lightning-menu-item value="xml" label={labels.xml}></lightning-menu-item>
+                    <lightning-menu-item value="settings" label={labels.settings}></lightning-menu-item>
+                </lightning-button-menu>
+            </template>
+            <template lwc:if={showButtons}>
                 <lightning-button label={labels.settings} icon-name="utility:settings" onclick={handleOpenSettings} data-id="settings" class="slds-m-right_x-small"></lightning-button>
                 <lightning-button label={labels.xml} icon-name="utility:download" onclick={handleDownloadXml} data-id="xml" class="slds-m-right_x-small"></lightning-button>
                 <lightning-button label={labels.pdfToAccount} icon-name="utility:upload" onclick={handleSavePdf} disabled={creatingReport} data-id="pdf-to-account" class="slds-m-right_x-small"></lightning-button>
@@ -49,6 +59,13 @@
                         </div>
                         <lightning-progress-bar value={reportProgress.percent} size="small"></lightning-progress-bar>
                         <p class="slds-text-body_small slds-text-color_weak slds-truncate slds-m-top_xx-small">{reportProgress.detail}</p>
+                    </div>
+                </template>
+                <template lwc:if={pendingXml}>
+                    <div class="slds-box slds-box_x-small slds-m-bottom_small" data-id="pending-xml">
+                        <span class="slds-m-right_small">The report XML is ready.</span>
+                        <lightning-button label="Share XML" icon-name="utility:share" onclick={handleShareXml} data-id="share-xml" class="slds-m-right_small"></lightning-button>
+                        <lightning-button variant="base" label="Close" onclick={handleDismissXml}></lightning-button>
                     </div>
                 </template>
                 <template lwc:if={pendingReport}>

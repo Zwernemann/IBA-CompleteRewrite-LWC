@@ -1,4 +1,5 @@
 import { LightningElement, api } from "lwc";
+import FORM_FACTOR from "@salesforce/client/formFactor";
 import { NavigationMixin } from "lightning/navigation";
 import loadValues from "@salesforce/apex/SfibaReportValuesController.load";
 import saveValues from "@salesforce/apex/SfibaReportValuesController.save";
@@ -97,6 +98,8 @@ export default class SfibaAccount extends NavigationMixin(LightningElement) {
     reportProgress = null;
     /** A report too large to store directly: it waits to be downloaded and uploaded. */
     pendingReport = null;
+    /** On a phone: the report XML, ready to be shared with a fresh tap. */
+    pendingXml = null;
 
     connectedCallback() {
         this.load();
@@ -492,13 +495,14 @@ export default class SfibaAccount extends NavigationMixin(LightningElement) {
         try {
             const xml = await this.buildReportXml();
             // Large accounts give more than 100 MB; a data URL would not hold that.
-            const url = URL.createObjectURL(new Blob([xml], { type: "application/octet-stream" }));
-            const link = document.createElement("a");
-            link.href = url;
-            link.download = "ibareport.xml";
-            link.click();
-            // eslint-disable-next-line @lwc/lwc/no-async-operation
-            setTimeout(() => URL.revokeObjectURL(url), 60000);
+            const blob = new Blob([xml], { type: "application/octet-stream" });
+            if (this.small) {
+                // The mobile app ignores a download link, and the share sheet opens only on a
+                // fresh tap: building the XML took too long for this one.
+                this.pendingXml = { blob, fileName: "ibareport.xml" };
+                return;
+            }
+            saveFile(blob, "ibareport.xml");
         } catch (e) {
             this.addMessage(`Report XML not built: ${reduceError(e)}`);
         }
@@ -540,6 +544,29 @@ export default class SfibaAccount extends NavigationMixin(LightningElement) {
         });
     }
 
+    get showMenu() {
+        return this.ready && this.small;
+    }
+
+    get showButtons() {
+        return this.ready && !this.small;
+    }
+
+    /** A phone or a small tablet: one menu instead of the row of buttons, files shared. */
+    get small() {
+        return FORM_FACTOR !== "Large";
+    }
+
+    handleMenu(event) {
+        const action = {
+            settings: () => this.handleOpenSettings(),
+            xml: () => this.handleDownloadXml(),
+            pdf: () => this.handleSavePdf(),
+            report: () => this.handleCreateReport()
+        }[event.detail.value];
+        if (action) action();
+    }
+
     /** Where an uploaded report goes: the account, or the account data without one. */
     get uploadTarget() {
         return (this.account && (this.account.accountId || this.account.recordId)) || null;
@@ -550,20 +577,37 @@ export default class SfibaAccount extends NavigationMixin(LightningElement) {
         const pending = this.pendingReport;
         if (!pending) return;
         try {
-            if (canSharePdf()) {
+            if (this.small && canSharePdf()) {
                 await sharePdf(new Uint8Array(await pending.blob.arrayBuffer()), pending.fileName);
                 return;
             }
-            const url = URL.createObjectURL(pending.blob);
-            const link = document.createElement("a");
-            link.href = url;
-            link.download = pending.fileName;
-            link.click();
-            // eslint-disable-next-line @lwc/lwc/no-async-operation
-            setTimeout(() => URL.revokeObjectURL(url), 60000);
+            saveFile(pending.blob, pending.fileName);
         } catch (e) {
             this.addMessage(`Report not downloaded: ${reduceError(e)}`);
         }
+    }
+
+    /** The report XML to the share sheet of the phone; the tap on the button is fresh. */
+    async handleShareXml() {
+        const pending = this.pendingXml;
+        if (!pending) return;
+        try {
+            const file = new File([pending.blob], pending.fileName, { type: "application/xml" });
+            if (navigator.canShare && navigator.canShare({ files: [file] })) {
+                await navigator.share({ files: [file], title: pending.fileName });
+            } else {
+                saveFile(pending.blob, pending.fileName);
+            }
+            this.pendingXml = null;
+        } catch (e) {
+            if (!(e && e.name === "AbortError")) {
+                this.addMessage(`Report XML not shared: ${reduceError(e)}`);
+            }
+        }
+    }
+
+    handleDismissXml() {
+        this.pendingXml = null;
     }
 
     handleUploaded() {
@@ -669,4 +713,15 @@ function base64Of(blob) {
         reader.onerror = () => reject(reader.error);
         reader.readAsDataURL(blob);
     });
+}
+
+/** A file to the browser's downloads. */
+function saveFile(blob, fileName) {
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = fileName;
+    link.click();
+    // eslint-disable-next-line @lwc/lwc/no-async-operation
+    setTimeout(() => URL.revokeObjectURL(url), 60000);
 }
