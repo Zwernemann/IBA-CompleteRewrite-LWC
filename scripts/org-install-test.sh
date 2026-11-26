@@ -13,8 +13,8 @@ cd "$REPO_ROOT"
 # The CRGenerator is not ours: it is installed and updated by whoever runs the org. Here it
 # is only checked that the org has the version we were built against or a newer one; only a
 # fresh scratch org (INSTALL_DEPENDENCIES=1, scripts/scratch-test.sh) gets it installed.
+INSTALLED="$(sf package installed list --target-org "$ORG" --json 2> /dev/null || echo '{}')"
 if [ -f target/dependencies.ids ]; then
-    INSTALLED="$(sf package installed list --target-org "$ORG" --json 2> /dev/null || echo '{}')"
     while read -r DEP_ID DEP_NAME DEP_VERSION; do
         [ -n "$DEP_ID" ] || continue
         if [ "${INSTALL_DEPENDENCIES:-0}" = "1" ]; then
@@ -41,6 +41,13 @@ if [ -f target/dependencies.ids ]; then
 fi
 
 for version in "$REPORT_VERSION" "$TESTDATA_VERSION"; do
+    if node -e '
+        const r = JSON.parse(require("fs").readFileSync(0, "utf8"));
+        process.exit(((r && r.result) || []).some((x) => x.SubscriberPackageVersionId === process.argv[1]) ? 0 : 1);
+    ' "$version" <<< "$INSTALLED"; then
+        note "$version ist in $ORG schon installiert"
+        continue
+    fi
     note "Installiere $version in $ORG"
     sf package install --package "$version" --target-org "$ORG" --wait 30 \
         --publish-wait 10 --no-prompt --security-type AdminsOnly > /dev/null \
