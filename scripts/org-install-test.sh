@@ -10,10 +10,37 @@ REPORT_VERSION="${2:?Version von SF Frontend IBA fehlt}"
 TESTDATA_VERSION="${3:?Version von SF Frontend IBA Test Data fehlt}"
 cd "$REPO_ROOT"
 
-# The CRGenerator first: our packages depend on it (scripts/dependencies-resolve.sh).
-DEPENDENCIES=()
-[ -f target/dependencies.ids ] && mapfile -t DEPENDENCIES < target/dependencies.ids
-for version in "${DEPENDENCIES[@]}" "$REPORT_VERSION" "$TESTDATA_VERSION"; do
+# The CRGenerator is not ours: it is installed and updated by whoever runs the org. Here it
+# is only checked that the org has the version we were built against or a newer one; only a
+# fresh scratch org (INSTALL_DEPENDENCIES=1, scripts/scratch-test.sh) gets it installed.
+if [ -f target/dependencies.ids ]; then
+    INSTALLED="$(sf package installed list --target-org "$ORG" --json 2> /dev/null || echo '{}')"
+    while read -r DEP_ID DEP_NAME DEP_VERSION; do
+        [ -n "$DEP_ID" ] || continue
+        if [ "${INSTALL_DEPENDENCIES:-0}" = "1" ]; then
+            note "Installiere $DEP_NAME $DEP_VERSION in $ORG"
+            sf package install --package "$DEP_ID" --target-org "$ORG" --wait 30 \
+                --publish-wait 10 --no-prompt --security-type AdminsOnly > /dev/null \
+                || fail "Installation von $DEP_NAME $DEP_VERSION in $ORG gescheitert."
+            continue
+        fi
+        HAVE="$(node -e '
+            const r = JSON.parse(require("fs").readFileSync(0, "utf8"));
+            const p = ((r && r.result) || []).find((x) => x.SubscriberPackageName === process.argv[1]);
+            console.log(p ? p.SubscriberPackageVersionNumber : "");
+        ' "$DEP_NAME" <<< "$INSTALLED")"
+        [ -n "$HAVE" ] || fail "$DEP_NAME ist in $ORG nicht installiert; noetig ist $DEP_VERSION oder neuer: $(install_link "$DEP_ID")"
+        node -e '
+            const key = (v) => v.split(".").map(Number);
+            const [have, need] = [key(process.argv[1]), key(process.argv[2])];
+            for (let i = 0; i < 4; i++) if ((have[i] || 0) !== (need[i] || 0)) process.exit((have[i] || 0) > (need[i] || 0) ? 0 : 1);
+        ' "$HAVE" "$DEP_VERSION" \
+            || fail "$DEP_NAME $HAVE in $ORG ist aelter als $DEP_VERSION, gegen die gebaut wurde: $(install_link "$DEP_ID")"
+        note "$DEP_NAME $HAVE in $ORG (gebaut gegen $DEP_VERSION)"
+    done < target/dependencies.ids
+fi
+
+for version in "$REPORT_VERSION" "$TESTDATA_VERSION"; do
     note "Installiere $version in $ORG"
     sf package install --package "$version" --target-org "$ORG" --wait 30 \
         --publish-wait 10 --no-prompt --security-type AdminsOnly > /dev/null \

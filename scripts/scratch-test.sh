@@ -15,6 +15,6 @@ sf org create scratch --definition-file config/project-scratch-def.json --alias 
     || fail "Scratch Org nicht angelegt (Kontingent des Dev Hub erschoepft?)."
 trap 'note "Loesche die Scratch Org"; sf org delete scratch --target-org scratch --no-prompt > /dev/null 2>&1 || true' EXIT
 
-scripts/org-install-test.sh scratch "$REPORT_VERSION" "$TESTDATA_VERSION"
+INSTALL_DEPENDENCIES=1 scripts/org-install-test.sh scratch "$REPORT_VERSION" "$TESTDATA_VERSION"
 scripts/e2e.sh scratch
 summary "Erstinstallation in einer leeren Scratch Org geprueft."

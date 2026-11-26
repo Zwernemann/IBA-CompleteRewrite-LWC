@@ -99,9 +99,10 @@ Schaltflaeche **SF IBA Report** druecken.
 
 ## Automatisch installieren: Test-Org fuer die CI
 
-Mit einer Test-Org installiert jeder Bau auf `main` die neuen Versionen selbst dort (vorher
-den CRGenerator), weist die Permission Sets zu, liefert die Testanlage und prueft 21 Zeilen,
-dann laufen die Ende-zu-Ende-Tests. Ohne Test-Org entfaellt das mit einem Hinweis.
+Mit einer Test-Org installiert jeder Bau auf `main` die neuen Versionen selbst dort, weist die Permission Sets zu, liefert die Testanlage und prueft 21 Zeilen,
+dann laufen die Ende-zu-Ende-Tests. Ohne Test-Org entfaellt das mit einem Hinweis. Den
+CRGenerator installiert die CI dort nicht; sie prueft nur, dass mindestens die Version da ist,
+gegen die gebaut wurde, und bricht sonst mit dem Link dafuer ab.
 
 - **Test-Org ist der Dev Hub:** nur das Secret `SF_TESTORG_USERNAME` anlegen, mit demselben
   Benutzernamen wie `SF_DEVHUB_USERNAME`. App und Schluessel des Dev Hub gelten dann mit.

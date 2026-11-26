@@ -2,8 +2,8 @@
 # Points the dependency on the CRGenerator at its newest released version with the same
 # major version, so that a new CRGenerator version needs no change here. Writes into the
 # working copy of the CI only; the repository keeps the version it was last checked with.
-# Also writes the 04t of that version to target/dependencies.ids, which org-install-test.sh
-# installs before our packages.
+# Also writes "04t name version" of it to target/dependencies.ids: org-install-test.sh checks
+# that the org has that version or a newer one (and installs it only in a scratch org).
 #
 # Needs a Dev Hub signed in as default (scripts/ci-login.sh devhub). Run once per build.
 source "$(dirname "$0")/lib/common.sh"
@@ -49,7 +49,7 @@ node -e '
 ' "$REPO_ROOT/sfdx-project.json" "$DEPENDENCY" "$NUMBER"
 
 mkdir -p target
-echo "$VERSION_ID" > target/dependencies.ids
+echo "$VERSION_ID $DEPENDENCY $VERSION" > target/dependencies.ids
 note "$DEPENDENCY $VERSION ($VERSION_ID)"
-summary "Gebaut gegen $DEPENDENCY $VERSION (\`$VERSION_ID\`). Vor SF Frontend IBA installieren: $(install_link "$VERSION_ID")"
+summary "Gebaut gegen $DEPENDENCY $VERSION (\`$VERSION_ID\`); die Ziel-Org braucht diese Version oder eine neuere: $(install_link "$VERSION_ID")"
 summary ""
