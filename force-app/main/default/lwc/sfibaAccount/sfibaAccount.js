@@ -13,12 +13,14 @@ import { devicesOf, reportXml, sliderPercentages } from "c/sfibaReportXml";
 import { loadRows } from "c/sfibaRowStore";
 import { loadTranslations, userLanguage } from "c/sfibaTexts";
 import { ShowToastEvent } from "lightning/platformShowToastEvent";
-import saveReportXml from "@salesforce/apex/SfibaAttachmentController.saveReportXml";
-import { describeReport, downloadPdf, loadEngine, preload } from "c/crgenerator";
+import saveReportPdf from "@salesforce/apex/SfibaAttachmentController.saveReportPdf";
+import { describeReport, downloadPdf, loadEngine, pdfBlob, preload } from "c/crgenerator";
 import { ReportProgress, languageOf, partsFor } from "c/sfibaReportProgress";
 
 /** The catalogue entry of the CRGenerator: the IBA reports, run one after another and joined. */
 const REPORT = "IBA Report";
+/** Largest PDF stored on the account: what one Apex call takes (SfibaAttachmentController). */
+const MAX_PDF_BYTES = 2.5 * 1024 * 1024;
 
 const SAVE_DELAY = 800;
 const MAX_LENGTH = 24000;
@@ -93,7 +95,6 @@ export default class SfibaAccount extends NavigationMixin(LightningElement) {
     creatingReport = false;
     /** What the panel above the tabs shows while the report is created; a plain copy. */
     reportProgress = null;
-    savingXml = false;
 
     connectedCallback() {
         this.load();
@@ -200,7 +201,7 @@ export default class SfibaAccount extends NavigationMixin(LightningElement) {
             highCriticality: t("crgen.fr.crit.high.text"),
             mediumCriticality: t("crgen.fr.crit.med.text"),
             xml: "Report XML",
-            xmlToAccount: "Save XML to account",
+            pdfToAccount: "Save PDF to account",
             report: "Create report"
         };
     }
@@ -501,13 +502,40 @@ export default class SfibaAccount extends NavigationMixin(LightningElement) {
         }
     }
 
+    /** Creates the report as PDF and hands it to the browser (on a phone: the share sheet). */
+    handleCreateReport() {
+        return this.runReport((request) => downloadPdf(request));
+    }
+
+    /** Creates the report as PDF and stores it on the account, a new version each time. */
+    handleSavePdf() {
+        return this.runReport(async (request, progress) => {
+            const { blob, fileName } = await pdfBlob(request);
+            if (blob.size > MAX_PDF_BYTES) {
+                throw new Error(
+                    `the PDF has ${(blob.size / 1048576).toFixed(1)} MB; at most 2.5 MB can be stored on the account. Use "${this.labels.report}" to download it`
+                );
+            }
+            progress.saving();
+            this.showProgress(progress);
+            await saveReportPdf({ accountDataId: this.account.recordId, fileName, base64: await base64Of(blob) });
+            this.dispatchEvent(
+                new ShowToastEvent({
+                    title: "Report saved",
+                    message: 'The account has it under Files as "IBA Report".',
+                    variant: "success"
+                })
+            );
+        });
+    }
+
     /**
-     * Creates the report as PDF with the CRGenerator, from the same XML as the download,
-     * and hands it to the browser. Pending changes are saved first (buildReportXml). The
+     * Creates the report with the CRGenerator from the same XML as the download; deliver
+     * says what happens to the PDF. Pending changes are saved first (buildReportXml). The
      * panel above the tabs shows which part runs and how far; the buttons stay where they
-     * are.
+     * are. One report at a time.
      */
-    async handleCreateReport() {
+    async runReport(deliver) {
         if (this.creatingReport) {
             return;
         }
@@ -524,14 +552,17 @@ export default class SfibaAccount extends NavigationMixin(LightningElement) {
             const xml = await this.buildReportXml();
             progress.parts = await this.partsOfReport(xml);
             this.showProgress(progress);
-            await downloadPdf({
-                report: REPORT,
-                xml,
-                onProgress: (event) => {
-                    progress.handle(event);
-                    this.showProgress(progress);
-                }
-            });
+            await deliver(
+                {
+                    report: REPORT,
+                    xml,
+                    onProgress: (event) => {
+                        progress.handle(event);
+                        this.showProgress(progress);
+                    }
+                },
+                progress
+            );
             progress.finished();
         } catch (e) {
             this.addMessage(`Report not created: ${reduceError(e)}`);
@@ -561,36 +592,6 @@ export default class SfibaAccount extends NavigationMixin(LightningElement) {
         };
     }
 
-    /** Stores the report XML as a file on the account, a new version each time. */
-    async handleSaveXml() {
-        if (this.savingXml) {
-            return;
-        }
-        this.savingXml = true;
-        try {
-            const xml = await this.buildReportXml();
-            const bytes = new Blob([xml]).size;
-            if (bytes > 2 * 1024 * 1024) {
-                this.addMessage(
-                    `The report XML has ${(bytes / 1048576).toFixed(1)} MB; at most 2 MB can be stored on the account. Use "Report XML" to download it.`
-                );
-                return;
-            }
-            await saveReportXml({ accountDataId: this.account.recordId, xml });
-            this.dispatchEvent(
-                new ShowToastEvent({
-                    title: "Report XML saved",
-                    message: "The account has it under Files as \"IBA Report XML\".",
-                    variant: "success"
-                })
-            );
-        } catch (e) {
-            this.addMessage(`Report XML not saved: ${reduceError(e)}`);
-        } finally {
-            this.savingXml = false;
-        }
-    }
-
     /** Back to the account the button was pressed on. */
     async handleBack() {
         await this.flush();
@@ -606,4 +607,14 @@ function reduceError(error) {
     if (error.body && error.body.message) return error.body.message;
     if (error.message) return error.message;
     return String(error);
+}
+
+/** The Base64 text of a file, as an Apex call takes it. */
+function base64Of(blob) {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(String(reader.result).replace(/^data:[^,]*,/, ""));
+        reader.onerror = () => reject(reader.error);
+        reader.readAsDataURL(blob);
+    });
 }

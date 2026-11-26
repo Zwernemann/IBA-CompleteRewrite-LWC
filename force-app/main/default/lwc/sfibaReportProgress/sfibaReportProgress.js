@@ -47,7 +47,7 @@ export class ReportProgress {
         this.parts = parts || [];
         this.started = now;
         this.now = now;
-        this.stage = "load"; // load, run, write, done
+        this.stage = "load"; // load, run, write, save, done
         this.partIndex = 0;
         this.phase = "";
         this.phaseIndex = 0;
@@ -100,6 +100,11 @@ export class ReportProgress {
         this.stage = "write";
     }
 
+    /** The PDF is written and goes to the account. */
+    saving() {
+        this.stage = "save";
+    }
+
     finished() {
         this.stage = "done";
     }
@@ -111,7 +116,7 @@ export class ReportProgress {
     /** Percent of the parts done, the running part by its phases; null without a total. */
     get percent() {
         const total = this.parts.length;
-        if (this.stage === "write" || this.stage === "done") return 100;
+        if (this.stage === "write" || this.stage === "save" || this.stage === "done") return 100;
         if (!total) return null;
         const within = this.phaseTotal > 0 ? this.phaseIndex / this.phaseTotal : 0;
         return Math.min(99, Math.round((100 * (this.partIndex + within)) / total));
@@ -123,6 +128,8 @@ export class ReportProgress {
                 return "Loading the report definitions and fonts";
             case "write":
                 return "Writing the PDF";
+            case "save":
+                return "Saving the PDF on the account";
             case "done":
                 return "Report created";
             default: {

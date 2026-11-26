@@ -85,16 +85,28 @@ private class SfibaAttachmentControllerTest {
         }
     }
 
+    private static String pdf(String text) {
+        return EncodingUtil.base64Encode(Blob.valueOf('%PDF-1.7 ' + text));
+    }
+
     @IsTest
-    static void storesTheReportXmlOnTheAccountAsOneFileWithVersions() {
+    static void storesTheReportPdfOnTheAccountAsOneFileWithVersions() {
         Account account = new Account(Name = 'Nord');
         insert account;
         SFIBA_Account__c accountData = [SELECT Id FROM SFIBA_Account__c];
         accountData.SFIBA_Account__c = account.Id;
         update accountData;
 
-        Id first = SfibaAttachmentController.saveReportXml(accountData.Id, '<ibadata>1</ibadata>');
-        Id second = SfibaAttachmentController.saveReportXml(accountData.Id, '<ibadata>2</ibadata>');
+        Id first = SfibaAttachmentController.saveReportPdf(
+            accountData.Id,
+            'IBA Report.pdf',
+            pdf('1')
+        );
+        Id second = SfibaAttachmentController.saveReportPdf(
+            accountData.Id,
+            'IBA Report.pdf',
+            pdf('2')
+        );
 
         Assert.areEqual(first, second, 'a new version of the same file');
         Assert.areEqual(
@@ -106,17 +118,18 @@ private class SfibaAttachmentControllerTest {
             ]
         );
         ContentVersion latest = [
-            SELECT VersionData
+            SELECT VersionData, PathOnClient
             FROM ContentVersion
             WHERE ContentDocumentId = :first AND IsLatest = TRUE
         ];
-        Assert.areEqual('<ibadata>2</ibadata>', latest.VersionData.toString());
+        Assert.areEqual('%PDF-1.7 2', latest.VersionData.toString());
+        Assert.areEqual('IBA Report.pdf', latest.PathOnClient);
         Assert.areEqual(2, [SELECT COUNT() FROM ContentVersion WHERE ContentDocumentId = :first]);
     }
 
     @IsTest
-    static void storesTheReportXmlOnTheAccountDataWithoutAnAccount() {
-        Id documentId = SfibaAttachmentController.saveReportXml(accountDataId(), '<ibadata/>');
+    static void storesTheReportPdfOnTheAccountDataWithoutAnAccount() {
+        Id documentId = SfibaAttachmentController.saveReportPdf(accountDataId(), null, pdf('x'));
         Assert.areEqual(
             1,
             [
@@ -128,19 +141,21 @@ private class SfibaAttachmentControllerTest {
     }
 
     @IsTest
-    static void refusesAnEmptyOrTooLargeReportXml() {
+    static void refusesAnEmptyOrTooLargeReportPdf() {
         try {
-            SfibaAttachmentController.saveReportXml(accountDataId(), '');
-            Assert.fail('empty XML stored');
+            SfibaAttachmentController.saveReportPdf(accountDataId(), 'a.pdf', '');
+            Assert.fail('empty PDF stored');
         } catch (AuraHandledException e) {
             Assert.isTrue(true);
         }
+        SfibaAttachmentController.maxPdfBytes = 10;
         try {
-            SfibaAttachmentController.saveReportXml(
+            SfibaAttachmentController.saveReportPdf(
                 accountDataId(),
-                'x'.repeat(SfibaAttachmentController.MAX_XML_BYTES + 1)
+                'a.pdf',
+                pdf('more than ten bytes')
             );
-            Assert.fail('too large XML stored');
+            Assert.fail('too large PDF stored');
         } catch (AuraHandledException e) {
             Assert.isTrue(true);
         }

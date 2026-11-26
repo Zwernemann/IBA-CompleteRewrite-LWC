@@ -132,29 +132,30 @@ public with sharing class SfibaAttachmentController {
     }
 
     /**
-     * Largest report XML that is stored from the browser. The text arrives as a parameter
-     * and is copied once into the file; both count against the heap of 6 MB.
+     * Largest report PDF that is stored from the browser. It arrives as Base64 (a third
+     * larger) and is decoded once; both count against the heap of 6 MB.
      */
-    public static final Integer MAX_XML_BYTES = 2097152;
-    public static final String REPORT_XML_TITLE = 'IBA Report XML';
+    @TestVisible
+    private static Integer maxPdfBytes = 2621440;
+    public static final String REPORT_TITLE = 'IBA Report';
 
     /**
-     * Stores the report XML as a Salesforce File on the account (or, without one, on the
-     * account data): a new version of the file stored before, so the account keeps one
-     * file with its history. Returns the id of the file.
+     * Stores the report PDF the CRGenerator created in the browser as a Salesforce File on
+     * the account (or, without one, on the account data): a new version of the report
+     * stored before, so the account keeps one file with its history. Returns the file.
      */
     @AuraEnabled
-    public static Id saveReportXml(Id accountDataId, String xml) {
-        if (String.isBlank(xml)) {
-            throw new AuraHandledException('The report XML is empty.');
+    public static Id saveReportPdf(Id accountDataId, String fileName, String base64) {
+        if (String.isBlank(base64)) {
+            throw new AuraHandledException('The report PDF is empty.');
         }
-        Blob content = Blob.valueOf(xml);
-        xml = null;
-        if (content.size() > MAX_XML_BYTES) {
+        Blob content = EncodingUtil.base64Decode(base64);
+        base64 = null;
+        if (content.size() > maxPdfBytes) {
             throw new AuraHandledException(
-                'The report XML has ' +
+                'The report PDF has ' +
                     (content.size() / 1048576) +
-                    ' MB; at most 2 MB can be stored from here. Download it instead.'
+                    ' MB; at most 2.5 MB can be stored from here. Download it instead.'
             );
         }
         SFIBA_Account__c accountData = [
@@ -167,12 +168,12 @@ public with sharing class SfibaAttachmentController {
             : accountData.Id;
 
         ContentVersion version = new ContentVersion(
-            Title = REPORT_XML_TITLE,
-            PathOnClient = 'ibareport.xml',
+            Title = REPORT_TITLE,
+            PathOnClient = String.isBlank(fileName) ? REPORT_TITLE + '.pdf' : fileName,
             VersionData = content,
-            ReasonForChange = 'Report XML of ' + Datetime.now().format('yyyy-MM-dd HH:mm')
+            ReasonForChange = 'Report of ' + Datetime.now().format('yyyy-MM-dd HH:mm')
         );
-        Id existing = reportXmlDocument(target);
+        Id existing = reportDocument(target);
         if (existing != null) {
             version.ContentDocumentId = existing;
         } else {
@@ -183,7 +184,7 @@ public with sharing class SfibaAttachmentController {
         .ContentDocumentId;
     }
 
-    private static Id reportXmlDocument(Id target) {
+    private static Id reportDocument(Id target) {
         Set<Id> documents = new Set<Id>();
         for (ContentDocumentLink link : [
             SELECT ContentDocumentId
@@ -195,7 +196,7 @@ public with sharing class SfibaAttachmentController {
         for (ContentDocument document : [
             SELECT Id
             FROM ContentDocument
-            WHERE Id IN :documents AND Title = :REPORT_XML_TITLE
+            WHERE Id IN :documents AND Title = :REPORT_TITLE
             ORDER BY CreatedDate DESC
             LIMIT 1
         ]) {

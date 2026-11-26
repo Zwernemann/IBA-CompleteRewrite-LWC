@@ -16,7 +16,7 @@
                 <span class="slds-text-color_weak slds-m-right_small">{saveState}</span>
                 <lightning-button label={labels.settings} icon-name="utility:settings" onclick={handleOpenSettings} data-id="settings" class="slds-m-right_x-small"></lightning-button>
                 <lightning-button label={labels.xml} icon-name="utility:download" onclick={handleDownloadXml} data-id="xml" class="slds-m-right_x-small"></lightning-button>
-                <lightning-button label={labels.xmlToAccount} icon-name="utility:upload" onclick={handleSaveXml} disabled={savingXml} data-id="xml-to-account" class="slds-m-right_x-small"></lightning-button>
+                <lightning-button label={labels.pdfToAccount} icon-name="utility:upload" onclick={handleSavePdf} disabled={creatingReport} data-id="pdf-to-account" class="slds-m-right_x-small"></lightning-button>
                 <lightning-button label={labels.report} icon-name="utility:file" variant="brand" onclick={handleCreateReport} disabled={creatingReport} data-id="report"></lightning-button>
             </template>
         </div>

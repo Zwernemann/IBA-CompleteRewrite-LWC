@@ -9,8 +9,8 @@ import getIntervals from "@salesforce/apex/SfibaIntervalController.getIntervals"
 import getRows from "@salesforce/apex/SfibaAccountController.getRows";
 import listAttachments from "@salesforce/apex/SfibaAttachmentController.listAttachments";
 import { forgetRows } from "c/sfibaRowStore";
-import { downloadPdf, preload } from "c/crgenerator";
-import saveReportXml from "@salesforce/apex/SfibaAttachmentController.saveReportXml";
+import { downloadPdf, pdfBlob, preload } from "c/crgenerator";
+import saveReportPdf from "@salesforce/apex/SfibaAttachmentController.saveReportPdf";
 
 jest.mock("c/sfibaMaintenanceModal", () => ({ __esModule: true, default: { open: jest.fn() } }));
 jest.mock("c/sfibaIntervalModal", () => ({ __esModule: true, default: { open: jest.fn() } }));
@@ -19,7 +19,7 @@ jest.mock("@salesforce/apex/SfibaReportValuesController.save", () => ({ default:
 jest.mock("@salesforce/apex/SfibaIntervalController.getIntervals", () => ({ default: jest.fn() }), { virtual: true });
 jest.mock("@salesforce/apex/SfibaAccountController.getRows", () => ({ default: jest.fn() }), { virtual: true });
 jest.mock("@salesforce/apex/SfibaAttachmentController.listAttachments", () => ({ default: jest.fn() }), { virtual: true });
-jest.mock("@salesforce/apex/SfibaAttachmentController.saveReportXml", () => ({ default: jest.fn() }), { virtual: true });
+jest.mock("@salesforce/apex/SfibaAttachmentController.saveReportPdf", () => ({ default: jest.fn() }), { virtual: true });
 
 const ROOT = join(__dirname, "../../../../../..");
 const TRANSLATIONS = JSON.parse(readFileSync(join(ROOT, "force-app/main/default/staticresources/sfibaTranslations.json"), "utf8"));
@@ -155,15 +155,25 @@ describe("c-sfiba-account", () => {
         expect(element.shadowRoot.querySelector('[data-id="report-progress"]')).toBeNull();
     });
 
-    it("saves the report XML on the account", async () => {
-        saveReportXml.mockResolvedValue("069A");
+    it("saves the report PDF on the account", async () => {
+        downloadPdf.mockClear();
+        saveReportPdf.mockResolvedValue("069A");
         const element = await open();
-        element.shadowRoot.querySelector('[data-id="xml-to-account"]').click();
-        await settle();
-        expect(saveReportXml).toHaveBeenCalledTimes(1);
-        const call = saveReportXml.mock.calls[0][0];
+        element.shadowRoot.querySelector('[data-id="pdf-to-account"]').click();
+        for (let i = 0; i < 5; i++) {
+            // FileReader answers in a later task
+            // eslint-disable-next-line no-await-in-loop
+            await new Promise((resolve) => jest.requireActual("timers").setImmediate(resolve));
+            // eslint-disable-next-line no-await-in-loop
+            await settle();
+        }
+        expect(pdfBlob).toHaveBeenCalledWith(expect.objectContaining({ report: "IBA Report" }));
+        expect(saveReportPdf).toHaveBeenCalledTimes(1);
+        const call = saveReportPdf.mock.calls[0][0];
         expect(call.accountDataId).toBe("a01A");
-        expect(call.xml).toContain("<ibadata>");
+        expect(call.fileName).toBe("IBA Report.pdf");
+        expect(atob(call.base64)).toBe("%PDF-1.7 test");
+        expect(downloadPdf).not.toHaveBeenCalled();
     });
 
     it("names a report that failed", async () => {
