@@ -18,7 +18,7 @@
       "path": "eh-emulation",
       "package": "SF Frontend IBA Test Data",
       "versionName": "Lasttest",
-      "versionNumber": "0.3.3.NEXT",
+      "versionNumber": "0.4.0.NEXT",
       "versionDescription": "Test plant for test orgs, delivered through mzw.SfibaImport. Never installed at E+H.",
       "dependencies": [
         {

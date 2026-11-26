@@ -29,13 +29,16 @@ fi
 PARTS=$(( (ROWS + 999) / 1000 ))
 note "Lieferung $TRANSMISSION, $PARTS Teile"
 
-# Failed jobs of the load test since the delivery started, with Salesforce's reason: a part
-# that fails ends the chain, the rest never comes.
+# When the delivery started: its id ends in the milliseconds of System.now().
+SINCE="$(node -e 'const ms = Number(process.argv[1].split("-").pop()); console.log(new Date(ms - 60000).toISOString().replace(/\.\d+Z$/, "Z"));' "$TRANSMISSION")"
+
+# Jobs of the load test since the delivery started that failed or had failing parts, with
+# Salesforce's reason.
 failed_jobs() {
-    sf data query --target-org "$ORG" --json --query "SELECT CreatedDate, Status, ExtendedStatus, NumberOfErrors FROM AsyncApexJob WHERE ApexClass.Name = 'SfibaLargeAccount' AND Status = 'Failed' ORDER BY CreatedDate DESC LIMIT 5" \
+    sf data query --target-org "$ORG" --json --query "SELECT CreatedDate, Status, ExtendedStatus, NumberOfErrors FROM AsyncApexJob WHERE ApexClass.Name IN ('SfibaLargeAccount', 'SfibaLargeAccountBatch') AND CreatedDate >= $SINCE AND (Status = 'Failed' OR NumberOfErrors > 0) ORDER BY CreatedDate DESC LIMIT 5" \
         | node -e '
             const r = JSON.parse(require("fs").readFileSync(0, "utf8"));
-            for (const j of (r.result && r.result.records) || []) console.log(`${j.CreatedDate} ${j.Status}: ${j.ExtendedStatus || "(ohne Meldung)"}`);
+            for (const j of (r.result && r.result.records) || []) console.log(`${j.CreatedDate} ${j.Status}, ${j.NumberOfErrors || 0} Fehler: ${j.ExtendedStatus || "(ohne Meldung)"}`);
         ' || true
 }
 

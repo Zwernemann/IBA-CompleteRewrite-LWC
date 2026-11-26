@@ -1,6 +1,9 @@
 /**
  * An invented account of any size for load tests, delivered through mzw.SfibaImport in parts
- * of PART_SIZE rows, one Queueable per part. As scripts/lib/MassData.java of IBA-Salesforce:
+ * of PART_SIZE rows, one batch execution per part (SfibaLargeAccountBatch). A chain of
+ * Queueables, one starting the next, ended after five in a Developer Edition ("Maximum stack
+ * depth has been reached"); a batch has no such depth. The class stays a Queueable: a global
+ * class keeps its interfaces once released. As scripts/lib/MassData.java of IBA-Salesforce:
  * five accounts with six halls and four lines each, device families with the SPK codes of the
  * interval table, Endress+Hauser for about half of the devices, twenty invented
  * manufacturers. Every value follows from the row number, so a second run replaces the
@@ -105,7 +108,7 @@ global with sharing class SfibaLargeAccount implements Queueable {
     }
 
     /**
-     * Starts the delivery; the parts follow one after another as Queueables.
+     * Starts the delivery; the parts follow one after another in a batch, one part each.
      *
      * @param accountId an account of the org, or null for the fixed load test account
      * @param rows      number of rows
@@ -120,22 +123,15 @@ global with sharing class SfibaLargeAccount implements Queueable {
             name = account.Name;
         }
         String transmissionId = 'LASTTEST-' + System.now().getTime();
-        System.enqueueJob(new SfibaLargeAccount(id, name, rows, 1, transmissionId));
+        // A test may run one batch execution only: there, the first part alone.
+        Integer parts = Test.isRunningTest() ? 1 : partCount(rows);
+        Database.executeBatch(new SfibaLargeAccountBatch(id, name, rows, parts, transmissionId), 1);
         return transmissionId;
     }
 
+    /** One part, as a Queueable; no longer started by start(), kept for the interface. */
     public void execute(QueueableContext context) {
         SfibaImport.accept(build(accountId, accountName, rows, part, transmissionId));
-        if (Test.isRunningTest()) {
-            return;
-        }
-        // One job may start one other: the next part. The successors of the order codes are
-        // not looked up for the load test; the rows stay pending until their next delivery.
-        if (part < partCount(rows)) {
-            System.enqueueJob(
-                new SfibaLargeAccount(accountId, accountName, rows, part + 1, transmissionId)
-            );
-        }
     }
 
     public static Integer partCount(Integer rows) {
@@ -143,8 +139,7 @@ global with sharing class SfibaLargeAccount implements Queueable {
     }
 
     /** One part as JSON in schema v3. */
-    @TestVisible
-    private static String build(
+    public static String build(
         String accountId,
         String accountName,
         Integer rows,
