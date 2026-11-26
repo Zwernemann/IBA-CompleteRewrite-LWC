@@ -61,6 +61,13 @@
                         <p class="slds-text-body_small slds-text-color_weak slds-truncate slds-m-top_xx-small">{reportProgress.detail}</p>
                     </div>
                 </template>
+                <template lwc:if={createdReport}>
+                    <div class="slds-box slds-box_x-small slds-m-bottom_small" data-id="created-report">
+                        <span class="slds-m-right_small">Report created: {createdReport.summary}.</span>
+                        <lightning-button label={createdReport.shareLabel} icon-name="utility:download" onclick={handleDeliverCreated} data-id="deliver-created" class="slds-m-right_small"></lightning-button>
+                        <lightning-button variant="base" label="Close" onclick={handleDismissCreated}></lightning-button>
+                    </div>
+                </template>
                 <template lwc:if={pendingXml}>
                     <div class="slds-box slds-box_x-small slds-m-bottom_small" data-id="pending-xml">
                         <span class="slds-m-right_small">The report XML is ready.</span>
@@ -71,7 +78,7 @@
                 <template lwc:if={pendingReport}>
                     <div class="slds-box slds-box_x-small slds-m-bottom_small" data-id="pending-report">
                         <p class="slds-m-bottom_x-small">
-                            The report has {pendingReport.size}, too large to store on the account from here. Download it, then upload the
+                            The report has {pendingReport.size}: too large to store on the account from here. Download it, then upload the
                             downloaded file to the account.
                         </p>
                         <div class="slds-grid slds-wrap slds-grid_vertical-align-end">

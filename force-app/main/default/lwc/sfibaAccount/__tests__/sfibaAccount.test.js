@@ -9,7 +9,7 @@ import getIntervals from "@salesforce/apex/SfibaIntervalController.getIntervals"
 import getRows from "@salesforce/apex/SfibaAccountController.getRows";
 import listAttachments from "@salesforce/apex/SfibaAttachmentController.listAttachments";
 import { forgetRows } from "c/sfibaRowStore";
-import { downloadPdf, pdfBlob, preload } from "c/crgenerator";
+import { pdfBlob, preload } from "c/crgenerator";
 import saveReportPdf from "@salesforce/apex/SfibaAttachmentController.saveReportPdf";
 
 jest.mock("c/sfibaMaintenanceModal", () => ({ __esModule: true, default: { open: jest.fn() } }));
@@ -36,6 +36,9 @@ async function settle() {
 describe("c-sfiba-account", () => {
     beforeEach(() => {
         jest.useFakeTimers();
+        pdfBlob.mockClear();
+        URL.createObjectURL = jest.fn(() => "blob:report");
+        URL.revokeObjectURL = jest.fn();
         forgetRows("a01A");
         global.fetch = jest.fn(() => Promise.resolve({ ok: true, json: () => Promise.resolve(TRANSLATIONS) }));
         loadValues.mockResolvedValue({ texts: {}, settings: {}, jobId: ACCOUNT.accountKey, siteName: "Nord", presetLanguage: "de_DE", presetFinalReport: null });
@@ -128,15 +131,28 @@ describe("c-sfiba-account", () => {
         expect(preload).toHaveBeenCalledWith("IBA Report");
         element.shadowRoot.querySelector('[data-id="report"]').click();
         await settle();
-        expect(downloadPdf).toHaveBeenCalledTimes(1);
-        const request = downloadPdf.mock.calls[0][0];
+        expect(pdfBlob).toHaveBeenCalledTimes(1);
+        const request = pdfBlob.mock.calls[0][0];
         expect(request.report).toBe("IBA Report");
         expect(request.xml).toBe(await element.buildReportXml());
     });
 
+    it("says what the report came to and downloads it on a desktop", async () => {
+        const element = await open();
+        element.shadowRoot.querySelector('[data-id="report"]').click();
+        await settle();
+        await settle();
+        const panel = element.shadowRoot.querySelector('[data-id="created-report"]');
+        expect(panel.textContent).toContain("Report created: 3 pages, 0.0 MB");
+        expect(URL.createObjectURL).toHaveBeenCalledTimes(1);
+        element.shadowRoot.querySelector('[data-id="deliver-created"]').click();
+        await settle();
+        expect(URL.createObjectURL).toHaveBeenCalledTimes(2);
+    });
+
     it("shows the progress above the tabs, not between the buttons, and removes it after", async () => {
         let finish;
-        downloadPdf.mockImplementationOnce((request) => {
+        pdfBlob.mockImplementationOnce((request) => {
             request.onProgress({ kind: "phase", phase: "read the data", index: 1, total: 4, ms: 1 });
             return new Promise((resolve) => {
                 finish = resolve;
@@ -156,7 +172,6 @@ describe("c-sfiba-account", () => {
     });
 
     it("saves the report PDF on the account", async () => {
-        downloadPdf.mockClear();
         saveReportPdf.mockResolvedValue("069A");
         const element = await open();
         element.shadowRoot.querySelector('[data-id="pdf-to-account"]').click();
@@ -173,7 +188,6 @@ describe("c-sfiba-account", () => {
         expect(call.accountDataId).toBe("a01A");
         expect(call.fileName).toBe("IBA Report.pdf");
         expect(atob(call.base64)).toBe("%PDF-1.7 test");
-        expect(downloadPdf).not.toHaveBeenCalled();
     });
 
     it("offers download and upload for a report too large to store directly", async () => {
@@ -195,7 +209,7 @@ describe("c-sfiba-account", () => {
     });
 
     it("names a report that failed", async () => {
-        downloadPdf.mockRejectedValueOnce(new Error("Unknown report"));
+        pdfBlob.mockRejectedValueOnce(new Error("Unknown report"));
         const element = await open();
         element.shadowRoot.querySelector('[data-id="report"]').click();
         await settle();

@@ -15,7 +15,7 @@ import { loadRows } from "c/sfibaRowStore";
 import { loadTranslations, userLanguage } from "c/sfibaTexts";
 import { ShowToastEvent } from "lightning/platformShowToastEvent";
 import saveReportPdf from "@salesforce/apex/SfibaAttachmentController.saveReportPdf";
-import { canSharePdf, describeReport, downloadPdf, loadEngine, pdfBlob, preload, sharePdf } from "c/crgenerator";
+import { canSharePdf, describeReport, loadEngine, pdfBlob, preload, sharePdf } from "c/crgenerator";
 import { ReportProgress, languageOf, partsFor } from "c/sfibaReportProgress";
 
 /** The catalogue entry of the CRGenerator: the IBA reports, run one after another and joined. */
@@ -98,6 +98,8 @@ export default class SfibaAccount extends NavigationMixin(LightningElement) {
     reportProgress = null;
     /** A report too large to store directly: it waits to be downloaded and uploaded. */
     pendingReport = null;
+    /** The report just created: what came out, and the file to hand over again. */
+    createdReport = null;
     /** On a phone: the report XML, ready to be shared with a fresh tap. */
     pendingXml = null;
 
@@ -508,9 +510,48 @@ export default class SfibaAccount extends NavigationMixin(LightningElement) {
         }
     }
 
-    /** Creates the report as PDF and hands it to the browser (on a phone: the share sheet). */
+    /**
+     * Creates the report as PDF. A panel then says what came out (pages, size) and offers it
+     * again. On a desktop the PDF is downloaded at once; on a phone the share sheet opens
+     * only from a fresh tap, which the rendering has used up, so the panel's button does it.
+     */
     handleCreateReport() {
-        return this.runReport((request) => downloadPdf(request));
+        this.createdReport = null;
+        return this.runReport(async (request) => {
+            const { blob, fileName, pageCount } = await pdfBlob(request);
+            this.createdReport = {
+                blob,
+                fileName: fileName || "IBA Report.pdf",
+                summary: `${pageCount ? `${pageCount} pages, ` : ""}${(blob.size / 1048576).toFixed(1)} MB`,
+                shareLabel: this.small ? "Share PDF" : "Download again"
+            };
+            if (!this.small) {
+                saveFile(blob, this.createdReport.fileName);
+            }
+        });
+    }
+
+    async handleDeliverCreated() {
+        const created = this.createdReport;
+        if (!created) return;
+        try {
+            await this.deliverPdf(created.blob, created.fileName);
+        } catch (e) {
+            this.addMessage(`Report not delivered: ${reduceError(e)}`);
+        }
+    }
+
+    handleDismissCreated() {
+        this.createdReport = null;
+    }
+
+    /** A PDF to the device: on a phone the share sheet (from a fresh tap), else a download. */
+    async deliverPdf(blob, fileName) {
+        if (this.small && canSharePdf()) {
+            await sharePdf(await bytesOf(blob), fileName);
+            return;
+        }
+        saveFile(blob, fileName);
     }
 
     /**
@@ -521,13 +562,14 @@ export default class SfibaAccount extends NavigationMixin(LightningElement) {
      */
     handleSavePdf() {
         this.pendingReport = null;
+        this.createdReport = null;
         return this.runReport(async (request, progress) => {
-            const { blob, fileName } = await pdfBlob(request);
+            const { blob, fileName, pageCount } = await pdfBlob(request);
             if (blob.size > MAX_PDF_BYTES) {
                 this.pendingReport = {
                     blob,
                     fileName: fileName || "IBA Report.pdf",
-                    size: `${(blob.size / 1048576).toFixed(1)} MB`
+                    size: `${pageCount ? `${pageCount} pages, ` : ""}${(blob.size / 1048576).toFixed(1)} MB`
                 };
                 return;
             }
@@ -577,11 +619,7 @@ export default class SfibaAccount extends NavigationMixin(LightningElement) {
         const pending = this.pendingReport;
         if (!pending) return;
         try {
-            if (this.small && canSharePdf()) {
-                await sharePdf(new Uint8Array(await pending.blob.arrayBuffer()), pending.fileName);
-                return;
-            }
-            saveFile(pending.blob, pending.fileName);
+            await this.deliverPdf(pending.blob, pending.fileName);
         } catch (e) {
             this.addMessage(`Report not downloaded: ${reduceError(e)}`);
         }
@@ -724,4 +762,17 @@ function saveFile(blob, fileName) {
     link.click();
     // eslint-disable-next-line @lwc/lwc/no-async-operation
     setTimeout(() => URL.revokeObjectURL(url), 60000);
+}
+
+/** The bytes of a file; FileReader where a browser lacks Blob.arrayBuffer. */
+function bytesOf(blob) {
+    if (typeof blob.arrayBuffer === "function") {
+        return blob.arrayBuffer().then((buffer) => new Uint8Array(buffer));
+    }
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(new Uint8Array(reader.result));
+        reader.onerror = () => reject(reader.error);
+        reader.readAsArrayBuffer(blob);
+    });
 }

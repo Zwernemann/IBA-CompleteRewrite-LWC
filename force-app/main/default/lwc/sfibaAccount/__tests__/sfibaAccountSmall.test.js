@@ -9,7 +9,7 @@ import getIntervals from "@salesforce/apex/SfibaIntervalController.getIntervals"
 import getRows from "@salesforce/apex/SfibaAccountController.getRows";
 import listAttachments from "@salesforce/apex/SfibaAttachmentController.listAttachments";
 import { forgetRows } from "c/sfibaRowStore";
-import { downloadPdf, pdfBlob, preload } from "c/crgenerator";
+import { canSharePdf, pdfBlob, sharePdf } from "c/crgenerator";
 import saveReportPdf from "@salesforce/apex/SfibaAttachmentController.saveReportPdf";
 
 jest.mock("c/sfibaMaintenanceModal", () => ({ __esModule: true, default: { open: jest.fn() } }));
@@ -80,5 +80,25 @@ describe("c-sfiba-account on a phone", () => {
         await settle();
         expect(element.shadowRoot.querySelector('[data-id="pending-xml"]')).not.toBeNull();
         expect(element.shadowRoot.querySelector('[data-id="share-xml"]')).not.toBeNull();
+    });
+
+    it("hands the created report to the share sheet from the tap on its button", async () => {
+        canSharePdf.mockReturnValue(true);
+        sharePdf.mockClear();
+        const element = await open();
+        element.shadowRoot.querySelector('[data-id="menu"]').dispatchEvent(new CustomEvent("select", { detail: { value: "report" } }));
+        await settle();
+        await settle();
+        const panel = element.shadowRoot.querySelector('[data-id="created-report"]');
+        expect(panel.textContent).toContain("Report created: 3 pages");
+        expect(sharePdf).not.toHaveBeenCalled();
+        const button = element.shadowRoot.querySelector('[data-id="deliver-created"]');
+        expect(button.label).toBe("Share PDF");
+        button.click();
+        for (let i = 0; i < 5; i++) {
+            // eslint-disable-next-line no-await-in-loop
+            await new Promise((resolve) => jest.requireActual("timers").setImmediate(resolve));
+        }
+        expect(sharePdf).toHaveBeenCalledWith(expect.any(Uint8Array), "IBA Report.pdf");
     });
 });
