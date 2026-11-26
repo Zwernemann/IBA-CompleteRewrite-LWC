@@ -20,6 +20,8 @@ concurrency:
 env:
   SF_CLI_VERSION: "2.159.5"
   NODE_VERSION: "22"
+  # No notice about a newer CLI in front of JSON answers.
+  SF_SKIP_NEW_VERSION_CHECK: "true"
 
 jobs:
   checks:

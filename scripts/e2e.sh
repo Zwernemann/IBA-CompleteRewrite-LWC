@@ -12,13 +12,9 @@ note "Playwright einrichten"
 npm ci --no-audit --no-fund > /dev/null
 npx playwright install --with-deps chromium > /dev/null
 
-note "Anmeldeadresse der Org $ORG"
-E2E_FRONTDOOR="$(sf org open --url-only --target-org "$ORG" --json | node -e '
-    const r = JSON.parse(require("fs").readFileSync(0, "utf8"));
-    if (!r.result || !r.result.url) { console.error(r.message); process.exit(1); }
-    console.log(r.result.url);
-')" || fail "Keine Anmeldeadresse fuer $ORG."
-export E2E_FRONTDOOR E2E_ORG="$ORG"
+# Each test signs in with a frontdoor address of its own (e2e/tests/helpers.js): one
+# address serves a single sign-in only.
+export E2E_ORG="$ORG" SF_SKIP_NEW_VERSION_CHECK=true
 
 note "Tests"
 npx playwright test --trace off || fail "Ende-zu-Ende-Tests gescheitert, Bericht unter target/e2e/report."

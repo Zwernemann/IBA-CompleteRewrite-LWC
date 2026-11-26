@@ -1,5 +1,5 @@
 // End to end tests against an org with the packages installed (scripts/e2e.sh).
-// E2E_FRONTDOOR is the sign-in address of the org, E2E_ORG its alias for queries.
+// E2E_ORG is the alias of the org, for sign-in addresses and queries.
 const { defineConfig } = require("@playwright/test");
 
 module.exports = defineConfig({

@@ -2,15 +2,27 @@
 const { execFileSync } = require("node:child_process");
 
 const ORG = process.env.E2E_ORG || "testorg";
-const FRONTDOOR = process.env.E2E_FRONTDOOR;
 const TEST_ACCOUNT_NAME = "DIBA Testanlage Nord";
+
+/**
+ * Runs the Salesforce CLI and reads its JSON answer. The CLI may put a coloured notice
+ * about a newer version in front of it; the answer starts at the first brace.
+ */
+function sf(args) {
+    const out = execFileSync("sf", [...args, "--target-org", ORG, "--json"], {
+        encoding: "utf8",
+        env: { ...process.env, SF_SKIP_NEW_VERSION_CHECK: "true", FORCE_COLOR: "0" }
+    });
+    const start = out.indexOf("{");
+    if (start < 0) throw new Error(`No JSON from sf ${args.join(" ")}: ${out}`);
+    const answer = JSON.parse(out.slice(start));
+    if (answer.status !== 0) throw new Error(answer.message || JSON.stringify(answer));
+    return answer.result;
+}
 
 /** A SOQL query through the CLI, as JSON records. */
 function query(soql) {
-    const out = execFileSync("sf", ["data", "query", "--query", soql, "--target-org", ORG, "--json"], {
-        encoding: "utf8"
-    });
-    return JSON.parse(out).result.records;
+    return sf(["data", "query", "--query", soql]).records;
 }
 
 /** The id of the test account, to which scripts/apex/send-testdata.apex delivered. */
@@ -21,12 +33,12 @@ function testAccountId() {
 }
 
 /**
- * Signs in through the frontdoor address and opens the work surface of the test account,
- * as the button "SF IBA Report" on the account does.
+ * Signs in through a frontdoor address and opens the work surface of the test account,
+ * as the button "SF IBA Report" on the account does. Each test asks for an address of its
+ * own: one serves a single sign-in only.
  */
 async function openTestAccount(page) {
-    if (!FRONTDOOR) throw new Error("E2E_FRONTDOOR is not set; run the tests with scripts/e2e.sh");
-    await page.goto(FRONTDOOR);
+    await page.goto(sf(["org", "open", "--url-only"]).url);
     await page.waitForURL(/lightning/, { timeout: 120000 });
     const base = new URL(page.url()).origin;
     await page.goto(`${base}/lightning/n/mzw__SFIBA_Report?mzw__account=${testAccountId()}`);

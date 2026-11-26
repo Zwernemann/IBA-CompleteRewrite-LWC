@@ -51,7 +51,7 @@ test("a report text is stored with its version", async ({ page }) => {
     );
 });
 
-test("the report XML has the 20 devices", async ({ page }) => {
+test("the report XML has the 21 devices", async ({ page }) => {
     await openTestAccount(page);
     const download = page.waitForEvent("download");
     await page.getByRole("button", { name: "Report XML" }).click();
@@ -59,6 +59,6 @@ test("the report XML has the 20 devices", async ({ page }) => {
     const path = await file.path();
     const xml = require("node:fs").readFileSync(path, "utf8");
     expect(xml.startsWith('<?xml version="1.0" encoding="UTF-8" standalone="yes"?>')).toBe(true);
-    expect((xml.match(/<device>/g) || []).length).toBe(20);
+    expect((xml.match(/<device>/g) || []).length).toBe(21);
     expect(xml).toContain("<siteName>DIBA Testanlage Nord</siteName>");
 });
