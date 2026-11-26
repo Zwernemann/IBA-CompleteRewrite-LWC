@@ -29,6 +29,18 @@ fi
 PARTS=$(( (ROWS + 999) / 1000 ))
 note "Lieferung $TRANSMISSION, $PARTS Teile"
 
+# Failed jobs of the load test since the delivery started, with Salesforce's reason: a part
+# that fails ends the chain, the rest never comes.
+failed_jobs() {
+    sf data query --target-org "$ORG" --json --query "SELECT CreatedDate, Status, ExtendedStatus, NumberOfErrors FROM AsyncApexJob WHERE ApexClass.Name = 'SfibaLargeAccount' AND Status = 'Failed' ORDER BY CreatedDate DESC LIMIT 5" \
+        | node -e '
+            const r = JSON.parse(require("fs").readFileSync(0, "utf8"));
+            for (const j of (r.result && r.result.records) || []) console.log(`${j.CreatedDate} ${j.Status}: ${j.ExtendedStatus || "(ohne Meldung)"}`);
+        ' || true
+}
+
+LAST=-1
+SAME=0
 for _ in $(seq 1 90); do
     COUNT="$(sf data query --target-org "$ORG" --json \
         --query "SELECT COUNT() FROM mzw__SFIBA_Transmission__c WHERE mzw__SFIBA_Transmission_Id__c = '$TRANSMISSION'" \
@@ -38,6 +50,19 @@ for _ in $(seq 1 90); do
         summary "Lastanlage \"DIBA Lasttest\" mit $ROWS Zeilen in \`$ORG\` geliefert ($PARTS Teile)."
         exit 0
     fi
+    FAILED="$(failed_jobs)"
+    if [ -n "$FAILED" ]; then
+        echo "$FAILED"
+        summary "Lastanlage abgebrochen nach $COUNT von $PARTS Teilen. Fehlgeschlagene Jobs:"
+        summary '```'
+        summary "$FAILED"
+        summary '```'
+        fail "Lastanlage abgebrochen nach $COUNT von $PARTS Teilen."
+    fi
+    if [ "$COUNT" -eq "$LAST" ]; then SAME=$((SAME + 1)); else SAME=0; fi
+    LAST="$COUNT"
+    # Ten minutes without a new part and no failed job: the chain has stopped some other way.
+    [ "$SAME" -lt 30 ] || fail "Seit zehn Minuten kein neuer Teil, bei $COUNT von $PARTS; kein fehlgeschlagener Job gefunden."
     sleep 20
 done
 fail "Nach 30 Minuten erst $COUNT von $PARTS Teilen angekommen."
