@@ -9,6 +9,9 @@ on:
       rows:
         description: "Zeilen"
         default: "50000"
+      transmission:
+        description: "Nur warten: Kennung einer schon gestarteten Lieferung (LASTTEST-...)"
+        default: ""
 
 env:
   SF_CLI_VERSION: "2.159.5"
@@ -37,4 +40,5 @@ jobs:
       - name: Lastanlage liefern
         env:
           ROWS: ${{ inputs.rows }}
-        run: scripts/large-account.sh testorg "$ROWS"
+          TRANSMISSION: ${{ inputs.transmission }}
+        run: scripts/large-account.sh testorg "$ROWS" "$TRANSMISSION"
