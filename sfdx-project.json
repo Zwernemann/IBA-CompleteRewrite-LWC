@@ -5,7 +5,7 @@
       "default": true,
       "package": "SF Frontend IBA",
       "versionName": "Report",
-      "versionNumber": "0.13.0.NEXT",
+      "versionNumber": "0.13.1.NEXT",
       "versionDescription": "SF Frontend IBA in Salesforce, opened from the account: data intake, asset table and dialogs, interval table, report texts, sliders and settings, Order Code Transformer, attachments, report XML.",
       "dependencies": [
         {
