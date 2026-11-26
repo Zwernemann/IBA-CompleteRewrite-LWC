@@ -9,6 +9,9 @@
 
 Offen:
 
-- Anbindung des CRGenerators fuer LWC: Paketabhaengigkeit, Erzeugung mit `renderPdf`,
-  PDF-Anhaenge in den Report einfuegen, Report als File ablegen.
+- CRGenerator fuer LWC: PDF-Anhaenge in den Report einfuegen (braucht eine Erweiterung im
+  CRGenerator), Report als File ablegen. Angebunden ist er: Paketabhaengigkeit auf
+  "CRGenerator" mit derselben Hauptversion (`scripts/dependencies-resolve.sh` nimmt beim Bau
+  die neueste freigegebene), Schaltflaeche "Create report" mit `downloadPdf` und dem
+  Katalogeintrag "IBA Report".
 - Uebernahme bestehender Accounts aus IBA-Salesforce, falls E+H dort schon arbeitet.

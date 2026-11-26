@@ -70,7 +70,7 @@ Eine Nummer `major.minor.patch` laesst sich nur einmal freigeben.
 |---|---|
 | `sfibaOpenReport` | die Schaltflaeche "SF IBA Report" am Account (Quick Action): oeffnet den Tab fuer diesen Account |
 | `sfibaReport` | der Tab: die Arbeitsflaeche des Accounts aus `mzw__account`; ohne Account ein Hinweis, wie er geoeffnet wird |
-| `sfibaAccount` | die DIBA-Daten eines Accounts mit den sieben Reitern: Schieberegler, Reporttexte je Kapitel, Reporteinstellungen, Download des Report-XML; speichert waehrend der Arbeit |
+| `sfibaAccount` | die DIBA-Daten eines Accounts mit den sieben Reitern: Schieberegler, Reporttexte je Kapitel, Reporteinstellungen, Download des Report-XML, Report als PDF ueber den CRGenerator (`c/crgenerator`, in Jest eine Attrappe unter `jest-mocks/`); speichert waehrend der Arbeit |
 | `sfibaRichText` | Editor eines Reporttexts; laesst das HTML der Vorlagen unveraendert, Fett, Kursiv, Unterstrichen wie bisher |
 | `sfibaReportSettingsModal` | die Reporteinstellungen |
 | `sfibaReportState` | Vorlagen je Reportsprache, Sprachwechsel, Speichern je Feld mit Version, wie `ReportTemplates`, `ReportState` und `ReportValuesSession` |

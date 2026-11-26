@@ -10,7 +10,10 @@ REPORT_VERSION="${2:?Version von SF Frontend IBA fehlt}"
 TESTDATA_VERSION="${3:?Version von SF Frontend IBA Test Data fehlt}"
 cd "$REPO_ROOT"
 
-for version in "$REPORT_VERSION" "$TESTDATA_VERSION"; do
+# The CRGenerator first: our packages depend on it (scripts/dependencies-resolve.sh).
+DEPENDENCIES=()
+[ -f target/dependencies.ids ] && mapfile -t DEPENDENCIES < target/dependencies.ids
+for version in "${DEPENDENCIES[@]}" "$REPORT_VERSION" "$TESTDATA_VERSION"; do
     note "Installiere $version in $ORG"
     sf package install --package "$version" --target-org "$ORG" --wait 30 \
         --publish-wait 10 --no-prompt --security-type AdminsOnly > /dev/null \

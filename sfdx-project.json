@@ -4,20 +4,30 @@
       "path": "force-app",
       "default": true,
       "package": "SF Frontend IBA",
-      "versionName": "SF IBA",
-      "versionNumber": "0.7.0.NEXT",
-      "versionDescription": "SF Frontend IBA in Salesforce, opened from the account: data intake, asset table and dialogs, interval table, report texts, sliders and settings, Order Code Transformer, attachments, report XML."
+      "versionName": "Report",
+      "versionNumber": "0.8.0.NEXT",
+      "versionDescription": "SF Frontend IBA in Salesforce, opened from the account: data intake, asset table and dialogs, interval table, report texts, sliders and settings, Order Code Transformer, attachments, report XML.",
+      "dependencies": [
+        {
+          "package": "CRGenerator",
+          "versionNumber": "0.5.3.RELEASED"
+        }
+      ]
     },
     {
       "path": "eh-emulation",
       "package": "SF Frontend IBA Test Data",
       "versionName": "Lasttest",
-      "versionNumber": "0.3.1.NEXT",
+      "versionNumber": "0.3.2.NEXT",
       "versionDescription": "Test plant for test orgs, delivered through mzw.SfibaImport. Never installed at E+H.",
       "dependencies": [
         {
+          "package": "CRGenerator",
+          "versionNumber": "0.5.3.RELEASED"
+        },
+        {
           "package": "SF Frontend IBA",
-          "versionNumber": "0.7.0.LATEST"
+          "versionNumber": "0.8.0.LATEST"
         }
       ]
     }
@@ -26,5 +36,7 @@
   "namespace": "mzw",
   "sfdcLoginUrl": "https://login.salesforce.com",
   "sourceApiVersion": "66.0",
-  "packageAliases": {}
+  "packageAliases": {
+    "CRGenerator": "0Hod20000006xDVCAY"
+  }
 }

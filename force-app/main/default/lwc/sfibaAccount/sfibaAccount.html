@@ -15,7 +15,11 @@
             <template lwc:if={ready}>
                 <span class="slds-text-color_weak slds-m-right_small">{saveState}</span>
                 <lightning-button label={labels.settings} icon-name="utility:settings" onclick={handleOpenSettings} data-id="settings" class="slds-m-right_x-small"></lightning-button>
-                <lightning-button label={labels.xml} icon-name="utility:download" onclick={handleDownloadXml} data-id="xml"></lightning-button>
+                <template lwc:if={creatingReport}>
+                    <span class="slds-text-color_weak slds-m-right_small" data-id="report-step">{reportStep}</span>
+                </template>
+                <lightning-button label={labels.xml} icon-name="utility:download" onclick={handleDownloadXml} data-id="xml" class="slds-m-right_x-small"></lightning-button>
+                <lightning-button label={labels.report} icon-name="utility:file" variant="brand" onclick={handleCreateReport} disabled={creatingReport} data-id="report"></lightning-button>
             </template>
         </div>
         <div class="slds-p-horizontal_medium">

@@ -12,6 +12,10 @@ import { ReportSession, translator } from "c/sfibaReportState";
 import { devicesOf, reportXml, sliderPercentages } from "c/sfibaReportXml";
 import { loadRows } from "c/sfibaRowStore";
 import { loadTranslations, userLanguage } from "c/sfibaTexts";
+import { downloadPdf, loadEngine, preload } from "c/crgenerator";
+
+/** The catalogue entry of the CRGenerator: the IBA reports, run one after another and joined. */
+const REPORT = "IBA Report";
 
 const SAVE_DELAY = 800;
 const MAX_LENGTH = 24000;
@@ -83,8 +87,26 @@ export default class SfibaAccount extends NavigationMixin(LightningElement) {
     saving = false;
     saveTimer;
 
+    creatingReport = false;
+    reportStep = "";
+
     connectedCallback() {
         this.load();
+        this.warmReport();
+    }
+
+    /**
+     * Loads the engine and fetches the report definitions while the consultant works, so
+     * that pressing the button costs only the run. Never fails the page: an error shows
+     * when the report is created.
+     */
+    warmReport() {
+        try {
+            loadEngine(this);
+            preload(REPORT);
+        } catch (e) {
+            // reported by handleCreateReport
+        }
     }
 
     disconnectedCallback() {
@@ -172,7 +194,8 @@ export default class SfibaAccount extends NavigationMixin(LightningElement) {
             timeline: t("crgen.fr.timeline"),
             highCriticality: t("crgen.fr.crit.high.text"),
             mediumCriticality: t("crgen.fr.crit.med.text"),
-            xml: "Report XML"
+            xml: "Report XML",
+            report: "Create report"
         };
     }
 
@@ -469,6 +492,36 @@ export default class SfibaAccount extends NavigationMixin(LightningElement) {
             setTimeout(() => URL.revokeObjectURL(url), 60000);
         } catch (e) {
             this.addMessage(`Report XML not built: ${reduceError(e)}`);
+        }
+    }
+
+    /**
+     * Creates the report as PDF with the CRGenerator, from the same XML as the download,
+     * and hands it to the browser. Pending changes are saved first (buildReportXml).
+     */
+    async handleCreateReport() {
+        if (this.creatingReport) {
+            return;
+        }
+        this.creatingReport = true;
+        this.reportStep = "Collecting the data";
+        try {
+            const xml = await this.buildReportXml();
+            this.reportStep = "Creating the report";
+            await downloadPdf({
+                report: REPORT,
+                xml,
+                onProgress: (event) => {
+                    if (event && event.kind === "phase") {
+                        this.reportStep = `${event.phase} (${event.index}/${event.total})`;
+                    }
+                }
+            });
+        } catch (e) {
+            this.addMessage(`Report not created: ${reduceError(e)}`);
+        } finally {
+            this.creatingReport = false;
+            this.reportStep = "";
         }
     }
 

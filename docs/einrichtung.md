@@ -72,9 +72,11 @@ Kontingent des Dev Hub geschont.
 
 ## 5. In die Ziel-Org installieren
 
-1. In der Ziel-Org angemeldet den Link fuer **SF Frontend IBA** oeffnen, "Install for Admins
-   Only", installieren.
-2. Fuer eine Test-Org zusaetzlich **SF Frontend IBA Test Data** auf dieselbe Weise.
+1. Zuerst den **CRGenerator**, falls er noch nicht installiert ist oder aelter ist als die
+   Version, gegen die gebaut wurde. Sein Link steht in der Zusammenfassung des Laufs.
+2. In der Ziel-Org angemeldet den Link fuer **SF Frontend IBA** oeffnen, "Install for Admins
+   Only", installieren. Ohne passenden CRGenerator lehnt Salesforce die Installation ab.
+3. Fuer eine Test-Org zusaetzlich **SF Frontend IBA Test Data** auf dieselbe Weise.
 
 ## 6. Nach der Installation
 

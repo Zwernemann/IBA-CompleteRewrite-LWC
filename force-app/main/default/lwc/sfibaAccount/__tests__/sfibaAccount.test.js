@@ -9,6 +9,7 @@ import getIntervals from "@salesforce/apex/SfibaIntervalController.getIntervals"
 import getRows from "@salesforce/apex/SfibaAccountController.getRows";
 import listAttachments from "@salesforce/apex/SfibaAttachmentController.listAttachments";
 import { forgetRows } from "c/sfibaRowStore";
+import { downloadPdf, preload } from "c/crgenerator";
 
 jest.mock("c/sfibaMaintenanceModal", () => ({ __esModule: true, default: { open: jest.fn() } }));
 jest.mock("c/sfibaIntervalModal", () => ({ __esModule: true, default: { open: jest.fn() } }));
@@ -118,6 +119,25 @@ describe("c-sfiba-account", () => {
         expect(xml).toContain("<reportLanguage>de_DE</reportLanguage>");
         expect(xml).toContain("<hub_last_name>Nord</hub_last_name>");
         expect(xml).toContain("<spk>TA</spk>");
+    });
+
+    it("creates the report with the CRGenerator from the report XML", async () => {
+        const element = await open();
+        expect(preload).toHaveBeenCalledWith("IBA Report");
+        element.shadowRoot.querySelector('[data-id="report"]').click();
+        await settle();
+        expect(downloadPdf).toHaveBeenCalledTimes(1);
+        const request = downloadPdf.mock.calls[0][0];
+        expect(request.report).toBe("IBA Report");
+        expect(request.xml).toBe(await element.buildReportXml());
+    });
+
+    it("names a report that failed", async () => {
+        downloadPdf.mockRejectedValueOnce(new Error("Unknown report"));
+        const element = await open();
+        element.shadowRoot.querySelector('[data-id="report"]').click();
+        await settle();
+        expect(element.shadowRoot.querySelector(".slds-alert_warning").textContent).toContain("Report not created: Unknown report");
     });
 
     it("opens the asset table", async () => {

@@ -87,6 +87,7 @@ jobs:
         run: |
           promote=""
           if [ "${GITHUB_REF_TYPE}" = "tag" ] || [ "${{ inputs.task }}" = "Installer bauen und freigeben" ]; then promote="--promote"; fi
+          scripts/dependencies-resolve.sh
           VERSION_FILE=report.id scripts/package-version.sh "SF Frontend IBA" $promote
           VERSION_FILE=testdata.id scripts/package-version.sh "SF Frontend IBA Test Data" $promote
           echo "report=$(cat report.id)" >> "$GITHUB_OUTPUT"
