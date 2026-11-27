@@ -62,11 +62,12 @@ for set in SFIBA_Report_Consultant SFIBA_Data_Sender; do
 done
 
 note "Liefere die Testanlage"
-OUTPUT="$(sf apex run --file scripts/apex/send-testdata.apex --target-org "$ORG" --json)"
+# A failing script ends sf with an error status; its JSON says why, so it is read anyway.
+OUTPUT="$(sf apex run --file scripts/apex/send-testdata.apex --target-org "$ORG" --json || true)"
 node -e '
     const r = JSON.parse(require("fs").readFileSync(0, "utf8"));
     if (!r.result || !r.result.success) {
-        console.error(r.result ? (r.result.exceptionMessage || r.result.compileProblem) : r.message);
+        console.error(r.result ? [r.result.compileProblem, r.result.exceptionMessage, r.result.exceptionStackTrace].filter(Boolean).join("\n") : r.message);
         process.exit(1);
     }
     const log = r.result.logs || "";
